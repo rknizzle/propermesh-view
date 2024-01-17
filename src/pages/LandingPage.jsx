@@ -1,8 +1,10 @@
+import "./landingPage.css";
+
 export default function Landing() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Landing Page</p>
+        <h1>P R O P E R M E S H</h1>
       </header>
     </div>
   );
