@@ -5,3 +5,53 @@ body {
 .App-header {
   color: red;
 }
+
+h1 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1:hover {
+  cursor: default;
+}
+
+#geo-analysis,
+#thick-analysis {
+  background-color: #bcb1a2;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px 2px #9f7b7b;
+  padding: 1vw;
+  font-size: large;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0px 2px 8px 2px #9f7b7b;
+  }
+  50% {
+    box-shadow: 0px 4px 18px 4px #9f7b7b;
+  }
+  100% {
+    box-shadow: 0px 2px 8px 2px #9f7b7b;
+  }
+}
+
+#geo-analysis:hover,
+#thick-analysis:hover {
+  animation: glowing 1s;
+  cursor: default;
+}
+
+p {
+  text-align: left;
+}
+
+ul,
+li {
+  text-align: left;
+}
+
+.use-cases {
+  text-align: left !important;
+}

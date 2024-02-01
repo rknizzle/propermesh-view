@@ -13,6 +13,10 @@
   background-color: rgb(183, 170, 153);
 }
 
+.header-title:hover {
+  cursor: default;
+}
+
 .header-menu {
   flex-grow: 1;
   justify-content: flex-end;
