@@ -4,9 +4,21 @@ import { Row, Col } from "antd";
 export default function Landing() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <h1>P R O P E R M E S H</h1>
-      </header>
+      </header> */}
+
+      <img src="assets/logo.png" alt="" id="logo" />
+
+      <h2>
+        Software tools for automating 3D printability checks of 3D model files
+      </h2>
+
+      <h3>Coming Soon!</h3>
+
+      <h3>
+        Contact ryan@propermesh.com for more info and keys for beta testing
+      </h3>
 
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col
