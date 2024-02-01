@@ -7,4 +7,7 @@ export default defineConfig({
   server: {
     open: true,
   },
+  optimizeDeps: {
+    exclude: ["chunk-S2TLTWWO.js.map"],
+  },
 });
