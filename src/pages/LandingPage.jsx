@@ -11,7 +11,6 @@ export default function Landing() {
 
   return (
     <div className="App">
-      {/* <img src="assets/logo.png" alt="" id="logo" /> */}
       <div id="logo-container" className={animateLogo ? "logo-animate" : ""}>
         <div className="logo-half left-half"></div>
         <div className="logo-half right-half"></div>
