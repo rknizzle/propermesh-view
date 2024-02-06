@@ -98,6 +98,27 @@ export default function Landing() {
           </ul>
         </Col>
       </Row>
+      <Row id="landing-prefooter" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        <Col xs={{ span: 24 }} lg={{ span: 8 }} className="landing-prefooter">
+          <p>Many supported file types such as SLDPRT, STEP, STL, OBJ, PLY</p>
+        </Col>
+        <Col
+          xs={{ span: 24 }}
+          lg={{ span: 8 }}
+          id="landing-middle-prefooter"
+          className="landing-prefooter"
+        >
+          <p>Cloud File Storage</p>
+        </Col>
+        <Col
+          xs={{ span: 24 }}
+          lg={{ span: 8 }}
+          id="landing-end-prefooter"
+          className="landing-prefooter"
+        >
+          <p>Easy to use REST API</p>
+        </Col>
+      </Row>
     </div>
   );
 }
