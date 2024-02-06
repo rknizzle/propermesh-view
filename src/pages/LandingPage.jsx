@@ -16,13 +16,17 @@ export default function Landing() {
         <div className="logo-half right-half"></div>
       </div>
 
-      <h2>
+      <h2 id="description">
         Software tools for automating 3D printability checks of 3D model files
       </h2>
 
-      <h3>Coming Soon!</h3>
+      <img
+        id="coming-soon-image"
+        src="assets/coming-soon.png"
+        alt="Coming Soon"
+      />
 
-      <h3>
+      <h3 id="contact-ryan">
         Contact ryan@propermesh.com for more info and keys for beta testing
       </h3>
 
