@@ -190,6 +190,18 @@ li {
   text-align: left !important;
 }
 
+#geo-analysis h2,
+#thick-analysis h2 {
+  font-size: clamp(1.5rem, 2.3vw, 2.7rem);
+}
+
+#geo-analysis p,
+#geo-analysis li,
+#thick-analysis p,
+#thick-analysis li {
+  font-size: clamp(0.8rem, 1.3vw, 1.4rem);
+}
+
 .landing-prefooter {
   background-color: #aa1e0f;
   padding: 1rem;
