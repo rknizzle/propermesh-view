@@ -1,0 +1,34 @@
+#login {
+  border-radius: 10px;
+}
+
+#register {
+  border-radius: 10px;
+}
+
+#register form {
+  border: none;
+}
+
+@media screen and (min-width: 992px) {
+  #login,
+  #register {
+    position: relative;
+    margin-top: 5rem;
+  }
+
+  #register form {
+    margin-top: 0rem;
+    border: none;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #login,
+  #register {
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid #ccc;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
