@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu } from "antd";
+import { useNavigate } from "react-router-dom";
 import "./header.css";
 
 const Header = () => {
   const [current, setCurrent] = useState("");
+  const navigate = useNavigate();
 
   const onClick = (e) => {
-    console.log("click ", e);
     setCurrent(e.key);
-
-    // TODO: Add logic to handle menu clicks
-    // if currentKey is "login", redirect to /login
-    // if currentKey is "apiDocs", redirect to /apiDocs
   };
+
+  useEffect(() => {
+    if (current === "login") {
+      navigate("/login");
+      setCurrent("");
+    } else if (current === "apiDocs") {
+      console.log("TODO: Redirect to API Docs page.");
+      setCurrent("");
+    }
+  }, [current, navigate]);
 
   const menuItems = [
     {
