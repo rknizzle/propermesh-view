@@ -12,8 +12,8 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (current === "login") {
-      navigate("/login");
+    if (current === "loginregister") {
+      navigate("/loginregister");
       setCurrent("");
     } else if (current === "apiDocs") {
       console.log("TODO: Redirect to API Docs page.");
@@ -24,7 +24,7 @@ const Header = () => {
   const menuItems = [
     {
       label: "Login",
-      key: "login",
+      key: "loginregister",
     },
     {
       label: "API Docs",

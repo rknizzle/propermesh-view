@@ -11,7 +11,7 @@ export const RootComponent = () => {
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<Landing />} />
-        <Route path="login" element={<LoginRegister />} />
+        <Route path="loginregister" element={<LoginRegister />} />
       </Route>
     </Routes>
   );
