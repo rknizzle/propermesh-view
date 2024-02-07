@@ -1,0 +1,236 @@
+body {
+  background-color: rgb(250, 234, 213);
+}
+
+.App-header {
+  color: red;
+}
+
+#logo-container {
+  width: 30vw;
+  height: 30vw;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-half {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-size: 200% 100%;
+  background-image: url("assets/logo.png");
+  transition: transform 1s ease-out;
+}
+
+.left-half {
+  background-position: right;
+  left: 0%;
+}
+
+.right-half {
+  background-position: left;
+  right: 0%;
+}
+
+.logo-animate .left-half {
+  transform: translateX(100%);
+}
+
+.logo-animate .right-half {
+  transform: translateX(-100%);
+}
+
+h1 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1:hover {
+  cursor: default;
+}
+
+#description {
+  display: inline-block;
+  color: #f6e7cc;
+  text-shadow: #343130 2.5px 2.5px 2.5px;
+  font-size: clamp(1rem, 2vw, 2rem);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 1rem;
+  background: linear-gradient(
+    145deg,
+    #343130,
+    rgba(154, 86, 86, 0.949),
+    #343130
+  );
+  border-radius: 10rem;
+  box-shadow: 0px 2px 8px 2px #9f7b7b;
+  z-index: 1;
+}
+
+@media screen and (max-width: 992px) {
+  #description {
+    font-size: 3vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #description {
+    font-size: 4vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #description {
+    font-size: 5vw;
+  }
+}
+
+#coming-soon-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+  #coming-soon-image {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  #coming-soon-image {
+    width: 70%;
+  }
+}
+
+@media (max-width: 480px) {
+  #coming-soon-image {
+    width: 60%;
+  }
+}
+
+#contact-ryan {
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px 2px #9f7b7b;
+  padding: 0.5vw;
+  font-size: clamp(12px, 1.2vw, 18px);
+  font-weight: normal;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 992px) {
+  #contact-ryan {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #contact-ryan {
+    font-size: 2.5vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #contact-ryan {
+    font-size: 3vw;
+  }
+}
+
+#geo-analysis,
+#thick-analysis {
+  background-color: #bcb1a2;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px 2px #9f7b7b;
+  padding: 1vw;
+  font-size: large;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0px 2px 8px 2px #9f7b7b;
+  }
+  50% {
+    box-shadow: 0px 4px 18px 4px #9f7b7b;
+  }
+  100% {
+    box-shadow: 0px 2px 8px 2px #9f7b7b;
+  }
+}
+
+#geo-analysis:hover,
+#thick-analysis:hover {
+  animation: glowing 1s;
+  cursor: default;
+}
+
+p {
+  text-align: left;
+}
+
+ul,
+li {
+  text-align: left;
+}
+
+.use-cases {
+  text-align: left !important;
+}
+
+#geo-analysis h2,
+#thick-analysis h2 {
+  font-size: clamp(1.5rem, 2.3vw, 2.7rem);
+}
+
+#geo-analysis p,
+#geo-analysis li,
+#thick-analysis p,
+#thick-analysis li {
+  font-size: clamp(0.8rem, 1.3vw, 1.4rem);
+}
+
+.landing-prefooter {
+  background-color: #aa1e0f;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.landing-prefooter p {
+  font-size: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: #9f7b7b 0.5px 0.5px 0.5px;
+}
+
+#landing-middle-prefooter {
+  border-right: 5px solid black;
+  border-left: 5px solid black;
+}
+
+@media screen and (max-width: 992px) {
+  #landing-middle-prefooter {
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    border-right: none;
+    border-left: none;
+    margin-top: 0;
+  }
+  #landing-end-prefooter {
+    margin-top: 0;
+  }
+}
