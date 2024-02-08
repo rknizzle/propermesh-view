@@ -1,56 +1,17 @@
-import { useState } from "react";
-import { AutoComplete, Button, Form, Input, Select } from "antd";
-import {
-  UserOutlined,
-  LockOutlined,
-  MailOutlined,
-  TeamOutlined,
-  DesktopOutlined,
-} from "@ant-design/icons";
+import PropTypes from "prop-types";
+import { Button, Form, Input } from "antd";
+import { LockOutlined, MailOutlined } from "@ant-design/icons";
 
-const { Option } = Select;
-
-const Register = () => {
+const Register = ({ toggleForm }) => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
 
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="1">+1</Option>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
-
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-
-  const onWebsiteChange = (value) => {
-    if (!value) {
-      setAutoCompleteResult([]);
-    } else {
-      setAutoCompleteResult(
-        [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
-      );
-    }
-  };
-
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
-
   return (
     <>
-      <h1>Register</h1>
+      <h1 className="loginregister-font">Register</h1>
       <Form
         form={form}
         name="register"
@@ -61,6 +22,7 @@ const Register = () => {
       >
         <Form.Item
           name="email"
+          className="form-layout"
           rules={[
             {
               type: "email",
@@ -77,9 +39,9 @@ const Register = () => {
             placeholder="Email"
           />
         </Form.Item>
-
         <Form.Item
           name="password"
+          className="form-layout"
           rules={[
             {
               required: true,
@@ -94,9 +56,9 @@ const Register = () => {
             placeholder="Password"
           />
         </Form.Item>
-
         <Form.Item
           name="confirm"
+          className="form-layout"
           dependencies={["password"]}
           hasFeedback
           rules={[
@@ -121,75 +83,30 @@ const Register = () => {
             placeholder="Confirm Password"
           />
         </Form.Item>
-
-        <Form.Item
-          name="username"
-          rules={[{ required: true, message: "Please input your Username!" }]}
-        >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="company"
-          rules={[
-            {
-              required: false,
-              message: "Please input your company!",
-              whitespace: true,
-            },
-          ]}
-        >
-          <Input
-            prefix={<TeamOutlined className="site-form-item-icon" />}
-            placeholder="Company"
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="phone"
-          rules={[
-            {
-              required: true,
-              message: "Please input your phone number!",
-            },
-          ]}
-        >
-          <Input
-            addonBefore={prefixSelector}
-            style={{
-              width: "100%",
-            }}
-            placeholder="Phone Number"
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="website"
-          rules={[
-            {
-              required: false,
-              message: "Please input website!",
-            },
-          ]}
-        >
-          <AutoComplete options={websiteOptions} onChange={onWebsiteChange}>
-            <Input
-              prefix={<DesktopOutlined className="site-form-item-icon" />}
-              placeholder="Website"
-            />
-          </AutoComplete>
-        </Form.Item>
-
         <Form.Item>
-          <Button type="primary" htmlType="submit" style={{ width: "50%" }}>
-            Register
+          <Button
+            type="default"
+            htmlType="submit"
+            style={{ width: "50%" }}
+            className="loginregister-font custom-btn"
+          >
+            Submit
           </Button>
         </Form.Item>
+        <span className="loginregister-font">Have An Account? </span>
+        <a
+          onClick={toggleForm}
+          className="loginregister-font loginregister-toggle"
+        >
+          Sign In!
+        </a>
       </Form>
     </>
   );
 };
+
+Register.propTypes = {
+  toggleForm: PropTypes.func.isRequired,
+};
+
 export default Register;

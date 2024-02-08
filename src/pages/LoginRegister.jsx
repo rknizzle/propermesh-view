@@ -1,28 +1,38 @@
+import { useState } from "react";
 import { Col, Row } from "antd";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import "./loginRegister.css";
 
-const LoginRegister = () => (
-  <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-    <Col
-      xs={{ span: 20, offset: 2 }}
-      sm={{ span: 18, offset: 3 }}
-      md={{ span: 14, offset: 5 }}
-      lg={{ span: 10, offset: 2 }}
-      id="login"
+const LoginRegister = () => {
+  const [showLogin, setShowLogin] = useState(true);
+
+  const toggleForm = () => {
+    setShowLogin(!showLogin);
+  };
+
+  return (
+    <Row
+      gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
+      type="flex"
+      justify="center"
+      align="middle"
+      style={{ minHeight: "80vh" }}
     >
-      <Login />
-    </Col>
-    <Col
-      xs={{ span: 20, offset: 2 }}
-      sm={{ span: 18, offset: 3 }}
-      md={{ span: 14, offset: 5 }}
-      lg={{ span: 10, offset: 0 }}
-      id="register"
-    >
-      <Register />
-    </Col>
-  </Row>
-);
+      <Col
+        xs={{ span: 12 }}
+        sm={{ span: 10 }}
+        md={{ span: 8 }}
+        lg={{ span: 6 }}
+        className="login-register-container"
+      >
+        {showLogin ? (
+          <Login toggleForm={toggleForm} />
+        ) : (
+          <Register toggleForm={toggleForm} />
+        )}
+      </Col>
+    </Row>
+  );
+};
 export default LoginRegister;

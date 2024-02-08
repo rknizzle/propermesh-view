@@ -52,11 +52,9 @@ a:hover {
   }
 }
 
-@media screen and (min-width: 992px) {
-  .footer-container.sticky {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
+.footer-container.sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }

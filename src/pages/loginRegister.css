@@ -1,34 +1,71 @@
-#login {
-  border-radius: 10px;
+.loginregister-font {
+  font-family: "Roboto", sans-serif;
 }
 
-#register {
-  border-radius: 10px;
+.form-layout {
+  box-shadow: 0px 0px 20px 0px #f408081a;
 }
 
-#register form {
+.loginregister-toggle {
+  color: #b10a0ab1;
+  font-weight: bold;
+}
+
+.loginregister-toggle:hover {
+  color: #f40808;
+  cursor: pointer;
+}
+
+.custom-btn {
+  background-color: #1c1f1bc7;
+  color: white;
+}
+
+.custom-btn:hover {
+  background-color: #000000d4;
   border: none;
+  color: white !important;
+  cursor: pointer;
 }
 
-@media screen and (min-width: 992px) {
-  #login,
-  #register {
-    position: relative;
-    margin-top: 5rem;
-  }
-
-  #register form {
-    margin-top: 0rem;
-    border: none;
-  }
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: black !important;
+  border-color: rgba(255, 0, 0, 0.344) !important;
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2) !important;
 }
 
-@media screen and (max-width: 992px) {
-  #login,
-  #register {
-    border-bottom: 2px solid #ccc;
-    border-top: 2px solid #ccc;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox-wrapper .ant-checkbox:hover .ant-checkbox-inner {
+  background-color: rgba(0, 0, 0, 0.339) !important;
+  border-color: rgba(255, 0, 0, 0.344) !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner::after {
+  border-color: white !important;
+}
+
+.ant-checkbox-wrapper:hover .ant-checkbox-input:focus + .ant-checkbox-inner,
+.ant-checkbox-wrapper
+  .ant-checkbox:hover
+  .ant-checkbox-input:focus
+  + .ant-checkbox-inner {
+  background-color: rgba(0, 0, 0, 0.339) !important;
+  border-color: rgba(255, 0, 0, 0.344) !important;
+}
+
+.ant-checkbox-wrapper:focus-within .ant-checkbox-inner,
+.ant-checkbox-wrapper .ant-checkbox-focused .ant-checkbox-inner {
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2) !important;
+}
+
+@media (max-width: 467px) {
+  .remember-forgot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-form-forgot {
+    margin-top: 0.3rem;
   }
 }
