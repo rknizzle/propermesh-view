@@ -40,9 +40,8 @@ export default function Landing() {
         >
           <h2>Geometry Analysis</h2>
           <p>
-            Geometry analysis performs detailed geometry analysis on 3D model
-            files. It is designed to efficiently calculate key dimensions and
-            identify potential issues within the 3D mesh.
+            Geometry Analysis is specifically designed to prepare your 3D models for 3D printing or
+            manufacturing by providing a comprehensive examination of their structure and integrity.
           </p>
           <ul>
             <li>Surface Area</li>
@@ -56,14 +55,10 @@ export default function Landing() {
           <br />
           <div className="use-cases">Use Cases:</div>
           <ul>
+            <li>Useful in 3D printing for ensuring model integrity.</li>
+            <li>Effective for generating manufacturing quotes based on model dimensions.</li>
             <li>
-              Ideal for designers and engineers in pre-production stages to
-              validate 3D models.
-            </li>
-            <li> Useful in 3D printing for ensuring model integrity.</li>
-            <li>
-              Helps in digital archiving of 3D artifacts by providing detailed
-              dimensional data.
+              Ideal for designers and engineers in pre-production stages to validate 3D models.
             </li>
           </ul>
         </Col>
@@ -76,28 +71,25 @@ export default function Landing() {
         >
           <h2>Thickness Analysis</h2>
           <p>
-            TODO: Geometry analysis performs detailed geometry analysis on 3D
-            model files. It is designed to efficiently calculate key dimensions
-            and identify potential issues within the 3D mesh.
+            Thickness analysis ensures durability and manufacturing compatibility.
+            This tool focuses on evaluating and highlighting areas of your model that may be too
+            thin for successful production.
           </p>
           <ul>
-            <li>Percentage of thin surface area</li>
+            <li>Detects thin areas of model and calculates total and percentage of thin surface area</li>
+            <li>Generates a colored 3D model to easily visualize thin areas of the model</li>
           </ul>
           <br />
           <br />
           <div className="use-cases">Use Cases:</div>
           <ul>
             <li>
-              Essential for 3D printing enthusiasts and professionals to
-              preemptively identify and correct potential printing issues.
+              Essential for 3D printing professionals to preemptively identify and correct potential
+              printing issues.
             </li>
             <li>
               Useful in product design for ensuring structural integrity and
               material efficiency.
-            </li>
-            <li>
-              Assists in educational settings for teaching the principles of 3D
-              modeling and printing
             </li>
           </ul>
         </Col>
