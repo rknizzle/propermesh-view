@@ -1,10 +1,32 @@
 import { Form, Input, Button, Checkbox } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ toggleForm }) => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    try {
+      const response = await fetch("/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Login failed");
+
+      const data = await response.json();
+      console.log("Login Success:", data);
+      navigate("/");
+    } catch (error) {
+      console.error("Login Error:", error);
+    }
   };
 
   return (

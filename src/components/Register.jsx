@@ -1,12 +1,49 @@
 import PropTypes from "prop-types";
 import { Button, Form, Input } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 const Register = ({ toggleForm }) => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const onFinish = async (values) => {
+    try {
+      const signupResponse = await fetch("/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+      });
+
+      if (!signupResponse.ok) throw new Error("Signup failed");
+
+      // Automatically attempt to login after signup
+      const loginResponse = await fetch("/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+      });
+
+      if (!loginResponse.ok) throw new Error("Login failed after signup");
+
+      const loginData = await loginResponse.json();
+      console.log("Login Success:", loginData);
+
+      // Navigate to the homepage after login
+      navigate("/");
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
   };
 
   return (
