@@ -10,17 +10,17 @@ export default defineConfig({
     // proxy API requests to the propermesh backend server which runs at port 5000 when running locally
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
+        target: "http://localhost:5001",
       },
       "/auth": {
-        target: "http://localhost:5000",
+        target: "http://localhost:5001",
       },
       // NOTE: /docs and /openapi.json are for loading the openapi API docs from the backend server
       "/docs": {
-        target: "http://localhost:5000",
+        target: "http://localhost:5001",
       },
       "/openapi.json": {
-        target: "http://localhost:5000",
+        target: "http://localhost:5001",
       },
     },
   },
