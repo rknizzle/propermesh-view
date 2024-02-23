@@ -2,8 +2,10 @@ import { Form, Input, Button } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../utils/useAuth";
 
 const Login = ({ toggleForm }) => {
+  const { confirmLogin } = useAuth();
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
@@ -23,7 +25,8 @@ const Login = ({ toggleForm }) => {
 
       const data = await response.json();
       console.log("Login Success:", data);
-      navigate("/");
+      confirmLogin();
+      navigate("/apppage");
     } catch (error) {
       console.error("Login Error:", error);
     }
@@ -104,6 +107,7 @@ const Login = ({ toggleForm }) => {
 
 Login.propTypes = {
   toggleForm: PropTypes.func.isRequired,
+  confirmLogin: PropTypes.func,
 };
 
 export default Login;

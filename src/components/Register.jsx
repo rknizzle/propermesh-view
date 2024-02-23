@@ -2,10 +2,12 @@ import PropTypes from "prop-types";
 import { Button, Form, Input } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../utils/useAuth";
 
 const Register = ({ toggleForm }) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const { confirmLogin } = useAuth();
 
   const onFinish = async (values) => {
     try {
@@ -38,9 +40,9 @@ const Register = ({ toggleForm }) => {
 
       const loginData = await loginResponse.json();
       console.log("Login Success:", loginData);
-
-      // Navigate to the homepage after login
-      navigate("/");
+      confirmLogin();
+      // Navigate to the app page after login
+      navigate("/apppage");
     } catch (error) {
       console.error("Error:", error.message);
     }

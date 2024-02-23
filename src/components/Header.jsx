@@ -1,69 +1,38 @@
-import { useState, useEffect } from "react";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./header.css";
+import { useAuth } from "../../utils/useAuth";
+import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const Header = () => {
-  const [current, setCurrent] = useState("");
   const navigate = useNavigate();
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log("isLoggedIn", isLoggedIn);
-
-  const confirmLogin = async () => {
-    try {
-      // Include credentials to send cookies with the request
-      const response = await fetch("/auth/confirm", {
-        credentials: "include",
-        headers: {
-          "Cache-Control": "no-cache",
-        },
-      });
-      if (response.status === 200) {
-        // If the backend returns a 200 status, the user is logged in
-        setIsLoggedIn(true);
-        console.log(response.status);
-      } else {
-        // If the response is not ok, set logged in to false
-        setIsLoggedIn(false);
-      }
-    } catch (error) {
-      console.error("Error confirming login", error);
-      setIsLoggedIn(false);
-    }
-  };
+  const { confirmLogin, isLoggedIn } = useAuth();
 
   useEffect(() => {
     confirmLogin();
-  }, [navigate, setIsLoggedIn, setCurrent]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const onClick = (e) => {
-    setCurrent(e.key);
-
+  const onClick = async (e) => {
     if (e.key === "logout") {
-      fetch("/auth/logout", {
+      // Make a call to the backend to logout and wait for it to complete
+      await fetch("/auth/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      setIsLoggedIn(false);
       navigate("/");
+      confirmLogin(); // Check login status again after logout
+    } else if (e.key === "loginregister") {
+      navigate("/loginregister");
+    } else if (e.key === "apiDocs") {
+      console.log("TODO: Redirect to API Docs page.");
+    } else if (e.key === "apppage") {
+      navigate("/apppage");
     }
   };
-
-  useEffect(() => {
-    if (current === "loginregister") {
-      navigate("/loginregister");
-      setCurrent("");
-    } else if (current === "apiDocs") {
-      console.log("TODO: Redirect to API Docs page.");
-      setCurrent("");
-    } else if (current === "apppage") {
-      navigate("/apppage");
-      setCurrent("");
-    }
-  }, [current, navigate]);
 
   const menuItems = isLoggedIn
     ? [
@@ -96,13 +65,17 @@ const Header = () => {
       <div className="header-title">Propermesh</div>
       <Menu
         onClick={onClick}
-        selectedKeys={[current]}
         mode="horizontal"
         items={menuItems}
         className="header-menu"
       />
     </div>
   );
+};
+
+Header.propTypes = {
+  confirmLogin: PropTypes.func,
+  isLoggedIn: PropTypes.bool,
 };
 
 export default Header;
