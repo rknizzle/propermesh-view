@@ -35,7 +35,7 @@ const Header = () => {
 
   useEffect(() => {
     confirmLogin();
-  }, [navigate, setIsLoggedIn]);
+  }, [navigate, setIsLoggedIn, setCurrent]);
 
   const onClick = (e) => {
     setCurrent(e.key);
@@ -59,6 +59,9 @@ const Header = () => {
     } else if (current === "apiDocs") {
       console.log("TODO: Redirect to API Docs page.");
       setCurrent("");
+    } else if (current === "apppage") {
+      navigate("/apppage");
+      setCurrent("");
     }
   }, [current, navigate]);
 
@@ -67,6 +70,10 @@ const Header = () => {
         {
           label: "Logout",
           key: "logout",
+        },
+        {
+          label: "App",
+          key: "apppage",
         },
         {
           label: "API Docs",

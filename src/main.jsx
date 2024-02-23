@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Landing from "./pages/LandingPage.jsx";
 import LoginRegister from "./pages/LoginRegister.jsx";
+import AppPage from "./pages/AppPage.jsx";
 
 export const RootComponent = () => {
   return (
@@ -12,6 +13,7 @@ export const RootComponent = () => {
       <Route path="/" element={<App />}>
         <Route index element={<Landing />} />
         <Route path="loginregister" element={<LoginRegister />} />
+        <Route path="apppage" element={<AppPage />} />
       </Route>
     </Routes>
   );

@@ -6,12 +6,13 @@ import { useLocation } from "react-router-dom";
 
 function App() {
   const location = useLocation();
-  const isLoginRegisterPage = location.pathname === "/loginregister";
+  const isStickyFooterPage =
+    location.pathname === "/loginregister" || location.pathname === "/apppage";
   return (
     <>
       <Header />
       <Outlet />
-      <Footer sticky={isLoginRegisterPage} />
+      <Footer sticky={isStickyFooterPage} />
     </>
   );
 }
