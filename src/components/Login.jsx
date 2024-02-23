@@ -1,4 +1,4 @@
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
@@ -69,19 +69,9 @@ const Login = ({ toggleForm }) => {
           />
         </Form.Item>
         <Form.Item>
-          <div className="remember-forgot-container">
-            <Form.Item
-              name="remember"
-              valuePropName="checked"
-              className="loginregister-font"
-              style={{ color: "red" }}
-              noStyle
-            >
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-
+          <div className="forgot-password-container">
             <a className="login-form-forgot loginregister-font" href="">
-              Forgot password
+              Forgot Password
             </a>
           </div>
         </Form.Item>
