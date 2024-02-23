@@ -68,13 +68,18 @@ const Login = ({ toggleForm }) => {
             placeholder="Password"
           />
         </Form.Item>
-        <Form.Item>
-          <div className="forgot-password-container">
-            <a className="login-form-forgot loginregister-font" href="">
-              Forgot Password
-            </a>
-          </div>
-        </Form.Item>
+        {
+          // Hide the forgot password link for now until ryan builds out the backend for it
+          false && (
+            <Form.Item>
+              <div className="forgot-password-container">
+                <a className="login-form-forgot loginregister-font" href="">
+                  Forgot Password
+                </a>
+              </div>
+            </Form.Item>
+          )
+        }
         <Form.Item>
           <Button
             type="default"
