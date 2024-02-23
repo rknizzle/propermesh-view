@@ -37,16 +37,16 @@ const Header = () => {
   const menuItems = isLoggedIn
     ? [
         {
-          label: "Logout",
-          key: "logout",
-        },
-        {
           label: "App",
           key: "apppage",
         },
         {
           label: "API Docs",
           key: "apiDocs",
+        },
+        {
+          label: "Logout",
+          key: "logout",
         },
       ]
     : [

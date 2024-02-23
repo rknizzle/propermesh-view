@@ -1,5 +1,9 @@
-import { Form, Input, Button } from "antd";
-import { MailOutlined, LockOutlined } from "@ant-design/icons";
+import { Form, Input, Button, notification } from "antd";
+import {
+  MailOutlined,
+  LockOutlined,
+  ExclamationCircleTwoTone,
+} from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/useAuth";
@@ -25,10 +29,28 @@ const Login = ({ toggleForm }) => {
 
       const data = await response.json();
       console.log("Login Success:", data);
+      notification.success({
+        message: "Logged In",
+        placement: "bottomRight",
+        duration: 1.5,
+        style: {
+          width: 300,
+        },
+      });
       confirmLogin();
       navigate("/apppage");
     } catch (error) {
       console.error("Login Error:", error);
+      notification.error({
+        message: "Login Failed",
+        description: "Please check your credentials and try again.",
+        icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+        placement: "top",
+        duration: 4.5,
+        style: {
+          width: 300,
+        },
+      });
     }
   };
 

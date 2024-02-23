@@ -1,6 +1,10 @@
 import PropTypes from "prop-types";
-import { Button, Form, Input } from "antd";
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
+import { Button, Form, Input, notification } from "antd";
+import {
+  LockOutlined,
+  MailOutlined,
+  ExclamationCircleTwoTone,
+} from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/useAuth";
 
@@ -40,11 +44,29 @@ const Register = ({ toggleForm }) => {
 
       const loginData = await loginResponse.json();
       console.log("Login Success:", loginData);
+      notification.success({
+        message: "Registered and Logged In",
+        placement: "bottomRight",
+        duration: 2,
+        style: {
+          width: 300,
+        },
+      });
       confirmLogin();
       // Navigate to the app page after login
       navigate("/apppage");
     } catch (error) {
       console.error("Error:", error.message);
+      notification.error({
+        message: "Registration Failed",
+        description: "An error occurred during registration. Please try again.",
+        icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+        placement: "top",
+        duration: 4.5,
+        style: {
+          width: 300,
+        },
+      });
     }
   };
 
