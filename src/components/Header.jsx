@@ -2,7 +2,6 @@ import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./header.css";
 import { useAuth } from "../../utils/useAuth";
-import PropTypes from "prop-types";
 import { useEffect } from "react";
 
 const Header = () => {
@@ -71,11 +70,6 @@ const Header = () => {
       />
     </div>
   );
-};
-
-Header.propTypes = {
-  confirmLogin: PropTypes.func,
-  isLoggedIn: PropTypes.bool,
 };
 
 export default Header;

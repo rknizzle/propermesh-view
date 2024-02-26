@@ -129,7 +129,6 @@ const Login = ({ toggleForm }) => {
 
 Login.propTypes = {
   toggleForm: PropTypes.func.isRequired,
-  confirmLogin: PropTypes.func,
 };
 
 export default Login;
