@@ -11,9 +11,6 @@ export const AuthProvider = ({ children }) => {
       // Include credentials to send cookies with the request
       const response = await fetch("/auth/confirm", {
         credentials: "include",
-        headers: {
-          "Cache-Control": "no-cache",
-        },
       });
       if (response.status === 200) {
         // If the backend returns a 200 status, the user is logged in
