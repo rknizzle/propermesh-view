@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../utils/useAuth";
+import { useAuth } from "../utils/useAuth";
 
 const Login = ({ toggleForm }) => {
   const { confirmLogin } = useAuth();

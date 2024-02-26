@@ -6,7 +6,7 @@ import {
   ExclamationCircleTwoTone,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../utils/useAuth";
+import { useAuth } from "../utils/useAuth";
 
 const Register = ({ toggleForm }) => {
   const [form] = Form.useForm();
