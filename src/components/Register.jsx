@@ -7,6 +7,8 @@ import {
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/useAuth";
+import { register } from "../registerRequest";
+import { login } from "../loginRequest";
 
 const Register = ({ toggleForm }) => {
   const [form] = Form.useForm();
@@ -14,58 +16,42 @@ const Register = ({ toggleForm }) => {
   const { confirmLogin } = useAuth();
 
   const onFinish = async (values) => {
-    try {
-      const signupResponse = await fetch("/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password,
-        }),
-      });
+    // Attempt to register
+    const { registerSuccess } = await register(values.email, values.password);
 
-      if (!signupResponse.ok) throw new Error("Signup failed");
+    if (registerSuccess) {
+      const { loginSuccess } = await login(values.email, values.password);
 
-      // Automatically attempt to login after signup
-      const loginResponse = await fetch("/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password,
-        }),
-      });
-
-      if (!loginResponse.ok) throw new Error("Login failed after signup");
-
-      const loginData = await loginResponse.json();
-      console.log("Login Success:", loginData);
-      notification.success({
-        message: "Registered and Logged In",
-        placement: "bottomRight",
-        duration: 2,
-        style: {
-          width: 300,
-        },
-      });
-      confirmLogin();
-      // Navigate to the app page after login
-      navigate("/apppage");
-    } catch (error) {
-      console.error("Error:", error.message);
+      if (!loginSuccess) {
+        // Login failed after successful registration
+        notification.error({
+          message: "Login Failed",
+          description: "Login failed after successful registration.",
+          icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+          placement: "top",
+          duration: 8,
+          style: { width: 300 },
+        });
+        return; // Stop execution if login fails
+      } else {
+        // If both registration and login are successful
+        notification.success({
+          message: "Registered and Logged In",
+          placement: "bottomRight",
+          duration: 2,
+          style: { width: 300 },
+        });
+        confirmLogin();
+        navigate("/apppage");
+      }
+    } else {
       notification.error({
         message: "Registration Failed",
         description: "An error occurred during registration. Please try again.",
         icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
         placement: "top",
         duration: 4.5,
-        style: {
-          width: 300,
-        },
+        style: { width: 300 },
       });
     }
   };

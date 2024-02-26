@@ -7,28 +7,16 @@ import {
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/useAuth";
+import { login } from "../loginRequest";
 
 const Login = ({ toggleForm }) => {
   const { confirmLogin } = useAuth();
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
-    try {
-      const response = await fetch("/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password,
-        }),
-      });
+    const { loginSuccess } = await login(values.email, values.password);
 
-      if (!response.ok) throw new Error("Login failed");
-
-      const data = await response.json();
-      console.log("Login Success:", data);
+    if (loginSuccess) {
       notification.success({
         message: "Logged In",
         placement: "bottomRight",
@@ -39,8 +27,7 @@ const Login = ({ toggleForm }) => {
       });
       confirmLogin();
       navigate("/apppage");
-    } catch (error) {
-      console.error("Login Error:", error);
+    } else {
       notification.error({
         message: "Login Failed",
         description: "Please check your credentials and try again.",
