@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { confirmLogin, isLoggedIn } = useAuth();
+  const { confirmLogin, isLoggedIn, setIsLoggedIn } = useAuth();
 
   useEffect(() => {
     confirmLogin();
@@ -23,7 +23,7 @@ const Header = () => {
         },
       });
       navigate("/");
-      confirmLogin(); // Check login status again after logout
+      setIsLoggedIn(false);
     } else if (e.key === "loginregister") {
       navigate("/loginregister");
     } else if (e.key === "apiDocs") {

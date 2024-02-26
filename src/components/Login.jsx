@@ -10,7 +10,7 @@ import { useAuth } from "../utils/useAuth";
 import { login } from "../loginRequest";
 
 const Login = ({ toggleForm }) => {
-  const { confirmLogin } = useAuth();
+  const { setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
@@ -25,7 +25,7 @@ const Login = ({ toggleForm }) => {
           width: 300,
         },
       });
-      confirmLogin();
+      setIsLoggedIn(true);
       navigate("/apppage");
     } else {
       notification.error({

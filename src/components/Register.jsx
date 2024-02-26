@@ -13,7 +13,7 @@ import { login } from "../loginRequest";
 const Register = ({ toggleForm }) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const { confirmLogin } = useAuth();
+  const { setIsLoggedIn } = useAuth();
 
   const onFinish = async (values) => {
     // Attempt to register
@@ -41,7 +41,7 @@ const Register = ({ toggleForm }) => {
           duration: 2,
           style: { width: 300 },
         });
-        confirmLogin();
+        setIsLoggedIn(true);
         navigate("/apppage");
       }
     } else {
