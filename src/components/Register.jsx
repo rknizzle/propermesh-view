@@ -16,6 +16,43 @@ const Register = ({ toggleForm }) => {
   const { setIsLoggedIn } = useAuth();
 
   const onFinish = async (values) => {
+    if (!values.email || !values.password || !values.confirm) {
+      notification.error({
+        message: "You missed something!",
+        description: "All fields are required",
+        icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+        placement: "top",
+        duration: 4.5,
+        style: { width: 300 },
+      });
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(values.email)) {
+      notification.error({
+        message: "Invalid Email",
+        description: "The input is not valid E-mail!",
+        icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+        placement: "top",
+        duration: 4.5,
+        style: { width: 300 },
+      });
+      return;
+    }
+
+    if (values.password !== values.confirm) {
+      notification.error({
+        message: "Password Mismatch",
+        description: "The passwords you entered do not match!",
+        icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+        placement: "top",
+        duration: 4.5,
+        style: { width: 300 },
+      });
+      return;
+    }
+
     // Attempt to register
     const { registerSuccess } = await register(values.email, values.password);
 
@@ -32,7 +69,7 @@ const Register = ({ toggleForm }) => {
           duration: 8,
           style: { width: 300 },
         });
-        return; // Stop execution if login fails
+        return;
       } else {
         // If both registration and login are successful
         notification.success({
@@ -67,36 +104,13 @@ const Register = ({ toggleForm }) => {
         scrollToFirstError
         className="register-form"
       >
-        <Form.Item
-          name="email"
-          className="form-layout"
-          rules={[
-            {
-              type: "email",
-              message: "The input is not valid E-mail!",
-            },
-            {
-              required: true,
-              message: "Please input your E-mail!",
-            },
-          ]}
-        >
+        <Form.Item name="email" className="form-layout">
           <Input
             prefix={<MailOutlined className="site-form-item-icon" />}
             placeholder="Email"
           />
         </Form.Item>
-        <Form.Item
-          name="password"
-          className="form-layout"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-          hasFeedback
-        >
+        <Form.Item name="password" className="form-layout" hasFeedback>
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
@@ -108,22 +122,6 @@ const Register = ({ toggleForm }) => {
           className="form-layout"
           dependencies={["password"]}
           hasFeedback
-          rules={[
-            {
-              required: true,
-              message: "Please confirm your password!",
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  new Error("The new password that you entered do not match!")
-                );
-              },
-            }),
-          ]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
