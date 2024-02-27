@@ -61,7 +61,9 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <div className="header-title">Propermesh</div>
+      <div className="header-title" onClick={() => navigate("/")}>
+        Propermesh
+      </div>
       <Menu
         onClick={onClick}
         mode="horizontal"
