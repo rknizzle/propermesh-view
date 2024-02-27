@@ -50,30 +50,13 @@ const Login = ({ toggleForm }) => {
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
-        <Form.Item
-          name="email"
-          className="form-layout"
-          rules={[
-            {
-              type: "email",
-              message: "The input is not valid E-mail!",
-            },
-            {
-              required: true,
-              message: "Please input your E-mail!",
-            },
-          ]}
-        >
+        <Form.Item name="email" className="form-layout">
           <Input
             prefix={<MailOutlined className="site-form-item-icon" />}
             placeholder="Email"
           />
         </Form.Item>
-        <Form.Item
-          name="password"
-          className="form-layout"
-          rules={[{ required: true, message: "Please input your Password!" }]}
-        >
+        <Form.Item name="password" className="form-layout">
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
