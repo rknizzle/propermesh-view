@@ -31,8 +31,18 @@ const Register = ({ toggleForm }) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(values.email)) {
       notification.error({
-        message: "Invalid Email",
-        description: "The input is not valid E-mail!",
+        description: "The input is not a valid E-mail.",
+        icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+        placement: "top",
+        duration: 4.5,
+        style: { width: 300 },
+      });
+      return;
+    }
+
+    if (values.password.length < 8) {
+      notification.error({
+        message: "Password needs to be at least 8 characters long.",
         icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
         placement: "top",
         duration: 4.5,
@@ -43,12 +53,48 @@ const Register = ({ toggleForm }) => {
 
     if (values.password !== values.confirm) {
       notification.error({
-        message: "Password Mismatch",
-        description: "The passwords you entered do not match!",
+        description: "Confirm Password does not match Password.",
         icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
         placement: "top",
         duration: 4.5,
         style: { width: 300 },
+      });
+      return;
+    }
+
+    const hasUpperCase = /[A-Z]/.test(values.password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(values.password);
+    let missingPasswordRequirements = [];
+
+    if (!hasUpperCase) {
+      missingPasswordRequirements.push(<li key="upper">Capital letter</li>);
+    }
+    if (!hasSpecialChar) {
+      missingPasswordRequirements.push(
+        <li key="special">Special character</li>
+      );
+    }
+
+    if (missingPasswordRequirements.length > 0) {
+      notification.error({
+        message: (
+          <>
+            <div>
+              <div>Password must include:</div>
+              <ul>
+                <li>Capital letter</li>
+                <li>Special character</li>
+              </ul>
+              <div> Your password is missing: </div>
+              <br />
+            </div>
+            <ul style={{ margin: 0 }}>{missingPasswordRequirements}</ul>
+          </>
+        ),
+        icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+        placement: "top",
+        duration: 15,
+        style: { width: 350 },
       });
       return;
     }
@@ -114,7 +160,7 @@ const Register = ({ toggleForm }) => {
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Password"
+            placeholder="Password: Minimum 8 characters"
           />
         </Form.Item>
         <Form.Item
