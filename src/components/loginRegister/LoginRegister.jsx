@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Col, Row } from "antd";
-import Login from "../components/Login";
-import Register from "../components/Register";
+import Login from "./Login";
+import Register from "./Register";
 import "./loginRegister.css";
 
 const LoginRegister = () => {

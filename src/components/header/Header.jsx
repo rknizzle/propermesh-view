@@ -1,7 +1,7 @@
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./header.css";
-import { useAuth } from "../utils/useAuth";
+import { useAuth } from "../../utils/useAuth";
 import { useEffect } from "react";
 
 const Header = () => {

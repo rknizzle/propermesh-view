@@ -3,9 +3,9 @@ import App from "./App.jsx";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Landing from "./pages/LandingPage.jsx";
-import LoginRegister from "./pages/LoginRegister.jsx";
-import AppPage from "./pages/AppPage.jsx";
+import Landing from "./components/landing/LandingPage.jsx";
+import LoginRegister from "./components/loginRegister/LoginRegister.jsx";
+import AppPage from "./components/AppPage.jsx";
 
 export const RootComponent = () => {
   return (
