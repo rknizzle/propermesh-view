@@ -24,8 +24,8 @@ const Header = () => {
       });
       navigate("/");
       setIsLoggedIn(false);
-    } else if (e.key === "loginregister") {
-      navigate("/loginregister");
+    } else if (e.key === "login") {
+      navigate("/login");
     } else if (e.key === "apiDocs") {
       console.log("TODO: Redirect to API Docs page.");
     } else if (e.key === "apppage") {
@@ -51,7 +51,7 @@ const Header = () => {
     : [
         {
           label: "Login",
-          key: "loginregister",
+          key: "login",
         },
         {
           label: "API Docs",

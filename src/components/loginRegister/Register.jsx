@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { Button, Form, Input, notification } from "antd";
 import {
   LockOutlined,
@@ -11,8 +10,10 @@ import { register } from "./registerRequest";
 import { login } from "./loginRequest";
 import { Tooltip } from "antd";
 import { useState, useEffect } from "react";
+import { Col, Row } from "antd";
+import "./loginRegister.css";
 
-const Register = ({ toggleForm }) => {
+const Register = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const { setIsLoggedIn } = useAuth();
@@ -154,77 +155,87 @@ const Register = ({ toggleForm }) => {
   };
 
   return (
-    <>
-      <h1 className="loginregister-font">Register</h1>
-      <Form
-        form={form}
-        name="register"
-        onFinish={onFinish}
-        initialValues={{ prefix: "1" }}
-        scrollToFirstError
-        className="register-form"
+    <Row
+      gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
+      type="flex"
+      justify="center"
+      align="middle"
+      style={{ minHeight: "80vh" }}
+    >
+      <Col
+        xs={{ span: 12 }}
+        sm={{ span: 10 }}
+        md={{ span: 8 }}
+        lg={{ span: 6 }}
+        className="login-register-container"
       >
-        <Form.Item name="email" className="form-layout">
-          <Input
-            prefix={<MailOutlined className="site-form-item-icon" />}
-            placeholder="Email"
-          />
-        </Form.Item>
-        <Tooltip
-          placement={tooltipPlacement}
-          title={
-            <>
-              <div>Password must include:</div>
-              <ul>
-                <li>Minimum 8 characters</li>
-                <li>Capital letter</li>
-                <li>Special character</li>
-              </ul>
-            </>
-          }
+        <h1 className="loginregister-font">Register</h1>
+        <Form
+          form={form}
+          name="register"
+          onFinish={onFinish}
+          initialValues={{ prefix: "1" }}
+          scrollToFirstError
+          className="register-form"
         >
-          <Form.Item name="password" className="form-layout">
-            <Input.Password
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
+          <Form.Item name="email" className="form-layout">
+            <Input
+              prefix={<MailOutlined className="site-form-item-icon" />}
+              placeholder="Email"
             />
           </Form.Item>
-        </Tooltip>
-        <Form.Item
-          name="confirm"
-          className="form-layout"
-          dependencies={["password"]}
-        >
-          <Input.Password
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="Confirm Password"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button
-            type="default"
-            htmlType="submit"
-            style={{ width: "50%" }}
-            className="loginregister-font custom-btn"
+          <Tooltip
+            placement={tooltipPlacement}
+            title={
+              <>
+                <div>Password must include:</div>
+                <ul>
+                  <li>Minimum 8 characters</li>
+                  <li>Capital letter</li>
+                  <li>Special character</li>
+                </ul>
+              </>
+            }
           >
-            Submit
-          </Button>
-        </Form.Item>
-        <span className="loginregister-font">Have An Account? </span>
-        <a
-          onClick={toggleForm}
-          className="loginregister-font loginregister-toggle"
-        >
-          Sign In!
-        </a>
-      </Form>
-    </>
+            <Form.Item name="password" className="form-layout">
+              <Input.Password
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Password"
+              />
+            </Form.Item>
+          </Tooltip>
+          <Form.Item
+            name="confirm"
+            className="form-layout"
+            dependencies={["password"]}
+          >
+            <Input.Password
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              placeholder="Confirm Password"
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="default"
+              htmlType="submit"
+              style={{ width: "50%" }}
+              className="loginregister-font custom-btn"
+            >
+              Submit
+            </Button>
+          </Form.Item>
+          <span className="loginregister-font">Have An Account? </span>
+          <a
+            onClick={() => navigate("/login")}
+            className="loginregister-font loginregister-toggle"
+          >
+            Sign In!
+          </a>
+        </Form>
+      </Col>
+    </Row>
   );
-};
-
-Register.propTypes = {
-  toggleForm: PropTypes.func.isRequired,
 };
 
 export default Register;

@@ -4,12 +4,13 @@ import {
   LockOutlined,
   ExclamationCircleTwoTone,
 } from "@ant-design/icons";
-import PropTypes from "prop-types";
+import { Col, Row } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/useAuth";
 import { login } from "./loginRequest";
+import "./loginRegister.css";
 
-const Login = ({ toggleForm }) => {
+const Login = () => {
   const { setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
 
@@ -38,63 +39,73 @@ const Login = ({ toggleForm }) => {
   };
 
   return (
-    <>
-      <h1 className="loginregister-font">Sign In</h1>
-      <Form
-        name="normal_login"
-        className="login-form"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
+    <Row
+      gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
+      type="flex"
+      justify="center"
+      align="middle"
+      style={{ minHeight: "80vh" }}
+    >
+      <Col
+        xs={{ span: 12 }}
+        sm={{ span: 10 }}
+        md={{ span: 8 }}
+        lg={{ span: 6 }}
+        className="login-register-container"
       >
-        <Form.Item name="email" className="form-layout">
-          <Input
-            prefix={<MailOutlined className="site-form-item-icon" />}
-            placeholder="Email"
-          />
-        </Form.Item>
-        <Form.Item name="password" className="form-layout">
-          <Input.Password
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Item>
-        {
-          // Hide the forgot password link for now until ryan builds out the backend for it
-          false && (
-            <Form.Item>
-              <div className="forgot-password-container">
-                <a className="login-form-forgot loginregister-font" href="">
-                  Forgot Password
-                </a>
-              </div>
-            </Form.Item>
-          )
-        }
-        <Form.Item>
-          <Button
-            type="default"
-            htmlType="submit"
-            className="login-form-button loginregister-font custom-btn"
-            style={{ width: "50%" }}
-          >
-            Log in
-          </Button>
-        </Form.Item>
-        <span className="loginregister-font">No Account? </span>
-        <a
-          onClick={toggleForm}
-          className="loginregister-font loginregister-toggle"
+        <h1 className="loginregister-font">Sign In</h1>
+        <Form
+          name="normal_login"
+          className="login-form"
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
         >
-          Create One!
-        </a>
-      </Form>
-    </>
+          <Form.Item name="email" className="form-layout">
+            <Input
+              prefix={<MailOutlined className="site-form-item-icon" />}
+              placeholder="Email"
+            />
+          </Form.Item>
+          <Form.Item name="password" className="form-layout">
+            <Input.Password
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Item>
+          {
+            // Hide the forgot password link for now until ryan builds out the backend for it
+            false && (
+              <Form.Item>
+                <div className="forgot-password-container">
+                  <a className="login-form-forgot loginregister-font" href="">
+                    Forgot Password
+                  </a>
+                </div>
+              </Form.Item>
+            )
+          }
+          <Form.Item>
+            <Button
+              type="default"
+              htmlType="submit"
+              className="login-form-button loginregister-font custom-btn"
+              style={{ width: "50%" }}
+            >
+              Log in
+            </Button>
+          </Form.Item>
+          <span className="loginregister-font">No Account? </span>
+          <a
+            onClick={() => navigate("/register")}
+            className="loginregister-font loginregister-toggle"
+          >
+            Create One!
+          </a>
+        </Form>
+      </Col>
+    </Row>
   );
-};
-
-Login.propTypes = {
-  toggleForm: PropTypes.func.isRequired,
 };
 
 export default Login;
