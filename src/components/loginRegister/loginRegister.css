@@ -1,0 +1,41 @@
+.loginregister-font {
+  font-family: "Roboto", sans-serif;
+}
+
+.form-layout {
+  box-shadow: 0px 0px 20px 0px #f408081a;
+}
+
+.loginregister-toggle {
+  color: #b10a0ab1;
+  font-weight: bold;
+}
+
+.loginregister-toggle:hover {
+  color: #f40808;
+  cursor: pointer;
+}
+
+.custom-btn {
+  background-color: #1c1f1bc7;
+  color: white;
+}
+
+.custom-btn:hover {
+  background-color: #000000d4;
+  border: none;
+  color: white !important;
+  cursor: pointer;
+}
+
+@media (max-width: 467px) {
+  .forgot-password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-form-forgot {
+    margin-top: 0.3rem;
+  }
+}

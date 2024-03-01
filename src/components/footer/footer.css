@@ -7,21 +7,11 @@
   background-color: #bcb0a2;
 }
 
-@keyframes spin {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
 #footer-logo {
   width: 5rem;
   height: 5rem;
   margin-right: 2rem;
   margin-left: 2rem;
-  animation: spin 10s linear infinite;
 }
 
 #footer-contact-info {
@@ -48,6 +38,13 @@ a:hover {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.01);
   }
+}
+
+.footer-container.sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }

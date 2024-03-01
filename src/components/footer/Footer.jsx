@@ -1,9 +1,11 @@
 import { Row, Col } from "antd";
 import "./footer.css";
+import PropTypes from "prop-types";
 
-const Footer = () => {
+const Footer = ({ sticky }) => {
+  const footerClass = `footer-container ${sticky ? "sticky" : ""}`;
   return (
-    <div className="footer-container">
+    <div className={footerClass}>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col id="footer-title">
           <img id="footer-logo" src="assets/favicon.png" alt="" />
@@ -21,6 +23,14 @@ const Footer = () => {
       </Row>
     </div>
   );
+};
+
+Footer.propTypes = {
+  sticky: PropTypes.bool,
+};
+
+Footer.defaultProps = {
+  sticky: false,
 };
 
 export default Footer;
