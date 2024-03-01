@@ -80,11 +80,6 @@ const Register = ({ toggleForm }) => {
         message: (
           <>
             <div>
-              <div>Password must include:</div>
-              <ul>
-                <li>Capital letter</li>
-                <li>Special character</li>
-              </ul>
               <div> Your password is missing: </div>
               <br />
             </div>
