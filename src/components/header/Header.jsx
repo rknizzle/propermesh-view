@@ -27,7 +27,7 @@ const Header = () => {
     } else if (e.key === "login") {
       navigate("/login");
     } else if (e.key === "apiDocs") {
-      console.log("TODO: Redirect to API Docs page.");
+      window.location.href = '/docs';
     } else if (e.key === "apppage") {
       navigate("/apppage");
     }
