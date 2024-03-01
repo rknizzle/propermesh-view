@@ -15,7 +15,7 @@
 }
 
 .header-title:hover {
-  cursor: default;
+  cursor: pointer;
 }
 
 .header-menu {
