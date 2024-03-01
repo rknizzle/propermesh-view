@@ -7,7 +7,7 @@ import {
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/useAuth";
-import { login } from "../../loginRequest";
+import { login } from "./loginRequest";
 
 const Login = ({ toggleForm }) => {
   const { setIsLoggedIn } = useAuth();
