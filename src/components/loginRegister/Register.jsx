@@ -156,7 +156,7 @@ const Register = ({ toggleForm }) => {
             placeholder="Email"
           />
         </Form.Item>
-        <Form.Item name="password" className="form-layout" hasFeedback>
+        <Form.Item name="password" className="form-layout">
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
@@ -167,7 +167,6 @@ const Register = ({ toggleForm }) => {
           name="confirm"
           className="form-layout"
           dependencies={["password"]}
-          hasFeedback
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
