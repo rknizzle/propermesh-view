@@ -16,9 +16,9 @@ export const login = async (email, password) => {
     }
 
     const data = await response.json();
-    return { loginSuccess: true, data };
+    return data;
   } catch (error) {
     console.error("Login Error:", error);
-    return { loginSuccess: false, error: error.message };
+    throw error;
   }
 };

@@ -14,29 +14,25 @@ const Login = ({ toggleForm }) => {
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
-    const { loginSuccess } = await login(values.email, values.password);
+    try {
+      await login(values.email, values.password);
 
-    if (loginSuccess) {
       notification.success({
         message: "Logged In",
         placement: "bottomRight",
         duration: 1.5,
-        style: {
-          width: 300,
-        },
+        style: { width: 300 },
       });
       setIsLoggedIn(true);
       navigate("/apppage");
-    } else {
+    } catch (error) {
       notification.error({
         message: "Login Failed",
         description: "Please check your credentials and try again.",
         icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
         placement: "top",
         duration: 4.5,
-        style: {
-          width: 300,
-        },
+        style: { width: 300 },
       });
     }
   };
