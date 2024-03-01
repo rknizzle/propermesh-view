@@ -27,7 +27,7 @@ const Header = () => {
     } else if (e.key === "login") {
       navigate("/login");
     } else if (e.key === "apiDocs") {
-      console.log("TODO: Redirect to API Docs page.");
+      window.location.href = '/docs';
     } else if (e.key === "apppage") {
       navigate("/apppage");
     }
@@ -49,10 +49,12 @@ const Header = () => {
         },
       ]
     : [
-        {
-          label: "Login",
-          key: "login",
-        },
+        // TODO: dont show the login button until I actually build out features that you can access
+        // once you're logged in -Ryan
+        //{
+        //  label: "Login",
+        //  key: "login",
+        //},
         {
           label: "API Docs",
           key: "apiDocs",
