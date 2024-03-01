@@ -22,7 +22,7 @@ body {
   position: absolute;
   top: 0;
   background-size: 200% 100%;
-  background-image: url("assets/logo.png");
+  background-image: url("/assets/logo.png");
   transition: transform 1s ease-out;
 }
 
