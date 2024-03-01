@@ -114,24 +114,12 @@ const Register = ({ toggleForm }) => {
       return;
     }
 
-    // Attempt to register
-    const { registerSuccess } = await register(values.email, values.password);
-
-    if (registerSuccess) {
-      const { loginSuccess } = await login(values.email, values.password);
-
-      if (!loginSuccess) {
-        // Login failed after successful registration
-        notification.error({
-          message: "Login Failed",
-          description: "Login failed after successful registration.",
-          icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
-          placement: "top",
-          duration: 8,
-          style: { width: 300 },
-        });
-        return;
-      } else {
+    try {
+      // Attempt to register
+      await register(values.email, values.password);
+      // Registration successful, now try to login
+      try {
+        await login(values.email, values.password);
         // If both registration and login are successful
         notification.success({
           message: "Registered and Logged In",
@@ -141,8 +129,19 @@ const Register = ({ toggleForm }) => {
         });
         setIsLoggedIn(true);
         navigate("/apppage");
+      } catch (error) {
+        // Login failed after successful registration
+        notification.error({
+          message: "Login Failed",
+          description: "Login failed after successful registration.",
+          icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+          placement: "top",
+          duration: 15,
+          style: { width: 300 },
+        });
       }
-    } else {
+    } catch (error) {
+      // Registration failed
       notification.error({
         message: "Registration Failed",
         description: "An error occurred during registration. Please try again.",
@@ -171,27 +170,27 @@ const Register = ({ toggleForm }) => {
             placeholder="Email"
           />
         </Form.Item>
-        <Form.Item name="password" className="form-layout">
-          <Tooltip
-            placement={tooltipPlacement}
-            title={
-              <>
-                <div>Password must include:</div>
-                <ul>
-                  <li>Minimum 8 characters</li>
-                  <li>Capital letter</li>
-                  <li>Special character</li>
-                </ul>
-              </>
-            }
-          >
+        <Tooltip
+          placement={tooltipPlacement}
+          title={
+            <>
+              <div>Password must include:</div>
+              <ul>
+                <li>Minimum 8 characters</li>
+                <li>Capital letter</li>
+                <li>Special character</li>
+              </ul>
+            </>
+          }
+        >
+          <Form.Item name="password" className="form-layout">
             <Input.Password
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
               placeholder="Password"
             />
-          </Tooltip>
-        </Form.Item>
+          </Form.Item>
+        </Tooltip>
         <Form.Item
           name="confirm"
           className="form-layout"

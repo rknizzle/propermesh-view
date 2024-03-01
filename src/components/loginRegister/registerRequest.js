@@ -16,9 +16,9 @@ export const register = async (email, password) => {
     }
 
     const data = await response.json();
-    return { registerSuccess: true, data };
+    return data;
   } catch (error) {
     console.error("Registration Error:", error);
-    return { registerSuccess: false, error: error.message };
+    throw error;
   }
 };
