@@ -9,11 +9,31 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/useAuth";
 import { register } from "./registerRequest";
 import { login } from "./loginRequest";
+import { Tooltip } from "antd";
+import { useState, useEffect } from "react";
 
 const Register = ({ toggleForm }) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const { setIsLoggedIn } = useAuth();
+
+  const [tooltipPlacement, setTooltipPlacement] = useState("right");
+
+  useEffect(() => {
+    const isCellPhone = window.matchMedia("(max-width: 768px)");
+    const handleChange = (e) => {
+      setTooltipPlacement(e.matches ? "top" : "right");
+    };
+
+    // Check on initial render
+    handleChange(isCellPhone);
+
+    // Add listener for changes
+    isCellPhone.addEventListener("change", handleChange);
+
+    // Cleanup listener
+    return () => isCellPhone.removeEventListener("change", handleChange);
+  }, []);
 
   const onFinish = async (values) => {
     if (!values.email || !values.password || !values.confirm) {
@@ -152,11 +172,25 @@ const Register = ({ toggleForm }) => {
           />
         </Form.Item>
         <Form.Item name="password" className="form-layout">
-          <Input.Password
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password: Minimum 8 characters"
-          />
+          <Tooltip
+            placement={tooltipPlacement}
+            title={
+              <>
+                <div>Password must include:</div>
+                <ul>
+                  <li>Minimum 8 characters</li>
+                  <li>Capital letter</li>
+                  <li>Special character</li>
+                </ul>
+              </>
+            }
+          >
+            <Input.Password
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password"
+            />
+          </Tooltip>
         </Form.Item>
         <Form.Item
           name="confirm"
