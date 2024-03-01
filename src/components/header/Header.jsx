@@ -49,10 +49,12 @@ const Header = () => {
         },
       ]
     : [
-        {
-          label: "Login",
-          key: "login",
-        },
+        // TODO: dont show the login button until I actually build out features that you can access
+        // once you're logged in -Ryan
+        //{
+        //  label: "Login",
+        //  key: "login",
+        //},
         {
           label: "API Docs",
           key: "apiDocs",
