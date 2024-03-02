@@ -20,12 +20,6 @@ export default function Landing() {
         Software tools for automating 3D printability checks of 3D model files
       </h2>
 
-      <img
-        id="coming-soon-image"
-        src="assets/coming-soon.png"
-        alt="Coming Soon"
-      />
-
       <h3 id="contact-ryan">
         Contact ryan@propermesh.com for more info and keys for beta testing
       </h3>
