@@ -17,7 +17,7 @@ body {
 }
 
 .logo-half {
-  width: 50%;
+  width: calc(50% - 0.5px);
   height: 100%;
   position: absolute;
   top: 0;
@@ -29,11 +29,13 @@ body {
 .left-half {
   background-position: right;
   left: 0%;
+  z-index: 2;
 }
 
 .right-half {
   background-position: left;
   right: 0%;
+  z-index: 1;
 }
 
 .logo-animate .left-half {
