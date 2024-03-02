@@ -27,7 +27,7 @@ const Header = () => {
     } else if (e.key === "login") {
       navigate("/login");
     } else if (e.key === "apiDocs") {
-      window.location.href = '/docs';
+      window.location.href = "/docs";
     } else if (e.key === "apppage") {
       navigate("/apppage");
     }
@@ -63,6 +63,12 @@ const Header = () => {
 
   return (
     <div className="header-container">
+      <img
+        src="/assets/favicon.png"
+        alt="logo-in-header"
+        id="header-logo"
+        onClick={() => navigate("/")}
+      />
       <div className="header-title" onClick={() => navigate("/")}>
         Propermesh
       </div>

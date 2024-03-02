@@ -14,7 +14,14 @@
   font-family: "Roboto", sans-serif;
 }
 
-.header-title:hover {
+#header-logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+.header-title:hover,
+#header-logo:hover {
   cursor: pointer;
 }
 
