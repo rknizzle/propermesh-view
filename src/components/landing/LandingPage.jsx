@@ -1,12 +1,40 @@
 import "./landingPage.css";
-import { Row, Col } from "antd";
+import { Row, Col, Button } from "antd";
 
 export default function Landing() {
   return (
     <div className="App">
-      <h2 id="description">
-        Software tools for automating 3D printability checks of 3D model files
-      </h2>
+      <div className="intro-container">
+        <div>
+          <img
+            src="/assets/temp-generic-image.webp"
+            alt=""
+            id="intro-generic-img"
+          />
+        </div>
+        <div className="intro-description-container">
+          <h2 id="description">
+            Software tools for automating 3D printability checks of 3D model
+            files
+          </h2>
+          <div id="description-2">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos
+            mollitia assumenda fugiat nihil voluptatibus exercitationem unde
+            natus! Odit delectus vero vitae a animi, laudantium perferendis quod
+            nihil, ex non at!
+          </div>
+          <div id="description-list">
+            <ul>
+              <li>information information</li>
+              <li>some more information but a little longer</li>
+              <li>important stuff that someone should know</li>
+            </ul>
+          </div>
+          <Button type="primary" id="analysis-page-btn" size="large">
+            Analysis Page
+          </Button>
+        </div>
+      </div>
 
       <h3 id="contact-ryan">
         Contact ryan@propermesh.com for more info and keys for beta testing

@@ -4,7 +4,7 @@
   align-items: center;
   padding: 0 10px;
   border-top: 1px solid #ccc;
-  background-color: #bcb0a2;
+  background-color: gray;
 }
 
 #footer-logo {
@@ -27,7 +27,7 @@ a {
 #footer-email:hover,
 #footer-phone-number:hover,
 a:hover {
-  color: #9f7b7b;
+  color: black;
   animation: breathe 2s ease-in-out infinite;
 }
 
