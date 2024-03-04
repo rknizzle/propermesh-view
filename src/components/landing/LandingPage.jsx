@@ -1,21 +1,9 @@
-import { useState, useEffect } from "react";
 import "./landingPage.css";
 import { Row, Col } from "antd";
 
 export default function Landing() {
-  const [animateLogo, setAnimateLogo] = useState(false);
-
-  useEffect(() => {
-    setAnimateLogo(true);
-  }, []);
-
   return (
     <div className="App">
-      <div id="logo-container" className={animateLogo ? "logo-animate" : ""}>
-        <div className="logo-half left-half"></div>
-        <div className="logo-half right-half"></div>
-      </div>
-
       <h2 id="description">
         Software tools for automating 3D printability checks of 3D model files
       </h2>

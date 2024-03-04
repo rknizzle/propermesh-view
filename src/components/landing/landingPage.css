@@ -6,46 +6,6 @@ body {
   color: red;
 }
 
-#logo-container {
-  width: 30vw;
-  height: 30vw;
-  margin: 0 auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.logo-half {
-  width: calc(50% - 0.5px);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  background-size: 200% 100%;
-  background-image: url("/assets/logo.png");
-  transition: transform 1s ease-out;
-}
-
-.left-half {
-  background-position: right;
-  left: 0%;
-  z-index: 2;
-}
-
-.right-half {
-  background-position: left;
-  right: 0%;
-  z-index: 1;
-}
-
-.logo-animate .left-half {
-  transform: translateX(100%);
-}
-
-.logo-animate .right-half {
-  transform: translateX(-100%);
-}
-
 h1 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
