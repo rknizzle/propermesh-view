@@ -63,14 +63,14 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <img
-        src="/assets/favicon.png"
-        alt="logo-in-header"
-        id="header-logo"
-        onClick={() => navigate("/")}
-      />
-      <div className="header-title" onClick={() => navigate("/")}>
-        Propermesh
+      <div className="header-logo-title" onClick={() => navigate("/")}>
+        <img
+          src="/assets/favicon.png"
+          alt="logo-in-header"
+          id="header-logo"
+          onClick={() => navigate("/")}
+        />
+        <div className="header-title">Propermesh</div>
       </div>
       <Menu
         onClick={onClick}

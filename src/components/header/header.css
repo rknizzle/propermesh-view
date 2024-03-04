@@ -20,8 +20,13 @@
   margin-right: 0.5rem;
 }
 
-.header-title:hover,
-#header-logo:hover {
+.header-logo-title {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header-logo-title:hover {
   cursor: pointer;
 }
 
