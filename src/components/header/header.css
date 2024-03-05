@@ -36,8 +36,16 @@
   font-weight: bold;
 }
 
+.ant-menu-horizontal .ant-menu-item-selected,
+.ant-menu-horizontal .ant-menu-item-selected:hover,
 .ant-menu-horizontal .ant-menu-item-selected::after,
 .ant-menu-horizontal .ant-menu-item:hover::after,
 .ant-menu-horizontal .ant-menu-item-active::after {
-  border-bottom-color: white !important;
+  border-bottom-color: #808080 !important;
+  color: black !important;
+}
+
+.ant-menu-horizontal .ant-menu-item:hover {
+  color: rgba(253, 253, 253, 0.639) !important;
+  border-bottom-color: #808080 !important;
 }
