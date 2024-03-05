@@ -14,23 +14,23 @@ h1:hover {
   display: flex;
   align-items: center;
   background-color: rgb(203, 203, 203);
-  align-items: start;
-  height: 45rem;
+  align-items: flex-start;
 }
 
-#intro-generic-img {
-  width: 50vw;
+.intro-generic-img-container {
+  background-image: url("/assets/temp-generic-image.webp");
+  background-size: cover;
+  background-position: center;
   height: 45rem;
+  margin: 0;
+  width: 100%;
 }
 
 .intro-description-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: flex-start;
   color: black;
-  max-width: 50%;
-  margin-left: 5rem;
   margin-top: 8rem;
   text-align: left;
 }
@@ -42,6 +42,8 @@ h1:hover {
   margin: 0;
   padding: 0;
   margin-bottom: 2rem;
+  margin-left: 4rem;
+  margin-right: 2rem;
 }
 
 #description-2 {
@@ -50,6 +52,8 @@ h1:hover {
   font-weight: lighter;
   max-width: 80%;
   margin-bottom: 1rem;
+  margin-left: 4rem;
+  margin-right: 2rem;
 }
 
 #description-list {
@@ -57,6 +61,8 @@ h1:hover {
   font-size: 1rem;
   max-width: 80%;
   margin-bottom: 1rem;
+  margin-left: 4rem;
+  margin-right: 2rem;
 }
 
 #description-list ul {
@@ -66,24 +72,7 @@ h1:hover {
 
 #analysis-page-btn {
   padding: 0rem 2rem;
-}
-
-@media screen and (max-width: 992px) {
-  #description {
-    font-size: 3vw;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #description {
-    font-size: 4vw;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  #description {
-    font-size: 5vw;
-  }
+  margin-left: 5rem;
 }
 
 #contact-ryan {
@@ -100,24 +89,6 @@ h1:hover {
   margin-top: 2rem;
   margin-bottom: 2rem;
   transition: box-shadow 0.3s ease-in-out;
-}
-
-@media screen and (max-width: 992px) {
-  #contact-ryan {
-    font-size: 2vw;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #contact-ryan {
-    font-size: 2.5vw;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  #contact-ryan {
-    font-size: 3vw;
-  }
 }
 
 #geo-analysis,
@@ -204,5 +175,86 @@ li {
   }
   #landing-end-prefooter {
     margin-top: 0;
+  }
+  #contact-ryan {
+    font-size: 2vw;
+  }
+  .intro-description-container {
+    margin-top: 3rem;
+    order: 1;
+    padding-bottom: 50px;
+  }
+  .intro-generic-img-container {
+    order: 2;
+    height: 30rem;
+  }
+  #geo-analysis p,
+  #geo-analysis li,
+  #thick-analysis p,
+  #thick-analysis li {
+    font-size: large;
+  }
+}
+
+@media (max-width: 768px) {
+  #contact-ryan {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #description {
+    margin-left: 2.5rem;
+  }
+  #description-2 {
+    margin-left: 2.5rem;
+  }
+  #description-list {
+    margin-left: 2.5rem;
+  }
+  #analysis-page-btn {
+    margin-left: 3.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #description {
+    font-size: 30px;
+    margin-left: 2rem;
+  }
+  #description-2 {
+    font-size: 18px;
+    margin-left: 2rem;
+  }
+  #description-list {
+    font-size: 15px;
+    margin-left: 2rem;
+  }
+  #contact-ryan {
+    font-size: 15px;
+  }
+  #analysis-page-btn {
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  #description {
+    font-size: 25px;
+    margin-left: 1.5rem;
+  }
+  #description-2 {
+    font-size: 16px;
+    margin-left: 1.5rem;
+  }
+  #description-list {
+    font-size: 15px;
+    margin-left: 1.5rem;
+  }
+  #contact-ryan {
+    font-size: 15px;
+  }
+  #analysis-page-btn {
+    margin-left: 2rem;
   }
 }

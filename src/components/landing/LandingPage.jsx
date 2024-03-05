@@ -4,15 +4,12 @@ import { Row, Col, Button } from "antd";
 export default function Landing() {
   return (
     <div className="App">
-      <div className="intro-container">
-        <div>
-          <img
-            src="/assets/temp-generic-image.webp"
-            alt=""
-            id="intro-generic-img"
-          />
-        </div>
-        <div className="intro-description-container">
+      <Row
+        className="intro-container"
+        gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
+      >
+        <Col lg={12} className="intro-generic-img-container"></Col>
+        <Col lg={12} className="intro-description-container">
           <h2 id="description">
             Software tools for automating 3D printability checks of 3D model
             files
@@ -33,8 +30,8 @@ export default function Landing() {
           <Button type="primary" id="analysis-page-btn" size="large">
             Analysis Page
           </Button>
-        </div>
-      </div>
+        </Col>
+      </Row>
 
       <h3 id="contact-ryan">
         Contact ryan@propermesh.com for more info and keys for beta testing
