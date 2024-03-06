@@ -46,7 +46,7 @@ export default function Landing() {
             size="large"
             onClick={analysisComingSoon}
           >
-            Get Analysis
+            Analyze Parts
           </Button>
         </Col>
       </Row>
