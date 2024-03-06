@@ -3,7 +3,7 @@
 }
 
 .form-layout {
-  box-shadow: 0px 0px 25px 0px #d5dcff;
+  box-shadow: 0px 0px 25px 0px #d4dafd;
   border-radius: 10px;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .loginregister-toggle:hover {
-  color: #021aa4;
+  color: #3f2090;
   cursor: pointer;
 }
 
