@@ -178,7 +178,7 @@ li {
   margin-bottom: 4.5rem;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
   #landing-start-prefooter {
     margin-bottom: 0;
     border-bottom: 2px solid white;
