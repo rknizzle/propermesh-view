@@ -2,14 +2,6 @@ body {
   background-color: white;
 }
 
-h1 {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-h1:hover {
-  cursor: default;
-}
-
 .intro-container {
   display: flex;
   align-items: center;
@@ -38,7 +30,7 @@ h1:hover {
 #description {
   color: black;
   font-size: 2.1rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
   margin-bottom: 2rem;
@@ -47,7 +39,7 @@ h1:hover {
 }
 
 #description-2 {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   font-weight: lighter;
   max-width: 80%;
@@ -57,7 +49,7 @@ h1:hover {
 }
 
 #description-list {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   max-width: 80%;
   margin-bottom: 1rem;
@@ -80,12 +72,11 @@ h1:hover {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0);
   border-radius: 5px;
-  box-shadow: 0px 2px 8px 2px #7e84a4;
+  box-shadow: 0px 1px 4px 1px #7e84a4;
   padding: 0.5vw;
   font-size: clamp(12px, 1.2vw, 18px);
   font-weight: normal;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Roboto", sans-serif;
   margin-top: 2rem;
   margin-bottom: 2rem;
   transition: box-shadow 0.3s ease-in-out;
@@ -98,6 +89,7 @@ h1:hover {
   box-shadow: 0px 2px 8px 02px #7e84a4;
   padding: 1vw;
   font-size: large;
+  font-family: "Roboto", sans-serif;
   margin-bottom: 2rem;
   transition: box-shadow 0.3s ease-in-out;
 }
@@ -146,35 +138,44 @@ li {
 }
 
 .landing-prefooter {
-  background-color: #1c264fcf;
+  background-color: #7e84a4;
   padding: 1rem;
   margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  min-height: 15vh;
 }
 
 .landing-prefooter p {
-  font-size: 1.5rem;
+  font-size: medium;
   padding-left: 1rem;
   padding-right: 1rem;
-  font-weight: bold;
-  text-align: center;
-  text-shadow: rgb(118, 152, 253) 0.5px 0.5px 0.5px;
+  font-weight: 500;
+  /* RYAN: After you've written your paragraphs, uncomment the following line and determine if you'd like this property or not */
+  /* text-align: center; */
+  color: rgb(0, 0, 0);
+  font-family: "Roboto", sans-serif;
 }
 
-#landing-middle-prefooter {
-  border-right: 5px solid black;
-  border-left: 5px solid black;
+#landing-start-prefooter {
+  border-radius: 10px 0 0 10px;
+  margin-bottom: 4.5rem;
+}
+
+#landing-end-prefooter {
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 4.5rem;
 }
 
 @media screen and (max-width: 992px) {
-  #landing-middle-prefooter {
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
-    border-right: none;
-    border-left: none;
-    margin-top: 0;
+  #landing-start-prefooter {
+    margin-bottom: 0;
+    border-bottom: 2px solid white;
+    border-radius: 10px;
   }
   #landing-end-prefooter {
     margin-top: 0;
+    border-radius: 10px;
   }
   #contact-ryan {
     font-size: 2vw;
@@ -203,6 +204,12 @@ li {
 }
 
 @media screen and (max-width: 576px) {
+  #landing-start-prefooter {
+    border-radius: 0;
+  }
+  #landing-end-prefooter {
+    border-radius: 0;
+  }
   #description {
     margin-left: 2.5rem;
   }
