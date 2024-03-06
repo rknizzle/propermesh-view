@@ -238,6 +238,15 @@ li {
   }
 }
 
+@media screen and (max-width: 450px) {
+  #geo-analysis p,
+  #geo-analysis li,
+  #thick-analysis p,
+  #thick-analysis li {
+    font-size: medium;
+  }
+}
+
 @media screen and (max-width: 330px) {
   #description {
     font-size: 25px;
