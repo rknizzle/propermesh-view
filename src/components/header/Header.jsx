@@ -28,16 +28,16 @@ const Header = () => {
       navigate("/login");
     } else if (e.key === "apiDocs") {
       window.location.href = "/docs";
-    } else if (e.key === "apppage") {
-      navigate("/apppage");
+    } else if (e.key === "analysispage") {
+      navigate("/analysis");
     }
   };
 
   const menuItems = isLoggedIn
     ? [
         {
-          label: "App",
-          key: "apppage",
+          label: "Analysis",
+          key: "analysispage",
         },
         {
           label: "API Docs",

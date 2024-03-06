@@ -1,7 +1,19 @@
 import "./landingPage.css";
-import { Row, Col, Button } from "antd";
+import { Row, Col, Button, message } from "antd";
 
 export default function Landing() {
+  const [messageApi, contextHolder] = message.useMessage();
+  const analysisComingSoon = () => {
+    messageApi.open({
+      type: "info",
+      content: "Analysis Coming Soon!",
+      className: "coming-soon-message",
+      style: {
+        marginTop: "30vh",
+      },
+    });
+  };
+
   return (
     <div className="App">
       <Row
@@ -27,8 +39,14 @@ export default function Landing() {
               <li>important stuff that someone should know</li>
             </ul>
           </div>
-          <Button type="primary" id="analysis-page-btn" size="large">
-            Analysis Page
+          {contextHolder}
+          <Button
+            type="primary"
+            id="analysis-page-btn"
+            size="large"
+            onClick={analysisComingSoon}
+          >
+            Get Analysis
           </Button>
         </Col>
       </Row>

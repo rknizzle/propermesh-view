@@ -65,6 +65,17 @@ body {
 #analysis-page-btn {
   padding: 0rem 2rem;
   margin-left: 5rem;
+  background-color: #6a73a3;
+}
+
+#analysis-page-btn:hover {
+  background-color: #3e498f;
+  cursor: pointer;
+}
+
+.coming-soon-message {
+  font-family: "Roboto", sans-serif;
+  font-size: larger;
 }
 
 #contact-ryan {

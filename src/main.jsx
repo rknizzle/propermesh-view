@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Landing from "./components/landing/LandingPage.jsx";
-import AppPage from "./components/AppPage.jsx";
+import AnalysisPage from "./components/AnalysisPage.jsx";
 import Login from "./components/loginRegister/Login.jsx";
 import Register from "./components/loginRegister/Register.jsx";
 
@@ -15,7 +15,7 @@ export const RootComponent = () => {
         <Route index element={<Landing />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="apppage" element={<AppPage />} />
+        <Route path="analysis" element={<AnalysisPage />} />
       </Route>
     </Routes>
   );
