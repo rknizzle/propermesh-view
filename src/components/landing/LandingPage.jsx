@@ -23,18 +23,18 @@ export default function Landing() {
         <Col lg={12} className="intro-generic-img-container"></Col>
         <Col lg={12} className="intro-description-container">
           <h2 id="description">
-            Flawless 3D printing every time
+            Advanced 3D Analysis for Manufacturing Perfect Parts
           </h2>
           <div id="description-2">
             We provide powerful software tools for analyzing 3D models and extracting critical data
             to ensure that they will be correctly manufactured with no issues. Gain insights and find issues
-            before its too late
+            before its too late.
           </div>
           <div id="description-list">
             <ul>
               <li>TODO</li>
               <li>Many mesh and CAD file types supprted such as stl, obj, ply, STEP, SLDPRT and more</li>
-              <li>We offer an analysis API for automating workflows and integrating them into your own site</li>
+              <li>We offer an analysis API for automating workflows and allowing integration into into your own site</li>
             </ul>
           </div>
           {contextHolder}
