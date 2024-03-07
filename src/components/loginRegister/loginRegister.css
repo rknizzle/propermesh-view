@@ -3,21 +3,22 @@
 }
 
 .form-layout {
-  box-shadow: 0px 0px 20px 0px #f408081a;
+  box-shadow: 0px 0px 25px 0px #d4dafd;
+  border-radius: 10px;
 }
 
 .loginregister-toggle {
-  color: #b10a0ab1;
+  color: #5e69a7;
   font-weight: bold;
 }
 
 .loginregister-toggle:hover {
-  color: #f40808;
+  color: #3f2090;
   cursor: pointer;
 }
 
 .custom-btn {
-  background-color: #1c1f1bc7;
+  background-color: #1b1f1fc7;
   color: white;
 }
 

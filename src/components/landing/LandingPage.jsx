@@ -1,30 +1,55 @@
-import { useState, useEffect } from "react";
 import "./landingPage.css";
-import { Row, Col } from "antd";
+import { Row, Col, Button, message } from "antd";
 
 export default function Landing() {
-  const [animateLogo, setAnimateLogo] = useState(false);
-
-  useEffect(() => {
-    setAnimateLogo(true);
-  }, []);
+  const [messageApi, contextHolder] = message.useMessage();
+  const analysisComingSoon = () => {
+    messageApi.open({
+      type: "info",
+      content: "Analysis Coming Soon!",
+      className: "coming-soon-message",
+      style: {
+        marginTop: "30vh",
+      },
+    });
+  };
 
   return (
     <div className="App">
-      <div id="logo-container" className={animateLogo ? "logo-animate" : ""}>
-        <div className="logo-half left-half"></div>
-        <div className="logo-half right-half"></div>
-      </div>
-
-      <h2 id="description">
-        Software tools for automating 3D printability checks of 3D model files
-      </h2>
-
-      <img
-        id="coming-soon-image"
-        src="assets/coming-soon.png"
-        alt="Coming Soon"
-      />
+      <Row
+        className="intro-container"
+        gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
+      >
+        <Col lg={12} className="intro-generic-img-container"></Col>
+        <Col lg={12} className="intro-description-container">
+          <h2 id="description">
+            Software tools for automating 3D printability checks of 3D model
+            files
+          </h2>
+          <div id="description-2">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos
+            mollitia assumenda fugiat nihil voluptatibus exercitationem unde
+            natus! Odit delectus vero vitae a animi, laudantium perferendis quod
+            nihil, ex non at!
+          </div>
+          <div id="description-list">
+            <ul>
+              <li>information information</li>
+              <li>some more information but a little longer</li>
+              <li>important stuff that someone should know</li>
+            </ul>
+          </div>
+          {contextHolder}
+          <Button
+            type="primary"
+            id="analysis-page-btn"
+            size="large"
+            onClick={analysisComingSoon}
+          >
+            Get Analysis
+          </Button>
+        </Col>
+      </Row>
 
       <h3 id="contact-ryan">
         Contact ryan@propermesh.com for more info and keys for beta testing
@@ -106,24 +131,35 @@ export default function Landing() {
         </Col>
       </Row>
       <Row id="landing-prefooter" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-        <Col xs={{ span: 24 }} lg={{ span: 8 }} className="landing-prefooter">
-          <p>Many supported file types such as SLDPRT, STEP, STL, OBJ, PLY</p>
-        </Col>
         <Col
           xs={{ span: 24 }}
-          lg={{ span: 8 }}
-          id="landing-middle-prefooter"
+          lg={{ span: 9, offset: 3 }}
+          id="landing-start-prefooter"
           className="landing-prefooter"
         >
-          <p>Cloud File Storage</p>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, vel
+            repellat provident et iusto obcaecati voluptatum nostrum architecto
+            quis. Nobis in perferendis rem accusantium ipsa blanditiis
+            consectetur inventore dignissimos unde? Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Omnis in pariatur neque esse dolor
+            dignissimos maxime natus ex. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Ad alias dicta ullam sapiente deserunt illo.
+            Consectetur sequi cum ad.
+          </p>
         </Col>
         <Col
           xs={{ span: 24 }}
-          lg={{ span: 8 }}
+          lg={{ span: 9 }}
           id="landing-end-prefooter"
           className="landing-prefooter"
         >
-          <p>Easy to use REST API</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita et
+            obcaecati deserunt tenetur sint autem quos temporibus eius animi
+            mollitia est culpa ratione explicabo nostrum velit natus laudantium,
+            excepturi ab!
+          </p>
         </Col>
       </Row>
     </div>

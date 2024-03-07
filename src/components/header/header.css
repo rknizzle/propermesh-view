@@ -3,30 +3,49 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
-  border-bottom: 1px solid #ccc;
-  background-color: rgb(183, 170, 153);
+  background-color: gray;
 }
 
 .header-title {
   font-size: 20px;
   font-weight: bold;
-  background-color: rgb(183, 170, 153);
+  background-color: gray;
   font-family: "Roboto", sans-serif;
 }
 
-.header-title:hover {
+#header-logo {
+  width: 3.1rem;
+  height: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+.header-logo-title {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header-logo-title:hover {
   cursor: pointer;
 }
 
 .header-menu {
   flex-grow: 1;
   justify-content: flex-end;
-  background-color: rgb(183, 170, 153);
+  background-color: gray;
   font-weight: bold;
 }
 
+.ant-menu-horizontal .ant-menu-item-selected,
+.ant-menu-horizontal .ant-menu-item-selected:hover,
 .ant-menu-horizontal .ant-menu-item-selected::after,
 .ant-menu-horizontal .ant-menu-item:hover::after,
 .ant-menu-horizontal .ant-menu-item-active::after {
-  border-bottom-color: white !important;
+  border-bottom-color: #808080 !important;
+  color: black !important;
+}
+
+.ant-menu-horizontal .ant-menu-item:hover {
+  color: rgba(253, 253, 253, 0.639) !important;
+  border-bottom-color: #808080 !important;
 }

@@ -129,7 +129,7 @@ const Register = () => {
           style: { width: 300 },
         });
         setIsLoggedIn(true);
-        navigate("/apppage");
+        navigate("/analysis");
       } catch (error) {
         // Login failed after successful registration
         notification.error({

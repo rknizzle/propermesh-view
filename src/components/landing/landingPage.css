@@ -1,117 +1,81 @@
 body {
-  background-color: rgb(250, 234, 213);
+  background-color: white;
 }
 
-.App-header {
-  color: red;
+.intro-container {
+  display: flex;
+  align-items: center;
+  background-color: rgb(203, 203, 203);
+  align-items: flex-start;
 }
 
-#logo-container {
-  width: 30vw;
-  height: 30vw;
-  margin: 0 auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  position: relative;
-  overflow: hidden;
+.intro-generic-img-container {
+  background-image: url("/assets/temp-generic-image.webp");
+  background-size: cover;
+  background-position: center;
+  height: 45rem;
+  margin: 0;
+  width: 100%;
 }
 
-.logo-half {
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  background-size: 200% 100%;
-  background-image: url("/assets/logo.png");
-  transition: transform 1s ease-out;
-}
-
-.left-half {
-  background-position: right;
-  left: 0%;
-}
-
-.right-half {
-  background-position: left;
-  right: 0%;
-}
-
-.logo-animate .left-half {
-  transform: translateX(100%);
-}
-
-.logo-animate .right-half {
-  transform: translateX(-100%);
-}
-
-h1 {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-h1:hover {
-  cursor: default;
+.intro-description-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: black;
+  margin-top: 8rem;
+  text-align: left;
 }
 
 #description {
-  display: inline-block;
-  color: #f6e7cc;
-  text-shadow: #343130 2.5px 2.5px 2.5px;
-  font-size: clamp(1rem, 2vw, 2rem);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  padding: 1rem;
-  background: linear-gradient(
-    145deg,
-    #343130,
-    rgba(154, 86, 86, 0.949),
-    #343130
-  );
-  border-radius: 10rem;
-  box-shadow: 0px 2px 8px 2px #9f7b7b;
-  z-index: 1;
+  color: black;
+  font-size: 2.1rem;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2rem;
+  margin-left: 4rem;
+  margin-right: 2rem;
 }
 
-@media screen and (max-width: 992px) {
-  #description {
-    font-size: 3vw;
-  }
+#description-2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  font-weight: lighter;
+  max-width: 80%;
+  margin-bottom: 1rem;
+  margin-left: 4rem;
+  margin-right: 2rem;
 }
 
-@media screen and (max-width: 768px) {
-  #description {
-    font-size: 4vw;
-  }
+#description-list {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  max-width: 80%;
+  margin-bottom: 1rem;
+  margin-left: 4rem;
+  margin-right: 2rem;
 }
 
-@media screen and (max-width: 480px) {
-  #description {
-    font-size: 5vw;
-  }
+#description-list ul {
+  padding-left: 0;
+  list-style-position: inside;
 }
 
-#coming-soon-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+#analysis-page-btn {
+  padding: 0rem 2rem;
+  margin-left: 5rem;
+  background-color: #6a73a3;
 }
 
-@media (max-width: 992px) {
-  #coming-soon-image {
-    width: 80%;
-  }
+#analysis-page-btn:hover {
+  background-color: #3e498f;
+  cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  #coming-soon-image {
-    width: 70%;
-  }
-}
-
-@media (max-width: 480px) {
-  #coming-soon-image {
-    width: 60%;
-  }
+.coming-soon-message {
+  font-family: "Roboto", sans-serif;
+  font-size: larger;
 }
 
 #contact-ryan {
@@ -119,55 +83,37 @@ h1:hover {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0);
   border-radius: 5px;
-  box-shadow: 0px 2px 8px 2px #9f7b7b;
+  box-shadow: 0px 1px 4px 1px #7e84a4;
   padding: 0.5vw;
   font-size: clamp(12px, 1.2vw, 18px);
   font-weight: normal;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Roboto", sans-serif;
   margin-top: 2rem;
   margin-bottom: 2rem;
   transition: box-shadow 0.3s ease-in-out;
 }
 
-@media screen and (max-width: 992px) {
-  #contact-ryan {
-    font-size: 2vw;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #contact-ryan {
-    font-size: 2.5vw;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  #contact-ryan {
-    font-size: 3vw;
-  }
-}
-
 #geo-analysis,
 #thick-analysis {
-  background-color: #bcb1a2;
+  background-color: rgb(203, 203, 203);
   border-radius: 8px;
-  box-shadow: 0px 2px 8px 2px #9f7b7b;
+  box-shadow: 0px 2px 8px 02px #7e84a4;
   padding: 1vw;
   font-size: large;
+  font-family: "Roboto", sans-serif;
   margin-bottom: 2rem;
   transition: box-shadow 0.3s ease-in-out;
 }
 
 @keyframes glowing {
   0% {
-    box-shadow: 0px 2px 8px 2px #9f7b7b;
+    box-shadow: 0px 2px 8px 2px #7e84a4;
   }
   50% {
-    box-shadow: 0px 4px 18px 4px #9f7b7b;
+    box-shadow: 0px 4px 18px 4px #7e84a4;
   }
   100% {
-    box-shadow: 0px 2px 8px 2px #9f7b7b;
+    box-shadow: 0px 2px 8px 2px #7e84a4;
   }
 }
 
@@ -203,34 +149,139 @@ li {
 }
 
 .landing-prefooter {
-  background-color: #aa1e0f;
+  background-color: #7e84a4;
   padding: 1rem;
   margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  min-height: 15vh;
 }
 
 .landing-prefooter p {
-  font-size: 1.5rem;
+  font-size: medium;
   padding-left: 1rem;
   padding-right: 1rem;
-  font-weight: bold;
-  text-align: center;
-  text-shadow: #9f7b7b 0.5px 0.5px 0.5px;
+  font-weight: 500;
+  /* RYAN: After you've written your paragraphs, uncomment the following line and determine if you'd like this property or not */
+  /* text-align: center; */
+  color: rgb(0, 0, 0);
+  font-family: "Roboto", sans-serif;
 }
 
-#landing-middle-prefooter {
-  border-right: 5px solid black;
-  border-left: 5px solid black;
+#landing-start-prefooter {
+  border-radius: 10px 0 0 10px;
+  margin-bottom: 4.5rem;
 }
 
-@media screen and (max-width: 992px) {
-  #landing-middle-prefooter {
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
-    border-right: none;
-    border-left: none;
-    margin-top: 0;
+#landing-end-prefooter {
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 4.5rem;
+}
+
+@media screen and (max-width: 991px) {
+  #landing-start-prefooter {
+    margin-bottom: 0;
+    border-bottom: 2px solid white;
+    border-radius: 10px;
   }
   #landing-end-prefooter {
     margin-top: 0;
+    border-radius: 10px;
+  }
+  #contact-ryan {
+    font-size: 2vw;
+  }
+  .intro-description-container {
+    margin-top: 3rem;
+    order: 1;
+    padding-bottom: 50px;
+  }
+  .intro-generic-img-container {
+    order: 2;
+    height: 30rem;
+  }
+  #geo-analysis p,
+  #geo-analysis li,
+  #thick-analysis p,
+  #thick-analysis li {
+    font-size: large;
+  }
+}
+
+@media (max-width: 768px) {
+  #contact-ryan {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #landing-start-prefooter {
+    border-radius: 0;
+  }
+  #landing-end-prefooter {
+    border-radius: 0;
+  }
+  #description {
+    margin-left: 2.5rem;
+  }
+  #description-2 {
+    margin-left: 2.5rem;
+  }
+  #description-list {
+    margin-left: 2.5rem;
+  }
+  #analysis-page-btn {
+    margin-left: 3.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #description {
+    font-size: 30px;
+    margin-left: 2rem;
+  }
+  #description-2 {
+    font-size: 18px;
+    margin-left: 2rem;
+  }
+  #description-list {
+    font-size: 15px;
+    margin-left: 2rem;
+  }
+  #contact-ryan {
+    font-size: 15px;
+  }
+  #analysis-page-btn {
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #geo-analysis p,
+  #geo-analysis li,
+  #thick-analysis p,
+  #thick-analysis li {
+    font-size: medium;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  #description {
+    font-size: 25px;
+    margin-left: 1.5rem;
+  }
+  #description-2 {
+    font-size: 16px;
+    margin-left: 1.5rem;
+  }
+  #description-list {
+    font-size: 15px;
+    margin-left: 1.5rem;
+  }
+  #contact-ryan {
+    font-size: 15px;
+  }
+  #analysis-page-btn {
+    margin-left: 2rem;
   }
 }

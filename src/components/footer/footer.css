@@ -4,20 +4,20 @@
   align-items: center;
   padding: 0 10px;
   border-top: 1px solid #ccc;
-  background-color: #bcb0a2;
+  background-color: gray;
 }
 
 #footer-logo {
-  width: 5rem;
+  width: 6rem;
   height: 5rem;
-  margin-right: 2rem;
-  margin-left: 2rem;
+  margin-right: 1rem;
 }
 
 #footer-contact-info {
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  font-family: "Roboto", sans-serif;
 }
 
 a {
@@ -28,7 +28,7 @@ a {
 #footer-email:hover,
 #footer-phone-number:hover,
 a:hover {
-  color: #9f7b7b;
+  color: black;
   animation: breathe 2s ease-in-out infinite;
 }
 

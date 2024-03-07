@@ -27,17 +27,17 @@ const Header = () => {
     } else if (e.key === "login") {
       navigate("/login");
     } else if (e.key === "apiDocs") {
-      window.location.href = '/docs';
-    } else if (e.key === "apppage") {
-      navigate("/apppage");
+      window.location.href = "/docs";
+    } else if (e.key === "analysispage") {
+      navigate("/analysis");
     }
   };
 
   const menuItems = isLoggedIn
     ? [
         {
-          label: "App",
-          key: "apppage",
+          label: "Analysis",
+          key: "analysispage",
         },
         {
           label: "API Docs",
@@ -63,8 +63,14 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <div className="header-title" onClick={() => navigate("/")}>
-        Propermesh
+      <div className="header-logo-title" onClick={() => navigate("/")}>
+        <img
+          src="/assets/favicon.png"
+          alt="logo-in-header"
+          id="header-logo"
+          onClick={() => navigate("/")}
+        />
+        <div className="header-title">Propermesh</div>
       </div>
       <Menu
         onClick={onClick}
