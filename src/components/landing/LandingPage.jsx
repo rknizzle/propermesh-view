@@ -136,16 +136,12 @@ export default function Landing() {
           className="landing-prefooter"
         >
           <p>
-            Elevate your platform's capabilities with our state-of-the-art software designed for
-            analyzing 3D models to ensure they are print-ready. Our comprehensive solution offers an
-            accessible API that enables developers to seamlessly integrate our advanced 3D model checking
-            tools directly into their websites. This integration allows for real-time, automated checks that
-            streamline the validation process, ensuring that models are optimized for printing without
-            leaving your platform. With our API, you can enhance user experience, reduce the margin for
-            error, and increase efficiency in 3D printing projects. Explore the possibilities by leveraging
-            our technology; check out our API today and for any queries or assistance, please reach out to
-            contact@propermesh.com. Bring the future of 3D printing to your website now and revolutionize
-            the way your users prepare models for printing.
+            Elevate your platform with our cutting-edge software, designed to ensure 3D models are
+            print-ready. Our API allows for easy integration, enabling automated, real-time 3D model checks
+            directly on your website. This not only streamlines the validation process but also enhances
+            user experience and efficiency in 3D printing projects. Discover how our technology can
+            revolutionize your platform; for more information or to get started, contact us at
+            ryan@propermesh.com. Transform your 3D printing workflow today.
           </p>
         </Col>
         <Col
