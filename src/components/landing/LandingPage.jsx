@@ -23,20 +23,18 @@ export default function Landing() {
         <Col lg={12} className="intro-generic-img-container"></Col>
         <Col lg={12} className="intro-description-container">
           <h2 id="description">
-            Software tools for automating 3D printability checks of 3D model
-            files
+            Flawless 3D printing every time
           </h2>
           <div id="description-2">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos
-            mollitia assumenda fugiat nihil voluptatibus exercitationem unde
-            natus! Odit delectus vero vitae a animi, laudantium perferendis quod
-            nihil, ex non at!
+            We provide powerful software tools for analyzing 3D models and extracting critical data
+            to ensure that they will be correctly manufactured with no issues. Gain insights and find issues
+            before its too late
           </div>
           <div id="description-list">
             <ul>
-              <li>information information</li>
-              <li>some more information but a little longer</li>
-              <li>important stuff that someone should know</li>
+              <li>TODO</li>
+              <li>Many mesh and CAD file types supprted such as stl, obj, ply, STEP, SLDPRT and more</li>
+              <li>We offer an analysis API for automating workflows and integrating them into your own site</li>
             </ul>
           </div>
           {contextHolder}
@@ -138,14 +136,16 @@ export default function Landing() {
           className="landing-prefooter"
         >
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, vel
-            repellat provident et iusto obcaecati voluptatum nostrum architecto
-            quis. Nobis in perferendis rem accusantium ipsa blanditiis
-            consectetur inventore dignissimos unde? Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Omnis in pariatur neque esse dolor
-            dignissimos maxime natus ex. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Ad alias dicta ullam sapiente deserunt illo.
-            Consectetur sequi cum ad.
+            Elevate your platform's capabilities with our state-of-the-art software designed for
+            analyzing 3D models to ensure they are print-ready. Our comprehensive solution offers an
+            accessible API that enables developers to seamlessly integrate our advanced 3D model checking
+            tools directly into their websites. This integration allows for real-time, automated checks that
+            streamline the validation process, ensuring that models are optimized for printing without
+            leaving your platform. With our API, you can enhance user experience, reduce the margin for
+            error, and increase efficiency in 3D printing projects. Explore the possibilities by leveraging
+            our technology; check out our API today and for any queries or assistance, please reach out to
+            contact@propermesh.com. Bring the future of 3D printing to your website now and revolutionize
+            the way your users prepare models for printing.
           </p>
         </Col>
         <Col
