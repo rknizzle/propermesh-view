@@ -285,3 +285,8 @@ li {
     margin-left: 2rem;
   }
 }
+
+#impeller-image {
+  height: 400px;
+  width: 400px;
+}

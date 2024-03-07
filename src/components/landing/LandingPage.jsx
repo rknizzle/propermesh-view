@@ -154,12 +154,11 @@ export default function Landing() {
           id="landing-end-prefooter"
           className="landing-prefooter"
         >
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita et
-            obcaecati deserunt tenetur sint autem quos temporibus eius animi
-            mollitia est culpa ratione explicabo nostrum velit natus laudantium,
-            excepturi ab!
-          </p>
+        <img
+          id="impeller-image"
+          src="/assets/impeller.png"
+          alt="impeller"
+        />
         </Col>
       </Row>
     </div>
