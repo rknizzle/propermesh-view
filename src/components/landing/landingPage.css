@@ -176,12 +176,19 @@ li {
 #landing-end-prefooter {
   border-radius: 0 10px 10px 0;
   margin-bottom: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#impeller-image {
+  height: 400px;
+  width: 400px;
 }
 
 @media screen and (max-width: 991px) {
   #landing-start-prefooter {
     margin-bottom: 0;
-    border-bottom: 2px solid white;
     border-radius: 10px;
   }
   #landing-end-prefooter {
@@ -265,6 +272,13 @@ li {
   }
 }
 
+@media screen and (max-width: 410px) {
+  #impeller-image {
+    width: 95%;
+    height: auto;
+  }
+}
+
 @media screen and (max-width: 330px) {
   #description {
     font-size: 25px;
@@ -284,9 +298,4 @@ li {
   #analysis-page-btn {
     margin-left: 2rem;
   }
-}
-
-#impeller-image {
-  height: 400px;
-  width: 400px;
 }
