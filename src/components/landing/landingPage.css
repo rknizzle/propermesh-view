@@ -179,6 +179,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(to right, #7e84a4 0%, white 60%);
 }
 
 #impeller-image {
@@ -194,6 +195,7 @@ li {
   #landing-end-prefooter {
     margin-top: 0;
     border-radius: 10px;
+    background: linear-gradient(to bottom, #7e84a4, white);
   }
   #contact-ryan {
     font-size: 2vw;
