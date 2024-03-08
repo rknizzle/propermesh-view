@@ -33,11 +33,13 @@ export default function Landing() {
           </div>
           <div id="description-list">
             <ul>
-              <li>TODO</li>
+              {/* I commented this out incase you wanted to deploy the redesign in the meantime :) */}
+              {/* <li>TODO</li> */}
               <li>
                 Many mesh and CAD file types supprted such as stl, obj, ply,
                 STEP, SLDPRT and more
               </li>
+              <br />
               <li>
                 We offer an analysis API for automating workflows and allowing
                 integration into into your own site
