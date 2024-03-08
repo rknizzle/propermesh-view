@@ -163,13 +163,13 @@ li {
   font-family: "Roboto", sans-serif;
   display: flex;
   align-items: flex-start;
-  padding-left: 2rem;
+  padding-left: 5rem;
 }
 
 #landing-start-prefooter p {
   font-size: large;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
   font-weight: 500;
   color: rgb(0, 0, 0);
   font-family: "Roboto", sans-serif;
@@ -179,6 +179,7 @@ li {
 #landing-start-prefooter {
   border-radius: 10px 0 0 10px;
   margin-bottom: 4.5rem;
+  background: linear-gradient(to right, #7e84a4 0%, #9fa4bb 100%);
 }
 
 #landing-end-prefooter {
@@ -187,7 +188,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #7e84a4 0%, white 60%);
+  background: linear-gradient(to right, #9fa4bb 0%, white 60%);
 }
 
 #impeller-image {
@@ -195,10 +196,108 @@ li {
   width: 400px;
 }
 
+@media screen and (max-width: 1753px) {
+  #landing-start-prefooter h2 {
+    padding-left: 4rem;
+  }
+  #landing-start-prefooter p {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@media screen and (max-width: 1700px) {
+  #landing-start-prefooter h2 {
+    padding-left: 3.5rem;
+  }
+  #landing-start-prefooter p {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+}
+
+@media screen and (max-width: 1630px) {
+  #landing-start-prefooter h2 {
+    padding-left: 3rem;
+  }
+  #landing-start-prefooter p {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  #landing-start-prefooter h2 {
+    padding-left: 2.5rem;
+  }
+  #landing-start-prefooter p {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 1520px) {
+  #landing-start-prefooter h2 {
+    padding-left: 2rem;
+  }
+  #landing-start-prefooter p {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media screen and (max-width: 1344px) {
+  #landing-start-prefooter h2 {
+    padding-left: 1.6rem;
+  }
+  #landing-start-prefooter p {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  #landing-start-prefooter h2 {
+    padding-left: 1.2rem;
+  }
+  #landing-start-prefooter p {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  #landing-start-prefooter h2 {
+    padding-left: 0.8rem;
+  }
+  #landing-start-prefooter p {
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  #landing-start-prefooter h2 {
+    padding-left: 0.5rem;
+  }
+  #landing-start-prefooter p {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
 @media screen and (max-width: 991px) {
+  #landing-start-prefooter h2 {
+    padding-left: 2rem;
+  }
+  #landing-start-prefooter p {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
   #landing-start-prefooter {
     margin-bottom: 0;
     border-radius: 10px;
+    background: #7e84a4;
   }
   #landing-end-prefooter {
     margin-top: 0;
