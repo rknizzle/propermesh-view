@@ -68,7 +68,6 @@ const Header = () => {
           src="/assets/favicon.png"
           alt="logo-in-header"
           id="header-logo"
-          onClick={() => navigate("/")}
         />
         <div className="header-title">Propermesh</div>
       </div>

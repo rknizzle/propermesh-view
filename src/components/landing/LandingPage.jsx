@@ -23,20 +23,27 @@ export default function Landing() {
         <Col lg={12} className="intro-generic-img-container"></Col>
         <Col lg={12} className="intro-description-container">
           <h2 id="description">
-            Software tools for automating 3D printability checks of 3D model
-            files
+            Advanced 3D Analysis for Manufacturing Perfect Parts
           </h2>
           <div id="description-2">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos
-            mollitia assumenda fugiat nihil voluptatibus exercitationem unde
-            natus! Odit delectus vero vitae a animi, laudantium perferendis quod
-            nihil, ex non at!
+            We provide powerful software tools for analyzing 3D models and
+            extracting critical data to ensure that they will be correctly
+            manufactured with no issues. Gain insights and find issues before
+            its too late.
           </div>
           <div id="description-list">
             <ul>
-              <li>information information</li>
-              <li>some more information but a little longer</li>
-              <li>important stuff that someone should know</li>
+              {/* I commented this out incase you wanted to deploy the redesign in the meantime :) */}
+              {/* <li>TODO</li> */}
+              <li>
+                Many mesh and CAD file types supprted such as stl, obj, ply,
+                STEP, SLDPRT and more
+              </li>
+              <br />
+              <li>
+                We offer an analysis API for automating workflows and allowing
+                integration into into your own site
+              </li>
             </ul>
           </div>
           {contextHolder}
@@ -46,7 +53,7 @@ export default function Landing() {
             size="large"
             onClick={analysisComingSoon}
           >
-            Get Analysis
+            Analyze Parts
           </Button>
         </Col>
       </Row>
@@ -137,15 +144,16 @@ export default function Landing() {
           id="landing-start-prefooter"
           className="landing-prefooter"
         >
+          <h2>API for Efficient 3D Printing</h2>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, vel
-            repellat provident et iusto obcaecati voluptatum nostrum architecto
-            quis. Nobis in perferendis rem accusantium ipsa blanditiis
-            consectetur inventore dignissimos unde? Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Omnis in pariatur neque esse dolor
-            dignissimos maxime natus ex. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Ad alias dicta ullam sapiente deserunt illo.
-            Consectetur sequi cum ad.
+            Elevate your platform with our cutting-edge software, designed to
+            ensure 3D models are print-ready. Our API allows for easy
+            integration, enabling automated, real-time 3D model checks directly
+            on your website. This not only streamlines the validation process
+            but also enhances user experience and efficiency in 3D printing
+            projects. Discover how our technology can revolutionize your
+            platform; for more information or to get started, contact us at
+            ryan@propermesh.com. Transform your 3D printing workflow today.
           </p>
         </Col>
         <Col
@@ -154,12 +162,7 @@ export default function Landing() {
           id="landing-end-prefooter"
           className="landing-prefooter"
         >
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita et
-            obcaecati deserunt tenetur sint autem quos temporibus eius animi
-            mollitia est culpa ratione explicabo nostrum velit natus laudantium,
-            excepturi ab!
-          </p>
+          <img id="impeller-image" src="/assets/impeller.png" alt="impeller" />
         </Col>
       </Row>
     </div>
