@@ -153,19 +153,27 @@ li {
   padding: 1rem;
   margin-top: 2rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   min-height: 15vh;
 }
 
-.landing-prefooter p {
-  font-size: medium;
-  padding-left: 1rem;
-  padding-right: 1rem;
+#landing-start-prefooter h2 {
+  font-size: 1.4rem;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 2rem;
+}
+
+#landing-start-prefooter p {
+  font-size: large;
+  padding-left: 2rem;
+  padding-right: 2rem;
   font-weight: 500;
-  /* RYAN: After you've written your paragraphs, uncomment the following line and determine if you'd like this property or not */
-  /* text-align: center; */
   color: rgb(0, 0, 0);
   font-family: "Roboto", sans-serif;
+  line-height: 1.4;
 }
 
 #landing-start-prefooter {
@@ -269,7 +277,8 @@ li {
   #geo-analysis p,
   #geo-analysis li,
   #thick-analysis p,
-  #thick-analysis li {
+  #thick-analysis li,
+  #landing-start-prefooter p {
     font-size: medium;
   }
 }
@@ -278,6 +287,12 @@ li {
   #impeller-image {
     width: 95%;
     height: auto;
+  }
+}
+
+@media screen and (max-width: 347px) {
+  #landing-start-prefooter h2 {
+    font-size: 1.2rem;
   }
 }
 
@@ -299,5 +314,11 @@ li {
   }
   #analysis-page-btn {
     margin-left: 2rem;
+  }
+}
+
+@media screen and (max-width: 285px) {
+  #landing-start-prefooter h2 {
+    font-size: 1rem;
   }
 }

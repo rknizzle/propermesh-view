@@ -26,15 +26,22 @@ export default function Landing() {
             Advanced 3D Analysis for Manufacturing Perfect Parts
           </h2>
           <div id="description-2">
-            We provide powerful software tools for analyzing 3D models and extracting critical data
-            to ensure that they will be correctly manufactured with no issues. Gain insights and find issues
-            before its too late.
+            We provide powerful software tools for analyzing 3D models and
+            extracting critical data to ensure that they will be correctly
+            manufactured with no issues. Gain insights and find issues before
+            its too late.
           </div>
           <div id="description-list">
             <ul>
               <li>TODO</li>
-              <li>Many mesh and CAD file types supprted such as stl, obj, ply, STEP, SLDPRT and more</li>
-              <li>We offer an analysis API for automating workflows and allowing integration into into your own site</li>
+              <li>
+                Many mesh and CAD file types supprted such as stl, obj, ply,
+                STEP, SLDPRT and more
+              </li>
+              <li>
+                We offer an analysis API for automating workflows and allowing
+                integration into into your own site
+              </li>
             </ul>
           </div>
           {contextHolder}
@@ -135,12 +142,15 @@ export default function Landing() {
           id="landing-start-prefooter"
           className="landing-prefooter"
         >
+          <h2>API for Efficient 3D Printing</h2>
           <p>
-            Elevate your platform with our cutting-edge software, designed to ensure 3D models are
-            print-ready. Our API allows for easy integration, enabling automated, real-time 3D model checks
-            directly on your website. This not only streamlines the validation process but also enhances
-            user experience and efficiency in 3D printing projects. Discover how our technology can
-            revolutionize your platform; for more information or to get started, contact us at
+            Elevate your platform with our cutting-edge software, designed to
+            ensure 3D models are print-ready. Our API allows for easy
+            integration, enabling automated, real-time 3D model checks directly
+            on your website. This not only streamlines the validation process
+            but also enhances user experience and efficiency in 3D printing
+            projects. Discover how our technology can revolutionize your
+            platform; for more information or to get started, contact us at
             ryan@propermesh.com. Transform your 3D printing workflow today.
           </p>
         </Col>
@@ -150,11 +160,7 @@ export default function Landing() {
           id="landing-end-prefooter"
           className="landing-prefooter"
         >
-        <img
-          id="impeller-image"
-          src="/assets/impeller.png"
-          alt="impeller"
-        />
+          <img id="impeller-image" src="/assets/impeller.png" alt="impeller" />
         </Col>
       </Row>
     </div>
