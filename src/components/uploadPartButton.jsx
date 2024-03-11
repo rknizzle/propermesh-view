@@ -14,9 +14,7 @@ const UploadPart = () => {
     multiple: false,
     showUploadList: false,
     accept: acceptedFileTypes.join(", "),
-    // I belive this would point to the backend somehow? This was provided by ant design
-    // We'd use the fetch API to send the file to the backend, correct?
-    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
+    action: "/api/v0/parts",
     onChange(info) {
       const { status } = info.file;
 
@@ -55,6 +53,10 @@ const UploadPart = () => {
         setIsUploadAllowed(false);
         return;
       }
+    },
+    //i'm not sure of the correct way to identify the units of the file yet. This always defaults to mm, or the files are in mm
+    data: {
+      units: "mm" || "inches",
     },
   };
 
