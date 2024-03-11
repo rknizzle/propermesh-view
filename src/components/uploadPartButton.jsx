@@ -54,10 +54,6 @@ const UploadPart = () => {
         return;
       }
     },
-    //i'm not sure of the correct way to identify the units of the file yet. This always defaults to mm, or the files are in mm
-    data: {
-      units: "mm" || "inches",
-    },
   };
 
   return (
