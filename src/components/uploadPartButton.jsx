@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { InboxOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
+import { useModelFile } from "../utils/useModel";
 
 const { Dragger } = Upload;
 
 const UploadPart = () => {
   const [isUploadAllowed, setIsUploadAllowed] = useState(true);
+  const { setFileFor3dModel } = useModelFile();
 
   const acceptedFileTypes = [".stl", ".obj", ".ply", ".gltf", ".glb", ".3mf"];
 
@@ -30,6 +32,10 @@ const UploadPart = () => {
       } else if (status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
+    },
+    beforeUpload(file) {
+      setFileFor3dModel(file);
+      return true;
     },
     onDrop(e) {
       console.log("Dropped files", e.dataTransfer.files);

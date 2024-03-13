@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { useLocation } from "react-router-dom";
 import { AuthProvider } from "./utils/authContext";
+import { ModelFileProvider } from "./utils/3dModelFileContext";
 import { useEffect, useRef, useState } from "react";
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
       <>
         <Header />
         <div ref={contentRef}>
-          <Outlet />
+          <ModelFileProvider>
+            <Outlet />
+          </ModelFileProvider>
         </div>
         <Footer sticky={isStickyFooter} />
       </>
