@@ -4,7 +4,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { downloadBlobToLocalMachine } from "./downloadBlob";
 
-const ViewParts = ({ setFileFor3dModel }) => {
+const ViewPartsButton = ({ setFileFor3dModel }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
   const [fileNameForUpload, setFileNameForUpload] = useState("");
@@ -95,8 +95,8 @@ const ViewParts = ({ setFileFor3dModel }) => {
   );
 };
 
-ViewParts.propTypes = {
+ViewPartsButton.propTypes = {
   setFileFor3dModel: PropTypes.func,
 };
 
-export default ViewParts;
+export default ViewPartsButton;
