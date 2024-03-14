@@ -14,6 +14,19 @@ https://github.com/airbnb/javascript/tree/master/react#naming
   functions and files and then you can give the sub component its own directory
 - Im thinking CSS files can be component name but camelCase. Example: Header.jsx and header.css
 
+
+TODO: Is index.jsx better than the componenet name as the file name because it avoids duplicate
+names in the import path?
+
+```
+Example import with component name as filename:
+import RegisterPage from "./components/loginRegister/RegisterPage/RegisterPage";
+
+Example importing with index.jsx as filename:
+import RegisterPage from "./components/loginRegister/RegisterPage";
+```
+
+
 Examples:
 
 ```
