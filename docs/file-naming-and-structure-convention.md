@@ -12,8 +12,6 @@ https://github.com/airbnb/javascript/tree/master/react#naming
 - A good approach for handling subcomponents might be to just start with the sub componenet files in
   the same directory as the main componenet until the sub componenets start growing and having more
   functions and files and then you can give the sub component its own directory
-- If a subcomponent has more than 1 file, probably put it in its own direcotry. If it only has one
-  file, put it in its own directory or just leave it in the same directory as the main componenet
 
 Examples:
 
