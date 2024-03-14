@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { InboxOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
-import { useModelFile } from "../utils/useModel";
+import PropTypes from "prop-types";
 
 const { Dragger } = Upload;
 
-const UploadPart = () => {
+const UploadPart = ({ setFileFor3dModel }) => {
   const [isUploadAllowed, setIsUploadAllowed] = useState(true);
-  const { setFileFor3dModel } = useModelFile();
 
   const acceptedFileTypes = [".stl", ".obj", ".ply", ".gltf", ".glb", ".3mf"];
 
@@ -75,6 +74,10 @@ const UploadPart = () => {
       </p>
     </Dragger>
   );
+};
+
+UploadPart.propTypes = {
+  setFileFor3dModel: PropTypes.func,
 };
 
 export default UploadPart;

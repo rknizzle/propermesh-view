@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
-import { useModelFile } from "../utils/useModel";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import PropTypes from "prop-types";
 
-const ModelViewer = () => {
+const ModelViewer = ({ fileFor3dModel }) => {
   const canvasRef = useRef(null);
-  const { fileFor3dModel } = useModelFile();
   const [objectURL, setObjectURL] = useState(null);
 
   useEffect(() => {
@@ -88,6 +87,10 @@ const ModelViewer = () => {
       style={{ backgroundColor: "gray", width: "50%", height: "50%" }}
     />
   );
+};
+
+ModelViewer.propTypes = {
+  fileFor3dModel: PropTypes.object,
 };
 
 export default ModelViewer;
