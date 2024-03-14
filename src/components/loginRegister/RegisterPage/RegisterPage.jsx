@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 import { Col, Row } from "antd";
 import "../loginRegister.css";
 
-const Register = () => {
+const RegisterPage = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const { setIsLoggedIn } = useAuth();
@@ -238,4 +238,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;
