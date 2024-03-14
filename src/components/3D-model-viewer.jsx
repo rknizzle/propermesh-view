@@ -4,6 +4,8 @@ import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import PropTypes from "prop-types";
 
+//TODO: Add loading spinner if a file is taking a second to load
+
 const ModelViewer = ({ fileFor3dModel }) => {
   const canvasRef = useRef(null);
   const [objectURL, setObjectURL] = useState(null);
