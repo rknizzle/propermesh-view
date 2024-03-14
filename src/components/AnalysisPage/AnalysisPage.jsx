@@ -1,6 +1,6 @@
 import { useState } from "react";
 import UploadPartButton from "./UploadPartButton/UploadPartButton";
-import ViewParts from "./viewParts/viewPartsButton";
+import ViewPartsButton from "./ViewPartsButton/ViewPartsButton";
 import ModelViewer from "./3dModelViewer/3dModelViewer";
 
 const AnalysisPage = () => {
