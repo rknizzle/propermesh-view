@@ -1,10 +1,23 @@
 import { useState } from "react";
 import { Button, Modal, List } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
+import PropTypes from "prop-types";
 
-const ViewParts = () => {
+const ViewParts = ({ setFileFor3dModel }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
+  const [fileNameForUpload, setFileNameForUpload] = useState("");
+
+  //not sure if this fetch call was the best approach
+  //It's the only way i could get the entire file at the moment
+  const uploadPartTo3dModel = (part_id) => {
+    fetch(`/api/v0/parts/${part_id}/file`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const file = new File([blob], fileNameForUpload, { type: blob.type });
+        setFileFor3dModel(file);
+      });
+  };
 
   const clicked = () => {
     fetch("/api/v0/parts")
@@ -67,7 +80,11 @@ const ViewParts = () => {
                     onClick={() => downloadFile(part.id, part.name)}
                   ></Button>,
                 ]}
-                onClick={() => console.log(part.id + "row clicked")}
+                onClick={() => {
+                  setModalOpen(false);
+                  uploadPartTo3dModel(part.id);
+                  setFileNameForUpload(part.name);
+                }}
                 className="part-list-item-row"
               >
                 <List.Item.Meta
@@ -82,6 +99,10 @@ const ViewParts = () => {
       </Modal>
     </>
   );
+};
+
+ViewParts.propTypes = {
+  setFileFor3dModel: PropTypes.func,
 };
 
 export default ViewParts;
