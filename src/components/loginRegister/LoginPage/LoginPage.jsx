@@ -10,7 +10,7 @@ import { useAuth } from "../../../utils/useAuth";
 import { login } from "./loginRequest";
 import "../loginRegister.css";
 
-const Login = () => {
+const LoginPage = () => {
   const { setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
 
@@ -108,4 +108,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

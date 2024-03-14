@@ -7,7 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../utils/useAuth";
 import { register } from "./registerRequest";
-import { login } from "../login/loginRequest";
+import { login } from "../LoginPage/loginRequest";
 import { Tooltip } from "antd";
 import { useState, useEffect } from "react";
 import { Col, Row } from "antd";
