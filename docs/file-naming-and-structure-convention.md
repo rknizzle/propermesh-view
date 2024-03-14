@@ -12,6 +12,7 @@ https://github.com/airbnb/javascript/tree/master/react#naming
 - A good approach for handling subcomponents might be to just start with the sub componenet files in
   the same directory as the main componenet until the sub componenets start growing and having more
   functions and files and then you can give the sub component its own directory
+- Im thinking CSS files can be component name but camelCase. Example: Header.jsx and header.css
 
 Examples:
 
