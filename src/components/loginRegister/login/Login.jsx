@@ -6,9 +6,9 @@ import {
 } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../utils/useAuth";
+import { useAuth } from "../../../utils/useAuth";
 import { login } from "./loginRequest";
-import "./loginRegister.css";
+import "../loginRegister.css";
 
 const Login = () => {
   const { setIsLoggedIn } = useAuth();
