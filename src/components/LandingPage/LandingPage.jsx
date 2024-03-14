@@ -1,7 +1,7 @@
 import "./landingPage.css";
 import { Row, Col, Button, message } from "antd";
 
-export default function Landing() {
+export default function LandingPage() {
   const [messageApi, contextHolder] = message.useMessage();
   const analysisComingSoon = () => {
     messageApi.open({
