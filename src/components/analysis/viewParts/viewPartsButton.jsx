@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Modal, List } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
+import { downloadBlobToLocalMachine } from "./downloadBlob";
 
 const ViewParts = ({ setFileFor3dModel }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -33,14 +34,7 @@ const ViewParts = ({ setFileFor3dModel }) => {
     fetch(`/api/v0/parts/${part_id}/file`)
       .then((res) => res.blob())
       .then((blob) => {
-        const a = document.createElement("a");
-        const href = URL.createObjectURL(blob);
-        a.setAttribute("download", fileName);
-        document.body.appendChild(a); // apparently, this line is needed to make 'a.click()' work in firefox/ensures that the link is part of the document
-        a.href = href;
-        a.click(); // Trigger the download
-        document.body.removeChild(a); // Clean up by removing the link from the document
-        URL.revokeObjectURL(href); // Free up memory by revoking the object URL
+        downloadBlobToLocalMachine(blob, fileName);
       });
   };
 

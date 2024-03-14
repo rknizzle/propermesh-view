@@ -5,13 +5,13 @@ import {
   ExclamationCircleTwoTone,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../utils/useAuth";
+import { useAuth } from "../../../utils/useAuth";
 import { register } from "./registerRequest";
-import { login } from "./loginRequest";
+import { login } from "../login/loginRequest";
 import { Tooltip } from "antd";
 import { useState, useEffect } from "react";
 import { Col, Row } from "antd";
-import "./loginRegister.css";
+import "../loginRegister.css";
 
 const Register = () => {
   const [form] = Form.useForm();
