@@ -1,4 +1,7 @@
 # File Naming And Structure Convetion
+Used this guide for inspiration:
+https://github.com/airbnb/javascript/tree/master/react#naming
+
 
 - Components should be PascalCase and regular javascript files should be camelCase
 - If a directory is for a component then the directory should have the name of the componenet
