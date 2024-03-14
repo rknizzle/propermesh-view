@@ -1,7 +1,7 @@
 import { useState } from "react";
 import UploadPart from "./uploadPart/uploadPartButton";
 import ViewParts from "./viewParts/viewPartsButton";
-import ModelViewer from "./3dModel/3D-model-viewer";
+import ModelViewer from "./3dModelViewer/3D-model-viewer";
 
 const AnalysisPage = () => {
   const [fileFor3dModel, setFileFor3dModel] = useState(null);
