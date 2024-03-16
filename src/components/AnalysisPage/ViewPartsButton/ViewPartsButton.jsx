@@ -11,7 +11,7 @@ const ViewPartsButton = ({ setFileFor3dModel }) => {
 
   //not sure if this fetch call was the best approach
   //It's the only way i could get the entire file at the moment
-  const uploadPartTo3dModel = (part_id) => {
+  const downloadPartFileAndPlaceIn3dViewer = (part_id) => {
     fetch(`/api/v0/parts/${part_id}/file`)
       .then((res) => res.blob())
       .then((blob) => {
@@ -30,7 +30,7 @@ const ViewPartsButton = ({ setFileFor3dModel }) => {
       });
   };
 
-  const downloadFile = (part_id, fileName) => {
+  const downloadFileToLocalMachine = (part_id, fileName) => {
     fetch(`/api/v0/parts/${part_id}/file`)
       .then((res) => res.blob())
       .then((blob) => {
@@ -71,12 +71,14 @@ const ViewPartsButton = ({ setFileFor3dModel }) => {
                     key={part.id}
                     size="large"
                     icon={<DownloadOutlined />}
-                    onClick={() => downloadFile(part.id, part.name)}
+                    onClick={() =>
+                      downloadFileToLocalMachine(part.id, part.name)
+                    }
                   ></Button>,
                 ]}
                 onClick={() => {
                   setModalOpen(false);
-                  uploadPartTo3dModel(part.id);
+                  downloadPartFileAndPlaceIn3dViewer(part.id);
                   setFileNameForUpload(part.name);
                 }}
                 className="part-list-item-row"
