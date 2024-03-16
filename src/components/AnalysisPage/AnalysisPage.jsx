@@ -10,7 +10,7 @@ const AnalysisPage = () => {
     <div>
       <h1 style={{ fontFamily: '"Roboto", sans-serif' }}>Analysis Page</h1>
       <UploadPartButton setFileFor3dModel={setFileFor3dModel} />
-      <ViewParts setFileFor3dModel={setFileFor3dModel} />
+      <ViewPartsButton setFileFor3dModel={setFileFor3dModel} />
       <ModelViewer fileFor3dModel={fileFor3dModel} />
     </div>
   );
