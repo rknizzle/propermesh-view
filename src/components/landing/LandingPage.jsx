@@ -6,7 +6,7 @@ export default function Landing() {
   const analysisComingSoon = () => {
     messageApi.open({
       type: "info",
-      content: "Analysis Coming Soon!",
+      content: "Interactive Analysis Page Coming Soon!",
       className: "coming-soon-message",
       style: {
         marginTop: "30vh",
@@ -29,20 +29,20 @@ export default function Landing() {
             We provide powerful software tools for analyzing 3D models and
             extracting critical data to ensure that they will be correctly
             manufactured with no issues. Gain insights and find issues before
-            its too late.
+            it's too late.
           </div>
           <div id="description-list">
             <ul>
               {/* I commented this out incase you wanted to deploy the redesign in the meantime :) */}
               {/* <li>TODO</li> */}
               <li>
-                Many mesh and CAD file types supprted such as stl, obj, ply,
+                Many mesh and CAD file types supported such as stl, obj, ply,
                 STEP, SLDPRT and more
               </li>
               <br />
               <li>
                 We offer an analysis API for automating workflows and allowing
-                integration into into your own site
+                integration into your own site
               </li>
             </ul>
           </div>
@@ -72,7 +72,7 @@ export default function Landing() {
         >
           <h2>Geometry Analysis</h2>
           <p>
-            Geometry Analysis is specifically designed to prepare your 3D models
+            Our Geometry Analysis is specifically designed to prepare your 3D models
             for 3D printing or manufacturing by providing a comprehensive
             examination of their structure and integrity.
           </p>
@@ -108,7 +108,7 @@ export default function Landing() {
         >
           <h2>Thickness Analysis</h2>
           <p>
-            Thickness analysis ensures durability and manufacturing
+            Our Thickness Analysis ensures durability and manufacturing
             compatibility. This tool focuses on evaluating and highlighting
             areas of your model that may be too thin for successful production.
           </p>
