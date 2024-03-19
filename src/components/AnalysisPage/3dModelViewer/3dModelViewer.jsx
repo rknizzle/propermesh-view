@@ -28,7 +28,11 @@ const ModelViewer = ({ fileFor3dModel }) => {
   return (
     <canvas
       ref={canvasRef}
-      style={{ backgroundColor: "gray", width: "50%", height: "50%" }}
+      style={{
+        width: "50%",
+        height: "50%",
+        border: "1px dotted black",
+      }}
     />
   );
 };
