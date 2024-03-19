@@ -36,7 +36,7 @@ const ModelViewer = ({ fileFor3dModel }) => {
       canvas: canvasRef.current,
       antialias: true,
     });
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(3);
 
     scene.add(new THREE.AmbientLight(0x404040));
     const light = new THREE.DirectionalLight(0xffffff, 0.5);
