@@ -8,7 +8,6 @@ import { useEffect, forwardRef } from "react";
 const Header = forwardRef((props, ref) => {
   const navigate = useNavigate();
   const { confirmLogin, isLoggedIn, setIsLoggedIn } = useAuth();
-  console.log("hey bitfch");
 
   useEffect(() => {
     confirmLogin();
