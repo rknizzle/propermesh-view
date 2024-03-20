@@ -36,6 +36,10 @@
   font-weight: bold;
 }
 
+.ant-menu-horizontal {
+  border-bottom: none;
+}
+
 .ant-menu-horizontal .ant-menu-item-selected,
 .ant-menu-horizontal .ant-menu-item-selected:hover,
 .ant-menu-horizontal .ant-menu-item-selected::after,
