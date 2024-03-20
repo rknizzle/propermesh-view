@@ -55,10 +55,8 @@ const setupThreeScene = (canvas, objectURL) => {
     });
     disposables.push(geometry, material);
 
-    geometry.scale(1, 1, 1);
     const mesh = new THREE.Mesh(geometry, material);
 
-    geometry.computeBoundingBox();
     geometry.center();
 
     scene.add(mesh);
