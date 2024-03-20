@@ -43,14 +43,17 @@ const setupThreeScene = (canvasRef, objectURL) => {
   pointLight.position.set(2, 3, -3);
   scene.add(pointLight);
 
+  const disposables = [];
+
   const loader = new STLLoader();
   loader.load(objectURL, function (geometry) {
-    // const material = new THREE.MeshNormalMaterial();
     const material = new THREE.MeshPhongMaterial({
       // wireframe: true,
       specular: 0xffffff,
       shininess: 100,
     });
+    disposables.push(geometry, material);
+
     geometry.scale(1, 1, 1);
     const mesh = new THREE.Mesh(geometry, material);
 
@@ -59,17 +62,19 @@ const setupThreeScene = (canvasRef, objectURL) => {
 
     scene.add(mesh);
 
+    disposables.push(mesh);
+
     // Adjusting the scale based on the model's bounding sphere
     geometry.computeBoundingSphere();
     const scaleFactor = 1 / geometry.boundingSphere.radius;
     mesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
-    // Adjusting the camera's position based on the model's size
-    // camera.position.z = radius * 1 * scaleFactor + 1;
     camera.position.z = 2;
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.addEventListener("change", () => renderer.render(scene, camera));
+
+    disposables.push(controls);
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -79,6 +84,26 @@ const setupThreeScene = (canvasRef, objectURL) => {
   });
 
   return () => {
+    // Dispose of all disposables
+    disposables.forEach((disposable) => {
+      if (disposable.dispose) {
+        disposable.dispose();
+      } else if (disposable instanceof THREE.Mesh) {
+        // Remove from scene and dispose geometry and material
+        scene.remove(disposable);
+        if (disposable.geometry) disposable.geometry.dispose();
+        if (disposable.material) {
+          if (disposable.material instanceof Array) {
+            disposable.material.forEach((material) => material.dispose());
+          } else {
+            disposable.material.dispose();
+          }
+        }
+      }
+    });
+
+    renderer.dispose();
+
     scene.clear();
   };
 };

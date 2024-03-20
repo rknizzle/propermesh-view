@@ -22,7 +22,11 @@ const ModelViewer = ({ fileFor3dModel }) => {
   useEffect(() => {
     if (!objectURL) return;
 
-    setupThreeScene(canvasRef, objectURL);
+    // setupThreeScene returns a cleanup function
+    const cleanup = setupThreeScene(canvasRef, objectURL);
+
+    // Call cleanup function when the component unmounts/before re-running the effect
+    return () => cleanup();
   }, [objectURL]);
 
   return (
