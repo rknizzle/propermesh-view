@@ -10,6 +10,8 @@ function App() {
   const location = useLocation();
   const contentRef = useRef(null);
   const [isStickyFooter, setIsStickyFooter] = useState(false);
+  const headerRef = useRef(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
 
   useEffect(() => {
     const contentHeight = contentRef.current.getBoundingClientRect().height;
@@ -19,11 +21,15 @@ function App() {
     setIsStickyFooter(contentHeight < viewportHeight);
   }, [location.pathname]); // Rerun this effect if the route changes
 
+  useEffect(() => {
+    setHeaderHeight(headerRef.current.offsetHeight);
+  }, []);
+
   return (
     <AuthProvider>
       <>
-        <Header />
-        <div ref={contentRef}>
+        <Header ref={headerRef} />
+        <div ref={contentRef} style={{ marginTop: `${headerHeight}px` }}>
           <Outlet />
         </div>
         <Footer sticky={isStickyFooter} />

@@ -2,9 +2,10 @@ import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./header.css";
 import { useAuth } from "../../utils/useAuth";
-import { useEffect } from "react";
+import { useEffect, forwardRef } from "react";
 
-const Header = () => {
+//Even though "props" is not used, react expects that it be passed in
+const Header = forwardRef((props, ref) => {
   const navigate = useNavigate();
   const { confirmLogin, isLoggedIn, setIsLoggedIn } = useAuth();
 
@@ -62,13 +63,9 @@ const Header = () => {
       ];
 
   return (
-    <div className="header-container">
+    <div ref={ref} className="header-container">
       <div className="header-logo-title" onClick={() => navigate("/")}>
-        <img
-          src="/assets/favicon.png"
-          alt="logo-in-header"
-          id="header-logo"
-        />
+        <img src="/assets/favicon.png" alt="logo-in-header" id="header-logo" />
         <div className="header-title">Propermesh</div>
       </div>
       <Menu
@@ -79,6 +76,10 @@ const Header = () => {
       />
     </div>
   );
-};
+});
+
+//This is a way to give the component a display name for debugging purposes
+//Apparently without it, It would be difficult to determine which component is causing an error
+Header.displayName = "Header";
 
 export default Header;
