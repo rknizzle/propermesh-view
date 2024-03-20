@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-const setupThreeScene = (canvasRef, objectURL) => {
+const setupThreeScene = (canvas, objectURL) => {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xffffff);
   const camera = new THREE.PerspectiveCamera(
@@ -12,10 +12,11 @@ const setupThreeScene = (canvasRef, objectURL) => {
     1000
   );
   const renderer = new THREE.WebGLRenderer({
-    canvas: canvasRef.current,
+    canvas: canvas,
     antialias: true,
   });
-  renderer.setPixelRatio(3);
+
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight)
 
   const light = new THREE.DirectionalLight(0xffffff, 0.5);
   light.position.set(-1, 1, 1);

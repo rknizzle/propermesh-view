@@ -23,7 +23,7 @@ const ModelViewer = ({ fileFor3dModel }) => {
     if (!objectURL) return;
 
     // setupThreeScene returns a cleanup function
-    const cleanup = setupThreeScene(canvasRef, objectURL);
+    const cleanup = setupThreeScene(canvasRef.current, objectURL);
 
     // Call cleanup function when the component unmounts/before re-running the effect
     return () => cleanup();
