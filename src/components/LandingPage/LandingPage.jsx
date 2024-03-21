@@ -29,7 +29,7 @@ export default function LandingPage() {
             We provide powerful software tools for analyzing 3D models and
             extracting critical data to ensure that they will be correctly
             manufactured with no issues. Gain insights and find issues before
-            it's too late.
+            it&apos;s too late.
           </div>
           <div id="description-list">
             <ul>
@@ -72,8 +72,8 @@ export default function LandingPage() {
         >
           <h2>Geometry Analysis</h2>
           <p>
-            Our Geometry Analysis is specifically designed to prepare your 3D models
-            for 3D printing or manufacturing by providing a comprehensive
+            Our Geometry Analysis is specifically designed to prepare your 3D
+            models for 3D printing or manufacturing by providing a comprehensive
             examination of their structure and integrity.
           </p>
           <ul>
