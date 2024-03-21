@@ -1,10 +1,24 @@
 import { useState } from "react";
 import { Button, Modal, List } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
+import PropTypes from "prop-types";
+import { downloadBlobToLocalMachine } from "./downloadBlob";
 
-const ViewParts = () => {
+const ViewPartsButton = ({ setFileFor3dModel }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
+  const [fileNameForUpload, setFileNameForUpload] = useState("");
+
+  //not sure if this fetch call was the best approach
+  //It's the only way i could get the entire file at the moment
+  const downloadPartFileAndPlaceIn3dViewer = (part_id) => {
+    fetch(`/api/v0/parts/${part_id}/file`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const file = new File([blob], fileNameForUpload, { type: blob.type });
+        setFileFor3dModel(file);
+      });
+  };
 
   const clicked = () => {
     fetch("/api/v0/parts")
@@ -16,18 +30,11 @@ const ViewParts = () => {
       });
   };
 
-  const downloadFile = (part_id, fileName) => {
+  const downloadFileToLocalMachine = (part_id, fileName) => {
     fetch(`/api/v0/parts/${part_id}/file`)
       .then((res) => res.blob())
       .then((blob) => {
-        const a = document.createElement("a");
-        const href = URL.createObjectURL(blob);
-        a.setAttribute("download", fileName);
-        document.body.appendChild(a); // apparently, this line is needed to make 'a.click()' work in firefox/ensures that the link is part of the document
-        a.href = href;
-        a.click(); // Trigger the download
-        document.body.removeChild(a); // Clean up by removing the link from the document
-        URL.revokeObjectURL(href); // Free up memory by revoking the object URL
+        downloadBlobToLocalMachine(blob, fileName);
       });
   };
 
@@ -64,10 +71,16 @@ const ViewParts = () => {
                     key={part.id}
                     size="large"
                     icon={<DownloadOutlined />}
-                    onClick={() => downloadFile(part.id, part.name)}
+                    onClick={() =>
+                      downloadFileToLocalMachine(part.id, part.name)
+                    }
                   ></Button>,
                 ]}
-                onClick={() => console.log(part.id + "row clicked")}
+                onClick={() => {
+                  setModalOpen(false);
+                  downloadPartFileAndPlaceIn3dViewer(part.id);
+                  setFileNameForUpload(part.name);
+                }}
                 className="part-list-item-row"
               >
                 <List.Item.Meta
@@ -84,4 +97,8 @@ const ViewParts = () => {
   );
 };
 
-export default ViewParts;
+ViewPartsButton.propTypes = {
+  setFileFor3dModel: PropTypes.func,
+};
+
+export default ViewPartsButton;
