@@ -11,7 +11,10 @@ const AnalysisPage = () => {
   return (
     <div>
       <h1 style={{ fontFamily: '"Roboto", sans-serif' }}>Analysis Page</h1>
-      <UploadPartButton setFileFor3dModel={setFileFor3dModel} />
+      <UploadPartButton
+        setFileFor3dModel={setFileFor3dModel}
+        setPartId={setPartId}
+      />
       <ViewPartsButton
         setFileFor3dModel={setFileFor3dModel}
         setPartId={setPartId}
