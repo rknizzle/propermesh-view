@@ -12,7 +12,10 @@ export const register = async (email, password) => {
     });
 
     if (!response.ok) {
-      throw new Error("Registration failed");
+      throw {
+        message: "Registration failed",
+        status: response.status,
+      };
     }
 
     const data = await response.json();
