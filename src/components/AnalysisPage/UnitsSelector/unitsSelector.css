@@ -2,3 +2,23 @@
   font-family: "Roboto", sans-serif;
   font-size: larger;
 }
+
+#select-container {
+  position: relative;
+  display: inline-block;
+}
+
+#unit-update-success-icon {
+  position: absolute;
+  animation: fadeInOut 2s;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
