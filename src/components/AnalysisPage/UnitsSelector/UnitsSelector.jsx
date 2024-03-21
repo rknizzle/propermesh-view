@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Select, Space } from "antd";
 import "./unitsSelector.css";
+import PropTypes from "prop-types";
 
-const UnitsSelector = () => {
+const UnitsSelector = ({ partId }) => {
   const [units, setUnits] = useState(undefined);
+  console.log("partId: ", partId);
 
   const handleChange = (value) => {
     setUnits(value);
@@ -27,6 +29,10 @@ const UnitsSelector = () => {
       </Space>
     </div>
   );
+};
+
+UnitsSelector.propTypes = {
+  partId: PropTypes.string,
 };
 
 export default UnitsSelector;
