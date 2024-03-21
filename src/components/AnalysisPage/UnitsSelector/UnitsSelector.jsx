@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Select, Space } from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons";
 import "./unitsSelector.css";
@@ -7,6 +7,25 @@ import PropTypes from "prop-types";
 const UnitsSelector = ({ partId }) => {
   const [units, setUnits] = useState(undefined);
   const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    const getCurrentUnits = async () => {
+      if (partId) {
+        try {
+          const response = await fetch(`/api/v0/parts/${partId}`);
+          if (!response.ok) {
+            throw new Error("Failed to get part data.");
+          }
+          const data = await response.json();
+          setUnits(data.units);
+        } catch (error) {
+          console.error("Error getting part data:", error);
+        }
+      }
+    };
+
+    getCurrentUnits();
+  }, [partId]);
 
   const handleChange = async (value) => {
     setUnits(value);
@@ -41,7 +60,7 @@ const UnitsSelector = ({ partId }) => {
         <span id="units-selector-label">Units: </span>
         <Select
           placeholder="Select units"
-          defaultValue={units}
+          value={units}
           style={{ width: 120 }}
           onChange={handleChange}
           options={[
