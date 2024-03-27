@@ -13,6 +13,10 @@
   animation: fadeInOut 2s;
 }
 
+.enabledSelect .ant-select-selection-placeholder {
+  color: black !important;
+}
+
 @keyframes fadeInOut {
   0%,
   100% {

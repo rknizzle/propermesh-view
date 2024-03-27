@@ -61,7 +61,7 @@ const UnitsSelector = ({ partId }) => {
 
   return (
     <Space wrap>
-      <div id="select-container">
+      <div id="select-container" className={!isDisabled ? "enabledSelect" : ""}>
         <span id="units-selector-label">Units: </span>
         <Tooltip title={tooltipTitle} placement="top">
           <Select
