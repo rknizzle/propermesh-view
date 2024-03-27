@@ -4,6 +4,7 @@ import { CheckCircleOutlined } from "@ant-design/icons";
 import "./unitsSelector.css";
 import PropTypes from "prop-types";
 import { updatePartUnits } from "./updatePartUnits";
+import { getPartData } from "./getPartData";
 
 const UnitsSelector = ({ partId }) => {
   const [units, setUnits] = useState(undefined);
@@ -13,11 +14,7 @@ const UnitsSelector = ({ partId }) => {
     const getCurrentUnits = async () => {
       if (partId) {
         try {
-          const response = await fetch(`/api/v0/parts/${partId}`);
-          if (!response.ok) {
-            throw new Error("Failed to get part data.");
-          }
-          const data = await response.json();
+          const data = await getPartData(partId);
           setUnits(data.units);
         } catch (error) {
           console.error("Error getting part data:", error);
