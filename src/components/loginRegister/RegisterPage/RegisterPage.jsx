@@ -142,7 +142,10 @@ const RegisterPage = () => {
         });
       }
     } catch (error) {
-      if (error.status === 400) {
+      if (
+        error.message ===
+        "registration failed because a user with that email already exists"
+      ) {
         // User already exists
         notification.error({
           message: "Registration Failed",
