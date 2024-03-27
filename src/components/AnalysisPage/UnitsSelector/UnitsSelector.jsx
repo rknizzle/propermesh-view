@@ -26,14 +26,10 @@ const UnitsSelector = ({ partId }) => {
   }, [partId]);
 
   const handleChange = async (value) => {
-    // keep track of what the value was before this change so that if an error happens; the value in
-    // the selector can go back to what it was before the error
-    const previousValue = units
-
-    setUnits(value);
     try {
       await updatePartUnits(partId, value);
 
+      setUnits(value);
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
@@ -48,9 +44,6 @@ const UnitsSelector = ({ partId }) => {
         duration: 4.5,
         style: { width: 300 },
       });
-
-      // Reset the selector to what it previously was so they know their change didnt work
-      setUnits(previousValue)
     }
   };
 
