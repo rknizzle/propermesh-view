@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Select, Space, Tooltip } from "antd";
+import { Select, Space, Tooltip, Modal } from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons";
 import "./unitsSelector.css";
 import PropTypes from "prop-types";
@@ -51,6 +51,11 @@ const UnitsSelector = ({ partId }) => {
       }, 2000);
     } catch (error) {
       console.error("Error updating units:", error);
+      Modal.error({
+        title: "Failed to Update Units",
+        content: <span style={{ fontSize: "24px" }}>🫤</span>,
+        centered: true,
+      });
     }
   };
 
