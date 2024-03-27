@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Select, Space, Tooltip, Modal } from "antd";
-import { CheckCircleOutlined } from "@ant-design/icons";
+import { Select, Space, Tooltip, notification } from "antd";
+import { CheckCircleOutlined, ExclamationCircleTwoTone } from "@ant-design/icons";
 import "./unitsSelector.css";
 import PropTypes from "prop-types";
 import { updatePartUnits } from "./updatePartUnits";
@@ -26,6 +26,10 @@ const UnitsSelector = ({ partId }) => {
   }, [partId]);
 
   const handleChange = async (value) => {
+    // keep track of what the value was before this change so that if an error happens; the value in
+    // the selector can go back to what it was before the error
+    const previousValue = units
+
     setUnits(value);
     try {
       await updatePartUnits(partId, value);
@@ -36,11 +40,17 @@ const UnitsSelector = ({ partId }) => {
       }, 2000);
     } catch (error) {
       console.error("Error updating units:", error);
-      Modal.error({
-        title: "Failed to Update Units",
-        content: <span style={{ fontSize: "24px" }}>🫤</span>,
-        centered: true,
+      notification.error({
+        message: "Failed to update units",
+        description: "Try again in a few minutes. Report the error to ryan@propermesh.com if the problem persists.",
+        icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+        placement: "top",
+        duration: 4.5,
+        style: { width: 300 },
       });
+
+      // Reset the selector to what it previously was so they know their change didnt work
+      setUnits(previousValue)
     }
   };
 
