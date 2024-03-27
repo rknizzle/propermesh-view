@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const { Dragger } = Upload;
 
-const UploadPartButton = ({ setFileFor3dModel }) => {
+const UploadPartButton = ({ setFileFor3dModel, setPartId }) => {
   const [isUploadAllowed, setIsUploadAllowed] = useState(true);
 
   const acceptedFileTypes = [".stl", ".obj", ".ply", ".gltf", ".glb", ".3mf"];
@@ -28,6 +28,7 @@ const UploadPartButton = ({ setFileFor3dModel }) => {
       }
       if (status === "done") {
         message.success(`${info.file.name} file uploaded successfully.`);
+        setPartId(info.file.response.id);
       } else if (status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
@@ -78,6 +79,7 @@ const UploadPartButton = ({ setFileFor3dModel }) => {
 
 UploadPartButton.propTypes = {
   setFileFor3dModel: PropTypes.func,
+  setPartId: PropTypes.func,
 };
 
 export default UploadPartButton;

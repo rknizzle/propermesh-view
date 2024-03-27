@@ -4,7 +4,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { downloadBlobToLocalMachine } from "./downloadBlob";
 
-const ViewPartsButton = ({ setFileFor3dModel }) => {
+const ViewPartsButton = ({ setFileFor3dModel, setPartId }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
   const [fileNameForUpload, setFileNameForUpload] = useState("");
@@ -80,6 +80,7 @@ const ViewPartsButton = ({ setFileFor3dModel }) => {
                   setModalOpen(false);
                   downloadPartFileAndPlaceIn3dViewer(part.id);
                   setFileNameForUpload(part.name);
+                  setPartId(part.id);
                 }}
                 className="part-list-item-row"
               >
@@ -99,6 +100,7 @@ const ViewPartsButton = ({ setFileFor3dModel }) => {
 
 ViewPartsButton.propTypes = {
   setFileFor3dModel: PropTypes.func,
+  setPartId: PropTypes.func,
 };
 
 export default ViewPartsButton;
