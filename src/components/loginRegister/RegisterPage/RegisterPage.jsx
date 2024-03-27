@@ -142,15 +142,31 @@ const RegisterPage = () => {
         });
       }
     } catch (error) {
-      // Registration failed
-      notification.error({
-        message: "Registration Failed",
-        description: "An error occurred during registration. Please try again.",
-        icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
-        placement: "top",
-        duration: 4.5,
-        style: { width: 300 },
-      });
+      if (
+        error.message ===
+        "registration failed because a user with that email already exists"
+      ) {
+        // User already exists
+        notification.error({
+          message: "Registration Failed",
+          description: "An account with this email already exists.",
+          icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+          placement: "top",
+          duration: 4.5,
+          style: { width: 300 },
+        });
+      } else {
+        // Registration failed
+        notification.error({
+          message: "Registration Failed",
+          description:
+            "An error occurred during registration. Please try again.",
+          icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+          placement: "top",
+          duration: 4.5,
+          style: { width: 300 },
+        });
+      }
     }
   };
 
