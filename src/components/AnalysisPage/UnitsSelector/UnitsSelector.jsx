@@ -3,6 +3,7 @@ import { Select, Space, Tooltip, Modal } from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons";
 import "./unitsSelector.css";
 import PropTypes from "prop-types";
+import { updatePartUnits } from "./updatePartUnits";
 
 const UnitsSelector = ({ partId }) => {
   const [units, setUnits] = useState(undefined);
@@ -30,20 +31,7 @@ const UnitsSelector = ({ partId }) => {
   const handleChange = async (value) => {
     setUnits(value);
     try {
-      const response = await fetch(`/api/v0/parts/${partId}/units`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ units: value }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update units.");
-      }
-
-      const data = await response.json();
-      console.log(data);
+      await updatePartUnits(partId, value);
 
       setShowSuccess(true);
       setTimeout(() => {
