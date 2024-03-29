@@ -1,9 +1,16 @@
 import { Row, Col, Statistic } from "antd";
+import { useState, useEffect } from "react";
 import "./geoAnalysisBox.css";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 
 const GeoAnalysisBox = ({ partId }) => {
+  const [geoData, setGeoData] = useState(null);
+
+  useEffect(() => {
+    console.log("geoData", geoData);
+  }, [geoData]);
+
   return (
     <div id="geo-analysis-box">
       <h2 id="geo-analysis-title">Geometry Analysis</h2>
@@ -23,7 +30,7 @@ const GeoAnalysisBox = ({ partId }) => {
         </Col>
         <Col span={12}>
           <Statistic title="# of Shells" value={3} precision={0} />
-          <StartButton partId={partId} />
+          <StartButton partId={partId} setGeoData={setGeoData} />
         </Col>
       </Row>
     </div>

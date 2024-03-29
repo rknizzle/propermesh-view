@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Button, notification } from "antd";
 import { startGeometryAnalysis } from "./startGeoAnalysis";
+import { pollForResults } from "./pollForResults";
 import PropTypes from "prop-types";
 
-const StartButton = ({ partId }) => {
+const StartButton = ({ partId, setGeoData }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const startAnalysis = async () => {
     setIsLoading(true);
     try {
       const job = await startGeometryAnalysis(partId);
-      console.log("job", job);
+
+      await pollForResults(job.id, setIsLoading, setGeoData);
     } catch (error) {
       notification.error({
         message: "Analysis Failed",
@@ -34,6 +36,7 @@ const StartButton = ({ partId }) => {
 
 StartButton.propTypes = {
   partId: PropTypes.string,
+  setGeoData: PropTypes.func,
 };
 
 export default StartButton;
