@@ -18,6 +18,18 @@ const GeoAnalysisBox = ({ partId }) => {
   const [roundedNumShells, setRoundedNumShells] = useState("--");
 
   useEffect(() => {
+    setGeoData(null);
+    setVolume(null);
+    setSurfaceArea(null);
+    setNumBoundaryEdges(null);
+    setNumShells(null);
+    setRoundedVolume("--");
+    setRoundedSurfaceArea("--");
+    setRoundedNumBoundaryEdges("--");
+    setRoundedNumShells("--");
+  }, [partId]);
+
+  useEffect(() => {
     console.log(geoData);
     if (geoData) {
       setVolume(geoData.volume);
@@ -64,7 +76,6 @@ const GeoAnalysisBox = ({ partId }) => {
             value={roundedNumShells}
             preciseValue={numShells}
           />
-          {/* <StartButton partId={partId} setGeoData={setGeoData} /> */}
         </Col>
       </Row>
       <Row id="geo-bottom-row">
