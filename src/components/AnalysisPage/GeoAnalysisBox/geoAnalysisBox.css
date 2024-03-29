@@ -25,3 +25,17 @@
 #geo-start-button {
   width: 6rem;
 }
+
+.statistic-container .ant-statistic-content,
+#info-circle-explain {
+  cursor: default;
+}
+
+#info-circle-explain {
+  font-size: 0.7rem;
+  color: #000;
+}
+
+#geo-bottom-row {
+  margin-top: 15px;
+}
