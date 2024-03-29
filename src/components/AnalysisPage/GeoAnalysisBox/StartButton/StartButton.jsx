@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Button, notification } from "antd";
+import { Button, notification, Tooltip } from "antd";
 import { startGeometryAnalysis } from "./startGeoAnalysis";
 import { pollForResults } from "./pollForResults";
 import PropTypes from "prop-types";
+import "./startButton.css";
 
 const StartButton = ({ partId, setGeoData }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,15 +23,23 @@ const StartButton = ({ partId, setGeoData }) => {
     }
   };
 
+  const isDisabled = !partId;
+  const tooltipTitle = partId
+    ? ""
+    : "View or upload a part to the viewer before running Geometry Analysis.";
+
   return (
-    <Button
-      type="primary"
-      loading={isLoading}
-      onClick={startAnalysis}
-      id="geo-start-button"
-    >
-      Start
-    </Button>
+    <Tooltip title={tooltipTitle} placement="top">
+      <Button
+        type="primary"
+        loading={isLoading}
+        onClick={startAnalysis}
+        id="geo-start-button"
+        disabled={isDisabled}
+      >
+        Start
+      </Button>
+    </Tooltip>
   );
 };
 

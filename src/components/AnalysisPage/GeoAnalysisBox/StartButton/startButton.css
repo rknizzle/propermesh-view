@@ -1,0 +1,8 @@
+#geo-start-button.ant-btn {
+  background-color: #3e498f;
+}
+
+#geo-start-button.ant-btn[disabled] {
+  opacity: 0.4 !important;
+  color: white !important;
+}
