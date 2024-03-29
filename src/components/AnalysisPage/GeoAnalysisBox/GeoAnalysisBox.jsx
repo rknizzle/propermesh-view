@@ -1,7 +1,9 @@
-import { Row, Col, Statistic, Button } from "antd";
+import { Row, Col, Statistic } from "antd";
 import "./geoAnalysisBox.css";
+import StartButton from "./StartButton/StartButton";
+import PropTypes from "prop-types";
 
-const GeoAnalysisBox = () => {
+const GeoAnalysisBox = ({ partId }) => {
   return (
     <div id="geo-analysis-box">
       <h2 id="geo-analysis-title">Geometry Analysis</h2>
@@ -21,19 +23,15 @@ const GeoAnalysisBox = () => {
         </Col>
         <Col span={12}>
           <Statistic title="# of Shells" value={3} precision={0} />
-          <Button
-            style={{
-              marginTop: 16,
-            }}
-            type="primary"
-            id="geo-start-button"
-          >
-            Start
-          </Button>
+          <StartButton partId={partId} />
         </Col>
       </Row>
     </div>
   );
+};
+
+GeoAnalysisBox.propTypes = {
+  partId: PropTypes.string,
 };
 
 export default GeoAnalysisBox;

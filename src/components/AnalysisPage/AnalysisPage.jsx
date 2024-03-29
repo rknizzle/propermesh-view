@@ -15,7 +15,7 @@ const AnalysisPage = () => {
       <h1 style={{ fontFamily: '"Roboto", sans-serif' }}>Analysis Page</h1>
       <Row>
         <Col span={6}>
-          <GeoAnalysisBox />
+          <GeoAnalysisBox partId={partId} />
         </Col>
       </Row>
       <UploadPartButton
