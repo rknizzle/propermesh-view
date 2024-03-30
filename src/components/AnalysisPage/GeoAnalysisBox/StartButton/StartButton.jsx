@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, notification, Tooltip, Spin } from "antd";
-import { CheckCircleOutlined } from "@ant-design/icons";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { startGeometryAnalysis } from "./startGeoAnalysis";
 import { pollForResults } from "./pollForResults";
 import PropTypes from "prop-types";
@@ -9,10 +9,12 @@ import "./startButton.css";
 const StartButton = ({ partId, setGeoData }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showCheckmark, setShowCheckmark] = useState(false);
+  const [showFailure, setShowFailure] = useState(false);
 
   const startAnalysis = async () => {
     setIsLoading(true);
     setShowCheckmark(false);
+    setShowFailure(false);
     try {
       const job = await startGeometryAnalysis(partId);
 
@@ -25,6 +27,8 @@ const StartButton = ({ partId, setGeoData }) => {
         description: error.message,
       });
       setIsLoading(false);
+      setShowFailure(true);
+      setTimeout(() => setShowFailure(false), 5000);
     }
   };
 
@@ -49,6 +53,9 @@ const StartButton = ({ partId, setGeoData }) => {
           style={{ marginLeft: "10px" }}
           id="checkmark-icon"
         />
+      ) : null}
+      {showFailure ? (
+        <CloseCircleOutlined style={{ marginLeft: "10px" }} id="failure-icon" />
       ) : null}
     </Tooltip>
   );
