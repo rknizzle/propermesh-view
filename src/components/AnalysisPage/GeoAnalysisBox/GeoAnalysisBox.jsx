@@ -1,4 +1,4 @@
-import { Row, Col } from "antd";
+import { Row, Col, Statistic } from "antd";
 import { useState, useEffect } from "react";
 import "./geoAnalysisBox.css";
 import StartButton from "./StartButton/StartButton";
@@ -62,11 +62,9 @@ const GeoAnalysisBox = ({ partId }) => {
           />
         </Col>
         <Col span={12}>
-          <GeoStatistic
-            title="# of Boundary Edges"
-            value={displayValue(numBoundaryEdges)}
-            preciseValue={numBoundaryEdges}
-          />
+          <div className="statistic-container">
+            <Statistic title="# of Boundary Edges" value={numBoundaryEdges} />
+          </div>
         </Col>
       </Row>
       <Row>
@@ -78,11 +76,9 @@ const GeoAnalysisBox = ({ partId }) => {
           />
         </Col>
         <Col span={12}>
-          <GeoStatistic
-            title="# of Shells"
-            value={displayValue(numShells)}
-            preciseValue={numShells}
-          />
+          <div className="statistic-container">
+            <Statistic title="# of Shells" value={numShells} />
+          </div>
         </Col>
       </Row>
       <Row id="geo-bottom-row">
