@@ -6,3 +6,7 @@
   opacity: 0.4 !important;
   color: white !important;
 }
+
+#geo-start-button .ant-spin-dot-item {
+  background-color: #3e498f;
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, notification, Tooltip } from "antd";
+import { Button, notification, Tooltip, Spin } from "antd";
 import { startGeometryAnalysis } from "./startGeoAnalysis";
 import { pollForResults } from "./pollForResults";
 import PropTypes from "prop-types";
@@ -32,12 +32,12 @@ const StartButton = ({ partId, setGeoData }) => {
     <Tooltip title={tooltipTitle} placement="top">
       <Button
         type="primary"
-        loading={isLoading}
         onClick={startAnalysis}
         id="geo-start-button"
         disabled={isDisabled}
       >
-        Start
+        {isLoading ? "Analyzing..." : "Start"}
+        {isLoading ? <Spin style={{ marginLeft: "10px" }} /> : null}
       </Button>
     </Tooltip>
   );
