@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, notification, Tooltip, Spin } from "antd";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { startGeometryAnalysis } from "./startGeoAnalysis";
@@ -10,17 +10,24 @@ const StartButton = ({ partId, setGeoData }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showCheckmark, setShowCheckmark] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
+  const [analysisComplete, setAnalysisComplete] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(false);
+    setShowCheckmark(false);
+    setShowFailure(false);
+    setAnalysisComplete(false);
+  }, [partId]);
 
   const startAnalysis = async () => {
     setIsLoading(true);
-    setShowCheckmark(false);
-    setShowFailure(false);
+
     try {
       const job = await startGeometryAnalysis(partId);
 
       await pollForResults(job.id, setIsLoading, setGeoData).then(() => {
         setShowCheckmark(true);
-        setTimeout(() => setShowCheckmark(false), 2000);
+        setAnalysisComplete(true);
       });
     } catch (error) {
       notification.error({
@@ -33,7 +40,7 @@ const StartButton = ({ partId, setGeoData }) => {
     }
   };
 
-  const isDisabled = !partId;
+  const isDisabled = !partId || analysisComplete;
   const tooltipTitle = partId
     ? ""
     : "View or upload a part to the viewer before running Geometry Analysis.";
@@ -46,7 +53,7 @@ const StartButton = ({ partId, setGeoData }) => {
         id="geo-start-button"
         disabled={isDisabled}
       >
-        {isLoading ? "Analyzing..." : "Start"}
+        {isLoading ? "Analyzing..." : analysisComplete ? "Complete" : "Start"}
         {isLoading ? <Spin style={{ marginLeft: "10px" }} /> : null}
       </Button>
       {showCheckmark ? (
