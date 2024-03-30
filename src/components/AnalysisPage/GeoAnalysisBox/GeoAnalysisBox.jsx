@@ -34,13 +34,20 @@ const GeoAnalysisBox = ({ partId }) => {
   const displayValue = (value) => {
     if (typeof value !== "number") return value;
 
-    const [integerPart, decimalPart] = value.toString().split(".");
+    const integerPart = value.toString().split(".")[0];
 
-    if (!decimalPart) {
+    let decimalPlaces = 3;
+
+    if (integerPart.length > 8) {
       return integerPart;
+    } else if (integerPart.length > 7) {
+      decimalPlaces = 1;
+    } else if (integerPart.length > 6) {
+      decimalPlaces = 2;
     }
 
-    return `${integerPart}.${decimalPart.slice(0, 3)}`;
+    const roundedValue = value.toFixed(decimalPlaces);
+    return roundedValue;
   };
 
   return (
