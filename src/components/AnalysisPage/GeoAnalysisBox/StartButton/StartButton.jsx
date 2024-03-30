@@ -18,9 +18,10 @@ const StartButton = ({ partId, setGeoData }) => {
     try {
       const job = await startGeometryAnalysis(partId);
 
-      await pollForResults(job.id, setIsLoading, setGeoData);
-      setShowCheckmark(true);
-      setTimeout(() => setShowCheckmark(false), 5000);
+      await pollForResults(job.id, setIsLoading, setGeoData).then(() => {
+        setShowCheckmark(true);
+        setTimeout(() => setShowCheckmark(false), 2000);
+      });
     } catch (error) {
       notification.error({
         message: "Analysis Failed",
