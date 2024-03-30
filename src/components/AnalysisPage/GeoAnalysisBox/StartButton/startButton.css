@@ -10,3 +10,11 @@
 #geo-start-button .ant-spin-dot-item {
   background-color: #3e498f;
 }
+
+#checkmark-icon {
+  position: absolute;
+  right: 20px;
+  top: 15%;
+  color: green;
+  font-size: 24px;
+}
