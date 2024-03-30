@@ -3,7 +3,13 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 
 const GeoStatistic = ({ title, value, preciseValue }) => {
-  const shouldShowTooltip = preciseValue !== null && value !== preciseValue;
+  const formattedPreciseValue =
+    typeof preciseValue === "number" ? preciseValue.toString() : preciseValue;
+
+  const formattedValue = typeof value === "number" ? value.toString() : value;
+
+  const shouldShowTooltip =
+    formattedValue !== formattedPreciseValue && preciseValue !== null;
 
   return (
     <div className="statistic-container">
@@ -28,7 +34,7 @@ const GeoStatistic = ({ title, value, preciseValue }) => {
 GeoStatistic.propTypes = {
   title: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  preciseValue: PropTypes.number,
+  preciseValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default GeoStatistic;

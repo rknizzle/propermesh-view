@@ -8,25 +8,17 @@ import PropTypes from "prop-types";
 
 const GeoAnalysisBox = ({ partId }) => {
   const [geoData, setGeoData] = useState(null);
-  const [volume, setVolume] = useState(null);
-  const [surfaceArea, setSurfaceArea] = useState(null);
-  const [numBoundaryEdges, setNumBoundaryEdges] = useState(null);
-  const [numShells, setNumShells] = useState(null);
-  const [roundedVolume, setRoundedVolume] = useState("--");
-  const [roundedSurfaceArea, setRoundedSurfaceArea] = useState("--");
-  const [roundedNumBoundaryEdges, setRoundedNumBoundaryEdges] = useState("--");
-  const [roundedNumShells, setRoundedNumShells] = useState("--");
+  const [volume, setVolume] = useState("--");
+  const [surfaceArea, setSurfaceArea] = useState("--");
+  const [numBoundaryEdges, setNumBoundaryEdges] = useState("--");
+  const [numShells, setNumShells] = useState("--");
 
   useEffect(() => {
     setGeoData(null);
-    setVolume(null);
-    setSurfaceArea(null);
-    setNumBoundaryEdges(null);
-    setNumShells(null);
-    setRoundedVolume("--");
-    setRoundedSurfaceArea("--");
-    setRoundedNumBoundaryEdges("--");
-    setRoundedNumShells("--");
+    setVolume("--");
+    setSurfaceArea("--");
+    setNumBoundaryEdges("--");
+    setNumShells("--");
   }, [partId]);
 
   useEffect(() => {
@@ -36,12 +28,20 @@ const GeoAnalysisBox = ({ partId }) => {
       setSurfaceArea(geoData.surface_area);
       setNumBoundaryEdges(geoData.num_boundary_edges);
       setNumShells(geoData.num_shells);
-      setRoundedVolume(Math.round(geoData.volume));
-      setRoundedSurfaceArea(Math.round(geoData.surface_area));
-      setRoundedNumBoundaryEdges(Math.round(geoData.num_boundary_edges));
-      setRoundedNumShells(Math.round(geoData.num_shells));
     }
   }, [geoData]);
+
+  const displayValue = (value) => {
+    if (typeof value !== "number") return value;
+
+    const [integerPart, decimalPart] = value.toString().split(".");
+
+    if (!decimalPart) {
+      return integerPart;
+    }
+
+    return `${integerPart}.${decimalPart.slice(0, 3)}`;
+  };
 
   return (
     <div id="geo-analysis-box">
@@ -50,14 +50,14 @@ const GeoAnalysisBox = ({ partId }) => {
         <Col span={12}>
           <GeoStatistic
             title="Volume"
-            value={roundedVolume}
+            value={displayValue(volume)}
             preciseValue={volume}
           />
         </Col>
         <Col span={12}>
           <GeoStatistic
             title="# of Boundary Edges"
-            value={roundedNumBoundaryEdges}
+            value={displayValue(numBoundaryEdges)}
             preciseValue={numBoundaryEdges}
           />
         </Col>
@@ -66,14 +66,14 @@ const GeoAnalysisBox = ({ partId }) => {
         <Col span={12}>
           <GeoStatistic
             title="Surface Area"
-            value={roundedSurfaceArea}
+            value={displayValue(surfaceArea)}
             preciseValue={surfaceArea}
           />
         </Col>
         <Col span={12}>
           <GeoStatistic
             title="# of Shells"
-            value={roundedNumShells}
+            value={displayValue(numShells)}
             preciseValue={numShells}
           />
         </Col>
