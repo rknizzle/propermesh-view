@@ -1,26 +1,23 @@
-export const pollForResults = async (jobId, setIsLoading, setGeoData) => {
-  return new Promise((resolve, reject) => {
-    const poll = async () => {
-      console.log("polling...");
-      try {
-        const response = await fetch(`/api/v0/geometry/${jobId}`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch analysis results");
-        }
-        const results = await response.json();
+export const pollForResults = async (jobId) => {
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
-        if (results.status === "complete") {
-          setIsLoading(false);
-          setGeoData(results);
-          resolve(results);
-        } else {
-          setTimeout(poll, 1000);
-        }
-      } catch (error) {
-        reject(error);
-      }
-    };
+  let status = "";
 
-    poll();
-  });
+  while (status !== "complete") {
+    const response = await fetch(`/api/v0/geometry/${jobId}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch analysis results");
+    }
+
+    const results = await response.json();
+    status = results.status;
+
+    if (status !== "complete") {
+      await delay(1000);
+    } else {
+      return results;
+    }
+  }
 };
