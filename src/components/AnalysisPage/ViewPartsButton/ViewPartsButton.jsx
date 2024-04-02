@@ -23,8 +23,6 @@ const ViewPartsButton = ({
       });
   };
 
-  //not sure if this fetch call was the best approach
-  //It's the only way i could get the entire file at the moment
   const downloadPartFileAndPlaceIn3dViewer = (part_id) => {
     fetch(`/api/v0/parts/${part_id}/file`)
       .then((res) => res.blob())
