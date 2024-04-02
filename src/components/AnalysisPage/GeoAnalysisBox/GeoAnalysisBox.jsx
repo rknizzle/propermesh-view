@@ -6,7 +6,7 @@ import GeoStatistic from "./GeoStatistic";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 
-const GeoAnalysisBox = ({ partId }) => {
+const GeoAnalysisBox = ({ partId, autoPopAnalysis }) => {
   const [geoData, setGeoData] = useState(null);
   const [volume, setVolume] = useState(null);
   const [surfaceArea, setSurfaceArea] = useState(null);
@@ -20,6 +20,15 @@ const GeoAnalysisBox = ({ partId }) => {
     setNumBoundaryEdges(null);
     setNumShells(null);
   }, [partId]);
+
+  useEffect(() => {
+    if (autoPopAnalysis) {
+      setVolume(autoPopAnalysis.volume);
+      setSurfaceArea(autoPopAnalysis.surface_area);
+      setNumBoundaryEdges(autoPopAnalysis.num_boundary_edges);
+      setNumShells(autoPopAnalysis.num_shells);
+    }
+  }, [autoPopAnalysis]);
 
   useEffect(() => {
     console.log(geoData);
@@ -67,6 +76,7 @@ const GeoAnalysisBox = ({ partId }) => {
 
 GeoAnalysisBox.propTypes = {
   partId: PropTypes.string,
+  autoPopAnalysis: PropTypes.object,
 };
 
 export default GeoAnalysisBox;
