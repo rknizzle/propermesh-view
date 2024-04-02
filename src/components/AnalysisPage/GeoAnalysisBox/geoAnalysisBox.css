@@ -1,0 +1,41 @@
+#geo-analysis-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+#geo-analysis-box {
+  background-color: rgb(195, 195, 195);
+  border-radius: 15px;
+}
+
+#geo-analysis-box .ant-statistic-content-value {
+  background-color: #f0f2f5;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+#geo-analysis-box .ant-statistic-title {
+  color: #000;
+}
+
+#geo-top-row {
+  margin-bottom: 25px;
+}
+
+#geo-start-button {
+  width: 6rem;
+}
+
+.statistic-container .ant-statistic-content,
+#info-circle-explain {
+  cursor: default;
+}
+
+#info-circle-explain {
+  font-size: 0.7rem;
+  color: #000;
+}
+
+#geo-bottom-row {
+  margin-top: 15px;
+}
