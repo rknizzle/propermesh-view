@@ -6,7 +6,14 @@ import GeoStatistic from "./GeoStatistic";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 
-const GeoAnalysisBox = ({ partId, autoPopAnalysis }) => {
+const GeoAnalysisBox = ({
+  partId,
+  autoPopAnalysis,
+  showCheckmark,
+  setShowCheckmark,
+  analysisComplete,
+  setAnalysisComplete,
+}) => {
   const [geoData, setGeoData] = useState(null);
   const [volume, setVolume] = useState(null);
   const [surfaceArea, setSurfaceArea] = useState(null);
@@ -27,7 +34,10 @@ const GeoAnalysisBox = ({ partId, autoPopAnalysis }) => {
       setSurfaceArea(autoPopAnalysis.surface_area);
       setNumBoundaryEdges(autoPopAnalysis.num_boundary_edges);
       setNumShells(autoPopAnalysis.num_shells);
+      setShowCheckmark(true);
+      setAnalysisComplete(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoPopAnalysis]);
 
   useEffect(() => {
@@ -67,7 +77,14 @@ const GeoAnalysisBox = ({ partId, autoPopAnalysis }) => {
           </span>
         </Col>
         <Col span={12}>
-          <StartButton partId={partId} setGeoData={setGeoData} />
+          <StartButton
+            partId={partId}
+            setGeoData={setGeoData}
+            analysisComplete={analysisComplete}
+            setAnalysisComplete={setAnalysisComplete}
+            showCheckmark={showCheckmark}
+            setShowCheckmark={setShowCheckmark}
+          />
         </Col>
       </Row>
     </div>
@@ -77,6 +94,10 @@ const GeoAnalysisBox = ({ partId, autoPopAnalysis }) => {
 GeoAnalysisBox.propTypes = {
   partId: PropTypes.string,
   autoPopAnalysis: PropTypes.object,
+  setShowCheckmark: PropTypes.func,
+  showCheckmark: PropTypes.bool,
+  setAnalysisComplete: PropTypes.func,
+  analysisComplete: PropTypes.bool,
 };
 
 export default GeoAnalysisBox;
