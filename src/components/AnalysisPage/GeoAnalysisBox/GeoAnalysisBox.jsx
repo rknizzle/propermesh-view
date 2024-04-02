@@ -1,4 +1,4 @@
-import { Row, Col, Statistic } from "antd";
+import { Row, Col } from "antd";
 import { useState, useEffect } from "react";
 import "./geoAnalysisBox.css";
 import StartButton from "./StartButton/StartButton";
@@ -8,17 +8,17 @@ import PropTypes from "prop-types";
 
 const GeoAnalysisBox = ({ partId }) => {
   const [geoData, setGeoData] = useState(null);
-  const [volume, setVolume] = useState("--");
-  const [surfaceArea, setSurfaceArea] = useState("--");
-  const [numBoundaryEdges, setNumBoundaryEdges] = useState("--");
-  const [numShells, setNumShells] = useState("--");
+  const [volume, setVolume] = useState(null);
+  const [surfaceArea, setSurfaceArea] = useState(null);
+  const [numBoundaryEdges, setNumBoundaryEdges] = useState(null);
+  const [numShells, setNumShells] = useState(null);
 
   useEffect(() => {
     setGeoData(null);
-    setVolume("--");
-    setSurfaceArea("--");
-    setNumBoundaryEdges("--");
-    setNumShells("--");
+    setVolume(null);
+    setSurfaceArea(null);
+    setNumBoundaryEdges(null);
+    setNumShells(null);
   }, [partId]);
 
   useEffect(() => {
@@ -31,54 +31,23 @@ const GeoAnalysisBox = ({ partId }) => {
     }
   }, [geoData]);
 
-  const displayValue = (value) => {
-    if (typeof value !== "number") return value;
-
-    const integerPart = value.toString().split(".")[0];
-
-    let decimalPlaces = 3;
-
-    if (integerPart.length > 8) {
-      return integerPart;
-    } else if (integerPart.length > 7) {
-      decimalPlaces = 1;
-    } else if (integerPart.length > 6) {
-      decimalPlaces = 2;
-    }
-
-    const roundedValue = value.toFixed(decimalPlaces);
-    return roundedValue;
-  };
-
   return (
     <div id="geo-analysis-box">
       <h2 id="geo-analysis-title">Geometry Analysis</h2>
       <Row id="geo-top-row">
         <Col span={12}>
-          <GeoStatistic
-            title="Volume"
-            value={displayValue(volume)}
-            preciseValue={volume}
-          />
+          <GeoStatistic title="Volume" value={volume} />
         </Col>
         <Col span={12}>
-          <div className="statistic-container">
-            <Statistic title="# of Boundary Edges" value={numBoundaryEdges} />
-          </div>
+          <GeoStatistic title="# of Boundary Edges" value={numBoundaryEdges} />
         </Col>
       </Row>
       <Row>
         <Col span={12}>
-          <GeoStatistic
-            title="Surface Area"
-            value={displayValue(surfaceArea)}
-            preciseValue={surfaceArea}
-          />
+          <GeoStatistic title="Surface Area" value={surfaceArea} />
         </Col>
         <Col span={12}>
-          <div className="statistic-container">
-            <Statistic title="# of Shells" value={numShells} />
-          </div>
+          <GeoStatistic title="# of Shells" value={numShells} />
         </Col>
       </Row>
       <Row id="geo-bottom-row">
