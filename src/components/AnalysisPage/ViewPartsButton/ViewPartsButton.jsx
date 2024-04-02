@@ -4,10 +4,24 @@ import { DownloadOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { downloadBlobToLocalMachine } from "./downloadBlob";
 
-const ViewPartsButton = ({ setFileFor3dModel, setPartId }) => {
+const ViewPartsButton = ({
+  setFileFor3dModel,
+  setPartId,
+  setAutoPopAnalysis,
+}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
   const [fileNameForUpload, setFileNameForUpload] = useState("");
+
+  const checkForAnalysisData = (part_id) => {
+    fetch(`/api/v0/parts/${part_id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.geometry_analysis) {
+          setAutoPopAnalysis(data.geometry_analysis);
+        }
+      });
+  };
 
   //not sure if this fetch call was the best approach
   //It's the only way i could get the entire file at the moment
@@ -79,6 +93,7 @@ const ViewPartsButton = ({ setFileFor3dModel, setPartId }) => {
                 onClick={() => {
                   setModalOpen(false);
                   downloadPartFileAndPlaceIn3dViewer(part.id);
+                  checkForAnalysisData(part.id);
                   setFileNameForUpload(part.name);
                   setPartId(part.id);
                 }}
@@ -101,6 +116,7 @@ const ViewPartsButton = ({ setFileFor3dModel, setPartId }) => {
 ViewPartsButton.propTypes = {
   setFileFor3dModel: PropTypes.func,
   setPartId: PropTypes.func,
+  setAutoPopAnalysis: PropTypes.func,
 };
 
 export default ViewPartsButton;

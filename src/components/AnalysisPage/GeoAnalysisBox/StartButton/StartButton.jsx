@@ -6,17 +6,23 @@ import { pollForResults } from "./pollForResults";
 import PropTypes from "prop-types";
 import "./startButton.css";
 
-const StartButton = ({ partId, setGeoData }) => {
+const StartButton = ({
+  partId,
+  setGeoData,
+  analysisComplete,
+  setAnalysisComplete,
+  showCheckmark,
+  setShowCheckmark,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [showCheckmark, setShowCheckmark] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
-  const [analysisComplete, setAnalysisComplete] = useState(false);
 
   useEffect(() => {
     setIsLoading(false);
     setShowCheckmark(false);
     setShowFailure(false);
     setAnalysisComplete(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partId]);
 
   const startAnalysis = async () => {
@@ -74,6 +80,10 @@ const StartButton = ({ partId, setGeoData }) => {
 StartButton.propTypes = {
   partId: PropTypes.string,
   setGeoData: PropTypes.func,
+  analysisComplete: PropTypes.bool,
+  setAnalysisComplete: PropTypes.func,
+  showCheckmark: PropTypes.bool,
+  setShowCheckmark: PropTypes.func,
 };
 
 export default StartButton;
