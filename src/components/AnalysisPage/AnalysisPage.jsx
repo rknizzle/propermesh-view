@@ -4,6 +4,7 @@ import ViewPartsButton from "./ViewPartsButton/ViewPartsButton";
 import ModelViewer from "./3dModelViewer/3dModelViewer";
 import UnitsSelector from "./UnitsSelector/UnitsSelector";
 import GeoAnalysisBox from "./GeoAnalysisBox/GeoAnalysisBox";
+import ThickAnalysisBox from "./ThicknessAnalysisBox/ThickAnalysisBox";
 import { Row, Col } from "antd";
 
 const AnalysisPage = () => {
@@ -26,6 +27,7 @@ const AnalysisPage = () => {
             showCheckmark={showCheckmark}
             setShowCheckmark={setShowCheckmark}
           />
+          <ThickAnalysisBox />
         </Col>
       </Row>
       <UploadPartButton
