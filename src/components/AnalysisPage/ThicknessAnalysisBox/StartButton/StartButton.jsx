@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import "./StartButton.css";
 import PropTypes from "prop-types";
+import { pollForResults } from "./pollForResults";
 import { startThicknessAnalysis } from "./startThickAnalysis";
 
 const StartButton = ({ partId, thresholdValue }) => {
@@ -9,7 +10,9 @@ const StartButton = ({ partId, thresholdValue }) => {
     try {
       const job = await startThicknessAnalysis(partId, thresholdValue);
 
-      console.log(job);
+      const results = await pollForResults(job.id);
+
+      console.log(results);
     } catch (error) {
       console.error("Failed to start thickness analysis.", error);
       return;
