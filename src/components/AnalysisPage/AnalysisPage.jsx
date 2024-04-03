@@ -27,7 +27,7 @@ const AnalysisPage = () => {
             showCheckmark={showCheckmark}
             setShowCheckmark={setShowCheckmark}
           />
-          <ThickAnalysisBox />
+          <ThickAnalysisBox partId={partId} />
         </Col>
       </Row>
       <UploadPartButton

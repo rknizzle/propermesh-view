@@ -1,7 +1,9 @@
-import { Row, Col, Statistic, Button, InputNumber } from "antd";
+import { Row, Col, Statistic, InputNumber } from "antd";
 import "./ThickAnalysisBox.css";
+import StartButton from "./StartButton/StartButton";
+import PropTypes from "prop-types";
 
-const ThickAnalysisBox = () => {
+const ThickAnalysisBox = ({ partId }) => {
   const onChange = (value) => {
     console.log("changed", value);
   };
@@ -37,13 +39,15 @@ const ThickAnalysisBox = () => {
           </div>
         </Col>
         <Col span={6}>
-          <Button type="primary" id="thick-start-button">
-            Start
-          </Button>
+          <StartButton partId={partId} />
         </Col>
       </Row>
     </div>
   );
+};
+
+ThickAnalysisBox.propTypes = {
+  partId: PropTypes.string,
 };
 
 export default ThickAnalysisBox;
