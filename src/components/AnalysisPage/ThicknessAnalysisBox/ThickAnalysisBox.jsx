@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Row, Col, Statistic, InputNumber } from "antd";
+import { Row, Col, Statistic, InputNumber, Typography } from "antd";
+const { Text } = Typography;
 import "./ThickAnalysisBox.css";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
@@ -13,6 +14,16 @@ const ThickAnalysisBox = ({ partId }) => {
     setThresholdValue(value);
   };
 
+  const renderThinAreaMessage = () => {
+    if (isThin === null)
+      return <Text code>Analysis will determine thin areas</Text>;
+    return isThin ? (
+      <Text type="danger">Thin areas detected</Text>
+    ) : (
+      <Text type="success">No thin areas detected</Text>
+    );
+  };
+
   return (
     <div id="thick-analysis-box">
       <h2 id="thick-analysis-title">Thickness Analysis</h2>
@@ -22,11 +33,17 @@ const ThickAnalysisBox = ({ partId }) => {
             <div style={{ marginRight: 16 }}>Thin surface area:</div>
             <Statistic value={thinSurfaceArea} />
           </div>
-          <div
+          {/* commenting out the thin area percentage, until we have a percentage */}
+          {/* <div
             style={{ display: "flex", alignItems: "flex-start", marginTop: 20 }}
           >
             <div style={{ marginRight: 16 }}>Percentage of thin area:</div>
             <Statistic value={isThin} />
+          </div> */}
+          <div
+            style={{ marginTop: 20, display: "flex", justifyContent: "center" }}
+          >
+            {renderThinAreaMessage()}
           </div>
         </Col>
       </Row>
