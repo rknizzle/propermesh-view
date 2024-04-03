@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 const ThickAnalysisBox = ({ partId }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
+  const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
 
   const onChange = (value) => {
     setThresholdValue(value);
@@ -18,7 +19,7 @@ const ThickAnalysisBox = ({ partId }) => {
         <Col span={11} offset={0}>
           <div style={{ display: "flex", alignItems: "flex-start" }}>
             <div style={{ marginRight: 16 }}>Thin surface area:</div>
-            <Statistic value="32" />
+            <Statistic value={thinSurfaceArea} />
           </div>
           <div
             style={{ display: "flex", alignItems: "flex-start", marginTop: 20 }}
@@ -42,7 +43,11 @@ const ThickAnalysisBox = ({ partId }) => {
           </div>
         </Col>
         <Col span={6}>
-          <StartButton partId={partId} thresholdValue={thresholdValue} />
+          <StartButton
+            partId={partId}
+            thresholdValue={thresholdValue}
+            setThinSurfaceArea={setThinSurfaceArea}
+          />
         </Col>
       </Row>
     </div>
