@@ -7,6 +7,9 @@ import PropTypes from "prop-types";
 const ThickAnalysisBox = ({ partId }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
+  const [percentageOfThinArea, setPercentageOfThinArea] = useState(null);
+
+  console.log(percentageOfThinArea);
 
   const onChange = (value) => {
     setThresholdValue(value);
@@ -25,7 +28,7 @@ const ThickAnalysisBox = ({ partId }) => {
             style={{ display: "flex", alignItems: "flex-start", marginTop: 20 }}
           >
             <div style={{ marginRight: 16 }}>Percentage of thin area:</div>
-            <Statistic value="25" />
+            <Statistic value={percentageOfThinArea} />
           </div>
         </Col>
       </Row>
@@ -47,6 +50,7 @@ const ThickAnalysisBox = ({ partId }) => {
             partId={partId}
             thresholdValue={thresholdValue}
             setThinSurfaceArea={setThinSurfaceArea}
+            setPercentageOfThinArea={setPercentageOfThinArea}
           />
         </Col>
       </Row>
