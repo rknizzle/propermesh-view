@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { Row, Col, Statistic, InputNumber } from "antd";
 import "./ThickAnalysisBox.css";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 
 const ThickAnalysisBox = ({ partId }) => {
+  const [thresholdValue, setThresholdValue] = useState(null);
+
   const onChange = (value) => {
-    console.log("changed", value);
+    setThresholdValue(value);
   };
 
   return (
@@ -39,7 +42,7 @@ const ThickAnalysisBox = ({ partId }) => {
           </div>
         </Col>
         <Col span={6}>
-          <StartButton partId={partId} />
+          <StartButton partId={partId} thresholdValue={thresholdValue} />
         </Col>
       </Row>
     </div>
