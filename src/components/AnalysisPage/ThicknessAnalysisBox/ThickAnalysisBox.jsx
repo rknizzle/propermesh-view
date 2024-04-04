@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Row, Col, Statistic, InputNumber, Typography } from "antd";
+import { Row, Col, InputNumber, Typography } from "antd";
 const { Text } = Typography;
 import "./ThickAnalysisBox.css";
+import DisplayStatistic from "../DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 
@@ -28,11 +29,10 @@ const ThickAnalysisBox = ({ partId }) => {
     <div id="thick-analysis-box">
       <h2 id="thick-analysis-title">Thickness Analysis</h2>
       <Row id="thick-top-row">
-        <Col span={11} offset={0}>
-          <div style={{ display: "flex", alignItems: "flex-start" }}>
-            <div style={{ marginRight: 16 }}>Thin surface area:</div>
-            <Statistic value={thinSurfaceArea} />
-          </div>
+        <Col span={12}>
+          <DisplayStatistic title="Thin Surface Area" value={thinSurfaceArea} />
+        </Col>
+        <Col span={12}>
           <div
             style={{ marginTop: 20, display: "flex", justifyContent: "center" }}
           >
