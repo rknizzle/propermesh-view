@@ -6,6 +6,7 @@ import UnitsSelector from "./UnitsSelector/UnitsSelector";
 import GeoAnalysisBox from "./GeoAnalysisBox/GeoAnalysisBox";
 import ThickAnalysisBox from "./ThicknessAnalysisBox/ThickAnalysisBox";
 import { Row, Col } from "antd";
+import { InfoCircleOutlined } from "@ant-design/icons";
 
 const AnalysisPage = () => {
   const [fileFor3dModel, setFileFor3dModel] = useState(null);
@@ -27,6 +28,12 @@ const AnalysisPage = () => {
             showCheckmark={showCheckmark}
             setShowCheckmark={setShowCheckmark}
           />
+          <div style={{ marginTop: 12 }}>
+            <span style={{ fontSize: "0.7rem", color: "black" }}>
+              <InfoCircleOutlined style={{ color: "#3e498f" }} /> indicates
+              precise value available on hover
+            </span>
+          </div>
           <ThickAnalysisBox partId={partId} />
         </Col>
       </Row>

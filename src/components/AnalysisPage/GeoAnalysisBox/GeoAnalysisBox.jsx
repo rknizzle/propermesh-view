@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./geoAnalysisBox.css";
 import StartButton from "./StartButton/StartButton";
 import DisplayStatistic from "../DisplayStatistic";
-import { InfoCircleOutlined } from "@ant-design/icons";
+// import { InfoCircleOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 
 const GeoAnalysisBox = ({
@@ -73,13 +73,7 @@ const GeoAnalysisBox = ({
         </Col>
       </Row>
       <Row id="geo-bottom-row">
-        <Col span={11} offset={1}>
-          <InfoCircleOutlined style={{ color: "#3e498f" }} />{" "}
-          <span id="info-circle-explain">
-            indicates precise value available on hover
-          </span>
-        </Col>
-        <Col span={12}>
+        <Col span={24} offset={6}>
           <StartButton
             partId={partId}
             setGeoData={setGeoData}

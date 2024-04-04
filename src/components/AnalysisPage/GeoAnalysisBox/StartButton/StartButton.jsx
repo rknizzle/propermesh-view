@@ -64,12 +64,7 @@ const StartButton = ({
         {isLoading ? "Analyzing..." : analysisComplete ? "Complete" : "Start"}
         {isLoading ? <Spin style={{ marginLeft: "10px" }} /> : null}
       </Button>
-      {showCheckmark ? (
-        <CheckCircleOutlined
-          style={{ marginLeft: "10px" }}
-          id="checkmark-icon"
-        />
-      ) : null}
+      {showCheckmark ? <CheckCircleOutlined id="checkmark-icon" /> : null}
       {showFailure ? (
         <CloseCircleOutlined style={{ marginLeft: "10px" }} id="failure-icon" />
       ) : null}
