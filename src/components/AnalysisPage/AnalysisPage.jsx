@@ -11,9 +11,7 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 const AnalysisPage = () => {
   const [fileFor3dModel, setFileFor3dModel] = useState(null);
   const [partId, setPartId] = useState(null);
-  const [autoPopAnalysis, setAutoPopAnalysis] = useState(null);
-  const [analysisComplete, setAnalysisComplete] = useState(false);
-  const [showCheckmark, setShowCheckmark] = useState(false);
+  const [geoData, setGeoData] = useState(null);
 
   return (
     <div>
@@ -22,11 +20,8 @@ const AnalysisPage = () => {
         <Col span={6}>
           <GeoAnalysisBox
             partId={partId}
-            autoPopAnalysis={autoPopAnalysis}
-            analysisComplete={analysisComplete}
-            setAnalysisComplete={setAnalysisComplete}
-            showCheckmark={showCheckmark}
-            setShowCheckmark={setShowCheckmark}
+            geoData={geoData}
+            setGeoData={setGeoData}
           />
           <div style={{ marginTop: 12 }}>
             <span style={{ fontSize: "0.7rem", color: "black" }}>
@@ -44,9 +39,7 @@ const AnalysisPage = () => {
       <ViewPartsButton
         setFileFor3dModel={setFileFor3dModel}
         setPartId={setPartId}
-        setAutoPopAnalysis={setAutoPopAnalysis}
-        setAnalysisComplete={setAnalysisComplete}
-        setShowCheckmark={setShowCheckmark}
+        setGeoData={setGeoData}
       />
       <ModelViewer fileFor3dModel={fileFor3dModel} />
       <UnitsSelector partId={partId} />
