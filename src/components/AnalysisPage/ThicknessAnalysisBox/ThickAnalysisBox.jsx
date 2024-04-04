@@ -33,13 +33,6 @@ const ThickAnalysisBox = ({ partId }) => {
             <div style={{ marginRight: 16 }}>Thin surface area:</div>
             <Statistic value={thinSurfaceArea} />
           </div>
-          {/* commenting out the thin area percentage, until we have a percentage */}
-          {/* <div
-            style={{ display: "flex", alignItems: "flex-start", marginTop: 20 }}
-          >
-            <div style={{ marginRight: 16 }}>Percentage of thin area:</div>
-            <Statistic value={isThin} />
-          </div> */}
           <div
             style={{ marginTop: 20, display: "flex", justifyContent: "center" }}
           >
