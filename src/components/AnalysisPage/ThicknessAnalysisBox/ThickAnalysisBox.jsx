@@ -16,8 +16,7 @@ const ThickAnalysisBox = ({ partId }) => {
   };
 
   const renderThinAreaMessage = () => {
-    if (isThin === null)
-      return <Text code>Analysis will determine thin areas</Text>;
+    if (isThin === null) return;
     return isThin ? (
       <Text type="danger">Thin areas detected</Text>
     ) : (
