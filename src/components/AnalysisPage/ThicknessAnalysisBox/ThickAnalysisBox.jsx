@@ -6,10 +6,12 @@ import DisplayStatistic from "../DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 
-const ThickAnalysisBox = ({ partId }) => {
+const ThickAnalysisBox = ({ partId, thickData }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
   const [isThin, setIsThin] = useState(null);
+
+  console.log(thickData);
 
   const onChange = (value) => {
     setThresholdValue(value);
@@ -67,6 +69,7 @@ const ThickAnalysisBox = ({ partId }) => {
 
 ThickAnalysisBox.propTypes = {
   partId: PropTypes.string,
+  thickData: PropTypes.array,
 };
 
 export default ThickAnalysisBox;

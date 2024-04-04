@@ -12,6 +12,7 @@ const AnalysisPage = () => {
   const [fileFor3dModel, setFileFor3dModel] = useState(null);
   const [partId, setPartId] = useState(null);
   const [geoData, setGeoData] = useState(null);
+  const [thickData, setThickData] = useState(null);
 
   return (
     <div>
@@ -29,7 +30,7 @@ const AnalysisPage = () => {
               precise value available on hover
             </span>
           </div>
-          <ThickAnalysisBox partId={partId} />
+          <ThickAnalysisBox partId={partId} thickData={thickData} />
         </Col>
       </Row>
       <UploadPartButton
@@ -40,6 +41,7 @@ const AnalysisPage = () => {
         setFileFor3dModel={setFileFor3dModel}
         setPartId={setPartId}
         setGeoData={setGeoData}
+        setThickData={setThickData}
       />
       <ModelViewer fileFor3dModel={fileFor3dModel} />
       <UnitsSelector partId={partId} />
