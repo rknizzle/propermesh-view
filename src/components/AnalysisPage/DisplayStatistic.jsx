@@ -2,15 +2,12 @@ import { Statistic, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 
-const GeoStatistic = ({ title, value }) => {
+const DisplayStatistic = ({ title, value }) => {
   const displayValue = (value) => {
     if (value === null) {
       return "--";
     }
 
-    // I put Shells and Boundary Edges back into GeoStatistic to keep the "--" display consistent
-    // It's also a plus that if we need a precise value for these two in the future,
-    // We're already set up for it
     if (title === "# of Shells" || title === "# of Boundary Edges") {
       return value;
     }
@@ -53,9 +50,9 @@ const GeoStatistic = ({ title, value }) => {
   );
 };
 
-GeoStatistic.propTypes = {
+DisplayStatistic.propTypes = {
   title: PropTypes.string,
   value: PropTypes.number,
 };
 
-export default GeoStatistic;
+export default DisplayStatistic;

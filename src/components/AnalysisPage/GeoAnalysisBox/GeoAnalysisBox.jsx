@@ -2,7 +2,7 @@ import { Row, Col } from "antd";
 import { useState, useEffect } from "react";
 import "./geoAnalysisBox.css";
 import StartButton from "./StartButton/StartButton";
-import GeoStatistic from "./GeoStatistic";
+import DisplayStatistic from "../DisplayStatistic";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 
@@ -55,18 +55,21 @@ const GeoAnalysisBox = ({
       <h2 id="geo-analysis-title">Geometry Analysis</h2>
       <Row id="geo-top-row">
         <Col span={12}>
-          <GeoStatistic title="Volume" value={volume} />
+          <DisplayStatistic title="Volume" value={volume} />
         </Col>
         <Col span={12}>
-          <GeoStatistic title="# of Boundary Edges" value={numBoundaryEdges} />
+          <DisplayStatistic
+            title="# of Boundary Edges"
+            value={numBoundaryEdges}
+          />
         </Col>
       </Row>
       <Row>
         <Col span={12}>
-          <GeoStatistic title="Surface Area" value={surfaceArea} />
+          <DisplayStatistic title="Surface Area" value={surfaceArea} />
         </Col>
         <Col span={12}>
-          <GeoStatistic title="# of Shells" value={numShells} />
+          <DisplayStatistic title="# of Shells" value={numShells} />
         </Col>
       </Row>
       <Row id="geo-bottom-row">
