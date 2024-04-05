@@ -25,6 +25,10 @@ const ThickAnalysisBox = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [thickData]);
 
+  useEffect(() => {
+    setThresholdValue(null);
+  }, [partId]);
+
   const onChange = (value) => {
     setThresholdValue(value);
   };
@@ -59,6 +63,7 @@ const ThickAnalysisBox = ({
             <div style={{ marginRight: 16 }}>Threshold:</div>
             <InputNumber
               defaultValue={null}
+              value={thresholdValue}
               min={0}
               step={0.01}
               onChange={onChange}
