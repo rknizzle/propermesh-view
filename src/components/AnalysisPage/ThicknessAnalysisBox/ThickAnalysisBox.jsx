@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Row, Col, InputNumber, Typography, Segmented } from "antd";
 const { Text } = Typography;
 import "./ThickAnalysisBox.css";
@@ -6,16 +6,24 @@ import DisplayStatistic from "../DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 
-const ThickAnalysisBox = ({ partId, thickData }) => {
+const ThickAnalysisBox = ({
+  partId,
+  thickData,
+  partsThresholdHistory,
+  setPartsThresholdHistory,
+}) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
   const [isThin, setIsThin] = useState(null);
 
   console.log(thickData);
 
-  const partsThresholdHistory = thickData
-    ? thickData.map((data) => data.threshold)
-    : [];
+  useEffect(() => {
+    if (thickData) {
+      setPartsThresholdHistory(thickData.map((data) => data.threshold));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [thickData]);
 
   const onChange = (value) => {
     setThresholdValue(value);
@@ -64,6 +72,7 @@ const ThickAnalysisBox = ({ partId, thickData }) => {
             thresholdValue={thresholdValue}
             setThinSurfaceArea={setThinSurfaceArea}
             setIsThin={setIsThin}
+            setPartsThresholdHistory={setPartsThresholdHistory}
           />
         </Col>
       </Row>
@@ -87,6 +96,8 @@ const ThickAnalysisBox = ({ partId, thickData }) => {
 ThickAnalysisBox.propTypes = {
   partId: PropTypes.string,
   thickData: PropTypes.array,
+  partsThresholdHistory: PropTypes.array,
+  setPartsThresholdHistory: PropTypes.func,
 };
 
 export default ThickAnalysisBox;

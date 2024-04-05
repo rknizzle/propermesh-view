@@ -13,6 +13,7 @@ const AnalysisPage = () => {
   const [partId, setPartId] = useState(null);
   const [geoData, setGeoData] = useState(null);
   const [thickData, setThickData] = useState(null);
+  const [partsThresholdHistory, setPartsThresholdHistory] = useState([]);
 
   return (
     <div>
@@ -30,12 +31,18 @@ const AnalysisPage = () => {
               precise value available on hover
             </span>
           </div>
-          <ThickAnalysisBox partId={partId} thickData={thickData} />
+          <ThickAnalysisBox
+            partId={partId}
+            thickData={thickData}
+            partsThresholdHistory={partsThresholdHistory}
+            setPartsThresholdHistory={setPartsThresholdHistory}
+          />
         </Col>
       </Row>
       <UploadPartButton
         setFileFor3dModel={setFileFor3dModel}
         setPartId={setPartId}
+        setPartsThresholdHistory={setPartsThresholdHistory}
       />
       <ViewPartsButton
         setFileFor3dModel={setFileFor3dModel}
