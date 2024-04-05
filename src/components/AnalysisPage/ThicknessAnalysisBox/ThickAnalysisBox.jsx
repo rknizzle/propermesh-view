@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Row, Col, InputNumber, Typography } from "antd";
+import { Row, Col, InputNumber, Typography, Segmented } from "antd";
 const { Text } = Typography;
 import "./ThickAnalysisBox.css";
 import DisplayStatistic from "../DisplayStatistic";
@@ -12,6 +12,10 @@ const ThickAnalysisBox = ({ partId, thickData }) => {
   const [isThin, setIsThin] = useState(null);
 
   console.log(thickData);
+
+  const partsThresholdHistory = thickData
+    ? thickData.map((data) => data.threshold)
+    : [];
 
   const onChange = (value) => {
     setThresholdValue(value);
@@ -63,6 +67,19 @@ const ThickAnalysisBox = ({ partId, thickData }) => {
           />
         </Col>
       </Row>
+      {partsThresholdHistory && (
+        <div style={{ marginTop: ".5em" }}>
+          <Row>
+            <Segmented
+              options={partsThresholdHistory.map((threshold) => ({
+                label: `${threshold}`,
+                value: threshold,
+                key: `${threshold}`,
+              }))}
+            />
+          </Row>
+        </div>
+      )}
     </div>
   );
 };

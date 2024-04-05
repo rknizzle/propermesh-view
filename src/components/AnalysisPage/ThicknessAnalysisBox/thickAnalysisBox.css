@@ -29,3 +29,12 @@
 #thick-bottom-row {
   margin-top: 15px;
 }
+
+.ant-segmented-item {
+  border: 1px solid #6a73a3;
+  margin-right: 0.5em;
+}
+
+.ant-segmented-item:last-child {
+  margin-right: 0;
+}
