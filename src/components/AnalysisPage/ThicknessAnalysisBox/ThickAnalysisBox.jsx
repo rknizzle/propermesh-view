@@ -27,6 +27,8 @@ const ThickAnalysisBox = ({
 
   useEffect(() => {
     setThresholdValue(null);
+    setThinSurfaceArea(null);
+    setIsThin(null);
   }, [partId]);
 
   const onChange = (value) => {
