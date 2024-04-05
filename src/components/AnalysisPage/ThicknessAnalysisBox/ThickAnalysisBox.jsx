@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 const ThickAnalysisBox = ({
   partId,
   thickData,
+  setThickData,
   partsThresholdHistory,
   setPartsThresholdHistory,
 }) => {
@@ -32,6 +33,14 @@ const ThickAnalysisBox = ({
   }, [partId]);
 
   const onChange = (value) => {
+    setThresholdValue(value);
+  };
+
+  const getPartDataFromThresholdHistory = (value) => {
+    //get the data from thickData that matches the threshold value
+    const data = thickData.find((data) => data.threshold === value);
+    setThinSurfaceArea(data.thin_surface_area);
+    setIsThin(data.is_thin);
     setThresholdValue(value);
   };
 
@@ -80,6 +89,7 @@ const ThickAnalysisBox = ({
             setThinSurfaceArea={setThinSurfaceArea}
             setIsThin={setIsThin}
             setPartsThresholdHistory={setPartsThresholdHistory}
+            setThickData={setThickData}
           />
         </Col>
       </Row>
@@ -92,6 +102,7 @@ const ThickAnalysisBox = ({
                 value: threshold,
                 key: `${threshold}`,
               }))}
+              onChange={getPartDataFromThresholdHistory}
             />
           </Row>
         </div>
@@ -103,6 +114,7 @@ const ThickAnalysisBox = ({
 ThickAnalysisBox.propTypes = {
   partId: PropTypes.string,
   thickData: PropTypes.array,
+  setThickData: PropTypes.func,
   partsThresholdHistory: PropTypes.array,
   setPartsThresholdHistory: PropTypes.func,
 };

@@ -12,7 +12,8 @@ const AnalysisPage = () => {
   const [fileFor3dModel, setFileFor3dModel] = useState(null);
   const [partId, setPartId] = useState(null);
   const [geoData, setGeoData] = useState(null);
-  const [thickData, setThickData] = useState(null);
+  //initialize as an array to use the spread operator in startButton.jsx
+  const [thickData, setThickData] = useState([]);
   const [partsThresholdHistory, setPartsThresholdHistory] = useState([]);
 
   return (
@@ -34,6 +35,8 @@ const AnalysisPage = () => {
           <ThickAnalysisBox
             partId={partId}
             thickData={thickData}
+            //setThickData headed to start button
+            setThickData={setThickData}
             partsThresholdHistory={partsThresholdHistory}
             setPartsThresholdHistory={setPartsThresholdHistory}
           />
