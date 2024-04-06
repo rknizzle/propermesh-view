@@ -6,7 +6,11 @@ import DisplayStatistic from "../DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 
-const ThickAnalysisBox = ({ partId, thickData, setThickData }) => {
+const ThickAnalysisBox = ({
+  partId,
+  listOfThicknessData,
+  setListOfThicknessData,
+}) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
   const [isThin, setIsThin] = useState(null);
@@ -20,8 +24,8 @@ const ThickAnalysisBox = ({ partId, thickData, setThickData }) => {
   }, [partId]);
 
   const getSpecificDataRegardingThreshold = (value) => {
-    //get the data from thickData that matches the threshold value
-    const data = thickData.find((data) => data.threshold === value);
+    //get the data from listOfThicknessData that matches the threshold value
+    const data = listOfThicknessData.find((data) => data.threshold === value);
     if (data) {
       setThinSurfaceArea(data.thin_surface_area);
       setIsThin(data.is_thin);
@@ -82,15 +86,15 @@ const ThickAnalysisBox = ({ partId, thickData, setThickData }) => {
             thresholdValue={thresholdValue}
             setThinSurfaceArea={setThinSurfaceArea}
             setIsThin={setIsThin}
-            setThickData={setThickData}
+            setListOfThicknessData={setListOfThicknessData}
           />
         </Col>
       </Row>
-      {thickData && (
+      {listOfThicknessData && (
         <div style={{ marginTop: ".5em" }}>
           <Row>
             <Segmented
-              options={thickData.map((data) => ({
+              options={listOfThicknessData.map((data) => ({
                 label: `${data.threshold}`,
                 value: data.threshold,
                 key: `${data.threshold}`,
@@ -107,8 +111,8 @@ const ThickAnalysisBox = ({ partId, thickData, setThickData }) => {
 
 ThickAnalysisBox.propTypes = {
   partId: PropTypes.string,
-  thickData: PropTypes.array,
-  setThickData: PropTypes.func,
+  listOfThicknessData: PropTypes.array,
+  setListOfThicknessData: PropTypes.func,
 };
 
 export default ThickAnalysisBox;

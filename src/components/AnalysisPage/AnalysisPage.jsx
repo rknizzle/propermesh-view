@@ -13,7 +13,7 @@ const AnalysisPage = () => {
   const [partId, setPartId] = useState(null);
   const [geoData, setGeoData] = useState(null);
   //initialize as an array to use the spread operator in startButton.jsx
-  const [thickData, setThickData] = useState([]);
+  const [listOfThicknessData, setListOfThicknessData] = useState([]);
 
   return (
     <div>
@@ -33,22 +33,22 @@ const AnalysisPage = () => {
           </div>
           <ThickAnalysisBox
             partId={partId}
-            thickData={thickData}
-            //setThickData headed to start button
-            setThickData={setThickData}
+            listOfThicknessData={listOfThicknessData}
+            //setListOfThicknessData headed to start button
+            setListOfThicknessData={setListOfThicknessData}
           />
         </Col>
       </Row>
       <UploadPartButton
         setFileFor3dModel={setFileFor3dModel}
         setPartId={setPartId}
-        setThickData={setThickData}
+        setListOfThicknessData={setListOfThicknessData}
       />
       <ViewPartsButton
         setFileFor3dModel={setFileFor3dModel}
         setPartId={setPartId}
         setGeoData={setGeoData}
-        setThickData={setThickData}
+        setListOfThicknessData={setListOfThicknessData}
       />
       <ModelViewer fileFor3dModel={fileFor3dModel} />
       <UnitsSelector partId={partId} />
