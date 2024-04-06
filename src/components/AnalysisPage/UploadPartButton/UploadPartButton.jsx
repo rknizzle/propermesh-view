@@ -5,7 +5,11 @@ import PropTypes from "prop-types";
 
 const { Dragger } = Upload;
 
-const UploadPartButton = ({ setFileFor3dModel, setPartId, setThickData }) => {
+const UploadPartButton = ({
+  setFileFor3dModel,
+  setPartId,
+  setListOfThicknessData,
+}) => {
   const [isUploadAllowed, setIsUploadAllowed] = useState(true);
 
   const acceptedFileTypes = [".stl", ".obj", ".ply", ".gltf", ".glb", ".3mf"];
@@ -29,7 +33,7 @@ const UploadPartButton = ({ setFileFor3dModel, setPartId, setThickData }) => {
       if (status === "done") {
         message.success(`${info.file.name} file uploaded successfully.`);
         setPartId(info.file.response.id);
-        setThickData([]);
+        setListOfThicknessData([]);
       } else if (status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
@@ -81,7 +85,7 @@ const UploadPartButton = ({ setFileFor3dModel, setPartId, setThickData }) => {
 UploadPartButton.propTypes = {
   setFileFor3dModel: PropTypes.func,
   setPartId: PropTypes.func,
-  setThickData: PropTypes.func,
+  setListOfThicknessData: PropTypes.func,
 };
 
 export default UploadPartButton;

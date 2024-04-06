@@ -8,7 +8,7 @@ const ViewPartsButton = ({
   setFileFor3dModel,
   setPartId,
   setGeoData,
-  setThickData,
+  setListOfThicknessData,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
@@ -22,7 +22,7 @@ const ViewPartsButton = ({
           setGeoData(data.geometry_analysis);
         }
         if (data.thickness_analyses) {
-          setThickData(data.thickness_analyses);
+          setListOfThicknessData(data.thickness_analyses);
         }
       });
   };
@@ -119,7 +119,7 @@ ViewPartsButton.propTypes = {
   setFileFor3dModel: PropTypes.func,
   setPartId: PropTypes.func,
   setGeoData: PropTypes.func,
-  setThickData: PropTypes.func,
+  setListOfThicknessData: PropTypes.func,
 };
 
 export default ViewPartsButton;
