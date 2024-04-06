@@ -19,18 +19,23 @@ const ThickAnalysisBox = ({ partId, thickData, setThickData }) => {
     setSelectedThreshold(null);
   }, [partId]);
 
-  const onChange = (value) => {
-    setThresholdValue(value);
-    setSelectedThreshold(value);
-  };
-
   const getSpecificDataRegardingThreshold = (value) => {
     //get the data from thickData that matches the threshold value
     const data = thickData.find((data) => data.threshold === value);
-    setThinSurfaceArea(data.thin_surface_area);
-    setIsThin(data.is_thin);
+    if (data) {
+      setThinSurfaceArea(data.thin_surface_area);
+      setIsThin(data.is_thin);
+      setThresholdValue(value);
+      setSelectedThreshold(value);
+    }
+  };
+
+  const onChange = (value) => {
     setThresholdValue(value);
     setSelectedThreshold(value);
+    setThinSurfaceArea(null);
+    setIsThin(null);
+    getSpecificDataRegardingThreshold(value);
   };
 
   const renderThinAreaMessage = () => {
