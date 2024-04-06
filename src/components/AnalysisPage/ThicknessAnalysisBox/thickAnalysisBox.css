@@ -38,3 +38,9 @@
 .ant-segmented-item:last-child {
   margin-right: 0;
 }
+
+.ant-segmented-item-selected {
+  background-color: #6a73a3 !important;
+  color: white !important;
+  border-color: #6a73a3 !important;
+}
