@@ -6,25 +6,10 @@ import DisplayStatistic from "../DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 
-const ThickAnalysisBox = ({
-  partId,
-  thickData,
-  setThickData,
-  partsThresholdHistory,
-  setPartsThresholdHistory,
-}) => {
+const ThickAnalysisBox = ({ partId, thickData, setThickData }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
   const [isThin, setIsThin] = useState(null);
-
-  console.log(thickData);
-
-  useEffect(() => {
-    if (thickData) {
-      setPartsThresholdHistory(thickData.map((data) => data.threshold));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [thickData]);
 
   useEffect(() => {
     setThresholdValue(null);
@@ -36,7 +21,7 @@ const ThickAnalysisBox = ({
     setThresholdValue(value);
   };
 
-  const getPartDataFromThresholdHistory = (value) => {
+  const getSpecificDataRegardingThreshold = (value) => {
     //get the data from thickData that matches the threshold value
     const data = thickData.find((data) => data.threshold === value);
     setThinSurfaceArea(data.thin_surface_area);
@@ -88,21 +73,20 @@ const ThickAnalysisBox = ({
             thresholdValue={thresholdValue}
             setThinSurfaceArea={setThinSurfaceArea}
             setIsThin={setIsThin}
-            setPartsThresholdHistory={setPartsThresholdHistory}
             setThickData={setThickData}
           />
         </Col>
       </Row>
-      {partsThresholdHistory && (
+      {thickData && (
         <div style={{ marginTop: ".5em" }}>
           <Row>
             <Segmented
-              options={partsThresholdHistory.map((threshold) => ({
-                label: `${threshold}`,
-                value: threshold,
-                key: `${threshold}`,
+              options={thickData.map((data) => ({
+                label: `${data.threshold}`,
+                value: data.threshold,
+                key: `${data.threshold}`,
               }))}
-              onChange={getPartDataFromThresholdHistory}
+              onChange={getSpecificDataRegardingThreshold}
             />
           </Row>
         </div>
@@ -115,8 +99,6 @@ ThickAnalysisBox.propTypes = {
   partId: PropTypes.string,
   thickData: PropTypes.array,
   setThickData: PropTypes.func,
-  partsThresholdHistory: PropTypes.array,
-  setPartsThresholdHistory: PropTypes.func,
 };
 
 export default ThickAnalysisBox;

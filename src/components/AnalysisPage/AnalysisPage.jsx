@@ -14,7 +14,6 @@ const AnalysisPage = () => {
   const [geoData, setGeoData] = useState(null);
   //initialize as an array to use the spread operator in startButton.jsx
   const [thickData, setThickData] = useState([]);
-  const [partsThresholdHistory, setPartsThresholdHistory] = useState([]);
 
   return (
     <div>
@@ -37,15 +36,13 @@ const AnalysisPage = () => {
             thickData={thickData}
             //setThickData headed to start button
             setThickData={setThickData}
-            partsThresholdHistory={partsThresholdHistory}
-            setPartsThresholdHistory={setPartsThresholdHistory}
           />
         </Col>
       </Row>
       <UploadPartButton
         setFileFor3dModel={setFileFor3dModel}
         setPartId={setPartId}
-        setPartsThresholdHistory={setPartsThresholdHistory}
+        setThickData={setThickData}
       />
       <ViewPartsButton
         setFileFor3dModel={setFileFor3dModel}

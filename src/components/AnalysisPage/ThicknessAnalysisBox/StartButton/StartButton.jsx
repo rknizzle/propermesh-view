@@ -9,7 +9,6 @@ const StartButton = ({
   thresholdValue,
   setThinSurfaceArea,
   setIsThin,
-  setPartsThresholdHistory,
   setThickData,
 }) => {
   const StartAnalysis = async () => {
@@ -24,7 +23,6 @@ const StartButton = ({
       setIsThin(results.is_thin);
       //updating thickData with newest results
       setThickData((prev) => [...prev, results]);
-      setPartsThresholdHistory((prev) => [...prev, thresholdValue]);
     } catch (error) {
       console.error("Failed to start thickness analysis.", error);
       return;
@@ -43,7 +41,6 @@ StartButton.propTypes = {
   thresholdValue: PropTypes.number,
   setThinSurfaceArea: PropTypes.func,
   setIsThin: PropTypes.func,
-  setPartsThresholdHistory: PropTypes.func,
   setThickData: PropTypes.func,
 };
 
