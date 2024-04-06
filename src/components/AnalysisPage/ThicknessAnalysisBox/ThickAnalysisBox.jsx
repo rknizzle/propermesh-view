@@ -10,15 +10,18 @@ const ThickAnalysisBox = ({ partId, thickData, setThickData }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
   const [isThin, setIsThin] = useState(null);
+  const [selectedThreshold, setSelectedThreshold] = useState(null);
 
   useEffect(() => {
     setThresholdValue(null);
     setThinSurfaceArea(null);
     setIsThin(null);
+    setSelectedThreshold(null);
   }, [partId]);
 
   const onChange = (value) => {
     setThresholdValue(value);
+    setSelectedThreshold(value);
   };
 
   const getSpecificDataRegardingThreshold = (value) => {
@@ -27,6 +30,7 @@ const ThickAnalysisBox = ({ partId, thickData, setThickData }) => {
     setThinSurfaceArea(data.thin_surface_area);
     setIsThin(data.is_thin);
     setThresholdValue(value);
+    setSelectedThreshold(value);
   };
 
   const renderThinAreaMessage = () => {
@@ -86,6 +90,7 @@ const ThickAnalysisBox = ({ partId, thickData, setThickData }) => {
                 value: data.threshold,
                 key: `${data.threshold}`,
               }))}
+              value={selectedThreshold}
               onChange={getSpecificDataRegardingThreshold}
             />
           </Row>
