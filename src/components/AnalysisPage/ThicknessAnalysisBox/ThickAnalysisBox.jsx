@@ -10,6 +10,7 @@ const ThickAnalysisBox = ({
   partId,
   listOfThicknessData,
   setListOfThicknessData,
+  units,
 }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
@@ -97,6 +98,7 @@ const ThickAnalysisBox = ({
             setAnalysisComplete={setAnalysisComplete}
             showCheckmark={showCheckmark}
             setShowCheckmark={setShowCheckmark}
+            units={units}
           />
         </Col>
       </Row>
@@ -123,6 +125,7 @@ ThickAnalysisBox.propTypes = {
   partId: PropTypes.string,
   listOfThicknessData: PropTypes.array,
   setListOfThicknessData: PropTypes.func,
+  units: PropTypes.string,
 };
 
 export default ThickAnalysisBox;

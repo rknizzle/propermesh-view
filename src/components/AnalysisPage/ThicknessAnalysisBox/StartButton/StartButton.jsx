@@ -16,6 +16,7 @@ const StartButton = ({
   setAnalysisComplete,
   showCheckmark,
   setShowCheckmark,
+  units,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
@@ -55,10 +56,21 @@ const StartButton = ({
     }
   };
 
-  const isDisabled = !partId || analysisComplete;
-  const tooltipTitle = partId
-    ? ""
-    : "View or upload a part to the viewer before running Thickness Analysis.";
+  const isDisabled =
+    !partId || analysisComplete || thresholdValue === null || units === null;
+
+  let tooltipTitle = "";
+  if (!partId) {
+    tooltipTitle =
+      "View or upload a part to the viewer before running Thickness Analysis.";
+  } else if (thresholdValue === null && units === null) {
+    tooltipTitle =
+      "Enter a threshold value and select units of measurement to start analysis";
+  } else if (thresholdValue === null) {
+    tooltipTitle = "Enter a threshold value to start analysis";
+  } else if (units === null) {
+    tooltipTitle = "Select units of measurement to start analysis";
+  }
 
   return (
     <Tooltip title={tooltipTitle} placement="top">
@@ -92,6 +104,7 @@ StartButton.propTypes = {
   setAnalysisComplete: PropTypes.func,
   showCheckmark: PropTypes.bool,
   setShowCheckmark: PropTypes.func,
+  units: PropTypes.string,
 };
 
 export default StartButton;

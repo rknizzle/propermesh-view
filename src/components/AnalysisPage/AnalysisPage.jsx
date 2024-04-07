@@ -14,6 +14,7 @@ const AnalysisPage = () => {
   const [geoData, setGeoData] = useState(null);
   //initialize as an array to use the spread operator in startButton.jsx
   const [listOfThicknessData, setListOfThicknessData] = useState([]);
+  const [units, setUnits] = useState(null);
 
   return (
     <div>
@@ -34,8 +35,9 @@ const AnalysisPage = () => {
           <ThickAnalysisBox
             partId={partId}
             listOfThicknessData={listOfThicknessData}
-            //setListOfThicknessData headed to start button
+            //setListOfThicknessData and units headed to start button
             setListOfThicknessData={setListOfThicknessData}
+            units={units}
           />
         </Col>
       </Row>
@@ -51,7 +53,7 @@ const AnalysisPage = () => {
         setListOfThicknessData={setListOfThicknessData}
       />
       <ModelViewer fileFor3dModel={fileFor3dModel} />
-      <UnitsSelector partId={partId} />
+      <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
     </div>
   );
 };
