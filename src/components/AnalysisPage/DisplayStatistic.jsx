@@ -8,7 +8,8 @@ const DisplayStatistic = ({ title, value }) => {
       return "--";
     }
 
-    if (title === "# of Shells" || title === "# of Boundary Edges") {
+    const valueString = value.toString();
+    if (!valueString.includes(".")) {
       return value;
     }
 
