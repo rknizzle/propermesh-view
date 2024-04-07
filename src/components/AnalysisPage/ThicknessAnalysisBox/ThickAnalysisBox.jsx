@@ -15,6 +15,8 @@ const ThickAnalysisBox = ({
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
   const [isThin, setIsThin] = useState(null);
   const [selectedThreshold, setSelectedThreshold] = useState(null);
+  const [analysisComplete, setAnalysisComplete] = useState(false);
+  const [showCheckmark, setShowCheckmark] = useState(false);
 
   useEffect(() => {
     setThresholdValue(null);
@@ -31,6 +33,8 @@ const ThickAnalysisBox = ({
       setIsThin(data.is_thin);
       setThresholdValue(value);
       setSelectedThreshold(value);
+      setShowCheckmark(true);
+      setAnalysisComplete(true);
     }
   };
 
@@ -39,6 +43,8 @@ const ThickAnalysisBox = ({
     setSelectedThreshold(value);
     setThinSurfaceArea(null);
     setIsThin(null);
+    setShowCheckmark(false);
+    setAnalysisComplete(false);
     getSpecificDataRegardingThreshold(value);
   };
 
@@ -87,6 +93,10 @@ const ThickAnalysisBox = ({
             setThinSurfaceArea={setThinSurfaceArea}
             setIsThin={setIsThin}
             setListOfThicknessData={setListOfThicknessData}
+            analysisComplete={analysisComplete}
+            setAnalysisComplete={setAnalysisComplete}
+            showCheckmark={showCheckmark}
+            setShowCheckmark={setShowCheckmark}
           />
         </Col>
       </Row>
