@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Row, Col, InputNumber, Typography, Segmented } from "antd";
+import { Row, Col, Typography, Segmented } from "antd";
 const { Text } = Typography;
 import "./ThickAnalysisBox.css";
 import DisplayStatistic from "../DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
+import DecimalInput from "./DecimalInput";
 
 const ThickAnalysisBox = ({
   partId,
@@ -77,13 +78,7 @@ const ThickAnalysisBox = ({
         <Col span={14} offset={1}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ marginRight: 16 }}>Threshold:</div>
-            <InputNumber
-              defaultValue={null}
-              value={thresholdValue}
-              min={0}
-              step={0.01}
-              onChange={onChange}
-            />
+            <DecimalInput value={thresholdValue} onChange={onChange} />
             (mm)
           </div>
         </Col>
