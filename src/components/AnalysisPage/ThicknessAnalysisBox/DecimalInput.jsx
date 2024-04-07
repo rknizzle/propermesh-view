@@ -6,11 +6,11 @@ const DecimalInput = ({ value, onChange }) => {
   const [inputValue, setInputValue] = useState(true);
 
   useEffect(() => {
-    setInputValue(value?.toString());
+    setInputValue(value?.toString().trim() ?? "");
   }, [value]);
 
   const handleChange = (e) => {
-    const newValue = e.target.value;
+    const newValue = e.target.value.trim();
     const reg = /^(\d+)?(\.\d{0,2})?$/;
 
     if (newValue === "" || reg.test(newValue)) {
