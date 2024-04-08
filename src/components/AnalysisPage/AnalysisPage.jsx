@@ -44,7 +44,6 @@ const AnalysisPage = () => {
       <UploadPartButton
         setFileFor3dModel={setFileFor3dModel}
         setPartId={setPartId}
-        setListOfThicknessData={setListOfThicknessData}
       />
       <ViewPartsButton
         setFileFor3dModel={setFileFor3dModel}

@@ -21,10 +21,12 @@ const ThickAnalysisBox = ({
   const [showCheckmark, setShowCheckmark] = useState(false);
 
   useEffect(() => {
+    setListOfThicknessData([]);
     setThresholdValue(null);
     setThinSurfaceArea(null);
     setIsThin(null);
     setSelectedThreshold(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partId]);
 
   const getSpecificDataRegardingThreshold = (value) => {
