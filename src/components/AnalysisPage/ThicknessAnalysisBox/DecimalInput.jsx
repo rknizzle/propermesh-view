@@ -10,7 +10,7 @@ const DecimalInput = ({ value, onChange }) => {
   }, [value]);
 
   const handleChange = (e) => {
-    //only allow numbers and limits the input to decimal spots.
+    //only allow numbers and limits the input to 2 decimal spots.
     const newValue = e.target.value.trim();
     const reg = /^(\d+)?(\.\d{0,2})?$/;
 

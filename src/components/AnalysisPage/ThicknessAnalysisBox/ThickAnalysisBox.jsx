@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Row, Col, Typography, Segmented } from "antd";
 const { Text } = Typography;
-import "./ThickAnalysisBox.css";
+import "./thickAnalysisBox.css";
 import DisplayStatistic from "../DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";

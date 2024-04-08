@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, notification, Tooltip, Spin } from "antd";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import "./StartButton.css";
+import "./startButton.css";
 import PropTypes from "prop-types";
 import { pollForResults } from "./pollForResults";
 import { startThicknessAnalysis } from "./startThickAnalysis";
