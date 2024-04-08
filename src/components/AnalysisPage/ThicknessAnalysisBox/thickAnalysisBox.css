@@ -1,0 +1,46 @@
+#thick-analysis-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+#thick-analysis-box {
+  background-color: rgb(195, 195, 195);
+  border-radius: 15px;
+}
+
+#thick-analysis-box .ant-statistic-content-value {
+  background-color: #f0f2f5;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+#thick-analysis-box .ant-statistic-title {
+  color: #000;
+}
+
+#thick-top-row {
+  margin-bottom: 25px;
+}
+
+#thick-start-button {
+  width: 6rem;
+}
+
+#thick-bottom-row {
+  margin-top: 15px;
+}
+
+.ant-segmented-item {
+  border: 1px solid #6a73a3;
+  margin-right: 0.5em;
+}
+
+.ant-segmented-item:last-child {
+  margin-right: 0;
+}
+
+.ant-segmented-item-selected {
+  background-color: #6a73a3 !important;
+  color: white !important;
+  border-color: #6a73a3 !important;
+}

@@ -2,23 +2,16 @@ import { Row, Col } from "antd";
 import { useState, useEffect } from "react";
 import "./geoAnalysisBox.css";
 import StartButton from "./StartButton/StartButton";
-import GeoStatistic from "./GeoStatistic";
-import { InfoCircleOutlined } from "@ant-design/icons";
+import DisplayStatistic from "../DisplayStatistic";
 import PropTypes from "prop-types";
 
-const GeoAnalysisBox = ({
-  partId,
-  autoPopAnalysis,
-  showCheckmark,
-  setShowCheckmark,
-  analysisComplete,
-  setAnalysisComplete,
-}) => {
-  const [geoData, setGeoData] = useState(null);
+const GeoAnalysisBox = ({ partId, geoData, setGeoData }) => {
   const [volume, setVolume] = useState(null);
   const [surfaceArea, setSurfaceArea] = useState(null);
   const [numBoundaryEdges, setNumBoundaryEdges] = useState(null);
   const [numShells, setNumShells] = useState(null);
+  const [analysisComplete, setAnalysisComplete] = useState(false);
+  const [showCheckmark, setShowCheckmark] = useState(false);
 
   useEffect(() => {
     setGeoData(null);
@@ -26,19 +19,8 @@ const GeoAnalysisBox = ({
     setSurfaceArea(null);
     setNumBoundaryEdges(null);
     setNumShells(null);
-  }, [partId]);
-
-  useEffect(() => {
-    if (autoPopAnalysis) {
-      setVolume(autoPopAnalysis.volume);
-      setSurfaceArea(autoPopAnalysis.surface_area);
-      setNumBoundaryEdges(autoPopAnalysis.num_boundary_edges);
-      setNumShells(autoPopAnalysis.num_shells);
-      setShowCheckmark(true);
-      setAnalysisComplete(true);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoPopAnalysis]);
+  }, [partId]);
 
   useEffect(() => {
     console.log(geoData);
@@ -47,6 +29,8 @@ const GeoAnalysisBox = ({
       setSurfaceArea(geoData.surface_area);
       setNumBoundaryEdges(geoData.num_boundary_edges);
       setNumShells(geoData.num_shells);
+      setShowCheckmark(true);
+      setAnalysisComplete(true);
     }
   }, [geoData]);
 
@@ -55,28 +39,25 @@ const GeoAnalysisBox = ({
       <h2 id="geo-analysis-title">Geometry Analysis</h2>
       <Row id="geo-top-row">
         <Col span={12}>
-          <GeoStatistic title="Volume" value={volume} />
+          <DisplayStatistic title="Volume" value={volume} />
         </Col>
         <Col span={12}>
-          <GeoStatistic title="# of Boundary Edges" value={numBoundaryEdges} />
+          <DisplayStatistic
+            title="# of Boundary Edges"
+            value={numBoundaryEdges}
+          />
         </Col>
       </Row>
       <Row>
         <Col span={12}>
-          <GeoStatistic title="Surface Area" value={surfaceArea} />
+          <DisplayStatistic title="Surface Area" value={surfaceArea} />
         </Col>
         <Col span={12}>
-          <GeoStatistic title="# of Shells" value={numShells} />
+          <DisplayStatistic title="# of Shells" value={numShells} />
         </Col>
       </Row>
       <Row id="geo-bottom-row">
-        <Col span={11} offset={1}>
-          <InfoCircleOutlined style={{ color: "#3e498f" }} />{" "}
-          <span id="info-circle-explain">
-            indicates precise value available on hover
-          </span>
-        </Col>
-        <Col span={12}>
+        <Col span={24} offset={6}>
           <StartButton
             partId={partId}
             setGeoData={setGeoData}
@@ -93,11 +74,8 @@ const GeoAnalysisBox = ({
 
 GeoAnalysisBox.propTypes = {
   partId: PropTypes.string,
-  autoPopAnalysis: PropTypes.object,
-  setShowCheckmark: PropTypes.func,
-  showCheckmark: PropTypes.bool,
-  setAnalysisComplete: PropTypes.func,
-  analysisComplete: PropTypes.bool,
+  geoData: PropTypes.object,
+  setGeoData: PropTypes.func,
 };
 
 export default GeoAnalysisBox;

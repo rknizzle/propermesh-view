@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { Select, Space, Tooltip, notification } from "antd";
-import { CheckCircleOutlined, ExclamationCircleTwoTone } from "@ant-design/icons";
+import {
+  CheckCircleOutlined,
+  ExclamationCircleTwoTone,
+} from "@ant-design/icons";
 import "./unitsSelector.css";
 import PropTypes from "prop-types";
 import { updatePartUnits } from "./updatePartUnits";
 import { getPartData } from "./getPartData";
 
-const UnitsSelector = ({ partId }) => {
-  const [units, setUnits] = useState(undefined);
+const UnitsSelector = ({ partId, units, setUnits }) => {
   const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
@@ -23,6 +25,7 @@ const UnitsSelector = ({ partId }) => {
     };
 
     getCurrentUnits();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partId]);
 
   const handleChange = async (value) => {
@@ -38,7 +41,8 @@ const UnitsSelector = ({ partId }) => {
       console.error("Error updating units:", error);
       notification.error({
         message: "Failed to update units",
-        description: "Try again in a few minutes. Report the error to ryan@propermesh.com if the problem persists.",
+        description:
+          "Try again in a few minutes. Report the error to ryan@propermesh.com if the problem persists.",
         icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
         placement: "top",
         duration: 4.5,
@@ -82,6 +86,8 @@ const UnitsSelector = ({ partId }) => {
 
 UnitsSelector.propTypes = {
   partId: PropTypes.string,
+  units: PropTypes.string,
+  setUnits: PropTypes.func,
 };
 
 export default UnitsSelector;

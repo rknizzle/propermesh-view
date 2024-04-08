@@ -7,7 +7,8 @@ import { downloadBlobToLocalMachine } from "./downloadBlob";
 const ViewPartsButton = ({
   setFileFor3dModel,
   setPartId,
-  setAutoPopAnalysis,
+  setGeoData,
+  setListOfThicknessData,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
@@ -18,7 +19,10 @@ const ViewPartsButton = ({
       .then((response) => response.json())
       .then((data) => {
         if (data.geometry_analysis) {
-          setAutoPopAnalysis(data.geometry_analysis);
+          setGeoData(data.geometry_analysis);
+        }
+        if (data.thickness_analyses) {
+          setListOfThicknessData(data.thickness_analyses);
         }
       });
   };
@@ -114,7 +118,8 @@ const ViewPartsButton = ({
 ViewPartsButton.propTypes = {
   setFileFor3dModel: PropTypes.func,
   setPartId: PropTypes.func,
-  setAutoPopAnalysis: PropTypes.func,
+  setGeoData: PropTypes.func,
+  setListOfThicknessData: PropTypes.func,
 };
 
 export default ViewPartsButton;

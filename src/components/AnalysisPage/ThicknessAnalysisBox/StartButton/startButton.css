@@ -1,13 +1,13 @@
-#geo-start-button.ant-btn {
+#thick-start-button.ant-btn {
   background-color: #3e498f;
 }
 
-#geo-start-button.ant-btn[disabled] {
+#thick-start-button.ant-btn[disabled] {
   opacity: 0.4 !important;
   color: white !important;
 }
 
-#geo-start-button .ant-spin-dot-item {
+#thick-start-button .ant-spin-dot-item {
   background-color: #3e498f;
 }
 
