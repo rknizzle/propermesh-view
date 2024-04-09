@@ -11,7 +11,9 @@ function App() {
   const contentRef = useRef(null);
   const [isStickyFooter, setIsStickyFooter] = useState(false);
   const headerRef = useRef(null);
+  const footerRef = useRef(null);
   const [headerHeight, setHeaderHeight] = useState(0);
+  const [footerHeight, setFooterHeight] = useState(0);
 
   useEffect(() => {
     const contentHeight = contentRef.current.getBoundingClientRect().height;
@@ -23,16 +25,23 @@ function App() {
 
   useEffect(() => {
     setHeaderHeight(headerRef.current.offsetHeight);
+    setFooterHeight(footerRef.current.offsetHeight);
   }, []);
 
   return (
     <AuthProvider>
       <>
         <Header ref={headerRef} />
-        <div ref={contentRef} style={{ marginTop: `${headerHeight}px` }}>
+        <div
+          ref={contentRef}
+          style={{
+            marginTop: `${headerHeight + 10}px`,
+            marginBottom: `${footerHeight + 10}px`,
+          }}
+        >
           <Outlet />
         </div>
-        <Footer sticky={isStickyFooter} />
+        <Footer ref={footerRef} sticky={isStickyFooter} />
       </>
     </AuthProvider>
   );
