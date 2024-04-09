@@ -3,6 +3,7 @@ import { Button, Modal, List } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { downloadBlobToLocalMachine } from "./downloadBlob";
+import "./viewPartsButton.css";
 
 const ViewPartsButton = ({
   setFileFor3dModel,
@@ -69,13 +70,7 @@ const ViewPartsButton = ({
           </Button>,
         ]}
       >
-        <div
-          style={{
-            height: 400,
-            overflow: "auto",
-            padding: "0 16px",
-          }}
-        >
+        <div id="parts-list-container">
           <List
             dataSource={partsData}
             renderItem={(part) => (

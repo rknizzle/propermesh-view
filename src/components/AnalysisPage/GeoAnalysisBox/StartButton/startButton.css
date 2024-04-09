@@ -11,7 +11,7 @@
   background-color: #3e498f;
 }
 
-#checkmark-icon {
+#geo-checkmark-icon {
   position: absolute;
   left: 5.6rem;
   top: 15%;
@@ -19,10 +19,14 @@
   font-size: 24px;
 }
 
-#failure-icon {
+#geo-failure-icon {
   position: absolute;
   left: 5.6rem;
   top: 15%;
   color: rgb(129, 1, 1);
   font-size: 24px;
+}
+
+#geo-spin-icon {
+  margin-left: 10px;
 }

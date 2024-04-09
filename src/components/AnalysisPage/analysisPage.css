@@ -1,0 +1,16 @@
+#geo-hoverInfo-thick-container {
+  margin-left: 16px;
+}
+
+#hoverInfo-container {
+  margin-top: 12px;
+}
+
+#hoverInfo-span {
+  font-size: 0.8rem;
+  color: black;
+}
+
+#hoverInfo-icon {
+  color: #3e498f;
+}

@@ -7,6 +7,7 @@ import GeoAnalysisBox from "./GeoAnalysisBox/GeoAnalysisBox";
 import ThickAnalysisBox from "./ThicknessAnalysisBox/ThickAnalysisBox";
 import { Row, Col } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import "./analysisPage.css";
 
 const AnalysisPage = () => {
   const [fileFor3dModel, setFileFor3dModel] = useState(null);
@@ -18,27 +19,29 @@ const AnalysisPage = () => {
 
   return (
     <div>
-      <Row>
+      <Row gutter={16}>
         <Col span={6}>
-          <GeoAnalysisBox
-            partId={partId}
-            geoData={geoData}
-            setGeoData={setGeoData}
-          />
-          <div style={{ marginTop: 12 }}>
-            <span style={{ fontSize: "0.7rem", color: "black" }}>
-              <InfoCircleOutlined style={{ color: "#3e498f" }} /> indicates
-              precise value available on hover
-            </span>
+          <div id="geo-hoverInfo-thick-container">
+            <GeoAnalysisBox
+              partId={partId}
+              geoData={geoData}
+              setGeoData={setGeoData}
+            />
+            <div id="hoverInfo-container">
+              <span id="hoverInfo-span">
+                <InfoCircleOutlined id="hoverInfo-icon" /> indicates precise
+                value available on hover
+              </span>
+            </div>
+            <ThickAnalysisBox
+              partId={partId}
+              listOfThicknessData={listOfThicknessData}
+              //setListOfThicknessData and units headed to start button
+              setListOfThicknessData={setListOfThicknessData}
+              units={units}
+            />
+            <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
           </div>
-          <ThickAnalysisBox
-            partId={partId}
-            listOfThicknessData={listOfThicknessData}
-            //setListOfThicknessData and units headed to start button
-            setListOfThicknessData={setListOfThicknessData}
-            units={units}
-          />
-          <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
         </Col>
         <Col span={18}>
           <ModelViewer fileFor3dModel={fileFor3dModel} />

@@ -22,12 +22,35 @@
   margin-bottom: 25px;
 }
 
-#thick-start-button {
-  width: 6rem;
+#thin-area-message-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 #thick-bottom-row {
   margin-top: 15px;
+}
+
+#thick-start-button {
+  width: 6rem;
+}
+
+#decimal-input-container {
+  display: flex;
+  align-items: center;
+  margin-right: 3px;
+}
+
+#threshold-input-label {
+  margin-right: 10px;
+}
+
+#listOfThicknessData-container {
+  margin-top: 5px;
+  margin-left: 5px;
+  padding-bottom: 5px;
 }
 
 .ant-segmented-item {

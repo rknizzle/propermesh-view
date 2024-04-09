@@ -8,9 +8,17 @@
   display: inline-block;
 }
 
+#units-selector {
+  width: 120px;
+}
+
 #unit-update-success-icon {
   position: absolute;
+  top: 25%;
+  margin-left: 5px;
   animation: fadeInOut 2s;
+  color: green;
+  font-size: 16px;
 }
 
 .enabledSelect .ant-select-selection-placeholder {

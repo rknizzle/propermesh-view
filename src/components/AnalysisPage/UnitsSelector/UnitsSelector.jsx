@@ -63,8 +63,8 @@ const UnitsSelector = ({ partId, units, setUnits }) => {
         <Tooltip title={tooltipTitle} placement="top">
           <Select
             placeholder="Select units"
+            id="units-selector"
             value={units}
-            style={{ width: 120 }}
             onChange={handleChange}
             disabled={isDisabled}
             options={[
@@ -73,12 +73,7 @@ const UnitsSelector = ({ partId, units, setUnits }) => {
             ]}
           />
         </Tooltip>
-        {showSuccess && (
-          <CheckCircleOutlined
-            style={{ color: "green", fontSize: "16px" }}
-            id="unit-update-success-icon"
-          />
-        )}
+        {showSuccess && <CheckCircleOutlined id="unit-update-success-icon" />}
       </div>
     </Space>
   );

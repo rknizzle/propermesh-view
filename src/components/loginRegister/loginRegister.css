@@ -1,3 +1,7 @@
+.login-register-row {
+  min-height: 80vh;
+}
+
 .loginregister-font {
   font-family: "Roboto", sans-serif;
 }

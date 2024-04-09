@@ -69,17 +69,13 @@ const ThickAnalysisBox = ({
           <DisplayStatistic title="Thin Surface Area" value={thinSurfaceArea} />
         </Col>
         <Col span={12}>
-          <div
-            style={{ marginTop: 20, display: "flex", justifyContent: "center" }}
-          >
-            {renderThinAreaMessage()}
-          </div>
+          <div id="thin-area-message-container">{renderThinAreaMessage()}</div>
         </Col>
       </Row>
       <Row id="thick-bottom-row">
         <Col span={14} offset={1}>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <div style={{ marginRight: 16 }}>Threshold:</div>
+          <div id="decimal-input-container">
+            <div id="threshold-input-label">Threshold:</div>
             <DecimalInput value={thresholdValue} onChange={onChange} />
             (mm)
           </div>
@@ -100,7 +96,7 @@ const ThickAnalysisBox = ({
         </Col>
       </Row>
       {listOfThicknessData && (
-        <div style={{ marginTop: ".5em" }}>
+        <div id="listOfThicknessData-container">
           <Row>
             <Segmented
               options={listOfThicknessData.map((data) => ({

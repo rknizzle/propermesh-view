@@ -81,14 +81,11 @@ const StartButton = ({
         disabled={isDisabled}
       >
         {isLoading ? "Analyzing..." : analysisComplete ? "Complete" : "Start"}
-        {isLoading ? <Spin style={{ marginLeft: "10px" }} /> : null}
-        {showCheckmark ? <CheckCircleOutlined id="checkmark-icon" /> : null}
-        {showFailure ? (
-          <CloseCircleOutlined
-            style={{ marginLeft: "10px" }}
-            id="failure-icon"
-          />
+        {isLoading ? <Spin id="thick-spin-icon" /> : null}
+        {showCheckmark ? (
+          <CheckCircleOutlined id="thick-checkmark-icon" />
         ) : null}
+        {showFailure ? <CloseCircleOutlined id="thick-failure-icon" /> : null}
       </Button>
     </Tooltip>
   );
