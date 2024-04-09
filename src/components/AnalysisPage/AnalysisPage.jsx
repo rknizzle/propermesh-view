@@ -18,7 +18,6 @@ const AnalysisPage = () => {
 
   return (
     <div>
-      <h1 style={{ fontFamily: '"Roboto", sans-serif' }}>Analysis Page</h1>
       <Row>
         <Col span={6}>
           <GeoAnalysisBox
@@ -39,20 +38,28 @@ const AnalysisPage = () => {
             setListOfThicknessData={setListOfThicknessData}
             units={units}
           />
+          <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
+        </Col>
+        <Col span={18}>
+          <ModelViewer fileFor3dModel={fileFor3dModel} />
         </Col>
       </Row>
-      <UploadPartButton
-        setFileFor3dModel={setFileFor3dModel}
-        setPartId={setPartId}
-      />
-      <ViewPartsButton
-        setFileFor3dModel={setFileFor3dModel}
-        setPartId={setPartId}
-        setGeoData={setGeoData}
-        setListOfThicknessData={setListOfThicknessData}
-      />
-      <ModelViewer fileFor3dModel={fileFor3dModel} />
-      <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
+      <Row>
+        <Col span={7}>
+          <UploadPartButton
+            setFileFor3dModel={setFileFor3dModel}
+            setPartId={setPartId}
+          />
+        </Col>
+        <Col span={7}>
+          <ViewPartsButton
+            setFileFor3dModel={setFileFor3dModel}
+            setPartId={setPartId}
+            setGeoData={setGeoData}
+            setListOfThicknessData={setListOfThicknessData}
+          />
+        </Col>
+      </Row>
     </div>
   );
 };
