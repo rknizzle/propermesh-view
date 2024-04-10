@@ -35,7 +35,7 @@ function App() {
         <div
           ref={contentRef}
           style={{
-            marginTop: `${headerHeight + 10}px`,
+            marginTop: `${headerHeight}px`,
             marginBottom: `${footerHeight + 10}px`,
           }}
         >
