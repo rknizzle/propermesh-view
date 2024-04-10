@@ -11,6 +11,8 @@ import { getPartData } from "./getPartData";
 
 const UnitsSelector = ({ partId, units, setUnits }) => {
   const [showSuccess, setShowSuccess] = useState(false);
+  //used to maintain the purple border around the select when it is active
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     const getCurrentUnits = async () => {
@@ -62,6 +64,9 @@ const UnitsSelector = ({ partId, units, setUnits }) => {
         <span id="units-selector-label">Units: </span>
         <Tooltip title={tooltipTitle} placement="top">
           <Select
+            onMouseDown={() => setIsActive(true)}
+            onBlur={() => setIsActive(false)}
+            className={isActive ? "active-select" : ""}
             placeholder="Select units"
             id="units-selector"
             value={units}

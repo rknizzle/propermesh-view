@@ -40,8 +40,8 @@ const AnalysisPage = () => {
               setListOfThicknessData={setListOfThicknessData}
               units={units}
             />
-            <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
           </div>
+          <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
         </Col>
         <Col span={18}>
           <ModelViewer fileFor3dModel={fileFor3dModel} />

@@ -6,6 +6,9 @@
 #thick-analysis-box {
   background-color: rgba(128, 128, 128, 0.191);
   border-radius: 15px;
+  position: absolute;
+  width: 100%;
+  top: 105%;
 }
 
 #thick-analysis-box .ant-statistic-content-value {

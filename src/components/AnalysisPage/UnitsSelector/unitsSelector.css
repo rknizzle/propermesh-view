@@ -6,10 +6,24 @@
 #select-container {
   position: relative;
   display: inline-block;
+  margin-top: 153%;
 }
 
-#units-selector {
-  width: 120px;
+.ant-select-selector {
+  width: 120px !important;
+}
+
+.ant-select-selector:hover {
+  border-color: #493e8f !important;
+}
+
+.active-select .ant-select-selector {
+  border-color: #493e8f !important;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: #6a73a3 !important;
+  color: white !important;
 }
 
 #unit-update-success-icon {

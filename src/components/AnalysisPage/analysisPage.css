@@ -1,5 +1,6 @@
 #geo-hoverInfo-thick-container {
   margin-left: 16px;
+  position: relative;
 }
 
 #hoverInfo-container {
