@@ -2,6 +2,7 @@ import { useState } from "react";
 import { InboxOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import PropTypes from "prop-types";
+import "./uploadPartButton.css";
 
 const { Dragger } = Upload;
 
@@ -65,7 +66,7 @@ const UploadPartButton = ({ setFileFor3dModel, setPartId }) => {
   return (
     <Dragger {...props}>
       <p className="ant-upload-drag-icon">
-        <InboxOutlined />
+        <InboxOutlined id="drag-icon" />
       </p>
       <p className="ant-upload-text">
         Click or drag file to this area to upload

@@ -13,7 +13,7 @@
 }
 
 #view-parts-button:hover {
-  background-color: rgb(195, 195, 195);
-  border: none;
-  text-shadow: white 0 0 10px;
+  background-color: rgba(128, 128, 128, 0.191);
+  border: 1px solid white;
+  text-shadow: #493e8f 0 0 35px;
 }

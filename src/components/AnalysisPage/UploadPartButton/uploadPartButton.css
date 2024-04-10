@@ -1,0 +1,18 @@
+.ant-upload-drag {
+  background-color: white !important;
+  border: 1px solid #3e498f !important;
+}
+
+.ant-upload-drag:hover {
+  border: 1px solid white !important;
+  background-color: rgba(128, 128, 128, 0.191) !important;
+}
+
+#drag-icon {
+  color: #3e498f !important;
+}
+
+.ant-upload-drag:hover .ant-upload-text {
+  color: #3e498f !important;
+  text-shadow: #493e8f 0 0 35px;
+}
