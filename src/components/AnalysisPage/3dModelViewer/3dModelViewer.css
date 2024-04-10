@@ -1,6 +1,9 @@
 #model-canvas {
   width: 100%;
   height: 100%;
-  background-color: rgb(195, 195, 195);
+  border: 1px dotted #493e8f;
   border-radius: 15px;
 }
+
+/* 3d model container grows when you add a model to that
+TODO: PREVENT THAT */

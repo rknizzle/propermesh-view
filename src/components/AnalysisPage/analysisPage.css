@@ -16,13 +16,19 @@
   color: #3e498f;
 }
 
+#model-viewer-container {
+  height: 100%;
+  width: 98%;
+  margin-top: 12px;
+}
+
 #view-parts-button-container {
   height: 100%;
   width: 97.5%;
 }
 
 #upload-view-info-row {
-  margin-top: 12px;
+  margin-top: 40px;
 }
 
 #upload-part-button-container {

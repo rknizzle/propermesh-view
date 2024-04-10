@@ -44,7 +44,9 @@ const AnalysisPage = () => {
           <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
         </Col>
         <Col span={18}>
-          <ModelViewer fileFor3dModel={fileFor3dModel} />
+          <div id="model-viewer-container">
+            <ModelViewer fileFor3dModel={fileFor3dModel} />
+          </div>
         </Col>
       </Row>
       <Row gutter={16} id="upload-view-info-row">
