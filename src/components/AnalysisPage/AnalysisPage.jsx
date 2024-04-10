@@ -48,7 +48,7 @@ const AnalysisPage = () => {
         </Col>
       </Row>
       <Row gutter={16} id="upload-view-info-row">
-        <Col span={8}>
+        <Col span={12}>
           <div id="upload-part-button-container">
             <UploadPartButton
               setFileFor3dModel={setFileFor3dModel}
@@ -56,7 +56,7 @@ const AnalysisPage = () => {
             />
           </div>
         </Col>
-        <Col span={7}>
+        <Col span={12}>
           <div id="view-parts-button-container">
             <ViewPartsButton
               setFileFor3dModel={setFileFor3dModel}
