@@ -3,3 +3,17 @@
   overflow: auto;
   padding: 0 16px;
 }
+
+#view-parts-button {
+  width: 100%;
+  height: 100%;
+  border-color: #493e8f;
+  color: #493e8f;
+  font-size: 2rem;
+}
+
+#view-parts-button:hover {
+  background-color: rgb(195, 195, 195);
+  border: none;
+  text-shadow: white 0 0 10px;
+}

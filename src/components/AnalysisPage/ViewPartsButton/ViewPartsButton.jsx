@@ -57,7 +57,9 @@ const ViewPartsButton = ({
 
   return (
     <>
-      <Button onClick={clicked}>View Parts</Button>
+      <Button onClick={clicked} id="view-parts-button">
+        View Parts
+      </Button>
       <Modal
         title="Parts"
         open={modalOpen}

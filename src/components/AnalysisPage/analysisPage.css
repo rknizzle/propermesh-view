@@ -14,3 +14,16 @@
 #hoverInfo-icon {
   color: #3e498f;
 }
+
+#view-parts-button-container {
+  height: 100%;
+  width: 100%;
+}
+
+#upload-view-info-row {
+  margin-top: 12px;
+}
+
+#upload-part-button-container {
+  margin-left: 16px;
+}

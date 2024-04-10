@@ -47,20 +47,24 @@ const AnalysisPage = () => {
           <ModelViewer fileFor3dModel={fileFor3dModel} />
         </Col>
       </Row>
-      <Row>
-        <Col span={7}>
-          <UploadPartButton
-            setFileFor3dModel={setFileFor3dModel}
-            setPartId={setPartId}
-          />
+      <Row gutter={16} id="upload-view-info-row">
+        <Col span={8}>
+          <div id="upload-part-button-container">
+            <UploadPartButton
+              setFileFor3dModel={setFileFor3dModel}
+              setPartId={setPartId}
+            />
+          </div>
         </Col>
         <Col span={7}>
-          <ViewPartsButton
-            setFileFor3dModel={setFileFor3dModel}
-            setPartId={setPartId}
-            setGeoData={setGeoData}
-            setListOfThicknessData={setListOfThicknessData}
-          />
+          <div id="view-parts-button-container">
+            <ViewPartsButton
+              setFileFor3dModel={setFileFor3dModel}
+              setPartId={setPartId}
+              setGeoData={setGeoData}
+              setListOfThicknessData={setListOfThicknessData}
+            />
+          </div>
         </Col>
       </Row>
     </div>
