@@ -61,16 +61,11 @@ const ViewPartsButton = ({
         View Parts
       </Button>
       <Modal
-        title="Parts"
+        title="PARTS"
         open={modalOpen}
-        onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
         width={768}
-        footer={[
-          <Button key="close" onClick={() => setModalOpen(false)}>
-            Close
-          </Button>,
-        ]}
+        footer={null}
       >
         <div id="parts-list-container">
           <List
@@ -83,7 +78,7 @@ const ViewPartsButton = ({
                     type="link"
                     key={part.id}
                     size="large"
-                    icon={<DownloadOutlined />}
+                    icon={<DownloadOutlined id="download-icon" />}
                     onClick={() =>
                       downloadFileToLocalMachine(part.id, part.name)
                     }
@@ -98,11 +93,7 @@ const ViewPartsButton = ({
                 }}
                 className="part-list-item-row"
               >
-                <List.Item.Meta
-                  title={part.name}
-                  key={part.id}
-                  description={part.file_size_bytes + " bytes"}
-                />
+                <List.Item.Meta title={part.name} key={part.id} />
               </List.Item>
             )}
           />
