@@ -1,4 +1,7 @@
 .ant-upload-drag {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   background-color: white !important;
   border: 1px solid #3e498f !important;
 }

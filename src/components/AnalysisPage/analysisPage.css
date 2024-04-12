@@ -24,15 +24,16 @@
 }
 
 #view-parts-button-container {
-  height: 100%;
+  height: 85%;
   width: 97.5%;
 }
 
 #upload-view-info-row {
   margin-top: 40px;
-  margin-bottom: 4.5rem;
+  margin-bottom: 3rem;
 }
 
 #upload-part-button-container {
+  height: 85%;
   margin-left: 16px;
 }
