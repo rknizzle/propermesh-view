@@ -1,12 +1,11 @@
-import { forwardRef } from "react";
 import { Row, Col } from "antd";
 import "./footer.css";
 import PropTypes from "prop-types";
 
-const Footer = forwardRef((sticky, ref) => {
+const Footer = ({ sticky }) => {
   const footerClass = `footer-container ${sticky ? "sticky" : ""}`;
   return (
-    <div ref={ref} className={footerClass}>
+    <div className={footerClass}>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col id="footer-title">
           <img id="footer-logo" src="assets/favicon.png" alt="" />
@@ -24,9 +23,7 @@ const Footer = forwardRef((sticky, ref) => {
       </Row>
     </div>
   );
-});
-
-Footer.displayName = "Footer";
+};
 
 Footer.propTypes = {
   sticky: PropTypes.bool,

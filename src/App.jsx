@@ -11,37 +11,42 @@ function App() {
   const contentRef = useRef(null);
   const [isStickyFooter, setIsStickyFooter] = useState(false);
   const headerRef = useRef(null);
-  const footerRef = useRef(null);
   const [headerHeight, setHeaderHeight] = useState(0);
-  const [footerHeight, setFooterHeight] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    //used for when you adjust the height of the window
+    const handleResize = () => {
+      setViewportHeight(window.innerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const contentHeight = contentRef.current.getBoundingClientRect().height;
-    const viewportHeight = window.innerHeight;
-    // Determine if the footer should be sticky
-    // sets isStickerFooter to true if the content height is less than the viewport height, false otherwise
-    setIsStickyFooter(contentHeight < viewportHeight);
-  }, [location.pathname]); // Rerun this effect if the route changes
+    // 84 is the height of the footer across all screen sizes, using forwardRef caused
+    // the footer to always be sticky for some reason. This is a hacky fix for now
+    const workingHeight = contentHeight + headerHeight + 84;
+    setIsStickyFooter(workingHeight < viewportHeight);
+  }, [location.pathname, headerHeight, viewportHeight]);
 
   useEffect(() => {
     setHeaderHeight(headerRef.current.offsetHeight);
-    setFooterHeight(footerRef.current.offsetHeight);
   }, []);
 
   return (
     <AuthProvider>
       <>
         <Header ref={headerRef} />
-        <div
-          ref={contentRef}
-          style={{
-            marginTop: `${headerHeight}px`,
-            marginBottom: `${footerHeight + 10}px`,
-          }}
-        >
+        <div ref={contentRef} style={{ marginTop: `${headerHeight}px` }}>
           <Outlet />
         </div>
-        <Footer ref={footerRef} sticky={isStickyFooter} />
+        <Footer sticky={isStickyFooter} />
       </>
     </AuthProvider>
   );
