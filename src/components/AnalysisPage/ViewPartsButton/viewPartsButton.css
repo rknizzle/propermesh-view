@@ -24,7 +24,7 @@
   text-align: center;
   display: block;
   font-size: 25px !important;
-  text-shadow: #493e8f 0 0 25px;
+  text-shadow: #493e8f 0 0 35px;
 }
 
 .ant-list-item-meta-title {
@@ -39,8 +39,8 @@
 
 .part-list-item-row:hover .ant-list-item-meta-title {
   color: #493e8f !important;
-  text-shadow: #493e8f 0 0 25px;
-  transform: translate(25%) scale(1.1);
+  text-shadow: #493e8f 0 0 35px;
+  transform: translate(10%) scale(1.1);
 }
 
 #download-icon {
