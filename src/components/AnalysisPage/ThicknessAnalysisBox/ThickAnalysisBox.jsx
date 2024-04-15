@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Row, Col, Typography, Segmented } from "antd";
+import { Row, Col, Typography, Segmented, Tooltip } from "antd";
 const { Text } = Typography;
 import "./thickAnalysisBox.css";
 import DisplayStatistic from "../DisplayStatistic";
@@ -89,6 +89,16 @@ const ThickAnalysisBox = ({
     return () => clearTimeout(timer);
   }, [partId]);
 
+  const isDisabled = units === null;
+
+  let tooltipTitle = "";
+
+  console.log(isDisabled);
+  if (isDisabled) {
+    tooltipTitle =
+      "Select units of measurement before entering a threshold value";
+  }
+
   return (
     <div id="thick-analysis-box">
       <h2 id="thick-analysis-title">Thickness Analysis</h2>
@@ -102,11 +112,17 @@ const ThickAnalysisBox = ({
       </Row>
       <Row id="thick-bottom-row">
         <Col span={14} offset={1}>
-          <div id="decimal-input-container">
-            <div id="threshold-input-label">Threshold:</div>
-            <DecimalInput value={thresholdValue} onChange={onChange} />
-            (mm)
-          </div>
+          <Tooltip title={tooltipTitle} placement="top">
+            <div id="decimal-input-container">
+              <div id="threshold-input-label">Threshold:</div>
+              <DecimalInput
+                value={thresholdValue}
+                onChange={onChange}
+                disabled={isDisabled}
+              />
+              (mm)
+            </div>
+          </Tooltip>
         </Col>
         <Col span={6}>
           <StartButton

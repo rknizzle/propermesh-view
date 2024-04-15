@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Input } from "antd";
 import PropTypes from "prop-types";
 
-const DecimalInput = ({ value, onChange }) => {
+const DecimalInput = ({ value, onChange, disabled }) => {
   const [inputValue, setInputValue] = useState("");
 
   // The inputValue controls what is displayed in the input field
@@ -37,12 +37,15 @@ const DecimalInput = ({ value, onChange }) => {
     }
   };
 
-  return <Input value={inputValue} onChange={handleChange} />;
+  return (
+    <Input value={inputValue} onChange={handleChange} disabled={disabled} />
+  );
 };
 
 DecimalInput.propTypes = {
   value: PropTypes.number,
   onChange: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 export default DecimalInput;

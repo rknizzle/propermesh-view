@@ -65,11 +65,9 @@ const StartButton = ({
       "View or upload a part to the viewer before running Thickness Analysis.";
   } else if (thresholdValue === null && units === null) {
     tooltipTitle =
-      "Enter a threshold value and select units of measurement to start analysis";
+      "Select units of measurement then enter a threshold value and to start analysis";
   } else if (thresholdValue === null) {
     tooltipTitle = "Enter a threshold value to start analysis";
-  } else if (units === null) {
-    tooltipTitle = "Select units of measurement to start analysis";
   }
 
   return (
