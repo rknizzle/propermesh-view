@@ -51,9 +51,33 @@
 }
 
 #listOfThicknessData-container {
+  position: relative;
+  max-height: 34px;
+  overflow-y: auto;
   margin-top: 5px;
   margin-left: 5px;
   padding-bottom: 5px;
+  scroll-snap-type: y mandatory;
+}
+
+#listOfThicknessData-container::-webkit-scrollbar {
+  width: 10px;
+}
+#listOfThicknessData-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#listOfThicknessData-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+#listOfThicknessData-container::-webkit-scrollbar-thumb:hover {
+  background: #6a73a3;
+}
+
+#listOfThicknessData-container .ant-col {
+  scroll-snap-align: start;
 }
 
 .ant-segmented-item {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Row, Col, Typography, Segmented } from "antd";
 const { Text } = Typography;
 import "./thickAnalysisBox.css";
@@ -19,6 +19,7 @@ const ThickAnalysisBox = ({
   const [selectedThreshold, setSelectedThreshold] = useState(null);
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [showCheckmark, setShowCheckmark] = useState(false);
+  const listOfThicknessDataContainerRef = useRef(null);
 
   useEffect(() => {
     setListOfThicknessData([]);
@@ -61,6 +62,19 @@ const ThickAnalysisBox = ({
     );
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const container = listOfThicknessDataContainerRef.current;
+      if (container && container.scrollHeight > container.clientHeight) {
+        container.scrollBy({ top: 100, behavior: "smooth" });
+        setTimeout(() => {
+          container.scrollBy({ top: -100, behavior: "smooth" });
+        }, 800);
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [partId]);
+
   return (
     <div id="thick-analysis-box">
       <h2 id="thick-analysis-title">Thickness Analysis</h2>
@@ -96,9 +110,13 @@ const ThickAnalysisBox = ({
         </Col>
       </Row>
       {listOfThicknessData && (
-        <div id="listOfThicknessData-container">
-          <Row wrap={true}>
+        <div
+          ref={listOfThicknessDataContainerRef}
+          id="listOfThicknessData-container"
+        >
+          <Row wrap={true} gutter={[0, 5]}>
             {listOfThicknessData.map((data) => (
+              //not sure about having the key be the threshold value
               <Col key={data.threshold}>
                 <Segmented
                   options={[
