@@ -7,7 +7,6 @@ import {
 import "./unitsSelector.css";
 import PropTypes from "prop-types";
 import { updatePartUnits } from "./updatePartUnits";
-import { getPartData } from "./getPartData";
 
 const UnitsSelector = ({ partId, units, setUnits }) => {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -15,18 +14,7 @@ const UnitsSelector = ({ partId, units, setUnits }) => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    const getCurrentUnits = async () => {
-      if (partId) {
-        try {
-          const data = await getPartData(partId);
-          setUnits(data.units);
-        } catch (error) {
-          console.error("Error getting part data:", error);
-        }
-      }
-    };
-
-    getCurrentUnits();
+    setUnits(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partId]);
 
