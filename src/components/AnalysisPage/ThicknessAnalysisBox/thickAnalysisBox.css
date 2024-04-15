@@ -60,6 +60,9 @@
   scroll-snap-type: y mandatory;
 }
 
+/* TODO: figure out how to apply below styles to non-webkit browsers, aka firefox 
+while keeping them available to webkit browsers */
+
 #listOfThicknessData-container::-webkit-scrollbar {
   width: 10px;
 }
