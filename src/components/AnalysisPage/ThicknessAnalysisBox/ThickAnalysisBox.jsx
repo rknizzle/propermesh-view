@@ -93,8 +93,9 @@ const ThickAnalysisBox = ({
 
   let tooltipTitle = "";
 
-  console.log(isDisabled);
-  if (isDisabled) {
+  if (!partId) {
+    tooltipTitle = "View or upload a part to the viewer.";
+  } else if (isDisabled) {
     tooltipTitle =
       "Select units of measurement before entering a threshold value";
   }
