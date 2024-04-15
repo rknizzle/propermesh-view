@@ -115,22 +115,24 @@ const ThickAnalysisBox = ({
           id="listOfThicknessData-container"
         >
           <Row wrap={true} gutter={[0, 5]}>
-            {listOfThicknessData.map((data) => (
-              //not sure about having the key be the threshold value
-              <Col key={data.threshold}>
-                <Segmented
-                  options={[
-                    {
-                      label: `${data.threshold}`,
-                      value: data.threshold,
-                      key: `${data.threshold}`,
-                    },
-                  ]}
-                  value={selectedThreshold}
-                  onChange={getSpecificDataRegardingThreshold}
-                />
-              </Col>
-            ))}
+            {listOfThicknessData
+              .filter((data) => data.units === units)
+              .map((data) => (
+                //not sure about having the key be the threshold value
+                <Col key={data.threshold}>
+                  <Segmented
+                    options={[
+                      {
+                        label: `${data.threshold}`,
+                        value: data.threshold,
+                        key: `${data.threshold}`,
+                      },
+                    ]}
+                    value={selectedThreshold}
+                    onChange={getSpecificDataRegardingThreshold}
+                  />
+                </Col>
+              ))}
           </Row>
         </div>
       )}
