@@ -41,7 +41,6 @@ const ViewPartsButton = ({
     fetch("/api/v0/parts")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPartsData(data);
         setModalOpen(true);
       });
