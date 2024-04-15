@@ -30,9 +30,23 @@ const ThickAnalysisBox = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partId]);
 
+  useEffect(() => {
+    //**reset state when units change
+    setThresholdValue(null);
+    setThinSurfaceArea(null);
+    setIsThin(null);
+    setSelectedThreshold(null);
+    setShowCheckmark(false);
+    setAnalysisComplete(false);
+  }, [units]);
+
+  console.log("listOfThicknessData", listOfThicknessData);
+
   const getSpecificDataRegardingThreshold = (value) => {
-    //get the data from listOfThicknessData that matches the threshold value
-    const data = listOfThicknessData.find((data) => data.threshold === value);
+    //get the data from listOfThicknessData that matches the threshold value and units value
+    const data = listOfThicknessData.find(
+      (data) => data.threshold === value && data.units === units //**added units check
+    );
     if (data) {
       setThinSurfaceArea(data.thin_surface_area);
       setIsThin(data.is_thin);
@@ -116,7 +130,7 @@ const ThickAnalysisBox = ({
         >
           <Row wrap={true} gutter={[0, 5]}>
             {listOfThicknessData
-              .filter((data) => data.units === units)
+              .filter((data) => data.units === units) //**remove data that doesn't match the selected units
               .map((data) => (
                 //not sure about having the key be the threshold value
                 <Col key={data.threshold}>
