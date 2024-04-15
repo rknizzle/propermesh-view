@@ -57,7 +57,7 @@ const StartButton = ({
   };
 
   const isDisabled =
-    !partId || analysisComplete || thresholdValue === null || units === null;
+    !partId || analysisComplete || !isValidThresholdInput(thresholdValue) || units === null;
 
   let tooltipTitle = "";
   if (!partId) {
@@ -66,8 +66,16 @@ const StartButton = ({
   } else if (thresholdValue === null && units === null) {
     tooltipTitle =
       "Select units of measurement then enter a threshold value and to start analysis";
-  } else if (thresholdValue === null) {
+  } else if (!isValidThresholdInput(thresholdValue)) {
     tooltipTitle = "Enter a threshold value to start analysis";
+  }
+
+  function isValidThresholdInput(threshold) {
+    if (threshold === "." || threshold === ".0" || threshold === "" || threshold === "0" || threshold === "0.0" || threshold === '0.') {
+      return false
+    }
+
+    return true
   }
 
   return (
@@ -91,7 +99,7 @@ const StartButton = ({
 
 StartButton.propTypes = {
   partId: PropTypes.string,
-  thresholdValue: PropTypes.number,
+  thresholdValue: PropTypes.string,
   setThinSurfaceArea: PropTypes.func,
   setIsThin: PropTypes.func,
   setListOfThicknessData: PropTypes.func,

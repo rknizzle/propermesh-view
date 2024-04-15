@@ -45,13 +45,13 @@ const ThickAnalysisBox = ({
   const getSpecificDataRegardingThreshold = (value) => {
     //get the data from listOfThicknessData that matches the threshold value and units value
     const data = listOfThicknessData.find(
-      (data) => data.threshold === value && data.units === units //**added units check
+      (data) => Number(data.threshold) == Number(value) && data.units === units //**added units check
     );
     if (data) {
       setThinSurfaceArea(data.thin_surface_area);
       setIsThin(data.is_thin);
       setThresholdValue(value);
-      setSelectedThreshold(value);
+      setSelectedThreshold(Number(value));
       setShowCheckmark(true);
       setAnalysisComplete(true);
     }
@@ -59,7 +59,7 @@ const ThickAnalysisBox = ({
 
   const onChange = (value) => {
     setThresholdValue(value);
-    setSelectedThreshold(value);
+    setSelectedThreshold(Number(value));
     setThinSurfaceArea(null);
     setIsThin(null);
     setShowCheckmark(false);
