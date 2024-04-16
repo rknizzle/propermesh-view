@@ -99,7 +99,10 @@ const StartButton = ({
 
 StartButton.propTypes = {
   partId: PropTypes.string,
-  thresholdValue: PropTypes.string,
+  thresholdValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   setThinSurfaceArea: PropTypes.func,
   setIsThin: PropTypes.func,
   setListOfThicknessData: PropTypes.func,

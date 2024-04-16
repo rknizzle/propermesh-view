@@ -29,7 +29,10 @@ const DecimalInput = ({ value, onChange, disabled }) => {
 };
 
 DecimalInput.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
 };
