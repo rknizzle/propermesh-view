@@ -50,6 +50,14 @@
   margin-right: 10px;
 }
 
+#threshold-input-label:hover,
+#thin-area-message-container:hover,
+#thick-analysis-box .ant-statistic-title:hover,
+#thick-analysis-title:hover,
+#threshold-mm:hover {
+  cursor: default;
+}
+
 #listOfThicknessData-container {
   position: relative;
   max-height: 34px;

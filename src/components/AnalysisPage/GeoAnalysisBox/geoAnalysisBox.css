@@ -27,7 +27,9 @@
 }
 
 .statistic-container .ant-statistic-content,
-#info-circle-explain {
+#info-circle-explain,
+#geo-analysis-box .ant-statistic-title:hover,
+#geo-analysis-title:hover {
   cursor: default;
 }
 

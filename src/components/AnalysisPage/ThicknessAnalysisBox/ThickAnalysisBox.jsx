@@ -110,7 +110,7 @@ const ThickAnalysisBox = ({
               units={units}
               partId={partId}
             />
-            (mm)
+            <div id="threshold-mm">(mm)</div>
           </div>
         </Col>
         <Col span={6}>

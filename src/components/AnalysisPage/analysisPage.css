@@ -12,6 +12,10 @@
   color: black;
 }
 
+#hoverInfo-span {
+  cursor: default;
+}
+
 #hoverInfo-icon {
   color: #493e8f;
 }

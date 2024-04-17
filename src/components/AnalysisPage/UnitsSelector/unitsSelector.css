@@ -3,6 +3,10 @@
   font-size: larger;
 }
 
+#units-selector-label:hover {
+  cursor: default;
+}
+
 #select-container {
   position: relative;
   display: inline-block;
