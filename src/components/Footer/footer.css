@@ -7,6 +7,9 @@
   background-color: gray;
 }
 
+/* if padding of .footer-container or height of #footer-logo is changed, 
+the height of the footer should be adjusted accordingly in app.jsx */
+
 #footer-logo {
   width: 6rem;
   height: 5rem;
