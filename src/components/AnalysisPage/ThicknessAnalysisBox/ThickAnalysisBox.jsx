@@ -149,7 +149,6 @@ const ThickAnalysisBox = ({
             {listOfThicknessData
               .filter((data) => data.units === units) //**remove data that doesn't match the selected units
               .map((data) => (
-                //not sure about having the key be the threshold value
                 <Col key={data.threshold}>
                   <Segmented
                     options={[
