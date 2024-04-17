@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Row, Col, Typography, Segmented, Tooltip } from "antd";
+import { Row, Col, Typography, Segmented } from "antd";
 const { Text } = Typography;
 import "./thickAnalysisBox.css";
 import DisplayStatistic from "../DisplayStatistic";
@@ -20,8 +20,6 @@ const ThickAnalysisBox = ({
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [showCheckmark, setShowCheckmark] = useState(false);
   const listOfThicknessDataContainerRef = useRef(null);
-  const [tooltipTitle, setTooltipTitle] = useState("");
-  const isDisabled = units === null;
 
   useEffect(() => {
     setListOfThicknessData([]);
@@ -91,16 +89,6 @@ const ThickAnalysisBox = ({
     return () => clearTimeout(timer);
   }, [partId]);
 
-  useEffect(() => {
-    if (!partId) {
-      setTooltipTitle("View or upload a part to the viewer.");
-    } else if (isDisabled) {
-      setTooltipTitle(
-        "Select units of measurement before entering a threshold value"
-      );
-    }
-  }, [partId, isDisabled]);
-
   return (
     <div id="thick-analysis-box">
       <h2 id="thick-analysis-title">Thickness Analysis</h2>
@@ -114,17 +102,16 @@ const ThickAnalysisBox = ({
       </Row>
       <Row id="thick-bottom-row">
         <Col span={14} offset={1}>
-          <Tooltip title={tooltipTitle} placement="top">
-            <div id="decimal-input-container">
-              <div id="threshold-input-label">Threshold:</div>
-              <DecimalInput
-                value={thresholdValue}
-                onChange={onChange}
-                disabled={isDisabled}
-              />
-              (mm)
-            </div>
-          </Tooltip>
+          <div id="decimal-input-container">
+            <div id="threshold-input-label">Threshold:</div>
+            <DecimalInput
+              value={thresholdValue}
+              onChange={onChange}
+              units={units}
+              partId={partId}
+            />
+            (mm)
+          </div>
         </Col>
         <Col span={6}>
           <StartButton

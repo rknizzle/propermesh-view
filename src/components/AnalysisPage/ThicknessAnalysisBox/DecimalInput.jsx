@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { Input } from "antd";
+import { Input, Tooltip } from "antd";
 import PropTypes from "prop-types";
 
-const DecimalInput = ({ value, onChange, disabled }) => {
+const DecimalInput = ({ value, onChange, units, partId }) => {
   const [inputValue, setInputValue] = useState("");
+  const [tooltipTitle, setTooltipTitle] = useState("");
+  const disabled = units === null;
 
   // The inputValue controls what is displayed in the input field
   // allowing us to see values like ".0" or "."
@@ -37,15 +39,32 @@ const DecimalInput = ({ value, onChange, disabled }) => {
     }
   };
 
+  useEffect(() => {
+    if (!partId) {
+      setTooltipTitle("View or upload a part to the viewer.");
+    } else if (disabled) {
+      setTooltipTitle(
+        "Select units of measurement before entering a threshold value"
+      );
+    } else {
+      setTooltipTitle("");
+    }
+  }, [partId, disabled]);
+
   return (
-    <Input value={inputValue} onChange={handleChange} disabled={disabled} />
+    <>
+      <Tooltip title={tooltipTitle} placement="top">
+        <Input value={inputValue} onChange={handleChange} disabled={disabled} />
+      </Tooltip>
+    </>
   );
 };
 
 DecimalInput.propTypes = {
   value: PropTypes.number,
   onChange: PropTypes.func,
-  disabled: PropTypes.bool,
+  partId: PropTypes.string,
+  units: PropTypes.string,
 };
 
 export default DecimalInput;
