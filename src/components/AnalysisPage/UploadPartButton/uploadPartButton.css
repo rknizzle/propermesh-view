@@ -3,7 +3,7 @@
   justify-content: center;
   flex-direction: column;
   background-color: white !important;
-  border: 1px solid #3e498f !important;
+  border: 1px solid #493e8f !important;
 }
 
 .ant-upload-drag:hover {
@@ -12,10 +12,10 @@
 }
 
 #drag-icon {
-  color: #3e498f !important;
+  color: #493e8f !important;
 }
 
 .ant-upload-drag:hover .ant-upload-text {
-  color: #3e498f !important;
+  color: #493e8f !important;
   text-shadow: #493e8f 0 0 35px;
 }
