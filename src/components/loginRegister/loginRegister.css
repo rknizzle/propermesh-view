@@ -7,17 +7,17 @@
 }
 
 .form-layout {
-  box-shadow: 0px 0px 25px 0px #d4dafd;
+  box-shadow: 0px 0px 25px 0px #493e8f32;
   border-radius: 10px;
 }
 
 .loginregister-toggle {
-  color: #5e69a7;
+  color: #493e8f9f;
   font-weight: bold;
 }
 
 .loginregister-toggle:hover {
-  color: #3f2090;
+  color: #493e8f;
   cursor: pointer;
 }
 
