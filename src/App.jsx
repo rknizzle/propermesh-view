@@ -13,10 +13,9 @@ function App() {
   const headerRef = useRef(null);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
-  // 84 is the height of the footer across all screen sizes
-  // if padding of .footer-container or height of #footer-logo is changed in footer.css
-  // then this value will need to be updated
-  const FOOTER_HEIGHT = 84;
+  // 85 is the height of the footer across all screen sizes
+  // If this value changes, then update the height of .footer-container in footer.css
+  const FOOTER_HEIGHT = 85;
 
   useEffect(() => {
     //used for when you adjust the height of the window
