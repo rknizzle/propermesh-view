@@ -12,14 +12,29 @@ function App() {
   const [isStickyFooter, setIsStickyFooter] = useState(false);
   const headerRef = useRef(null);
   const [headerHeight, setHeaderHeight] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  // 85 is the height of the footer across all screen sizes
+  // If this value changes, then update the height of .footer-container in footer.css
+  const FOOTER_HEIGHT = 85;
+
+  useEffect(() => {
+    //used for when you adjust the height of the window
+    const handleResize = () => {
+      setViewportHeight(window.innerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const contentHeight = contentRef.current.getBoundingClientRect().height;
-    const viewportHeight = window.innerHeight;
-    // Determine if the footer should be sticky
-    // sets isStickerFooter to true if the content height is less than the viewport height, false otherwise
-    setIsStickyFooter(contentHeight < viewportHeight);
-  }, [location.pathname]); // Rerun this effect if the route changes
+    const workingHeight = contentHeight + headerHeight + FOOTER_HEIGHT;
+    setIsStickyFooter(workingHeight < viewportHeight);
+  }, [location.pathname, headerHeight, viewportHeight]);
 
   useEffect(() => {
     setHeaderHeight(headerRef.current.offsetHeight);

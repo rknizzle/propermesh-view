@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Select, Space, Tooltip, notification } from "antd";
 import {
   CheckCircleOutlined,
@@ -7,26 +7,11 @@ import {
 import "./unitsSelector.css";
 import PropTypes from "prop-types";
 import { updatePartUnits } from "./updatePartUnits";
-import { getPartData } from "./getPartData";
 
 const UnitsSelector = ({ partId, units, setUnits }) => {
   const [showSuccess, setShowSuccess] = useState(false);
-
-  useEffect(() => {
-    const getCurrentUnits = async () => {
-      if (partId) {
-        try {
-          const data = await getPartData(partId);
-          setUnits(data.units);
-        } catch (error) {
-          console.error("Error getting part data:", error);
-        }
-      }
-    };
-
-    getCurrentUnits();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [partId]);
+  //used to maintain the purple border around the select when it is active
+  const [isActive, setIsActive] = useState(false);
 
   const handleChange = async (value) => {
     try {
@@ -62,9 +47,12 @@ const UnitsSelector = ({ partId, units, setUnits }) => {
         <span id="units-selector-label">Units: </span>
         <Tooltip title={tooltipTitle} placement="top">
           <Select
+            onMouseDown={() => setIsActive(true)}
+            onBlur={() => setIsActive(false)}
+            className={isActive ? "active-select" : ""}
             placeholder="Select units"
+            id="units-selector"
             value={units}
-            style={{ width: 120 }}
             onChange={handleChange}
             disabled={isDisabled}
             options={[
@@ -73,12 +61,7 @@ const UnitsSelector = ({ partId, units, setUnits }) => {
             ]}
           />
         </Tooltip>
-        {showSuccess && (
-          <CheckCircleOutlined
-            style={{ color: "green", fontSize: "16px" }}
-            id="unit-update-success-icon"
-          />
-        )}
+        {showSuccess && <CheckCircleOutlined id="unit-update-success-icon" />}
       </div>
     </Space>
   );

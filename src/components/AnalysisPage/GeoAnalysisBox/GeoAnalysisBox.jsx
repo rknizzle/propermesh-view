@@ -23,7 +23,6 @@ const GeoAnalysisBox = ({ partId, geoData, setGeoData }) => {
   }, [partId]);
 
   useEffect(() => {
-    console.log(geoData);
     if (geoData) {
       setVolume(geoData.volume);
       setSurfaceArea(geoData.surface_area);

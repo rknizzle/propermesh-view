@@ -176,7 +176,7 @@ const RegisterPage = () => {
       type="flex"
       justify="center"
       align="middle"
-      style={{ minHeight: "80vh" }}
+      className="login-register-row"
     >
       <Col
         xs={{ span: 12 }}
@@ -235,7 +235,6 @@ const RegisterPage = () => {
             <Button
               type="default"
               htmlType="submit"
-              style={{ width: "50%" }}
               className="loginregister-font custom-btn"
             >
               Submit

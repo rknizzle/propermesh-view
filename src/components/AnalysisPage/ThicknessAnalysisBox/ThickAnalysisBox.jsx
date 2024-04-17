@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Row, Col, Typography, Segmented } from "antd";
 const { Text } = Typography;
 import "./thickAnalysisBox.css";
@@ -19,6 +19,7 @@ const ThickAnalysisBox = ({
   const [selectedThreshold, setSelectedThreshold] = useState(null);
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [showCheckmark, setShowCheckmark] = useState(false);
+  const listOfThicknessDataContainerRef = useRef(null);
 
   useEffect(() => {
     setListOfThicknessData([]);
@@ -29,14 +30,28 @@ const ThickAnalysisBox = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partId]);
 
+  useEffect(() => {
+    //**reset state when units change
+    setThresholdValue(null);
+    setThinSurfaceArea(null);
+    setIsThin(null);
+    setSelectedThreshold(null);
+    setShowCheckmark(false);
+    setAnalysisComplete(false);
+  }, [units]);
+
+  console.log("listOfThicknessData", listOfThicknessData);
+
   const getSpecificDataRegardingThreshold = (value) => {
-    //get the data from listOfThicknessData that matches the threshold value
-    const data = listOfThicknessData.find((data) => data.threshold === value);
+    //get the data from listOfThicknessData that matches the threshold value and units value
+    const data = listOfThicknessData.find(
+      (data) => Number(data.threshold) == Number(value) && data.units === units //**added units check
+    );
     if (data) {
       setThinSurfaceArea(data.thin_surface_area);
       setIsThin(data.is_thin);
       setThresholdValue(value);
-      setSelectedThreshold(value);
+      setSelectedThreshold(Number(value));
       setShowCheckmark(true);
       setAnalysisComplete(true);
     }
@@ -44,7 +59,7 @@ const ThickAnalysisBox = ({
 
   const onChange = (value) => {
     setThresholdValue(value);
-    setSelectedThreshold(value);
+    setSelectedThreshold(Number(value));
     setThinSurfaceArea(null);
     setIsThin(null);
     setShowCheckmark(false);
@@ -61,6 +76,19 @@ const ThickAnalysisBox = ({
     );
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const container = listOfThicknessDataContainerRef.current;
+      if (container && container.scrollHeight > container.clientHeight) {
+        container.scrollBy({ top: 100, behavior: "smooth" });
+        setTimeout(() => {
+          container.scrollBy({ top: -100, behavior: "smooth" });
+        }, 800);
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [units, partId]);
+
   return (
     <div id="thick-analysis-box">
       <h2 id="thick-analysis-title">Thickness Analysis</h2>
@@ -69,19 +97,20 @@ const ThickAnalysisBox = ({
           <DisplayStatistic title="Thin Surface Area" value={thinSurfaceArea} />
         </Col>
         <Col span={12}>
-          <div
-            style={{ marginTop: 20, display: "flex", justifyContent: "center" }}
-          >
-            {renderThinAreaMessage()}
-          </div>
+          <div id="thin-area-message-container">{renderThinAreaMessage()}</div>
         </Col>
       </Row>
       <Row id="thick-bottom-row">
         <Col span={14} offset={1}>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <div style={{ marginRight: 16 }}>Threshold:</div>
-            <DecimalInput value={thresholdValue} onChange={onChange} />
-            (mm)
+          <div id="decimal-input-container">
+            <div id="threshold-input-label">Threshold:</div>
+            <DecimalInput
+              value={thresholdValue}
+              onChange={onChange}
+              units={units}
+              partId={partId}
+            />
+            <div id="threshold-mm">(mm)</div>
           </div>
         </Col>
         <Col span={6}>
@@ -100,17 +129,28 @@ const ThickAnalysisBox = ({
         </Col>
       </Row>
       {listOfThicknessData && (
-        <div style={{ marginTop: ".5em" }}>
-          <Row>
-            <Segmented
-              options={listOfThicknessData.map((data) => ({
-                label: `${data.threshold}`,
-                value: data.threshold,
-                key: `${data.threshold}`,
-              }))}
-              value={selectedThreshold}
-              onChange={getSpecificDataRegardingThreshold}
-            />
+        <div
+          ref={listOfThicknessDataContainerRef}
+          id="listOfThicknessData-container"
+        >
+          <Row wrap={true} gutter={[0, 5]}>
+            {listOfThicknessData
+              .filter((data) => data.units === units) //**remove data that doesn't match the selected units
+              .map((data) => (
+                <Col key={data.threshold}>
+                  <Segmented
+                    options={[
+                      {
+                        label: `${data.threshold}`,
+                        value: data.threshold,
+                        key: `${data.threshold}`,
+                      },
+                    ]}
+                    value={selectedThreshold}
+                    onChange={getSpecificDataRegardingThreshold}
+                  />
+                </Col>
+              ))}
           </Row>
         </div>
       )}

@@ -1,0 +1,21 @@
+.ant-upload-drag {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white !important;
+  border: 1px solid #493e8f !important;
+}
+
+.ant-upload-drag:hover {
+  border: 1px solid white !important;
+  background-color: rgba(128, 128, 128, 0.191) !important;
+}
+
+#drag-icon {
+  color: #493e8f !important;
+}
+
+.ant-upload-drag:hover .ant-upload-text {
+  color: #493e8f !important;
+  text-shadow: #493e8f 0 0 35px;
+}

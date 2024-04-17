@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import setupThreeScene from "./setupThreeScene";
 import PropTypes from "prop-types";
+import "./3dModelViewer.css";
 
 //TODO: Add loading spinner if a file is taking a second to load
 
@@ -29,16 +30,7 @@ const ModelViewer = ({ fileFor3dModel }) => {
     return () => cleanup();
   }, [objectURL]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        width: "50%",
-        height: "50%",
-        border: "1px dotted black",
-      }}
-    />
-  );
+  return <canvas ref={canvasRef} id="model-canvas" />;
 };
 
 ModelViewer.propTypes = {

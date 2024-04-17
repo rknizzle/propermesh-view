@@ -5,6 +5,9 @@
   padding: 0 10px;
   border-top: 1px solid #ccc;
   background-color: gray;
+  /* if height is changed here, update FOOTER_HEIGHT in app.jsx */
+  height: 85px;
+  box-sizing: border-box;
 }
 
 #footer-logo {

@@ -4,8 +4,11 @@
 }
 
 #thick-analysis-box {
-  background-color: rgb(195, 195, 195);
+  background-color: rgba(128, 128, 128, 0.191);
   border-radius: 15px;
+  position: absolute;
+  width: 100%;
+  top: 105%;
 }
 
 #thick-analysis-box .ant-statistic-content-value {
@@ -22,12 +25,70 @@
   margin-bottom: 25px;
 }
 
-#thick-start-button {
-  width: 6rem;
+#thin-area-message-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 #thick-bottom-row {
   margin-top: 15px;
+}
+
+#thick-start-button {
+  width: 6rem;
+}
+
+#decimal-input-container {
+  display: flex;
+  align-items: center;
+  margin-right: 3px;
+}
+
+#threshold-input-label {
+  margin-right: 10px;
+}
+
+#threshold-input-label:hover,
+#thin-area-message-container:hover,
+#thick-analysis-box .ant-statistic-title:hover,
+#thick-analysis-title:hover,
+#threshold-mm:hover {
+  cursor: default;
+}
+
+#listOfThicknessData-container {
+  position: relative;
+  max-height: 34px;
+  overflow-y: auto;
+  margin-top: 5px;
+  margin-left: 5px;
+  padding-bottom: 5px;
+  scroll-snap-type: y mandatory;
+}
+
+/* TODO: figure out how to apply below styles to non-webkit browsers, aka firefox 
+while keeping them available to webkit browsers */
+
+#listOfThicknessData-container::-webkit-scrollbar {
+  width: 10px;
+}
+#listOfThicknessData-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#listOfThicknessData-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+#listOfThicknessData-container::-webkit-scrollbar-thumb:hover {
+  background: #6a73a3;
+}
+
+#listOfThicknessData-container .ant-col {
+  scroll-snap-align: start;
 }
 
 .ant-segmented-item {

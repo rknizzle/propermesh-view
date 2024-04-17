@@ -3,12 +3,14 @@ import { Button, Modal, List } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { downloadBlobToLocalMachine } from "./downloadBlob";
+import "./viewPartsButton.css";
 
 const ViewPartsButton = ({
   setFileFor3dModel,
   setPartId,
   setGeoData,
   setListOfThicknessData,
+  setUnits,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
@@ -23,6 +25,9 @@ const ViewPartsButton = ({
         }
         if (data.thickness_analyses) {
           setListOfThicknessData(data.thickness_analyses);
+        }
+        if (data.units) {
+          setUnits(data.units);
         }
       });
   };
@@ -40,7 +45,6 @@ const ViewPartsButton = ({
     fetch("/api/v0/parts")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPartsData(data);
         setModalOpen(true);
       });
@@ -56,26 +60,17 @@ const ViewPartsButton = ({
 
   return (
     <>
-      <Button onClick={clicked}>View Parts</Button>
+      <Button onClick={clicked} id="view-parts-button">
+        View Parts
+      </Button>
       <Modal
-        title="Parts"
+        title="PARTS"
         open={modalOpen}
-        onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
         width={768}
-        footer={[
-          <Button key="close" onClick={() => setModalOpen(false)}>
-            Close
-          </Button>,
-        ]}
+        footer={null}
       >
-        <div
-          style={{
-            height: 400,
-            overflow: "auto",
-            padding: "0 16px",
-          }}
-        >
+        <div id="parts-list-container">
           <List
             dataSource={partsData}
             renderItem={(part) => (
@@ -86,7 +81,7 @@ const ViewPartsButton = ({
                     type="link"
                     key={part.id}
                     size="large"
-                    icon={<DownloadOutlined />}
+                    icon={<DownloadOutlined id="download-icon" />}
                     onClick={() =>
                       downloadFileToLocalMachine(part.id, part.name)
                     }
@@ -101,11 +96,7 @@ const ViewPartsButton = ({
                 }}
                 className="part-list-item-row"
               >
-                <List.Item.Meta
-                  title={part.name}
-                  key={part.id}
-                  description={part.file_size_bytes + " bytes"}
-                />
+                <List.Item.Meta title={part.name} key={part.id} />
               </List.Item>
             )}
           />
@@ -120,6 +111,7 @@ ViewPartsButton.propTypes = {
   setPartId: PropTypes.func,
   setGeoData: PropTypes.func,
   setListOfThicknessData: PropTypes.func,
+  setUnits: PropTypes.func,
 };
 
 export default ViewPartsButton;

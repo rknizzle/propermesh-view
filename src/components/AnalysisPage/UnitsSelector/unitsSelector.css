@@ -3,14 +3,40 @@
   font-size: larger;
 }
 
+#units-selector-label:hover {
+  cursor: default;
+}
+
 #select-container {
   position: relative;
   display: inline-block;
+  margin-top: 153%;
+}
+
+.ant-select-selector {
+  width: 120px !important;
+}
+
+.ant-select-selector:hover {
+  border-color: #493e8f !important;
+}
+
+.active-select .ant-select-selector {
+  border-color: #493e8f !important;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: #6a73a3 !important;
+  color: white !important;
 }
 
 #unit-update-success-icon {
   position: absolute;
+  top: 25%;
+  margin-left: 5px;
   animation: fadeInOut 2s;
+  color: green;
+  font-size: 16px;
 }
 
 .enabledSelect .ant-select-selection-placeholder {

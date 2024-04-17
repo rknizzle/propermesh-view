@@ -57,7 +57,7 @@ const StartButton = ({
   };
 
   const isDisabled =
-    !partId || analysisComplete || thresholdValue === null || units === null;
+    !partId || analysisComplete || !isValidThresholdInput(thresholdValue) || units === null;
 
   let tooltipTitle = "";
   if (!partId) {
@@ -65,11 +65,17 @@ const StartButton = ({
       "View or upload a part to the viewer before running Thickness Analysis.";
   } else if (thresholdValue === null && units === null) {
     tooltipTitle =
-      "Enter a threshold value and select units of measurement to start analysis";
-  } else if (thresholdValue === null) {
+      "Select units of measurement then enter a threshold value and to start analysis";
+  } else if (!isValidThresholdInput(thresholdValue)) {
     tooltipTitle = "Enter a threshold value to start analysis";
-  } else if (units === null) {
-    tooltipTitle = "Select units of measurement to start analysis";
+  }
+
+  function isValidThresholdInput(threshold) {
+    if (threshold === "." || threshold === ".0" || threshold === "" || threshold === "0" || threshold === "0.0" || threshold === '0.') {
+      return false
+    }
+
+    return true
   }
 
   return (
@@ -81,14 +87,11 @@ const StartButton = ({
         disabled={isDisabled}
       >
         {isLoading ? "Analyzing..." : analysisComplete ? "Complete" : "Start"}
-        {isLoading ? <Spin style={{ marginLeft: "10px" }} /> : null}
-        {showCheckmark ? <CheckCircleOutlined id="checkmark-icon" /> : null}
-        {showFailure ? (
-          <CloseCircleOutlined
-            style={{ marginLeft: "10px" }}
-            id="failure-icon"
-          />
+        {isLoading ? <Spin id="thick-spin-icon" /> : null}
+        {showCheckmark ? (
+          <CheckCircleOutlined id="thick-checkmark-icon" />
         ) : null}
+        {showFailure ? <CloseCircleOutlined id="thick-failure-icon" /> : null}
       </Button>
     </Tooltip>
   );
@@ -96,7 +99,10 @@ const StartButton = ({
 
 StartButton.propTypes = {
   partId: PropTypes.string,
-  thresholdValue: PropTypes.number,
+  thresholdValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   setThinSurfaceArea: PropTypes.func,
   setIsThin: PropTypes.func,
   setListOfThicknessData: PropTypes.func,

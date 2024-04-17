@@ -65,11 +65,11 @@ body {
 #analysis-page-btn {
   padding: 0rem 2rem;
   margin-left: 5rem;
-  background-color: #6a73a3;
+  background-color: #493e8f9f;
 }
 
 #analysis-page-btn:hover {
-  background-color: #3e498f;
+  background-color: #493e8f;
   cursor: pointer;
 }
 
@@ -120,6 +120,12 @@ body {
 #geo-analysis:hover,
 #thick-analysis:hover {
   animation: glowing 1s;
+  cursor: default;
+}
+
+.intro-container:hover,
+#contact-ryan:hover,
+#landing-start-prefooter {
   cursor: default;
 }
 

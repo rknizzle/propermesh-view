@@ -1,0 +1,43 @@
+#geo-hoverInfo-thick-container {
+  margin-left: 16px;
+  position: relative;
+}
+
+#hoverInfo-container {
+  margin-top: 12px;
+}
+
+#hoverInfo-span {
+  font-size: 0.8rem;
+  color: black;
+}
+
+#hoverInfo-span {
+  cursor: default;
+}
+
+#hoverInfo-icon {
+  color: #493e8f;
+}
+
+#model-viewer-container {
+  position: absolute;
+  height: 100%;
+  width: 97%;
+  margin-top: 12px;
+}
+
+#view-parts-button-container {
+  height: 85%;
+  width: 97.5%;
+}
+
+#upload-view-info-row {
+  margin-top: 40px;
+  margin-bottom: 3rem;
+}
+
+#upload-part-button-container {
+  height: 85%;
+  margin-left: 16px;
+}
