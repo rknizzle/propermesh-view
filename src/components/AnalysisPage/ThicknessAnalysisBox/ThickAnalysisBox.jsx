@@ -87,7 +87,7 @@ const ThickAnalysisBox = ({
       }
     }, 1000);
     return () => clearTimeout(timer);
-  }, [partId]);
+  }, [units]);
 
   return (
     <div id="thick-analysis-box">
