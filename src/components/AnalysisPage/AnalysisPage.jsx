@@ -65,6 +65,7 @@ const AnalysisPage = () => {
               setPartId={setPartId}
               setGeoData={setGeoData}
               setListOfThicknessData={setListOfThicknessData}
+              setUnits={setUnits}
             />
           </div>
         </Col>

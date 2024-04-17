@@ -10,6 +10,7 @@ const ViewPartsButton = ({
   setPartId,
   setGeoData,
   setListOfThicknessData,
+  setUnits,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
@@ -19,11 +20,15 @@ const ViewPartsButton = ({
     fetch(`/api/v0/parts/${part_id}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         if (data.geometry_analysis) {
           setGeoData(data.geometry_analysis);
         }
         if (data.thickness_analyses) {
           setListOfThicknessData(data.thickness_analyses);
+        }
+        if (data.units) {
+          setUnits(data.units);
         }
       });
   };
@@ -107,6 +112,7 @@ ViewPartsButton.propTypes = {
   setPartId: PropTypes.func,
   setGeoData: PropTypes.func,
   setListOfThicknessData: PropTypes.func,
+  setUnits: PropTypes.func,
 };
 
 export default ViewPartsButton;
