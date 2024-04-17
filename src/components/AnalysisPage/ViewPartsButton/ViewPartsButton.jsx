@@ -20,7 +20,6 @@ const ViewPartsButton = ({
     fetch(`/api/v0/parts/${part_id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.geometry_analysis) {
           setGeoData(data.geometry_analysis);
         }
