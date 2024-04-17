@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Select, Space, Tooltip, notification } from "antd";
 import {
   CheckCircleOutlined,
@@ -12,11 +12,6 @@ const UnitsSelector = ({ partId, units, setUnits }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   //used to maintain the purple border around the select when it is active
   const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    setUnits(null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [partId]);
 
   const handleChange = async (value) => {
     try {
