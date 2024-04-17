@@ -1,5 +1,5 @@
 #geo-start-button.ant-btn {
-  background-color: #3e498f;
+  background-color: #493e8f;
 }
 
 #geo-start-button.ant-btn[disabled] {
@@ -8,7 +8,7 @@
 }
 
 #geo-start-button .ant-spin-dot-item {
-  background-color: #3e498f;
+  background-color: #493e8f;
 }
 
 #geo-checkmark-icon {

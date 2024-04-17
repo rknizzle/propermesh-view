@@ -38,7 +38,7 @@ const DisplayStatistic = ({ title, value }) => {
           <Statistic
             title={
               <span>
-                {title} <InfoCircleOutlined style={{ color: "#3e498f" }} />
+                {title} <InfoCircleOutlined style={{ color: "#493e8f" }} />
               </span>
             }
             value={displayValue(value)}
