@@ -20,6 +20,8 @@ const ThickAnalysisBox = ({
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [showCheckmark, setShowCheckmark] = useState(false);
   const listOfThicknessDataContainerRef = useRef(null);
+  const [tooltipTitle, setTooltipTitle] = useState("");
+  const isDisabled = units === null;
 
   useEffect(() => {
     setListOfThicknessData([]);
@@ -89,16 +91,15 @@ const ThickAnalysisBox = ({
     return () => clearTimeout(timer);
   }, [partId]);
 
-  const isDisabled = units === null;
-
-  let tooltipTitle = "";
-
-  if (!partId) {
-    tooltipTitle = "View or upload a part to the viewer.";
-  } else if (isDisabled) {
-    tooltipTitle =
-      "Select units of measurement before entering a threshold value";
-  }
+  useEffect(() => {
+    if (!partId) {
+      setTooltipTitle("View or upload a part to the viewer.");
+    } else if (isDisabled) {
+      setTooltipTitle(
+        "Select units of measurement before entering a threshold value"
+      );
+    }
+  }, [partId, isDisabled]);
 
   return (
     <div id="thick-analysis-box">
