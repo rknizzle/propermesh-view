@@ -123,6 +123,12 @@ body {
   cursor: default;
 }
 
+.intro-container:hover,
+#contact-ryan:hover,
+#landing-start-prefooter {
+  cursor: default;
+}
+
 p {
   text-align: left;
 }
