@@ -27,20 +27,12 @@
   margin-top: 12px;
 }
 
-#view-parts-button-container {
-  height: 159.06px;
-  width: 97.5%;
-}
-
 .upload-view-info-row {
   margin-top: 40px;
   margin-bottom: 3rem;
 }
 
 @media (max-width: 370px) {
-  #view-parts-button-container {
-    height: 70.35px;
-  }
   .upload-view-info-row {
     margin-top: 20px;
   }

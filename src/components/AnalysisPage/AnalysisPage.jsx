@@ -63,15 +63,13 @@ const AnalysisPage = () => {
           lg={{ span: 12, order: 4 }}
           className="upload-view-info-row"
         >
-          <div id="view-parts-button-container">
-            <ViewPartsButton
-              setFileFor3dModel={setFileFor3dModel}
-              setPartId={setPartId}
-              setGeoData={setGeoData}
-              setListOfThicknessData={setListOfThicknessData}
-              setUnits={setUnits}
-            />
-          </div>
+          <ViewPartsButton
+            setFileFor3dModel={setFileFor3dModel}
+            setPartId={setPartId}
+            setGeoData={setGeoData}
+            setListOfThicknessData={setListOfThicknessData}
+            setUnits={setUnits}
+          />
         </Col>
       </Row>
     </div>
