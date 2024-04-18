@@ -30,7 +30,11 @@ const ModelViewer = ({ fileFor3dModel }) => {
     return () => cleanup();
   }, [objectURL]);
 
-  return <canvas ref={canvasRef} id="model-canvas" />;
+  return (
+    <div id="model-viewer-container">
+      <canvas ref={canvasRef} id="model-canvas" />
+    </div>
+  );
 };
 
 ModelViewer.propTypes = {

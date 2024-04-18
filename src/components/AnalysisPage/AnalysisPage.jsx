@@ -44,9 +44,7 @@ const AnalysisPage = () => {
           <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
         </Col>
         <Col xs={{ span: 24, order: 3 }} lg={{ span: 18, order: 2 }}>
-          <div id="model-viewer-container">
-            <ModelViewer fileFor3dModel={fileFor3dModel} />
-          </div>
+          <ModelViewer fileFor3dModel={fileFor3dModel} />
         </Col>
         <Col
           xs={{ span: 12, order: 1 }}
