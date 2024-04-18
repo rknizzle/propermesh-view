@@ -53,12 +53,10 @@ const AnalysisPage = () => {
           lg={{ span: 12, order: 3 }}
           className="upload-view-info-row"
         >
-          <div id="upload-part-button-container">
-            <UploadPartButton
-              setFileFor3dModel={setFileFor3dModel}
-              setPartId={setPartId}
-            />
-          </div>
+          <UploadPartButton
+            setFileFor3dModel={setFileFor3dModel}
+            setPartId={setPartId}
+          />
         </Col>
         <Col
           xs={{ span: 12, order: 2 }}

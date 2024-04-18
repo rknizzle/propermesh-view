@@ -28,7 +28,7 @@
 }
 
 #view-parts-button-container {
-  height: 85%;
+  height: 159.06px;
   width: 97.5%;
 }
 
@@ -37,7 +37,14 @@
   margin-bottom: 3rem;
 }
 
-#upload-part-button-container {
-  height: 85%;
-  margin-left: 16px;
+@media (max-width: 370px) {
+  #view-parts-button-container {
+    height: 70.35px;
+  }
+  .upload-view-info-row {
+    margin-top: 20px;
+  }
+  #geo-hoverInfo-thick-container {
+    margin-left: 0px;
+  }
 }

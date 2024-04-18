@@ -56,3 +56,9 @@
   color: green;
   cursor: grab;
 }
+
+@media (max-width: 370px) {
+  #view-parts-button {
+    font-size: 1.5rem;
+  }
+}

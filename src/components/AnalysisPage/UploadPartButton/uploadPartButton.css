@@ -1,3 +1,8 @@
+#upload-part-button-container {
+  height: 159.06px;
+  margin-left: 16px;
+}
+
 .ant-upload-drag {
   display: flex;
   justify-content: center;
@@ -13,9 +18,17 @@
 
 #drag-icon {
   color: #493e8f !important;
+  transition: font-size 0.3s ease;
 }
 
 .ant-upload-drag:hover .ant-upload-text {
   color: #493e8f !important;
   text-shadow: #493e8f 0 0 35px;
+}
+
+@media (max-width: 370px) {
+  #upload-part-button-container {
+    height: 70.35px;
+    margin-left: 2px;
+  }
 }
