@@ -62,11 +62,29 @@
   cursor: grab;
 }
 
-@media (max-width: 370px) {
+@media (max-width: 425px) {
   #view-parts-button-container {
     height: 70.35px;
   }
   #view-parts-button {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 370px) {
+  #view-parts-button {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 303px) {
+  #view-parts-button {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 275px) {
+  #view-parts-button {
+    font-size: 1.2rem;
   }
 }

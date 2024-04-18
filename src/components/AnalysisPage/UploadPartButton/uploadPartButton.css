@@ -26,9 +26,69 @@
   text-shadow: #493e8f 0 0 35px;
 }
 
-@media (max-width: 370px) {
+.ant-upload-text,
+.ant-upload-hint {
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 425px) {
   #upload-part-button-container {
     height: 70.35px;
     margin-left: 2px;
+  }
+  #drag-icon {
+    display: none;
+  }
+  .ant-upload-text {
+    font-size: 13.5px !important;
+    color: #493e8f !important;
+  }
+  .ant-upload-hint {
+    font-size: 8px !important;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 370px) {
+  .ant-upload-text {
+    font-size: 12px !important;
+    color: #493e8f !important;
+  }
+  .ant-upload-hint {
+    font-size: 8px !important;
+    padding-bottom: 7px;
+  }
+}
+
+@media (max-width: 303px) {
+  .ant-upload-text {
+    font-size: 11px !important;
+    color: #493e8f !important;
+  }
+  .ant-upload-hint {
+    font-size: 7px !important;
+    padding-bottom: 6px;
+  }
+}
+
+@media (max-width: 289px) {
+  .ant-upload-text {
+    font-size: 10px !important;
+    color: #493e8f !important;
+  }
+  .ant-upload-hint {
+    font-size: 6px !important;
+    padding-bottom: 4px;
+  }
+}
+
+@media (max-width: 272px) {
+  .ant-upload-text {
+    font-size: 9px !important;
+    color: #493e8f !important;
+  }
+  .ant-upload-hint {
+    font-size: 6px !important;
+    padding-bottom: 5px;
   }
 }
