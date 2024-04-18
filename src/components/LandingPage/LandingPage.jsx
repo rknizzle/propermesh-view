@@ -59,7 +59,7 @@ export default function LandingPage() {
       </Row>
 
       <h3 id="contact-ryan">
-        Contact ryan@propermesh.com for more info and keys for beta testing
+        Contact ryan@propermesh.com for more info and requests for API keys
       </h3>
 
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
