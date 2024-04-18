@@ -1,7 +1,6 @@
 #model-viewer-container {
-  position: absolute;
   height: 100%;
-  width: 97%;
+  width: 98.5%;
   margin-top: 12px;
 }
 
@@ -10,4 +9,12 @@
   height: 100%;
   border: 1px dotted #493e8f;
   border-radius: 15px;
+}
+
+@media screen and (max-width: 425px) {
+  #model-viewer-container {
+    width: 100%;
+    height: 275px;
+    margin-top: 0px;
+  }
 }
