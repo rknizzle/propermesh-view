@@ -1,6 +1,7 @@
 #model-viewer-container {
+  position: absolute;
   height: 100%;
-  width: 98.5%;
+  width: 97%;
   margin-top: 12px;
 }
 
@@ -11,10 +12,30 @@
   border-radius: 15px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   #model-viewer-container {
+    position: relative;
+    width: 98.5%;
     margin-top: 0px;
     margin-left: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  #model-viewer-container {
+    width: 98.2%;
+  }
+}
+
+@media (max-width: 576px) {
+  #model-viewer-container {
+    width: 98%;
+  }
+}
+
+@media (max-width: 500px) {
+  #model-viewer-container {
+    width: 97.8%;
   }
 }
 
