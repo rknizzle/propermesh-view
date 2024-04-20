@@ -11,10 +11,17 @@
   border-radius: 15px;
 }
 
-@media screen and (max-width: 425px) {
+@media (max-width: 768px) {
+  #model-viewer-container {
+    margin-top: 0px;
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: 425px) {
   #model-viewer-container {
     width: 100%;
     height: 275px;
-    margin-top: 0px;
+    margin-left: 0px;
   }
 }
