@@ -25,6 +25,12 @@
   margin-bottom: 3rem;
 }
 
+@media (hover: none), (hover: on-demand) {
+  #hoverInfo-span {
+    display: none;
+  }
+}
+
 @media (max-width: 425px) {
   .upload-view-info-row {
     margin-top: 20px;
