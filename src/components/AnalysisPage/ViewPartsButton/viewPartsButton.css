@@ -62,9 +62,9 @@
   cursor: grab;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 435px) {
   #view-parts-button-container {
-    height: 70.35px;
+    height: 75.35px;
   }
   #view-parts-button {
     font-size: 2rem;

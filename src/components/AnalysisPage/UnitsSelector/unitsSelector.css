@@ -10,7 +10,7 @@
 #select-container {
   position: relative;
   display: inline-block;
-  margin-top: 153%;
+  margin-top: 256px;
 }
 
 .ant-select-selector {
@@ -53,10 +53,10 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   #select-container {
-    margin-top: 130%;
-    margin-bottom: 13%;
-    margin-right: 30px;
+    margin-top: 250px;
+    margin-bottom: 40px;
+    margin-right: 25px;
   }
 }

@@ -31,7 +31,14 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
+  #geo-hoverInfo-thick-container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 435px) {
   .upload-view-info-row {
     margin-top: 20px;
     margin-bottom: 30px;
