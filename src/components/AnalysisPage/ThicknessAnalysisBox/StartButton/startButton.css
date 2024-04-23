@@ -30,3 +30,86 @@
 #thick-spin-icon {
   margin-left: 10px;
 }
+
+@media (max-width: 1280px) {
+  #thick-start-button.ant-btn {
+    margin-left: 10px;
+    width: 95%;
+  }
+  #thick-start-button.isLoading .buttonText {
+    font-size: 12px;
+    margin-left: -14px;
+  }
+  #thick-start-button.isComplete .buttonText {
+    font-size: 14px;
+    margin-left: -12px;
+  }
+  #thick-checkmark-icon,
+  #thick-failure-icon,
+  #spin-container {
+    position: absolute;
+    left: 3.8rem;
+  }
+}
+
+@media (max-width: 1235px) {
+  #thick-start-button.isLoading .buttonText {
+    margin-left: -14px;
+  }
+  #thick-start-button.isComplete .buttonText {
+    font-size: 13.5px;
+    margin-left: -14px;
+  }
+}
+
+@media (max-width: 1192px) {
+  #thick-checkmark-icon,
+  #thick-failure-icon,
+  #spin-container {
+    position: absolute;
+    left: 3.55rem;
+  }
+}
+
+@media (max-width: 1160px) {
+  #thick-start-button.ant-btn {
+    margin-left: 11.5px;
+    width: 95%;
+  }
+  #thick-start-button.isLoading .buttonText {
+    font-size: 10px;
+    margin-left: -13px;
+  }
+  #thick-start-button.isComplete .buttonText {
+    font-size: 13px;
+    margin-left: -14px;
+  }
+  #thick-checkmark-icon,
+  #thick-failure-icon,
+  #spin-container {
+    position: absolute;
+    left: 3.3rem;
+  }
+}
+
+@media (max-width: 1140px) {
+  #thick-start-button.ant-btn {
+    margin-left: 12px;
+    width: 95%;
+  }
+  #thick-start-button.isComplete .buttonText {
+    font-size: 12px;
+    margin-left: -13px;
+  }
+  #thick-checkmark-icon,
+  #thick-spin-icon,
+  #thick-failure-icon {
+    font-size: 20px;
+  }
+  #thick-checkmark-icon,
+  #thick-failure-icon,
+  #spin-container {
+    position: absolute;
+    left: 3.3rem;
+  }
+}

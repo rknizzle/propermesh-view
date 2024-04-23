@@ -105,3 +105,84 @@ while keeping them available to webkit browsers */
   color: white !important;
   border-color: #6a73a3 !important;
 }
+
+@media (max-width: 1460px) {
+  #threshold-input-label {
+    margin-right: 2px;
+    font-size: 13px;
+  }
+  #threshold-mm {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1370px) {
+  #threshold-input-label {
+    margin-right: 2px;
+    font-size: 12.5px;
+  }
+  #threshold-mm {
+    font-size: 12px;
+  }
+  #decimal-input-container .ant-input {
+    font-size: 13px !important;
+    height: 32px;
+    width: 82.59px;
+  }
+}
+
+@media (max-width: 1310px) {
+  #threshold-input-label {
+    margin-right: 2px;
+    font-size: 12px;
+  }
+  #threshold-mm {
+    font-size: 11.5px;
+  }
+  #decimal-input-container .ant-input {
+    font-size: 12.5px !important;
+  }
+}
+
+@media (max-width: 1280px) {
+  #threshold-mm {
+    margin-right: -7px;
+  }
+}
+
+@media (max-width: 1225px) {
+  #threshold-mm {
+    margin-right: -10px;
+  }
+}
+
+@media (max-width: 1205px) {
+  #threshold-mm {
+    font-size: 10.5px;
+  }
+}
+
+@media (max-width: 1192px) {
+  #threshold-input-label {
+    margin-right: 1px;
+    font-size: 11.5px;
+  }
+}
+
+@media (max-width: 1174px) {
+  #decimal-input-container .ant-input {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 1160px) {
+  #threshold-mm {
+    margin-right: -13px;
+  }
+}
+
+@media (max-width: 1140px) {
+  #threshold-mm {
+    margin-right: -15px;
+  }
+}
