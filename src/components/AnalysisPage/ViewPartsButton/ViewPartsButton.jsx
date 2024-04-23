@@ -28,6 +28,8 @@ const ViewPartsButton = ({
         }
         if (data.units) {
           setUnits(data.units);
+        } else {
+          setUnits(null);
         }
       });
   };
