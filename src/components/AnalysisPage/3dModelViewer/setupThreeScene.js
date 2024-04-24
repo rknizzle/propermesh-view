@@ -16,7 +16,7 @@ const setupThreeScene = (canvas, objectURL) => {
     antialias: true,
   });
 
-  renderer.setSize(canvas.clientWidth, canvas.clientHeight)
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
   const light = new THREE.DirectionalLight(0xffffff, 0.5);
   light.position.set(-1, 1, 1);
