@@ -192,9 +192,15 @@ while keeping them available to webkit browsers */
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 475px) {
   #threshold-input-label {
     font-size: 13px;
+    margin-right: 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  #threshold-input-label {
     margin-right: 5px;
   }
   #threshold-mm {
