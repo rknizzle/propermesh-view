@@ -20,7 +20,7 @@ const AnalysisPage = () => {
   return (
     <div>
       <Row gutter={16}>
-        <Col xs={{ span: 24, order: 4 }} lg={{ span: 6, order: 1 }}>
+        <Col xs={{ span: 24, order: 5 }} lg={{ span: 6, order: 1 }}>
           <div id="geo-hoverInfo-thick-container">
             <GeoAnalysisBox
               partId={partId}
@@ -41,9 +41,12 @@ const AnalysisPage = () => {
               units={units}
             />
           </div>
-          <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
+          <div id="unit-selector-parent-large">
+            <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
+          </div>
+          <div id="unit-selector-large-placeholder"></div>
         </Col>
-        <Col xs={{ span: 24, order: 3 }} lg={{ span: 18, order: 2 }}>
+        <Col xs={{ span: 24, order: 4 }} lg={{ span: 18, order: 2 }}>
           <ModelViewer fileFor3dModel={fileFor3dModel} />
         </Col>
         <Col
@@ -68,6 +71,11 @@ const AnalysisPage = () => {
             setListOfThicknessData={setListOfThicknessData}
             setUnits={setUnits}
           />
+        </Col>
+        <Col xs={{ span: 24, order: 3 }} lg={{ span: 24, order: 5 }}>
+          <div id="unit-selector-parent-small">
+            <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
+          </div>
         </Col>
       </Row>
     </div>
