@@ -9,7 +9,11 @@ const { Dragger } = Upload;
 const UploadPartButton = ({ setFileFor3dModel, setPartId, setUnits }) => {
   const [isUploadAllowed, setIsUploadAllowed] = useState(true);
 
-  const acceptedFileTypes = [".stl", ".obj", ".ply", ".gltf", ".glb", ".3mf"];
+  // These are the file types the backend can handle... but we only support stl in the
+  // frontend viewer right now so once we solve the support on the frontend we can go back
+  // to this list
+  // const acceptedFileTypes = [".stl", ".obj", ".ply", ".gltf", ".glb", ".3mf"];
+  const acceptedFileTypes = [".stl"];
 
   const props = {
     name: "file",
@@ -74,7 +78,13 @@ const UploadPartButton = ({ setFileFor3dModel, setPartId, setUnits }) => {
           Click or drag file to this area to upload
         </p>
         <p className="ant-upload-hint">
-          Accepted file types: .stl .obj .ply .gltf .glb .3mf
+          {/*
+            // These are the file types the backend can handle... but we only support stl in the
+            // frontend viewer right now so once we solve the support on the frontend we can go back
+            // to this list
+            Accepted file types: .stl .obj .ply .gltf .glb .3mf
+          */}
+          Accepted file type: .stl
         </p>
       </Dragger>
     </div>
