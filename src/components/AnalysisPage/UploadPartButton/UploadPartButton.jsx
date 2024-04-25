@@ -6,7 +6,7 @@ import "./uploadPartButton.css";
 
 const { Dragger } = Upload;
 
-const UploadPartButton = ({ setFileFor3dModel, setPartId }) => {
+const UploadPartButton = ({ setFileFor3dModel, setPartId, setUnits }) => {
   const [isUploadAllowed, setIsUploadAllowed] = useState(true);
 
   const acceptedFileTypes = [".stl", ".obj", ".ply", ".gltf", ".glb", ".3mf"];
@@ -30,6 +30,7 @@ const UploadPartButton = ({ setFileFor3dModel, setPartId }) => {
       if (status === "done") {
         message.success(`${info.file.name} file uploaded successfully.`);
         setPartId(info.file.response.id);
+        setUnits(null);
       } else if (status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
@@ -83,6 +84,7 @@ const UploadPartButton = ({ setFileFor3dModel, setPartId }) => {
 UploadPartButton.propTypes = {
   setFileFor3dModel: PropTypes.func,
   setPartId: PropTypes.func,
+  setUnits: PropTypes.func,
 };
 
 export default UploadPartButton;

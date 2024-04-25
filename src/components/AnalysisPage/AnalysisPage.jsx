@@ -57,6 +57,7 @@ const AnalysisPage = () => {
           <UploadPartButton
             setFileFor3dModel={setFileFor3dModel}
             setPartId={setPartId}
+            setUnits={setUnits}
           />
         </Col>
         <Col
