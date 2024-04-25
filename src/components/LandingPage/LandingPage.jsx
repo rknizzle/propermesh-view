@@ -33,8 +33,6 @@ export default function LandingPage() {
           </div>
           <div id="description-list">
             <ul>
-              {/* I commented this out incase you wanted to deploy the redesign in the meantime :) */}
-              {/* <li>TODO</li> */}
               <li>
                 Many mesh and CAD file types supported such as stl, obj, ply,
                 STEP, SLDPRT and more
