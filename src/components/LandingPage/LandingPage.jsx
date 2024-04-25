@@ -1,18 +1,19 @@
 import "./landingPage.css";
-import { Row, Col, Button, message } from "antd";
+import { Row, Col, Button } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../utils/useAuth";
 
 export default function LandingPage() {
-  const [messageApi, contextHolder] = message.useMessage();
-  const analysisComingSoon = () => {
-    messageApi.open({
-      type: "info",
-      content: "Interactive Analysis Page Coming Soon!",
-      className: "coming-soon-message",
-      style: {
-        marginTop: "30vh",
-      },
-    });
-  };
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+
+  function navigateToAnalysPageBasedOnLoginStatus() {
+    if (isLoggedIn) {
+      navigate("/analysis")
+    } else {
+      navigate("/login")
+    }
+  }
 
   return (
     <div className="App">
@@ -33,8 +34,6 @@ export default function LandingPage() {
           </div>
           <div id="description-list">
             <ul>
-              {/* I commented this out incase you wanted to deploy the redesign in the meantime :) */}
-              {/* <li>TODO</li> */}
               <li>
                 Many mesh and CAD file types supported such as stl, obj, ply,
                 STEP, SLDPRT and more
@@ -46,12 +45,11 @@ export default function LandingPage() {
               </li>
             </ul>
           </div>
-          {contextHolder}
           <Button
             type="primary"
             id="analysis-page-btn"
             size="large"
-            onClick={analysisComingSoon}
+            onClick={navigateToAnalysPageBasedOnLoginStatus}
           >
             Analyze Parts
           </Button>
