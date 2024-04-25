@@ -1,10 +1,9 @@
 import "./landingPage.css";
-import { Row, Col, Button, message } from "antd";
+import { Row, Col, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/useAuth";
 
 export default function LandingPage() {
-  const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
 
@@ -46,7 +45,6 @@ export default function LandingPage() {
               </li>
             </ul>
           </div>
-          {contextHolder}
           <Button
             type="primary"
             id="analysis-page-btn"
