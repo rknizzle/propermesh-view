@@ -8,6 +8,7 @@ import "./3dModelViewer.css";
 const ModelViewer = ({ fileFor3dModel }) => {
   const canvasRef = useRef(null);
   const [objectURL, setObjectURL] = useState(null);
+  const [, forceContainerResize] = useState(false);
 
   useEffect(() => {
     if (fileFor3dModel) {
@@ -30,7 +31,20 @@ const ModelViewer = ({ fileFor3dModel }) => {
     return () => cleanup();
   }, [objectURL]);
 
-  return <canvas ref={canvasRef} id="model-canvas" />;
+  useEffect(() => {
+    const handleResize = () => {
+      forceContainerResize((prev) => !prev);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return (
+    <div id="model-viewer-container">
+      <canvas ref={canvasRef} id="model-canvas" />
+    </div>
+  );
 };
 
 ModelViewer.propTypes = {

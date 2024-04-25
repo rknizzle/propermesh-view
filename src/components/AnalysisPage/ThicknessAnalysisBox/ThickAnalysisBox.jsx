@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Row, Col, Typography, Segmented } from "antd";
 const { Text } = Typography;
 import "./thickAnalysisBox.css";
-import DisplayStatistic from "../DisplayStatistic";
+import DisplayStatistic from "../DisplayStatistic/DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 import DecimalInput from "./DecimalInput";

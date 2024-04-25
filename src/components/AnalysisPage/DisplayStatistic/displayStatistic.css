@@ -1,0 +1,9 @@
+#info-icon {
+  color: #493e8f;
+}
+
+@media (hover: none), (hover: on-demand) {
+  #info-icon {
+    display: none;
+  }
+}

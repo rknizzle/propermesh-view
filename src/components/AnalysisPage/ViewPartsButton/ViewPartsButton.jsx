@@ -61,7 +61,7 @@ const ViewPartsButton = ({
   };
 
   return (
-    <>
+    <div id="view-parts-button-container">
       <Button onClick={clicked} id="view-parts-button">
         View Parts
       </Button>
@@ -104,7 +104,7 @@ const ViewPartsButton = ({
           />
         </div>
       </Modal>
-    </>
+    </div>
   );
 };
 

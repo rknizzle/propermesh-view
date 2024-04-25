@@ -84,7 +84,7 @@ while keeping them available to webkit browsers */
 }
 
 #listOfThicknessData-container::-webkit-scrollbar-thumb:hover {
-  background: #6a73a3;
+  background: #493e8f;
 }
 
 #listOfThicknessData-container .ant-col {
@@ -92,7 +92,7 @@ while keeping them available to webkit browsers */
 }
 
 .ant-segmented-item {
-  border: 1px solid #6a73a3;
+  border: 1px solid #493e8f;
   margin-right: 0.5em;
 }
 
@@ -101,7 +101,129 @@ while keeping them available to webkit browsers */
 }
 
 .ant-segmented-item-selected {
-  background-color: #6a73a3 !important;
+  background-color: #493e8f !important;
   color: white !important;
-  border-color: #6a73a3 !important;
+  border-color: #493e8f !important;
+}
+
+@media (max-width: 1460px) {
+  #threshold-input-label {
+    margin-right: 2px;
+    font-size: 13px;
+  }
+  #threshold-mm {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1370px) {
+  #threshold-input-label {
+    margin-right: 2px;
+    font-size: 12.5px;
+  }
+  #threshold-mm {
+    font-size: 12px;
+  }
+  #decimal-input-container .ant-input {
+    font-size: 13px !important;
+    height: 32px;
+    width: 82.59px;
+  }
+}
+
+@media (max-width: 1110px) {
+  #threshold-input-label {
+    margin-right: 2px;
+    font-size: 12px;
+  }
+  #threshold-mm {
+    font-size: 11.5px;
+  }
+  #decimal-input-container .ant-input {
+    font-size: 12.5px !important;
+  }
+}
+
+@media (max-width: 1062px) {
+  #threshold-mm {
+    margin-right: -5px;
+  }
+}
+
+@media (max-width: 1045px) {
+  #threshold-mm {
+    margin-right: -7px;
+  }
+}
+
+@media (max-width: 1015px) {
+  #threshold-mm {
+    margin-right: -10px;
+  }
+}
+
+@media (max-width: 1003px) {
+  #threshold-mm {
+    font-size: 10.5px;
+  }
+}
+
+@media (max-width: 991px) {
+  #decimal-input-container {
+    display: flex;
+    align-items: center;
+    margin-right: 3px;
+  }
+  #decimal-input-label {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  #decimal-input-container .ant-input {
+    font-size: 14px !important;
+    height: 32px;
+    width: 50%;
+  }
+  #threshold-input-label {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  #threshold-mm {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 475px) {
+  #threshold-input-label {
+    font-size: 13px;
+    margin-right: 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  #threshold-input-label {
+    margin-right: 5px;
+  }
+  #threshold-mm {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 355px) {
+  #threshold-input-label {
+    font-size: 12px;
+    margin-right: 4px;
+  }
+  #threshold-mm {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 330px) {
+  #threshold-input-label {
+    font-size: 11px;
+    margin-right: 3px;
+  }
+  #threshold-mm {
+    font-size: 10px;
+  }
 }

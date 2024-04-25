@@ -1,5 +1,6 @@
 import { Statistic, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import "./displayStatistic.css";
 import PropTypes from "prop-types";
 
 const DisplayStatistic = ({ title, value }) => {
@@ -38,7 +39,7 @@ const DisplayStatistic = ({ title, value }) => {
           <Statistic
             title={
               <span>
-                {title} <InfoCircleOutlined style={{ color: "#493e8f" }} />
+                {title} <InfoCircleOutlined id="info-icon" />
               </span>
             }
             value={displayValue(value)}

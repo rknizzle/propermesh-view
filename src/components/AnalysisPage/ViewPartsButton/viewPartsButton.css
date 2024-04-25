@@ -1,3 +1,8 @@
+#view-parts-button-container {
+  height: 159.06px;
+  width: 97.5%;
+}
+
 #parts-list-container {
   height: 400px;
   overflow-y: auto;
@@ -55,4 +60,31 @@
 .ant-btn-link:hover #download-icon {
   color: green;
   cursor: grab;
+}
+
+@media (max-width: 435px) {
+  #view-parts-button-container {
+    height: 75.35px;
+  }
+  #view-parts-button {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 370px) {
+  #view-parts-button {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 303px) {
+  #view-parts-button {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 275px) {
+  #view-parts-button {
+    font-size: 1.2rem;
+  }
 }

@@ -30,3 +30,50 @@
 #geo-spin-icon {
   margin-left: 10px;
 }
+
+@media (max-width: 1105px) {
+  #geo-checkmark-icon,
+  #geo-failure-icon {
+    left: 5.4rem;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1075px) {
+  #geo-spin-icon {
+    margin-left: 7px;
+  }
+}
+
+@media (max-width: 1030px) {
+  #geo-start-button.geoIsLoading.ant-btn {
+    width: 30%;
+  }
+  #geo-start-button.geoIsLoading .geoButtonText {
+    font-size: 14px;
+    margin-left: -11px;
+  }
+}
+
+@media (max-width: 991px) {
+  #geo-checkmark-icon,
+  #geo-failure-icon {
+    left: 5.6rem;
+    font-size: 24px;
+  }
+  #geo-start-button.geoIsLoading.ant-btn {
+    font-size: 14px;
+    line-height: 1.5714285714285714;
+    width: 96px;
+    height: 32px;
+    padding: 4px 15px;
+    border-radius: 6px;
+    margin-left: 0px;
+  }
+  #geo-start-button.geoIsLoading .geoButtonText {
+    margin-left: -5px;
+  }
+  #geo-spin-icon {
+    margin-left: 20px;
+  }
+}
