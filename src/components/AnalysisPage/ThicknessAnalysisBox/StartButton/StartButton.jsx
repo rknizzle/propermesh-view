@@ -57,7 +57,10 @@ const StartButton = ({
   };
 
   const isDisabled =
-    !partId || analysisComplete || !isValidThresholdInput(thresholdValue) || units === null;
+    !partId ||
+    analysisComplete ||
+    !isValidThresholdInput(thresholdValue) ||
+    units === null;
 
   let tooltipTitle = "";
   if (!partId) {
@@ -80,7 +83,7 @@ const StartButton = ({
       return false
     }
 
-    return true
+    return true;
   }
 
   return (
@@ -89,10 +92,23 @@ const StartButton = ({
         type="primary"
         onClick={startAnalysis}
         id="thick-start-button"
+        className={`${isLoading ? "isLoading" : ""} ${
+          analysisComplete ? "isComplete" : ""
+        }`}
         disabled={isDisabled}
       >
-        {isLoading ? "Analyzing..." : analysisComplete ? "Complete" : "Start"}
-        {isLoading ? <Spin id="thick-spin-icon" /> : null}
+        {isLoading ? (
+          <span className="buttonText">Analyzing...</span>
+        ) : analysisComplete ? (
+          <span className="buttonText">Complete</span>
+        ) : (
+          <span className="buttonText">Start</span>
+        )}
+        {isLoading && (
+          <span id="spin-container">
+            <Spin id="thick-spin-icon" />
+          </span>
+        )}
         {showCheckmark ? (
           <CheckCircleOutlined id="thick-checkmark-icon" />
         ) : null}
@@ -104,10 +120,7 @@ const StartButton = ({
 
 StartButton.propTypes = {
   partId: PropTypes.string,
-  thresholdValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  thresholdValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   setThinSurfaceArea: PropTypes.func,
   setIsThin: PropTypes.func,
   setListOfThicknessData: PropTypes.func,

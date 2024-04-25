@@ -2,7 +2,7 @@ import { Row, Col } from "antd";
 import { useState, useEffect } from "react";
 import "./geoAnalysisBox.css";
 import StartButton from "./StartButton/StartButton";
-import DisplayStatistic from "../DisplayStatistic";
+import DisplayStatistic from "../DisplayStatistic/DisplayStatistic";
 import PropTypes from "prop-types";
 
 const GeoAnalysisBox = ({ partId, geoData, setGeoData }) => {

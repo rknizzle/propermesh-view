@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./header.css";
 import { useAuth } from "../../utils/useAuth";
 import { useEffect, forwardRef } from "react";
+import { MenuOutlined } from "@ant-design/icons";
 
 //Even though "props" is not used, react expects that it be passed in
 const Header = forwardRef((props, ref) => {
@@ -73,6 +74,7 @@ const Header = forwardRef((props, ref) => {
         mode="horizontal"
         items={menuItems}
         className="header-menu"
+        overflowedIndicator={<MenuOutlined />}
       />
     </div>
   );

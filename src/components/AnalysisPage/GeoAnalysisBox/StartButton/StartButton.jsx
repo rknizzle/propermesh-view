@@ -59,10 +59,23 @@ const StartButton = ({
         type="primary"
         onClick={startAnalysis}
         id="geo-start-button"
+        className={`${isLoading ? "geoIsLoading" : ""} ${
+          analysisComplete ? "geoIsComplete" : ""
+        }`}
         disabled={isDisabled}
       >
-        {isLoading ? "Analyzing..." : analysisComplete ? "Complete" : "Start"}
-        {isLoading ? <Spin id="geo-spin-icon" /> : null}
+        {isLoading ? (
+          <span className="geoButtonText">Analyzing...</span>
+        ) : analysisComplete ? (
+          <span className="geoButtonText">Complete</span>
+        ) : (
+          <span className="geoButtonText">Start</span>
+        )}
+        {isLoading && (
+          <span id="geo-spin-container">
+            <Spin id="geo-spin-icon" />
+          </span>
+        )}
         {showCheckmark ? <CheckCircleOutlined id="geo-checkmark-icon" /> : null}
         {showFailure ? <CloseCircleOutlined id="geo-failure-icon" /> : null}
       </Button>

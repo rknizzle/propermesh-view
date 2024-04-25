@@ -20,7 +20,7 @@ const AnalysisPage = () => {
   return (
     <div>
       <Row gutter={16}>
-        <Col span={6}>
+        <Col xs={{ span: 24, order: 5 }} lg={{ span: 6, order: 1 }}>
           <div id="geo-hoverInfo-thick-container">
             <GeoAnalysisBox
               partId={partId}
@@ -41,33 +41,41 @@ const AnalysisPage = () => {
               units={units}
             />
           </div>
-          <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
-        </Col>
-        <Col span={18}>
-          <div id="model-viewer-container">
-            <ModelViewer fileFor3dModel={fileFor3dModel} />
+          <div id="unit-selector-parent-large">
+            <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
           </div>
+          <div id="unit-selector-large-placeholder"></div>
         </Col>
-      </Row>
-      <Row gutter={16} id="upload-view-info-row">
-        <Col span={12}>
-          <div id="upload-part-button-container">
-            <UploadPartButton
-              setFileFor3dModel={setFileFor3dModel}
-              setPartId={setPartId}
-              setUnits={setUnits}
-            />
-          </div>
+        <Col xs={{ span: 24, order: 4 }} lg={{ span: 18, order: 2 }}>
+          <ModelViewer fileFor3dModel={fileFor3dModel} />
         </Col>
-        <Col span={12}>
-          <div id="view-parts-button-container">
-            <ViewPartsButton
-              setFileFor3dModel={setFileFor3dModel}
-              setPartId={setPartId}
-              setGeoData={setGeoData}
-              setListOfThicknessData={setListOfThicknessData}
-              setUnits={setUnits}
-            />
+        <Col
+          xs={{ span: 12, order: 1 }}
+          lg={{ span: 12, order: 3 }}
+          className="upload-view-info-row"
+        >
+          <UploadPartButton
+            setFileFor3dModel={setFileFor3dModel}
+            setPartId={setPartId}
+            setUnits={setUnits}
+          />
+        </Col>
+        <Col
+          xs={{ span: 12, order: 2 }}
+          lg={{ span: 12, order: 4 }}
+          className="upload-view-info-row"
+        >
+          <ViewPartsButton
+            setFileFor3dModel={setFileFor3dModel}
+            setPartId={setPartId}
+            setGeoData={setGeoData}
+            setListOfThicknessData={setListOfThicknessData}
+            setUnits={setUnits}
+          />
+        </Col>
+        <Col xs={{ span: 24, order: 3 }} lg={{ span: 24, order: 5 }}>
+          <div id="unit-selector-parent-small">
+            <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
           </div>
         </Col>
       </Row>

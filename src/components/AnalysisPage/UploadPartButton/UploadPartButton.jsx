@@ -65,17 +65,19 @@ const UploadPartButton = ({ setFileFor3dModel, setPartId, setUnits }) => {
   };
 
   return (
-    <Dragger {...props}>
-      <p className="ant-upload-drag-icon">
-        <InboxOutlined id="drag-icon" />
-      </p>
-      <p className="ant-upload-text">
-        Click or drag file to this area to upload
-      </p>
-      <p className="ant-upload-hint">
-        Accepted file types: .stl .obj .ply .gltf .glb .3mf
-      </p>
-    </Dragger>
+    <div id="upload-part-button-container">
+      <Dragger {...props}>
+        <p className="ant-upload-drag-icon">
+          <InboxOutlined id="drag-icon" />
+        </p>
+        <p className="ant-upload-text">
+          Click or drag file to this area to upload
+        </p>
+        <p className="ant-upload-hint">
+          Accepted file types: .stl .obj .ply .gltf .glb .3mf
+        </p>
+      </Dragger>
+    </div>
   );
 };
 
