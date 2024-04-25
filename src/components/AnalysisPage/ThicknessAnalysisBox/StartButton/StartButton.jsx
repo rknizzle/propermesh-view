@@ -75,15 +75,12 @@ const StartButton = ({
 
   function isValidThresholdInput(threshold) {
     if (
-      threshold === "." ||
-      threshold === ".0" ||
+      threshold === null ||
       threshold === "" ||
-      threshold === "0" ||
-      threshold === "0.0" ||
-      threshold === "0." ||
-      threshold === null
+      threshold === "." ||
+      Number(threshold) === 0
     ) {
-      return false;
+      return false
     }
 
     return true;
