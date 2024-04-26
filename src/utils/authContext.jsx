@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const confirmLogin = async () => {
     try {
@@ -22,11 +23,15 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("Error confirming login", error);
       setIsLoggedIn(false);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, confirmLogin }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, loading, setIsLoggedIn, confirmLogin }}
+    >
       {children}
     </AuthContext.Provider>
   );
