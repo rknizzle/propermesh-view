@@ -22,7 +22,7 @@ const LoginPage = () => {
         message: "Logged In",
         placement: "bottomRight",
         duration: 1.5,
-        style: { width: 300 },
+        style: { width: 200 },
       });
       setIsLoggedIn(true);
       navigate("/analysis");

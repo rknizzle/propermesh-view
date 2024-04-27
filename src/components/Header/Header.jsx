@@ -1,4 +1,4 @@
-import { Menu, Dropdown } from "antd";
+import { Menu, Dropdown, notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./header.css";
 import { useAuth } from "../../utils/useAuth";
@@ -33,6 +33,12 @@ const Header = forwardRef((props, ref) => {
       });
       navigate("/");
       setIsLoggedIn(false);
+      notification["success"]({
+        message: "Logged Out",
+        placement: "bottomRight",
+        duration: 1.5,
+        style: { width: 200 },
+      });
     } else if (e.key === "login") {
       navigate("/login");
     } else if (e.key === "apiDocs") {
