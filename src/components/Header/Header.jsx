@@ -1,14 +1,21 @@
-import { Menu } from "antd";
+import { Menu, Dropdown, notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./header.css";
 import { useAuth } from "../../utils/useAuth";
-import { useEffect, forwardRef } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { MenuOutlined } from "@ant-design/icons";
 
 //Even though "props" is not used, react expects that it be passed in
 const Header = forwardRef((props, ref) => {
   const navigate = useNavigate();
   const { confirmLogin, isLoggedIn, setIsLoggedIn } = useAuth();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 438);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 438);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     confirmLogin();
@@ -26,6 +33,12 @@ const Header = forwardRef((props, ref) => {
       });
       navigate("/");
       setIsLoggedIn(false);
+      notification["success"]({
+        message: "Logged Out",
+        placement: "bottomRight",
+        duration: 1.5,
+        style: { width: 200 },
+      });
     } else if (e.key === "login") {
       navigate("/login");
     } else if (e.key === "apiDocs") {
@@ -67,13 +80,24 @@ const Header = forwardRef((props, ref) => {
         <img src="/assets/favicon.png" alt="logo-in-header" id="header-logo" />
         <div className="header-title">Propermesh</div>
       </div>
-      <Menu
-        onClick={onClick}
-        mode="horizontal"
-        items={menuItems}
-        className="header-menu"
-        overflowedIndicator={<MenuOutlined />}
-      />
+      {isMobile ? (
+        <Dropdown
+          menu={{ items: menuItems, onClick }}
+          trigger={["click"]}
+          className="header-dropdown"
+        >
+          <a onClick={(e) => e.preventDefault()}>
+            <MenuOutlined />
+          </a>
+        </Dropdown>
+      ) : (
+        <Menu
+          onClick={onClick}
+          mode="horizontal"
+          items={menuItems}
+          className="header-menu"
+        />
+      )}
     </div>
   );
 });

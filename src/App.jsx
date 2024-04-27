@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { useLocation } from "react-router-dom";
-import { AuthProvider } from "./utils/authContext";
 import { useEffect, useRef, useState } from "react";
 
 function App() {
@@ -41,15 +40,13 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider>
-      <>
-        <Header ref={headerRef} />
-        <div ref={contentRef} style={{ marginTop: `${headerHeight}px` }}>
-          <Outlet />
-        </div>
-        <Footer sticky={isStickyFooter} />
-      </>
-    </AuthProvider>
+    <>
+      <Header ref={headerRef} />
+      <div ref={contentRef} style={{ marginTop: `${headerHeight}px` }}>
+        <Outlet />
+      </div>
+      <Footer sticky={isStickyFooter} />
+    </>
   );
 }
 

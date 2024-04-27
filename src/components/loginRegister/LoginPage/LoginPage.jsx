@@ -22,7 +22,7 @@ const LoginPage = () => {
         message: "Logged In",
         placement: "bottomRight",
         duration: 1.5,
-        style: { width: 300 },
+        style: { width: 200 },
       });
       setIsLoggedIn(true);
       navigate("/analysis");
@@ -47,9 +47,9 @@ const LoginPage = () => {
       className="login-register-row"
     >
       <Col
-        xs={{ span: 12 }}
-        sm={{ span: 10 }}
-        md={{ span: 8 }}
+        xs={{ span: 15 }}
+        sm={{ span: 12 }}
+        md={{ span: 10 }}
         lg={{ span: 6 }}
         className="login-register-container"
       >

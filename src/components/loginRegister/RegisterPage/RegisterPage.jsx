@@ -179,9 +179,9 @@ const RegisterPage = () => {
       className="login-register-row"
     >
       <Col
-        xs={{ span: 12 }}
-        sm={{ span: 10 }}
-        md={{ span: 8 }}
+        xs={{ span: 15 }}
+        sm={{ span: 12 }}
+        md={{ span: 10 }}
         lg={{ span: 6 }}
         className="login-register-container"
       >
