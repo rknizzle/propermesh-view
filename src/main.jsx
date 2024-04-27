@@ -20,19 +20,11 @@ root.render(
           <Route index element={<LandingPage />} />
           <Route
             path="login"
-            element={
-              <AlreadyLoggedIn>
-                <LoginPage />
-              </AlreadyLoggedIn>
-            }
+            element={<AlreadyLoggedIn component={LoginPage} />}
           />
           <Route
             path="register"
-            element={
-              <AlreadyLoggedIn>
-                <RegisterPage />
-              </AlreadyLoggedIn>
-            }
+            element={<AlreadyLoggedIn component={RegisterPage} />}
           />
           <Route
             path="analysis"

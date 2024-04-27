@@ -4,7 +4,7 @@ import { notification } from "antd";
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 
-const AlreadyLoggedIn = ({ children }) => {
+const AlreadyLoggedIn = ({ component: Component }) => {
   const { isLoggedIn } = useAuth();
 
   useEffect(() => {
@@ -17,11 +17,11 @@ const AlreadyLoggedIn = ({ children }) => {
     }
   }, [isLoggedIn]);
 
-  return isLoggedIn ? <Navigate to="/" replace /> : children;
+  return isLoggedIn ? <Navigate to="/" /> : <Component replace />;
 };
 
 AlreadyLoggedIn.propTypes = {
-  children: PropTypes.node.isRequired,
+  component: PropTypes.elementType.isRequired,
 };
 
 export default AlreadyLoggedIn;
