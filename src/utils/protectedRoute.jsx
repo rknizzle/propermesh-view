@@ -13,6 +13,7 @@ const ProtectedRoute = ({ component: Component }) => {
   }
 
   // 'replace' modifies the history stack so you can't return to the analysis page via the back button.
+  // This isn't currently doing what was described above, but is a safeguard for future situations
   return isLoggedIn ? <Component /> : <Navigate to="/login" replace />;
 };
 
