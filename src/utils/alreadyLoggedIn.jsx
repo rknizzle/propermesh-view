@@ -4,7 +4,7 @@ import { notification } from "antd";
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 
-const AuthRedirectRoute = ({ children }) => {
+const AlreadyLoggedIn = ({ children }) => {
   const { isLoggedIn } = useAuth();
 
   useEffect(() => {
@@ -20,8 +20,8 @@ const AuthRedirectRoute = ({ children }) => {
   return isLoggedIn ? <Navigate to="/" replace /> : children;
 };
 
-AuthRedirectRoute.propTypes = {
+AlreadyLoggedIn.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default AuthRedirectRoute;
+export default AlreadyLoggedIn;

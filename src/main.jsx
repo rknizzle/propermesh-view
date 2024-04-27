@@ -9,7 +9,7 @@ import AnalysisPage from "./components/AnalysisPage/AnalysisPage.jsx";
 import LoginPage from "./components/loginRegister/LoginPage/LoginPage.jsx";
 import RegisterPage from "./components/loginRegister/RegisterPage/RegisterPage.jsx";
 import ProtectedRoute from "./utils/protectedRoute.jsx";
-import AuthRedirectRoute from "./utils/authRedirectRoute";
+import AlreadyLoggedIn from "./utils/alreadyLoggedIn.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,17 +21,17 @@ root.render(
           <Route
             path="login"
             element={
-              <AuthRedirectRoute>
+              <AlreadyLoggedIn>
                 <LoginPage />
-              </AuthRedirectRoute>
+              </AlreadyLoggedIn>
             }
           />
           <Route
             path="register"
             element={
-              <AuthRedirectRoute>
+              <AlreadyLoggedIn>
                 <RegisterPage />
-              </AuthRedirectRoute>
+              </AlreadyLoggedIn>
             }
           />
           <Route
