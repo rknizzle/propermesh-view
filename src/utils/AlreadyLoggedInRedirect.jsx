@@ -4,7 +4,7 @@ import { notification } from "antd";
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 
-const AlreadyLoggedIn = ({ component: Component }) => {
+const AlreadyLoggedInRedirect = ({ component: Component }) => {
   const { isLoggedIn } = useAuth();
 
   useEffect(() => {
@@ -20,8 +20,8 @@ const AlreadyLoggedIn = ({ component: Component }) => {
   return isLoggedIn ? <Navigate to="/" /> : <Component replace />;
 };
 
-AlreadyLoggedIn.propTypes = {
+AlreadyLoggedInRedirect.propTypes = {
   component: PropTypes.elementType.isRequired,
 };
 
-export default AlreadyLoggedIn;
+export default AlreadyLoggedInRedirect;
