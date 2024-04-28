@@ -40,8 +40,6 @@ const ThickAnalysisBox = ({
     setAnalysisComplete(false);
   }, [units]);
 
-  console.log("listOfThicknessData", listOfThicknessData);
-
   const getSpecificDataRegardingThreshold = (value) => {
     //get the data from listOfThicknessData that matches the threshold value and units value
     const data = listOfThicknessData.find(
