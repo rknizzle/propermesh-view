@@ -116,6 +116,8 @@ const RegisterPage = () => {
     }
 
     try {
+      notification.destroy("userexists");
+      notification.destroy("registrationfailed");
       // Attempt to register
       await register(values.email, values.password);
       // Registration successful, now try to login
@@ -148,6 +150,7 @@ const RegisterPage = () => {
       ) {
         // User already exists
         notification.error({
+          key: "userexists",
           message: "Registration Failed",
           description: "An account with this email already exists.",
           icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
@@ -158,6 +161,7 @@ const RegisterPage = () => {
       } else {
         // Registration failed
         notification.error({
+          key: "registrationfailed",
           message: "Registration Failed",
           description:
             "An error occurred during registration. Please try again.",
