@@ -41,8 +41,8 @@ const Header = forwardRef((props, ref) => {
       });
     } else if (e.key === "login") {
       navigate("/login");
-    } else if (e.key === "apiDocs") {
-      window.location.href = "/docs";
+    } else if (e.key === "apiInfo") {
+      navigate("/info/api");
     } else if (e.key === "analysispage") {
       navigate("/analysis");
     }
@@ -55,8 +55,8 @@ const Header = forwardRef((props, ref) => {
           key: "analysispage",
         },
         {
-          label: "API Docs",
-          key: "apiDocs",
+          label: "API Info",
+          key: "apiInfo",
         },
         {
           label: "Logout",
@@ -69,8 +69,8 @@ const Header = forwardRef((props, ref) => {
           key: "login",
         },
         {
-          label: "API Docs",
-          key: "apiDocs",
+          label: "API Info",
+          key: "apiInfo",
         },
       ];
 
