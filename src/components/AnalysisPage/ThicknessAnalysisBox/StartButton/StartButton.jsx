@@ -17,9 +17,25 @@ const StartButton = ({
   showCheckmark,
   setShowCheckmark,
   units,
+  setFileFor3dModel,
+  setFileNameForUpload,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
+
+  const downloadPlyFilePlaceIn3dViewer = (jobId) => {
+    fetch(`/api/v0/thickness/${jobId}/visual/ply`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        // I can't yet locate a file name for the downloaded file.
+        // so I'm just setting it to "file.ply" for now.
+        // it works, and assuming if this function runs,
+        // the file should be a .ply file anyways, right?
+        setFileNameForUpload("file.ply");
+        const file = new File([blob], "file.ply", { type: blob.type });
+        setFileFor3dModel(file);
+      });
+  };
 
   useEffect(() => {
     setIsLoading(false);
@@ -44,6 +60,7 @@ const StartButton = ({
       setIsLoading(false);
       setShowCheckmark(true);
       setAnalysisComplete(true);
+      downloadPlyFilePlaceIn3dViewer(job.id);
     } catch (error) {
       notification.error({
         message: "Analysis Failed",
@@ -80,7 +97,7 @@ const StartButton = ({
       threshold === "." ||
       Number(threshold) === 0
     ) {
-      return false
+      return false;
     }
 
     return true;
@@ -129,6 +146,8 @@ StartButton.propTypes = {
   showCheckmark: PropTypes.bool,
   setShowCheckmark: PropTypes.func,
   units: PropTypes.string,
+  setFileFor3dModel: PropTypes.func,
+  setFileNameForUpload: PropTypes.func,
 };
 
 export default StartButton;
