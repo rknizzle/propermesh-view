@@ -12,6 +12,8 @@ const ThickAnalysisBox = ({
   listOfThicknessData,
   setListOfThicknessData,
   units,
+  setFileFor3dModel,
+  setFileNameForUpload,
 }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
@@ -123,6 +125,8 @@ const ThickAnalysisBox = ({
             showCheckmark={showCheckmark}
             setShowCheckmark={setShowCheckmark}
             units={units}
+            setFileFor3dModel={setFileFor3dModel}
+            setFileNameForUpload={setFileNameForUpload}
           />
         </Col>
       </Row>
@@ -161,6 +165,8 @@ ThickAnalysisBox.propTypes = {
   listOfThicknessData: PropTypes.array,
   setListOfThicknessData: PropTypes.func,
   units: PropTypes.string,
+  setFileFor3dModel: PropTypes.func,
+  setFileNameForUpload: PropTypes.func,
 };
 
 export default ThickAnalysisBox;
