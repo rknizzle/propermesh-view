@@ -5,29 +5,41 @@ import "./3dModelViewer.css";
 
 //TODO: Add loading spinner if a file is taking a second to load
 
-const ModelViewer = ({ fileFor3dModel }) => {
+const ModelViewer = ({ fileFor3dModel, fileNameForUpload }) => {
   const canvasRef = useRef(null);
   const [objectURL, setObjectURL] = useState(null);
+  const [fileType, setFileType] = useState(null);
 
   useEffect(() => {
     if (fileFor3dModel) {
       const url = URL.createObjectURL(fileFor3dModel);
       setObjectURL(url);
+      setFileType(fileNameForUpload.split(".").pop().toLowerCase());
 
       return () => {
         URL.revokeObjectURL(url);
       };
     }
+
+    // if i add fileNameForUpload in the dependency array, like react wants me to,
+    // everything breaks and i have to run docker compose down
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileFor3dModel]);
 
   useEffect(() => {
     if (!objectURL) return;
 
     // setupThreeScene returns a cleanup function
-    const cleanup = setupThreeScene(canvasRef.current, objectURL);
+    const cleanup = setupThreeScene(canvasRef.current, objectURL, fileType);
 
     // Call cleanup function when the component unmounts/before re-running the effect
     return () => cleanup();
+
+    // if i add fileType in the dependency array, like react wants me to,
+    // everything breaks and i have to run docker compose down
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [objectURL]);
 
   return (
@@ -39,6 +51,7 @@ const ModelViewer = ({ fileFor3dModel }) => {
 
 ModelViewer.propTypes = {
   fileFor3dModel: PropTypes.object,
+  fileNameForUpload: PropTypes.string,
 };
 
 export default ModelViewer;
