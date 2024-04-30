@@ -16,6 +16,7 @@ const AnalysisPage = () => {
   //initialize as an array to use the spread operator in startButton.jsx
   const [listOfThicknessData, setListOfThicknessData] = useState([]);
   const [units, setUnits] = useState(null);
+  const [fileNameForUpload, setFileNameForUpload] = useState("");
 
   return (
     <div>
@@ -36,9 +37,13 @@ const AnalysisPage = () => {
             <ThickAnalysisBox
               partId={partId}
               listOfThicknessData={listOfThicknessData}
-              //setListOfThicknessData and units headed to start button
+              // setListOfThicknessData/units
+              // setFileFor3dModel/setFileNameForUpload
+              // headed to start button
               setListOfThicknessData={setListOfThicknessData}
               units={units}
+              setFileFor3dModel={setFileFor3dModel}
+              setFileNameForUpload={setFileNameForUpload}
             />
           </div>
           <div id="unit-selector-parent-large">
@@ -47,7 +52,10 @@ const AnalysisPage = () => {
           <div id="unit-selector-large-placeholder"></div>
         </Col>
         <Col xs={{ span: 24, order: 4 }} lg={{ span: 18, order: 2 }}>
-          <ModelViewer fileFor3dModel={fileFor3dModel} />
+          <ModelViewer
+            fileFor3dModel={fileFor3dModel}
+            fileNameForUpload={fileNameForUpload}
+          />
         </Col>
         <Col
           xs={{ span: 12, order: 1 }}
@@ -58,6 +66,7 @@ const AnalysisPage = () => {
             setFileFor3dModel={setFileFor3dModel}
             setPartId={setPartId}
             setUnits={setUnits}
+            setFileNameForUpload={setFileNameForUpload}
           />
         </Col>
         <Col
@@ -71,6 +80,8 @@ const AnalysisPage = () => {
             setGeoData={setGeoData}
             setListOfThicknessData={setListOfThicknessData}
             setUnits={setUnits}
+            fileNameForUpload={fileNameForUpload}
+            setFileNameForUpload={setFileNameForUpload}
           />
         </Col>
         <Col xs={{ span: 24, order: 3 }} lg={{ span: 24, order: 5 }}>

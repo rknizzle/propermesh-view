@@ -11,10 +11,11 @@ const ViewPartsButton = ({
   setGeoData,
   setListOfThicknessData,
   setUnits,
+  fileNameForUpload,
+  setFileNameForUpload,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
-  const [fileNameForUpload, setFileNameForUpload] = useState("");
 
   const checkForAnalysisData = (part_id) => {
     fetch(`/api/v0/parts/${part_id}`)
@@ -114,6 +115,8 @@ ViewPartsButton.propTypes = {
   setGeoData: PropTypes.func,
   setListOfThicknessData: PropTypes.func,
   setUnits: PropTypes.func,
+  fileNameForUpload: PropTypes.string,
+  setFileNameForUpload: PropTypes.func,
 };
 
 export default ViewPartsButton;
