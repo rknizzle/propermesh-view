@@ -8,7 +8,15 @@ import "./unitsSelector.css";
 import PropTypes from "prop-types";
 import { updatePartUnits } from "./updatePartUnits";
 
-const UnitsSelector = ({ partId, units, setUnits }) => {
+const UnitsSelector = ({
+  partId,
+  units,
+  setUnits,
+  setFileFor3dModel,
+  setFileNameForUpload,
+  originalFileFor3dModel,
+  originalFileNameForUpload,
+}) => {
   const [showSuccess, setShowSuccess] = useState(false);
   //used to maintain the purple border around the select when it is active
   const [isActive, setIsActive] = useState(false);
@@ -22,6 +30,8 @@ const UnitsSelector = ({ partId, units, setUnits }) => {
       setTimeout(() => {
         setShowSuccess(false);
       }, 2000);
+      setFileNameForUpload(originalFileNameForUpload);
+      setFileFor3dModel(originalFileFor3dModel);
     } catch (error) {
       console.error("Error updating units:", error);
       notification.error({
@@ -71,6 +81,10 @@ UnitsSelector.propTypes = {
   partId: PropTypes.string,
   units: PropTypes.string,
   setUnits: PropTypes.func,
+  setFileFor3dModel: PropTypes.func,
+  setFileNameForUpload: PropTypes.func,
+  originalFileFor3dModel: PropTypes.object,
+  originalFileNameForUpload: PropTypes.string,
 };
 
 export default UnitsSelector;

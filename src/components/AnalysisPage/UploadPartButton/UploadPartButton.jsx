@@ -6,7 +6,14 @@ import "./uploadPartButton.css";
 
 const { Dragger } = Upload;
 
-const UploadPartButton = ({ setFileFor3dModel, setPartId, setUnits }) => {
+const UploadPartButton = ({
+  setFileFor3dModel,
+  setPartId,
+  setUnits,
+  setFileNameForUpload,
+  setOriginalFileFor3dModel,
+  setOriginalFileNameForUpload,
+}) => {
   const [isUploadAllowed, setIsUploadAllowed] = useState(true);
 
   // These are the file types the backend can handle... but we only support stl in the
@@ -40,7 +47,10 @@ const UploadPartButton = ({ setFileFor3dModel, setPartId, setUnits }) => {
       }
     },
     beforeUpload(file) {
+      setFileNameForUpload(file.name);
       setFileFor3dModel(file);
+      setOriginalFileNameForUpload(file.name);
+      setOriginalFileFor3dModel(file);
       return true;
     },
     onDrop(e) {
@@ -54,6 +64,7 @@ const UploadPartButton = ({ setFileFor3dModel, setPartId, setUnits }) => {
 
       // Continue if only one file given
       const file = e.dataTransfer.files[0];
+      setFileNameForUpload(file.name);
 
       //checking if the file is an accepted type
       const fileExtension = file.name
@@ -95,6 +106,9 @@ UploadPartButton.propTypes = {
   setFileFor3dModel: PropTypes.func,
   setPartId: PropTypes.func,
   setUnits: PropTypes.func,
+  setFileNameForUpload: PropTypes.func,
+  setOriginalFileFor3dModel: PropTypes.func,
+  setOriginalFileNameForUpload: PropTypes.func,
 };
 
 export default UploadPartButton;

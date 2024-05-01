@@ -16,6 +16,7 @@ const LoginPage = () => {
 
   const onFinish = async (values) => {
     try {
+      notification.destroy("loginFailed");
       await login(values.email, values.password);
 
       notification.success({
@@ -28,6 +29,7 @@ const LoginPage = () => {
       navigate("/analysis");
     } catch (error) {
       notification.error({
+        key: "loginFailed",
         message: "Login Failed",
         description: "Please check your credentials and try again.",
         icon: <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,

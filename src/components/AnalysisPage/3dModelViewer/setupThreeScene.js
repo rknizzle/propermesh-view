@@ -1,8 +1,9 @@
 import * as THREE from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
+import { PLYLoader } from "three/examples/jsm/loaders/PLYLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-const setupThreeScene = (canvas, objectURL) => {
+const setupThreeScene = (canvas, objectURL, fileType) => {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xffffff);
   const camera = new THREE.PerspectiveCamera(
@@ -46,14 +47,21 @@ const setupThreeScene = (canvas, objectURL) => {
 
   const disposables = [];
 
-  const loader = new STLLoader();
+  const loader = fileType === "stl" ? new STLLoader() : new PLYLoader();
+
   loader.load(objectURL, function (geometry) {
-    const material = new THREE.MeshPhongMaterial({
-      // wireframe: true,
+    const materialOptions = {
       specular: 0xffffff,
       shininess: 100,
-    });
-    disposables.push(geometry, material);
+      flatShading: true,
+    };
+
+    if (fileType === "ply") {
+      geometry.computeVertexNormals();
+      materialOptions.vertexColors = true;
+    }
+
+    const material = new THREE.MeshPhongMaterial(materialOptions);
 
     const mesh = new THREE.Mesh(geometry, material);
 
@@ -75,8 +83,6 @@ const setupThreeScene = (canvas, objectURL) => {
 
     scene.add(mesh);
 
-    disposables.push(mesh);
-
     // Adjusting the scale based on the model's bounding sphere
     geometry.computeBoundingSphere();
     const scaleFactor = 1 / geometry.boundingSphere.radius;
@@ -89,7 +95,7 @@ const setupThreeScene = (canvas, objectURL) => {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.addEventListener("change", () => renderer.render(scene, camera));
 
-    disposables.push(controls);
+    disposables.push(geometry, material, mesh, controls);
 
     const animate = () => {
       requestAnimationFrame(animate);

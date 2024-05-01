@@ -11,11 +11,15 @@ import "./analysisPage.css";
 
 const AnalysisPage = () => {
   const [fileFor3dModel, setFileFor3dModel] = useState(null);
+  const [originalFileFor3dModel, setOriginalFileFor3dModel] = useState(null);
   const [partId, setPartId] = useState(null);
   const [geoData, setGeoData] = useState(null);
   //initialize as an array to use the spread operator in startButton.jsx
   const [listOfThicknessData, setListOfThicknessData] = useState([]);
   const [units, setUnits] = useState(null);
+  const [fileNameForUpload, setFileNameForUpload] = useState("");
+  const [originalFileNameForUpload, setOriginalFileNameForUpload] =
+    useState("");
 
   return (
     <div>
@@ -36,18 +40,35 @@ const AnalysisPage = () => {
             <ThickAnalysisBox
               partId={partId}
               listOfThicknessData={listOfThicknessData}
-              //setListOfThicknessData and units headed to start button
+              // setListOfThicknessData/units
+              // setFileFor3dModel/setFileNameForUpload
+              // headed to start button
               setListOfThicknessData={setListOfThicknessData}
               units={units}
+              setFileFor3dModel={setFileFor3dModel}
+              setFileNameForUpload={setFileNameForUpload}
+              originalFileFor3dModel={originalFileFor3dModel}
+              originalFileNameForUpload={originalFileNameForUpload}
             />
           </div>
           <div id="unit-selector-parent-large">
-            <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
+            <UnitsSelector
+              partId={partId}
+              units={units}
+              setUnits={setUnits}
+              setFileFor3dModel={setFileFor3dModel}
+              setFileNameForUpload={setFileNameForUpload}
+              originalFileFor3dModel={originalFileFor3dModel}
+              originalFileNameForUpload={originalFileNameForUpload}
+            />
           </div>
           <div id="unit-selector-large-placeholder"></div>
         </Col>
         <Col xs={{ span: 24, order: 4 }} lg={{ span: 18, order: 2 }}>
-          <ModelViewer fileFor3dModel={fileFor3dModel} />
+          <ModelViewer
+            fileFor3dModel={fileFor3dModel}
+            fileNameForUpload={fileNameForUpload}
+          />
         </Col>
         <Col
           xs={{ span: 12, order: 1 }}
@@ -56,8 +77,11 @@ const AnalysisPage = () => {
         >
           <UploadPartButton
             setFileFor3dModel={setFileFor3dModel}
+            setOriginalFileFor3dModel={setOriginalFileFor3dModel}
+            setOriginalFileNameForUpload={setOriginalFileNameForUpload}
             setPartId={setPartId}
             setUnits={setUnits}
+            setFileNameForUpload={setFileNameForUpload}
           />
         </Col>
         <Col
@@ -67,10 +91,14 @@ const AnalysisPage = () => {
         >
           <ViewPartsButton
             setFileFor3dModel={setFileFor3dModel}
+            setOriginalFileFor3dModel={setOriginalFileFor3dModel}
+            setOriginalFileNameForUpload={setOriginalFileNameForUpload}
             setPartId={setPartId}
             setGeoData={setGeoData}
             setListOfThicknessData={setListOfThicknessData}
             setUnits={setUnits}
+            fileNameForUpload={fileNameForUpload}
+            setFileNameForUpload={setFileNameForUpload}
           />
         </Col>
         <Col xs={{ span: 24, order: 3 }} lg={{ span: 24, order: 5 }}>

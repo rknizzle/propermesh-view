@@ -6,12 +6,17 @@ import DisplayStatistic from "../DisplayStatistic/DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 import DecimalInput from "./DecimalInput";
+import { retrieveBlob } from "./indexedDBBlobStorage";
 
 const ThickAnalysisBox = ({
   partId,
   listOfThicknessData,
   setListOfThicknessData,
   units,
+  setFileFor3dModel,
+  setFileNameForUpload,
+  originalFileFor3dModel,
+  originalFileNameForUpload,
 }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
@@ -40,8 +45,6 @@ const ThickAnalysisBox = ({
     setAnalysisComplete(false);
   }, [units]);
 
-  console.log("listOfThicknessData", listOfThicknessData);
-
   const getSpecificDataRegardingThreshold = (value) => {
     //get the data from listOfThicknessData that matches the threshold value and units value
     const data = listOfThicknessData.find(
@@ -57,7 +60,22 @@ const ThickAnalysisBox = ({
     }
   };
 
+  async function loadPLYFromIndexedDB(partId, units, thresholdValue) {
+    try {
+      const blob = await retrieveBlob(partId, units, thresholdValue);
+      if (blob) {
+        setFileNameForUpload("file.ply");
+        const file = new File([blob], "file.ply", { type: blob.type });
+        setFileFor3dModel(file);
+      }
+    } catch (error) {
+      console.error("Failed to load PLY from IndexedDB:", error);
+    }
+  }
+
   const onChange = (value) => {
+    setFileNameForUpload(originalFileNameForUpload);
+    setFileFor3dModel(originalFileFor3dModel);
     setThresholdValue(value);
     setSelectedThreshold(Number(value));
     setThinSurfaceArea(null);
@@ -65,6 +83,7 @@ const ThickAnalysisBox = ({
     setShowCheckmark(false);
     setAnalysisComplete(false);
     getSpecificDataRegardingThreshold(value);
+    loadPLYFromIndexedDB(partId, units, value);
   };
 
   const renderThinAreaMessage = () => {
@@ -125,6 +144,8 @@ const ThickAnalysisBox = ({
             showCheckmark={showCheckmark}
             setShowCheckmark={setShowCheckmark}
             units={units}
+            setFileFor3dModel={setFileFor3dModel}
+            setFileNameForUpload={setFileNameForUpload}
           />
         </Col>
       </Row>
@@ -148,6 +169,9 @@ const ThickAnalysisBox = ({
                     ]}
                     value={selectedThreshold}
                     onChange={getSpecificDataRegardingThreshold}
+                    onClick={() =>
+                      loadPLYFromIndexedDB(partId, units, data.threshold)
+                    }
                   />
                 </Col>
               ))}
@@ -163,6 +187,10 @@ ThickAnalysisBox.propTypes = {
   listOfThicknessData: PropTypes.array,
   setListOfThicknessData: PropTypes.func,
   units: PropTypes.string,
+  setFileFor3dModel: PropTypes.func,
+  setFileNameForUpload: PropTypes.func,
+  originalFileFor3dModel: PropTypes.object,
+  originalFileNameForUpload: PropTypes.string,
 };
 
 export default ThickAnalysisBox;
