@@ -58,6 +58,19 @@ const ThickAnalysisBox = ({
     }
   };
 
+  async function loadPLYFromIndexedDB(partId, units, thresholdValue) {
+    try {
+      const blob = await retrieveBlob(partId, units, thresholdValue);
+      if (blob) {
+        setFileNameForUpload("file.ply");
+        const file = new File([blob], "file.ply", { type: blob.type });
+        setFileFor3dModel(file);
+      }
+    } catch (error) {
+      console.error("Failed to load PLY from IndexedDB:", error);
+    }
+  }
+
   const onChange = (value) => {
     setThresholdValue(value);
     setSelectedThreshold(Number(value));
@@ -66,6 +79,7 @@ const ThickAnalysisBox = ({
     setShowCheckmark(false);
     setAnalysisComplete(false);
     getSpecificDataRegardingThreshold(value);
+    loadPLYFromIndexedDB(partId, units, value);
   };
 
   const renderThinAreaMessage = () => {
@@ -89,21 +103,6 @@ const ThickAnalysisBox = ({
     }, 1000);
     return () => clearTimeout(timer);
   }, [units, partId]);
-
-  async function loadPLYFromIndexedDB(partId, units, thresholdValue) {
-    try {
-      const blob = await retrieveBlob(partId, units, thresholdValue);
-      if (blob) {
-        setFileNameForUpload("file.ply");
-        const file = new File([blob], "file.ply", { type: blob.type });
-        setFileFor3dModel(file);
-      } else {
-        console.error("No PLY file found for this threshold.");
-      }
-    } catch (error) {
-      console.error("Failed to load PLY from IndexedDB:", error);
-    }
-  }
 
   return (
     <div id="thick-analysis-box">
