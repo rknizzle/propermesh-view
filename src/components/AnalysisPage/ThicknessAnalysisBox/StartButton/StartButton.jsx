@@ -5,6 +5,7 @@ import "./startButton.css";
 import PropTypes from "prop-types";
 import { pollForResults } from "./pollForResults";
 import { startThicknessAnalysis } from "./startThickAnalysis";
+import { storeBlob } from "../indexedDBBlobStorage";
 
 const StartButton = ({
   partId,
@@ -23,7 +24,13 @@ const StartButton = ({
   const [isLoading, setIsLoading] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
 
-  const downloadPlyFilePlaceIn3dViewer = (jobId) => {
+  const downloadPlyFilePlaceIn3dViewer = (
+    jobId,
+    partId,
+    units,
+    thresholdValue
+  ) => {
+    console.log(thresholdValue);
     fetch(`/api/v0/thickness/${jobId}/visual/ply`)
       .then((res) => res.blob())
       .then((blob) => {
@@ -34,6 +41,9 @@ const StartButton = ({
         setFileNameForUpload("file.ply");
         const file = new File([blob], "file.ply", { type: blob.type });
         setFileFor3dModel(file);
+
+        // // save the blob to indexedDB
+        storeBlob(partId, units, thresholdValue, blob);
       });
   };
 
@@ -60,7 +70,7 @@ const StartButton = ({
       setIsLoading(false);
       setShowCheckmark(true);
       setAnalysisComplete(true);
-      downloadPlyFilePlaceIn3dViewer(job.id);
+      downloadPlyFilePlaceIn3dViewer(job.id, partId, units, thresholdValue);
     } catch (error) {
       notification.error({
         message: "Analysis Failed",
