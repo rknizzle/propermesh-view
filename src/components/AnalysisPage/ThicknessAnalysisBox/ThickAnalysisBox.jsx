@@ -6,6 +6,7 @@ import DisplayStatistic from "../DisplayStatistic/DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 import DecimalInput from "./DecimalInput";
+import { retrieveBlob } from "./indexedDBBlobStorage";
 
 const ThickAnalysisBox = ({
   partId,
@@ -89,6 +90,21 @@ const ThickAnalysisBox = ({
     return () => clearTimeout(timer);
   }, [units, partId]);
 
+  async function loadPLYFromIndexedDB(partId, units, thresholdValue) {
+    try {
+      const blob = await retrieveBlob(partId, units, thresholdValue);
+      if (blob) {
+        setFileNameForUpload("file.ply");
+        const file = new File([blob], "file.ply", { type: blob.type });
+        setFileFor3dModel(file);
+      } else {
+        console.error("No PLY file found for this threshold.");
+      }
+    } catch (error) {
+      console.error("Failed to load PLY from IndexedDB:", error);
+    }
+  }
+
   return (
     <div id="thick-analysis-box">
       <h2 id="thick-analysis-title">Thickness Analysis</h2>
@@ -150,6 +166,9 @@ const ThickAnalysisBox = ({
                     ]}
                     value={selectedThreshold}
                     onChange={getSpecificDataRegardingThreshold}
+                    onClick={() =>
+                      loadPLYFromIndexedDB(partId, units, data.threshold)
+                    }
                   />
                 </Col>
               ))}
