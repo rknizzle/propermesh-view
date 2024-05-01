@@ -52,7 +52,15 @@ const AnalysisPage = () => {
             />
           </div>
           <div id="unit-selector-parent-large">
-            <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
+            <UnitsSelector
+              partId={partId}
+              units={units}
+              setUnits={setUnits}
+              setFileFor3dModel={setFileFor3dModel}
+              setFileNameForUpload={setFileNameForUpload}
+              originalFileFor3dModel={originalFileFor3dModel}
+              originalFileNameForUpload={originalFileNameForUpload}
+            />
           </div>
           <div id="unit-selector-large-placeholder"></div>
         </Col>
