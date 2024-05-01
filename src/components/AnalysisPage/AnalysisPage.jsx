@@ -11,12 +11,15 @@ import "./analysisPage.css";
 
 const AnalysisPage = () => {
   const [fileFor3dModel, setFileFor3dModel] = useState(null);
+  const [originalFileFor3dModel, setOriginalFileFor3dModel] = useState(null);
   const [partId, setPartId] = useState(null);
   const [geoData, setGeoData] = useState(null);
   //initialize as an array to use the spread operator in startButton.jsx
   const [listOfThicknessData, setListOfThicknessData] = useState([]);
   const [units, setUnits] = useState(null);
   const [fileNameForUpload, setFileNameForUpload] = useState("");
+  const [originalFileNameForUpload, setOriginalFileNameForUpload] =
+    useState("");
 
   return (
     <div>
@@ -44,6 +47,8 @@ const AnalysisPage = () => {
               units={units}
               setFileFor3dModel={setFileFor3dModel}
               setFileNameForUpload={setFileNameForUpload}
+              originalFileFor3dModel={originalFileFor3dModel}
+              originalFileNameForUpload={originalFileNameForUpload}
             />
           </div>
           <div id="unit-selector-parent-large">
@@ -64,6 +69,8 @@ const AnalysisPage = () => {
         >
           <UploadPartButton
             setFileFor3dModel={setFileFor3dModel}
+            setOriginalFileFor3dModel={setOriginalFileFor3dModel}
+            setOriginalFileNameForUpload={setOriginalFileNameForUpload}
             setPartId={setPartId}
             setUnits={setUnits}
             setFileNameForUpload={setFileNameForUpload}
@@ -76,6 +83,8 @@ const AnalysisPage = () => {
         >
           <ViewPartsButton
             setFileFor3dModel={setFileFor3dModel}
+            setOriginalFileFor3dModel={setOriginalFileFor3dModel}
+            setOriginalFileNameForUpload={setOriginalFileNameForUpload}
             setPartId={setPartId}
             setGeoData={setGeoData}
             setListOfThicknessData={setListOfThicknessData}

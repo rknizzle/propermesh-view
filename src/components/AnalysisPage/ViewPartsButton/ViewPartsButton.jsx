@@ -13,6 +13,8 @@ const ViewPartsButton = ({
   setUnits,
   fileNameForUpload,
   setFileNameForUpload,
+  setOriginalFileFor3dModel,
+  setOriginalFileNameForUpload,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
@@ -41,6 +43,8 @@ const ViewPartsButton = ({
       .then((blob) => {
         const file = new File([blob], fileNameForUpload, { type: blob.type });
         setFileFor3dModel(file);
+        setOriginalFileFor3dModel(file);
+        setOriginalFileNameForUpload(file.name);
       });
   };
 
@@ -117,6 +121,8 @@ ViewPartsButton.propTypes = {
   setUnits: PropTypes.func,
   fileNameForUpload: PropTypes.string,
   setFileNameForUpload: PropTypes.func,
+  setOriginalFileFor3dModel: PropTypes.func,
+  setOriginalFileNameForUpload: PropTypes.func,
 };
 
 export default ViewPartsButton;
