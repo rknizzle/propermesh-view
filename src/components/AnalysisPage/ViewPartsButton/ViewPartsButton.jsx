@@ -44,7 +44,6 @@ const ViewPartsButton = ({
         const file = new File([blob], fileNameForUpload, { type: blob.type });
         setFileFor3dModel(file);
         setOriginalFileFor3dModel(file);
-        setOriginalFileNameForUpload(file.name);
       });
   };
 
@@ -99,6 +98,7 @@ const ViewPartsButton = ({
                   downloadPartFileAndPlaceIn3dViewer(part.id);
                   checkForAnalysisData(part.id);
                   setFileNameForUpload(part.name);
+                  setOriginalFileNameForUpload(part.name);
                   setPartId(part.id);
                 }}
                 className="part-list-item-row"
