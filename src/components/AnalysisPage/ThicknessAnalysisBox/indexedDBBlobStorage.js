@@ -1,5 +1,4 @@
 export const openDatabase = () => {
-  console.log("Opening database");
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("PlyBlobDatabase", 1);
     request.onupgradeneeded = function () {
@@ -19,7 +18,6 @@ export const openDatabase = () => {
 };
 
 export const storeBlob = async (partId, units, thresholdValue, blob) => {
-  console.log("Storing blob with key:", `${partId}-${units}-${thresholdValue}`);
   try {
     const db = await openDatabase();
     const transaction = db.transaction("FilesStore", "readwrite");
@@ -33,7 +31,6 @@ export const storeBlob = async (partId, units, thresholdValue, blob) => {
         reject("Failed to store blob");
       };
       request.onsuccess = function () {
-        console.log("Blob stored successfully with key:", key);
         resolve(request.result);
       };
       transaction.oncomplete = function () {
@@ -50,10 +47,6 @@ export const storeBlob = async (partId, units, thresholdValue, blob) => {
 };
 
 export const retrieveBlob = async (partId, units, thresholdValue) => {
-  console.log(
-    "Retrieving blob with key:",
-    `${partId}-${units}-${thresholdValue}`
-  );
   try {
     const db = await openDatabase();
     const transaction = db.transaction("FilesStore", "readonly");
@@ -68,11 +61,9 @@ export const retrieveBlob = async (partId, units, thresholdValue) => {
       };
       request.onsuccess = function () {
         if (request.result) {
-          console.log("Blob retrieved successfully with key:", key);
           resolve(request.result.blob);
         } else {
-          console.log("No blob found for key:", key);
-          resolve(null); // or reject if you prefer to treat no data as an error
+          resolve(null);
         }
       };
       transaction.oncomplete = function () {

@@ -30,7 +30,6 @@ const StartButton = ({
     units,
     thresholdValue
   ) => {
-    console.log(thresholdValue);
     fetch(`/api/v0/thickness/${jobId}/visual/ply`)
       .then((res) => res.blob())
       .then((blob) => {
@@ -62,7 +61,6 @@ const StartButton = ({
 
       const results = await pollForResults(job.id);
 
-      console.log(results);
       setThinSurfaceArea(results.thin_surface_area);
       setIsThin(results.is_thin);
       //updating listOfThicknessData with newest results
