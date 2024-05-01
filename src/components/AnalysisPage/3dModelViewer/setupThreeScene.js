@@ -57,7 +57,21 @@ const setupThreeScene = (canvas, objectURL) => {
 
     const mesh = new THREE.Mesh(geometry, material);
 
+    // TODO: refactor this edge code
+    // Create a thick edge around the border of the model for easier viewing
+
+    // only show edges with 15 degrees or more angle between faces
+    const thresholdAngle = 15;
+    const outlineEdgeGeometry = new THREE.EdgesGeometry(geometry, thresholdAngle);
+    // NOTE: linewidth doesn't seem to change anything on firefox
+    const outlineEdgeMaterial = new THREE.LineBasicMaterial({color: 0x000000, linewidth: 1.5});
+    const outlineEdgeMesh = new THREE.LineSegments(outlineEdgeGeometry, outlineEdgeMaterial);
+    scene.add(outlineEdgeMesh);
+
+    disposables.push(outlineEdgeGeometry, outlineEdgeMaterial, outlineEdgeMesh);
+
     geometry.center();
+    outlineEdgeGeometry.center();
 
     scene.add(mesh);
 
@@ -66,7 +80,9 @@ const setupThreeScene = (canvas, objectURL) => {
     // Adjusting the scale based on the model's bounding sphere
     geometry.computeBoundingSphere();
     const scaleFactor = 1 / geometry.boundingSphere.radius;
+
     mesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
+    outlineEdgeMesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
     camera.position.z = 2;
 

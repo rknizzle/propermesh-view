@@ -7,14 +7,6 @@ export default function LandingPage() {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
 
-  function navigateToAnalysPageBasedOnLoginStatus() {
-    if (isLoggedIn) {
-      navigate("/analysis")
-    } else {
-      navigate("/login")
-    }
-  }
-
   return (
     <div className="App">
       <Row
@@ -49,7 +41,7 @@ export default function LandingPage() {
             type="primary"
             id="analysis-page-btn"
             size="large"
-            onClick={navigateToAnalysPageBasedOnLoginStatus}
+            onClick={() => navigate("/analysis")}
           >
             Analyze Parts
           </Button>
