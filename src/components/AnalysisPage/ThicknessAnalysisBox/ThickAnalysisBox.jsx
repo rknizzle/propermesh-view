@@ -6,7 +6,7 @@ import DisplayStatistic from "../DisplayStatistic/DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 import DecimalInput from "./DecimalInput";
-import { retrieveBlob } from "./indexedDBBlobStorage";
+import { retrieveBlob, storeBlob } from "./indexedDBBlobStorage";
 
 const ThickAnalysisBox = ({
   partId,
@@ -57,21 +57,48 @@ const ThickAnalysisBox = ({
       setSelectedThreshold(Number(value));
       setShowCheckmark(true);
       setAnalysisComplete(true);
+      checkForOrDownloadPly(data);
     }
   };
 
-  async function loadPLYFromIndexedDB(partId, units, thresholdValue) {
+  const downloadPlyFilePlaceIn3dViewer = (
+    jobId,
+    partId,
+    units,
+    thresholdValue
+  ) => {
+    fetch(`/api/v0/thickness/${jobId}/visual/ply`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        setFileNameForUpload("file.ply");
+        const file = new File([blob], "file.ply", { type: blob.type });
+        setFileFor3dModel(file);
+
+        storeBlob(partId, units, thresholdValue, blob);
+      });
+  };
+
+  const checkForOrDownloadPly = async (data) => {
     try {
-      const blob = await retrieveBlob(partId, units, thresholdValue);
+      const blob = await retrieveBlob(data.part_id, data.units, data.threshold);
       if (blob) {
         setFileNameForUpload("file.ply");
         const file = new File([blob], "file.ply", { type: blob.type });
         setFileFor3dModel(file);
+      } else {
+        if (listOfThicknessData.find((data) => data.id === data.id)) {
+          downloadPlyFilePlaceIn3dViewer(
+            data.id,
+            data.part_id,
+            data.units,
+            data.threshold
+          );
+        }
       }
     } catch (error) {
       console.error("Failed to load PLY from IndexedDB:", error);
     }
-  }
+  };
 
   const onChange = (value) => {
     setFileNameForUpload(originalFileNameForUpload);
@@ -83,7 +110,6 @@ const ThickAnalysisBox = ({
     setShowCheckmark(false);
     setAnalysisComplete(false);
     getSpecificDataRegardingThreshold(value);
-    loadPLYFromIndexedDB(partId, units, value);
   };
 
   const renderThinAreaMessage = () => {
@@ -169,9 +195,6 @@ const ThickAnalysisBox = ({
                     ]}
                     value={selectedThreshold}
                     onChange={getSpecificDataRegardingThreshold}
-                    onClick={() =>
-                      loadPLYFromIndexedDB(partId, units, data.threshold)
-                    }
                   />
                 </Col>
               ))}
