@@ -107,17 +107,29 @@ const ThickAnalysisBox = ({
     );
   };
 
+  // If the threshold history grows large enough that it creates a second row,
+  // show an animation scrolling between the rows to show to the user that
+  // there are more boxes below the top row that they can scroll down to
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const container = listOfThicknessDataContainerRef.current;
-      if (container && container.scrollHeight > container.clientHeight) {
+    const container = listOfThicknessDataContainerRef.current;
+    // if the threshold history is only 1 row; dont show the animation
+    if (container && container.scrollHeight <= container.clientHeight) {
+      return
+    }
+
+    return createThresholdHistoryScrollAnimation()
+
+
+    function createThresholdHistoryScrollAnimation() {
+      const timer = setTimeout(() => {
         container.scrollBy({ top: 100, behavior: "smooth" });
         setTimeout(() => {
           container.scrollBy({ top: -100, behavior: "smooth" });
         }, 800);
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+
   }, [units, partId]);
 
   return (
