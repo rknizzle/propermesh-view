@@ -46,16 +46,17 @@ const ThickAnalysisBox = ({
     setAnalysisComplete(false);
   }, [units]);
 
-  const getSpecificDataRegardingThreshold = (value) => {
+  // populate the thickness box fields if the results exist for the given threshold & units
+  const maybePopulateThicknessBoxWithExistingResult = (inputThreshold) => {
     //get the data from listOfThicknessData that matches the threshold value and units value
     const data = listOfThicknessData.find(
-      (data) => Number(data.threshold) == Number(value) && data.units === units //**added units check
+      (data) => Number(data.threshold) == Number(inputThreshold) && data.units === units
     );
     if (data) {
       setThinSurfaceArea(data.thin_surface_area);
       setIsThin(data.is_thin);
-      setThresholdValue(value);
-      setSelectedThreshold(Number(value));
+      setThresholdValue(inputThreshold);
+      setSelectedThreshold(Number(inputThreshold));
       setShowCheckmark(true);
       setAnalysisComplete(true);
 
@@ -101,7 +102,7 @@ const ThickAnalysisBox = ({
     setAnalysisComplete(false);
 
     // populate the fields again if there are existing results for this threshold
-    getSpecificDataRegardingThreshold(value);
+    maybePopulateThicknessBoxWithExistingResult(value);
   };
 
   const renderThinAreaMessage = () => {
@@ -198,7 +199,7 @@ const ThickAnalysisBox = ({
                       },
                     ]}
                     value={selectedThreshold}
-                    onChange={getSpecificDataRegardingThreshold}
+                    onChange={maybePopulateThicknessBoxWithExistingResult}
                   />
                 </Col>
               ))}
