@@ -7,6 +7,7 @@ import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 import DecimalInput from "./DecimalInput";
 import { retrieveBlob, storeBlob } from "./indexedDBBlobStorage";
+import { downloadPlyFilePlaceIn3dViewer } from "./downloadPlyToViewer";
 
 const ThickAnalysisBox = ({
   partId,
@@ -60,24 +61,6 @@ const ThickAnalysisBox = ({
       checkForOrDownloadPly(data);
     }
   };
-
-  const downloadPlyFilePlaceIn3dViewer = (
-    jobId,
-    partId,
-    units,
-    thresholdValue
-  ) => {
-    fetch(`/api/v0/thickness/${jobId}/visual/ply`)
-      .then((res) => res.blob())
-      .then((blob) => {
-        setFileNameForUpload("file.ply");
-        const file = new File([blob], "file.ply", { type: blob.type });
-        setFileFor3dModel(file);
-
-        storeBlob(partId, units, thresholdValue, blob);
-      });
-  };
-
   const checkForOrDownloadPly = async (data) => {
     try {
       const blob = await retrieveBlob(data.part_id, data.units, data.threshold);
@@ -91,7 +74,10 @@ const ThickAnalysisBox = ({
             data.id,
             data.part_id,
             data.units,
-            data.threshold
+            data.threshold,
+            setFileFor3dModel,
+            setFileNameForUpload,
+            storeBlob
           );
         }
       }

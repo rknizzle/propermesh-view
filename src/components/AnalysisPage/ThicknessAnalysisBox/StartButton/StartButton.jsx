@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { pollForResults } from "./pollForResults";
 import { startThicknessAnalysis } from "./startThickAnalysis";
 import { storeBlob } from "../indexedDBBlobStorage";
+import { downloadPlyFilePlaceIn3dViewer } from "../downloadPlyToViewer";
 
 const StartButton = ({
   partId,
@@ -23,28 +24,6 @@ const StartButton = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
-
-  const downloadPlyFilePlaceIn3dViewer = (
-    jobId,
-    partId,
-    units,
-    thresholdValue
-  ) => {
-    fetch(`/api/v0/thickness/${jobId}/visual/ply`)
-      .then((res) => res.blob())
-      .then((blob) => {
-        // I can't yet locate a file name for the downloaded file.
-        // so I'm just setting it to "file.ply" for now.
-        // it works, and assuming if this function runs,
-        // the file should be a .ply file anyways, right?
-        setFileNameForUpload("file.ply");
-        const file = new File([blob], "file.ply", { type: blob.type });
-        setFileFor3dModel(file);
-
-        // // save the blob to indexedDB
-        storeBlob(partId, units, thresholdValue, blob);
-      });
-  };
 
   useEffect(() => {
     setIsLoading(false);
@@ -68,7 +47,15 @@ const StartButton = ({
       setIsLoading(false);
       setShowCheckmark(true);
       setAnalysisComplete(true);
-      downloadPlyFilePlaceIn3dViewer(job.id, partId, units, thresholdValue);
+      downloadPlyFilePlaceIn3dViewer(
+        job.id,
+        partId,
+        units,
+        thresholdValue,
+        setFileFor3dModel,
+        setFileNameForUpload,
+        storeBlob
+      );
     } catch (error) {
       notification.error({
         message: "Analysis Failed",
