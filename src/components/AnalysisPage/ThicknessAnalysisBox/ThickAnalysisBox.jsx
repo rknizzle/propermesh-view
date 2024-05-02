@@ -5,9 +5,9 @@ import "./thickAnalysisBox.css";
 import DisplayStatistic from "../DisplayStatistic/DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
-import DecimalInput from "./DecimalInput";
-import { retrieveBlob, storeBlob } from "./indexedDBBlobStorage";
-import { downloadPlyFilePlaceIn3dViewer } from "./downloadPlyToViewer";
+import DecimalInput from "./utils/DecimalInput";
+import { retrieveBlob, storeBlob } from "./utils/indexedDBBlobStorage";
+import { downloadPlyFilePlaceIn3dViewer } from "./utils/downloadPlyToViewer";
 
 const ThickAnalysisBox = ({
   partId,

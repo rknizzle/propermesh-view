@@ -5,8 +5,8 @@ import "./startButton.css";
 import PropTypes from "prop-types";
 import { pollForResults } from "./pollForResults";
 import { startThicknessAnalysis } from "./startThickAnalysis";
-import { storeBlob } from "../indexedDBBlobStorage";
-import { downloadPlyFilePlaceIn3dViewer } from "../downloadPlyToViewer";
+import { storeBlob } from "../utils/indexedDBBlobStorage";
+import { downloadPlyFilePlaceIn3dViewer } from "../utils/downloadPlyToViewer";
 
 const StartButton = ({
   partId,
