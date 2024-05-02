@@ -27,6 +27,7 @@ const ThickAnalysisBox = ({
   const [showCheckmark, setShowCheckmark] = useState(false);
   const listOfThicknessDataContainerRef = useRef(null);
 
+  // Clear the thickness box when a new part is loaded
   useEffect(() => {
     setListOfThicknessData([]);
     setThresholdValue(null);
@@ -64,6 +65,9 @@ const ThickAnalysisBox = ({
     }
   };
 
+  // Get the thickness visualization file from the local indexedDB storage if
+  // its there or fall back to downloading the file from the server and then
+  // place the file in the model viewer
   const placeThicknessVisualizationIn3DViewer = async (data) => {
     try {
       const blob = await retrieveBlob(data.part_id, data.units, data.threshold);
