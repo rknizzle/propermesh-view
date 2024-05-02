@@ -58,10 +58,12 @@ const ThickAnalysisBox = ({
       setSelectedThreshold(Number(value));
       setShowCheckmark(true);
       setAnalysisComplete(true);
-      checkForOrDownloadPly(data);
+
+      placeThicknessVisualizationIn3DViewer(data);
     }
   };
-  const checkForOrDownloadPly = async (data) => {
+
+  const placeThicknessVisualizationIn3DViewer = async (data) => {
     try {
       const blob = await retrieveBlob(data.part_id, data.units, data.threshold);
       if (blob) {
