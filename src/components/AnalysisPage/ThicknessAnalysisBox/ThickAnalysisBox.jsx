@@ -86,15 +86,19 @@ const ThickAnalysisBox = ({
     }
   };
 
-  const onChange = (value) => {
-    setFileNameForUpload(originalFileNameForUpload);
-    setFileFor3dModel(originalFileFor3dModel);
+  const onChangeThresholdInput = (value) => {
     setThresholdValue(value);
     setSelectedThreshold(Number(value));
+
+    // reset all populated fields when the theshold value gets changed
+    setFileNameForUpload(originalFileNameForUpload);
+    setFileFor3dModel(originalFileFor3dModel);
     setThinSurfaceArea(null);
     setIsThin(null);
     setShowCheckmark(false);
     setAnalysisComplete(false);
+
+    // populate the fields again if there are existing results for this threshold
     getSpecificDataRegardingThreshold(value);
   };
 
@@ -149,7 +153,7 @@ const ThickAnalysisBox = ({
             <div id="threshold-input-label">Threshold:</div>
             <DecimalInput
               value={thresholdValue}
-              onChange={onChange}
+              onChange={onChangeThresholdInput}
               units={units}
               partId={partId}
             />
