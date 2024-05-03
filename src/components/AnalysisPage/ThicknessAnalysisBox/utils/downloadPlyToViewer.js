@@ -7,7 +7,7 @@ const downloadPlyFilePlaceIn3dViewer = (
   setFileNameForUpload,
   storeBlob
 ) => {
-  fetch(`/api/v0/thickness/${jobId}/visual/ply`)
+  return fetch(`/api/v0/thickness/${jobId}/visual/ply`)
     .then((res) => res.blob())
     .then((blob) => {
       setFileNameForUpload("file.ply");
@@ -17,6 +17,7 @@ const downloadPlyFilePlaceIn3dViewer = (
     })
     .catch((error) => {
       console.error("Error downloading the PLY file:", error);
+      throw new Error("Failed to download the PLY file");
     });
 };
 
