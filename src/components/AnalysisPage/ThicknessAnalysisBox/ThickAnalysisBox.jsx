@@ -6,7 +6,8 @@ import DisplayStatistic from "../DisplayStatistic/DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
 import DecimalInput from "./DecimalInput";
-import { retrieveBlob } from "./indexedDBBlobStorage";
+import { retrieveBlob, storeBlob } from "./utils/indexedDBBlobStorage";
+import { downloadPlyFilePlaceIn3dViewer } from "./utils/downloadPlyToViewer";
 
 const ThickAnalysisBox = ({
   partId,
@@ -26,6 +27,7 @@ const ThickAnalysisBox = ({
   const [showCheckmark, setShowCheckmark] = useState(false);
   const listOfThicknessDataContainerRef = useRef(null);
 
+  // Clear the thickness box when a new part is loaded
   useEffect(() => {
     setListOfThicknessData([]);
     setThresholdValue(null);
@@ -45,45 +47,67 @@ const ThickAnalysisBox = ({
     setAnalysisComplete(false);
   }, [units]);
 
-  const getSpecificDataRegardingThreshold = (value) => {
+  // populate the thickness box fields if the results exist for the given threshold & units
+  const maybePopulateThicknessBoxWithExistingResult = (inputThreshold) => {
     //get the data from listOfThicknessData that matches the threshold value and units value
     const data = listOfThicknessData.find(
-      (data) => Number(data.threshold) == Number(value) && data.units === units //**added units check
+      (data) =>
+        Number(data.threshold) == Number(inputThreshold) && data.units === units
     );
     if (data) {
       setThinSurfaceArea(data.thin_surface_area);
       setIsThin(data.is_thin);
-      setThresholdValue(value);
-      setSelectedThreshold(Number(value));
+      setThresholdValue(inputThreshold);
+      setSelectedThreshold(Number(inputThreshold));
       setShowCheckmark(true);
       setAnalysisComplete(true);
+
+      placeThicknessVisualizationIn3DViewer(data);
     }
   };
 
-  async function loadPLYFromIndexedDB(partId, units, thresholdValue) {
+  // Get the thickness visualization file from the local indexedDB storage if
+  // its there or fall back to downloading the file from the server and then
+  // place the file in the model viewer
+  const placeThicknessVisualizationIn3DViewer = async (data) => {
     try {
-      const blob = await retrieveBlob(partId, units, thresholdValue);
+      const blob = await retrieveBlob(data.part_id, data.units, data.threshold);
       if (blob) {
         setFileNameForUpload("file.ply");
         const file = new File([blob], "file.ply", { type: blob.type });
         setFileFor3dModel(file);
+      } else {
+        if (listOfThicknessData.find((data) => data.id === data.id)) {
+          downloadPlyFilePlaceIn3dViewer(
+            data.id,
+            data.part_id,
+            data.units,
+            data.threshold,
+            setFileFor3dModel,
+            setFileNameForUpload,
+            storeBlob
+          );
+        }
       }
     } catch (error) {
       console.error("Failed to load PLY from IndexedDB:", error);
     }
-  }
+  };
 
-  const onChange = (value) => {
-    setFileNameForUpload(originalFileNameForUpload);
-    setFileFor3dModel(originalFileFor3dModel);
+  const onChangeThresholdInput = (value) => {
     setThresholdValue(value);
     setSelectedThreshold(Number(value));
+
+    // reset all populated fields when the theshold value gets changed
+    setFileNameForUpload(originalFileNameForUpload);
+    setFileFor3dModel(originalFileFor3dModel);
     setThinSurfaceArea(null);
     setIsThin(null);
     setShowCheckmark(false);
     setAnalysisComplete(false);
-    getSpecificDataRegardingThreshold(value);
-    loadPLYFromIndexedDB(partId, units, value);
+
+    // populate the fields again if there are existing results for this threshold
+    maybePopulateThicknessBoxWithExistingResult(value);
   };
 
   const renderThinAreaMessage = () => {
@@ -95,17 +119,27 @@ const ThickAnalysisBox = ({
     );
   };
 
+  // If the threshold history grows large enough that it creates a second row,
+  // show an animation scrolling between the rows to show to the user that
+  // there are more boxes below the top row that they can scroll down to
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const container = listOfThicknessDataContainerRef.current;
-      if (container && container.scrollHeight > container.clientHeight) {
+    const container = listOfThicknessDataContainerRef.current;
+    // if the threshold history is only 1 row; dont show the animation
+    if (container && container.scrollHeight <= container.clientHeight) {
+      return;
+    }
+
+    return createThresholdHistoryScrollAnimation();
+
+    function createThresholdHistoryScrollAnimation() {
+      const timer = setTimeout(() => {
         container.scrollBy({ top: 100, behavior: "smooth" });
         setTimeout(() => {
           container.scrollBy({ top: -100, behavior: "smooth" });
         }, 800);
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
   }, [units, partId]);
 
   return (
@@ -125,7 +159,7 @@ const ThickAnalysisBox = ({
             <div id="threshold-input-label">Threshold:</div>
             <DecimalInput
               value={thresholdValue}
-              onChange={onChange}
+              onChange={onChangeThresholdInput}
               units={units}
               partId={partId}
             />
@@ -168,10 +202,7 @@ const ThickAnalysisBox = ({
                       },
                     ]}
                     value={selectedThreshold}
-                    onChange={getSpecificDataRegardingThreshold}
-                    onClick={() =>
-                      loadPLYFromIndexedDB(partId, units, data.threshold)
-                    }
+                    onChange={maybePopulateThicknessBoxWithExistingResult}
                   />
                 </Col>
               ))}

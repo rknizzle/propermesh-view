@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import useStartPageAtTop from "./utils/startPageAtTop";
 
 function App() {
   const location = useLocation();
@@ -15,6 +16,10 @@ function App() {
   // 85 is the height of the footer across all screen sizes
   // If this value changes, then update the height of .footer-container in footer.css
   const FOOTER_HEIGHT = 85;
+
+  // Ensures that we start at the top of the page when the route changes
+  // instead of staying at the same scroll position
+  useStartPageAtTop();
 
   useEffect(() => {
     //used for when you adjust the height of the window
