@@ -1,4 +1,6 @@
-const downloadPlyFilePlaceIn3dViewer = (
+import { notification } from "antd";
+
+const downloadPlyFilePlaceIn3dViewer = async (
   jobId,
   partId,
   units,
@@ -7,18 +9,33 @@ const downloadPlyFilePlaceIn3dViewer = (
   setFileNameForUpload,
   storeBlob
 ) => {
-  return fetch(`/api/v0/thickness/${jobId}/visual/ply`)
-    .then((res) => res.blob())
-    .then((blob) => {
-      setFileNameForUpload("file.ply");
-      const file = new File([blob], "file.ply", { type: blob.type });
-      setFileFor3dModel(file);
-      storeBlob(partId, units, thresholdValue, blob);
-    })
-    .catch((error) => {
-      console.error("Error downloading the PLY file:", error);
-      throw new Error("Failed to download the PLY file");
+  let blob = null;
+  try {
+    const res = await fetch(`/api/v0/thickness/${jobId}/visual/ply`);
+    if (!res.ok) {
+      throw new Error();
+    }
+    blob = await res.blob();
+    setFileNameForUpload("file.ply");
+    const file = new File([blob], "file.ply", { type: blob.type });
+    setFileFor3dModel(file);
+  } catch (error) {
+    console.error("error while loading visualization:", error);
+    notification.error({
+      message: "Failed to load thickness visualization",
+      duration: 4.5,
+      placement: "top",
     });
+    throw error;
+  }
+
+  try {
+    return storeBlob(partId, units, thresholdValue, blob);
+  } catch (error) {
+    // error is being swallowed here, the user does not need to know about it
+    // the app will still function correctly
+    console.error("error while storing visualization:", error);
+  }
 };
 
 export { downloadPlyFilePlaceIn3dViewer };
