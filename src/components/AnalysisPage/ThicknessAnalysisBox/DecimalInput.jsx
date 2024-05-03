@@ -21,7 +21,7 @@ const DecimalInput = ({ value, onChange, units, partId }) => {
     const reg = /^(\d+)?(\.\d{0,2})?$/;
 
     if (reg.test(newValue)) {
-      onChange(newValue)
+      onChange(newValue);
     }
   };
 
@@ -47,10 +47,7 @@ const DecimalInput = ({ value, onChange, units, partId }) => {
 };
 
 DecimalInput.propTypes = {
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func,
   partId: PropTypes.string,
   units: PropTypes.string,

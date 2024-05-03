@@ -5,7 +5,7 @@ import "./thickAnalysisBox.css";
 import DisplayStatistic from "../DisplayStatistic/DisplayStatistic";
 import StartButton from "./StartButton/StartButton";
 import PropTypes from "prop-types";
-import DecimalInput from "./utils/DecimalInput";
+import DecimalInput from "./DecimalInput";
 import { retrieveBlob, storeBlob } from "./utils/indexedDBBlobStorage";
 import { downloadPlyFilePlaceIn3dViewer } from "./utils/downloadPlyToViewer";
 
@@ -51,7 +51,8 @@ const ThickAnalysisBox = ({
   const maybePopulateThicknessBoxWithExistingResult = (inputThreshold) => {
     //get the data from listOfThicknessData that matches the threshold value and units value
     const data = listOfThicknessData.find(
-      (data) => Number(data.threshold) == Number(inputThreshold) && data.units === units
+      (data) =>
+        Number(data.threshold) == Number(inputThreshold) && data.units === units
     );
     if (data) {
       setThinSurfaceArea(data.thin_surface_area);
@@ -125,11 +126,10 @@ const ThickAnalysisBox = ({
     const container = listOfThicknessDataContainerRef.current;
     // if the threshold history is only 1 row; dont show the animation
     if (container && container.scrollHeight <= container.clientHeight) {
-      return
+      return;
     }
 
-    return createThresholdHistoryScrollAnimation()
-
+    return createThresholdHistoryScrollAnimation();
 
     function createThresholdHistoryScrollAnimation() {
       const timer = setTimeout(() => {
@@ -140,7 +140,6 @@ const ThickAnalysisBox = ({
       }, 1000);
       return () => clearTimeout(timer);
     }
-
   }, [units, partId]);
 
   return (
