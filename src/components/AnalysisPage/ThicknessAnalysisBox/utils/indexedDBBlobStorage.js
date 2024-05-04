@@ -38,6 +38,7 @@ export const storeBlob = async (partId, units, thresholdValue, blob) => {
       };
       transaction.onerror = function (event) {
         console.error("Transaction failed:", event);
+        reject("Transaction failed:", event);
       };
     });
   } catch (error) {
@@ -71,6 +72,7 @@ export const retrieveBlob = async (partId, units, thresholdValue) => {
       };
       transaction.onerror = function (event) {
         console.error("Transaction failed:", event);
+        reject("Transaction failed:", event);
       };
     });
   } catch (error) {
