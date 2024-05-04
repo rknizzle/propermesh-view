@@ -15,9 +15,9 @@ const ThickAnalysisBox = ({
   setListOfThicknessData,
   units,
   setFileFor3dModel,
-  setFileNameFor3dViewer,
+  setFileNameFor3dModel,
   originalFileFor3dModel,
-  originalFileNameFor3dViewer,
+  originalFileNameFor3dModel,
 }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
@@ -73,7 +73,7 @@ const ThickAnalysisBox = ({
     try {
       const blob = await retrieveBlob(data.part_id, data.units, data.threshold);
       if (blob) {
-        setFileNameFor3dViewer("file.ply");
+        setFileNameFor3dModel("file.ply");
         const file = new File([blob], "file.ply", { type: blob.type });
         setFileFor3dModel(file);
       } else {
@@ -84,7 +84,7 @@ const ThickAnalysisBox = ({
             data.units,
             data.threshold,
             setFileFor3dModel,
-            setFileNameFor3dViewer,
+            setFileNameFor3dModel,
             storeBlob
           );
         }
@@ -99,7 +99,7 @@ const ThickAnalysisBox = ({
     setSelectedThreshold(Number(value));
 
     // reset all populated fields when the theshold value gets changed
-    setFileNameFor3dViewer(originalFileNameFor3dViewer);
+    setFileNameFor3dModel(originalFileNameFor3dModel);
     setFileFor3dModel(originalFileFor3dModel);
     setThinSurfaceArea(null);
     setIsThin(null);
@@ -179,7 +179,7 @@ const ThickAnalysisBox = ({
             setShowCheckmark={setShowCheckmark}
             units={units}
             setFileFor3dModel={setFileFor3dModel}
-            setFileNameFor3dViewer={setFileNameFor3dViewer}
+            setFileNameFor3dModel={setFileNameFor3dModel}
           />
         </Col>
       </Row>
@@ -219,9 +219,9 @@ ThickAnalysisBox.propTypes = {
   setListOfThicknessData: PropTypes.func,
   units: PropTypes.string,
   setFileFor3dModel: PropTypes.func,
-  setFileNameFor3dViewer: PropTypes.func,
+  setFileNameFor3dModel: PropTypes.func,
   originalFileFor3dModel: PropTypes.object,
-  originalFileNameFor3dViewer: PropTypes.string,
+  originalFileNameFor3dModel: PropTypes.string,
 };
 
 export default ThickAnalysisBox;

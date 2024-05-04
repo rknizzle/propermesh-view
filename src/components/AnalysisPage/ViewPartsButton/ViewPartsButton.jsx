@@ -11,10 +11,10 @@ const ViewPartsButton = ({
   setGeoData,
   setListOfThicknessData,
   setUnits,
-  fileNameFor3dViewer,
-  setFileNameFor3dViewer,
+  fileNameFor3dModel,
+  setFileNameFor3dModel,
   setOriginalFileFor3dModel,
-  setOriginalFileNameFor3dViewer,
+  setOriginalFileNameFor3dModel,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
@@ -41,7 +41,7 @@ const ViewPartsButton = ({
     fetch(`/api/v0/parts/${part_id}/file`)
       .then((res) => res.blob())
       .then((blob) => {
-        const file = new File([blob], fileNameFor3dViewer, { type: blob.type });
+        const file = new File([blob], fileNameFor3dModel, { type: blob.type });
         setFileFor3dModel(file);
         setOriginalFileFor3dModel(file);
       });
@@ -97,8 +97,8 @@ const ViewPartsButton = ({
                   setModalOpen(false);
                   downloadPartFileAndPlaceIn3dViewer(part.id);
                   checkForAnalysisData(part.id);
-                  setFileNameFor3dViewer(part.name);
-                  setOriginalFileNameFor3dViewer(part.name);
+                  setFileNameFor3dModel(part.name);
+                  setOriginalFileNameFor3dModel(part.name);
                   setPartId(part.id);
                 }}
                 className="part-list-item-row"
@@ -119,10 +119,10 @@ ViewPartsButton.propTypes = {
   setGeoData: PropTypes.func,
   setListOfThicknessData: PropTypes.func,
   setUnits: PropTypes.func,
-  fileNameFor3dViewer: PropTypes.string,
-  setFileNameFor3dViewer: PropTypes.func,
+  fileNameFor3dModel: PropTypes.string,
+  setFileNameFor3dModel: PropTypes.func,
   setOriginalFileFor3dModel: PropTypes.func,
-  setOriginalFileNameFor3dViewer: PropTypes.func,
+  setOriginalFileNameFor3dModel: PropTypes.func,
 };
 
 export default ViewPartsButton;

@@ -13,9 +13,9 @@ const UnitsSelector = ({
   units,
   setUnits,
   setFileFor3dModel,
-  setFileNameFor3dViewer,
+  setFileNameFor3dModel,
   originalFileFor3dModel,
-  originalFileNameFor3dViewer,
+  originalFileNameFor3dModel,
 }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   //used to maintain the purple border around the select when it is active
@@ -30,7 +30,7 @@ const UnitsSelector = ({
       setTimeout(() => {
         setShowSuccess(false);
       }, 2000);
-      setFileNameFor3dViewer(originalFileNameFor3dViewer);
+      setFileNameFor3dModel(originalFileNameFor3dModel);
       setFileFor3dModel(originalFileFor3dModel);
     } catch (error) {
       console.error("Error updating units:", error);
@@ -82,9 +82,9 @@ UnitsSelector.propTypes = {
   units: PropTypes.string,
   setUnits: PropTypes.func,
   setFileFor3dModel: PropTypes.func,
-  setFileNameFor3dViewer: PropTypes.func,
+  setFileNameFor3dModel: PropTypes.func,
   originalFileFor3dModel: PropTypes.object,
-  originalFileNameFor3dViewer: PropTypes.string,
+  originalFileNameFor3dModel: PropTypes.string,
 };
 
 export default UnitsSelector;

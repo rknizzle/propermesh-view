@@ -6,7 +6,7 @@ const downloadPlyFilePlaceIn3dViewer = async (
   units,
   thresholdValue,
   setFileFor3dModel,
-  setFileNameFor3dViewer,
+  setFileNameFor3dModel,
   storeBlob
 ) => {
   let blob = null;
@@ -16,7 +16,7 @@ const downloadPlyFilePlaceIn3dViewer = async (
       throw new Error();
     }
     blob = await res.blob();
-    setFileNameFor3dViewer("file.ply");
+    setFileNameFor3dModel("file.ply");
     const file = new File([blob], "file.ply", { type: blob.type });
     setFileFor3dModel(file);
   } catch (error) {
