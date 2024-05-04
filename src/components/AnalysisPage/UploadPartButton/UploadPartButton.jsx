@@ -10,9 +10,9 @@ const UploadPartButton = ({
   setFileFor3dModel,
   setPartId,
   setUnits,
-  setFileNameForUpload,
+  setFileNameFor3dModel,
   setOriginalFileFor3dModel,
-  setOriginalFileNameForUpload,
+  setOriginalFileNameFor3dModel,
 }) => {
   const [isUploadAllowed, setIsUploadAllowed] = useState(true);
 
@@ -47,9 +47,9 @@ const UploadPartButton = ({
       }
     },
     beforeUpload(file) {
-      setFileNameForUpload(file.name);
+      setFileNameFor3dModel(file.name);
       setFileFor3dModel(file);
-      setOriginalFileNameForUpload(file.name);
+      setOriginalFileNameFor3dModel(file.name);
       setOriginalFileFor3dModel(file);
       return true;
     },
@@ -64,7 +64,7 @@ const UploadPartButton = ({
 
       // Continue if only one file given
       const file = e.dataTransfer.files[0];
-      setFileNameForUpload(file.name);
+      setFileNameFor3dModel(file.name);
 
       //checking if the file is an accepted type
       const fileExtension = file.name
@@ -106,9 +106,9 @@ UploadPartButton.propTypes = {
   setFileFor3dModel: PropTypes.func,
   setPartId: PropTypes.func,
   setUnits: PropTypes.func,
-  setFileNameForUpload: PropTypes.func,
+  setFileNameFor3dModel: PropTypes.func,
   setOriginalFileFor3dModel: PropTypes.func,
-  setOriginalFileNameForUpload: PropTypes.func,
+  setOriginalFileNameFor3dModel: PropTypes.func,
 };
 
 export default UploadPartButton;

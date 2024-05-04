@@ -47,7 +47,14 @@ const setupThreeScene = (canvas, objectURL, fileType) => {
 
   const disposables = [];
 
-  const loader = fileType === "stl" ? new STLLoader() : new PLYLoader();
+  let loader;
+  if (fileType === "stl") {
+    loader = new STLLoader();
+  } else if (fileType === "ply") {
+    loader = new PLYLoader();
+  } else {
+    throw new Error(`Unsupported file type`);
+  }
 
   loader.load(objectURL, function (geometry) {
     const materialOptions = {
@@ -70,10 +77,19 @@ const setupThreeScene = (canvas, objectURL, fileType) => {
 
     // only show edges with 15 degrees or more angle between faces
     const thresholdAngle = 15;
-    const outlineEdgeGeometry = new THREE.EdgesGeometry(geometry, thresholdAngle);
+    const outlineEdgeGeometry = new THREE.EdgesGeometry(
+      geometry,
+      thresholdAngle
+    );
     // NOTE: linewidth doesn't seem to change anything on firefox
-    const outlineEdgeMaterial = new THREE.LineBasicMaterial({color: 0x000000, linewidth: 1.5});
-    const outlineEdgeMesh = new THREE.LineSegments(outlineEdgeGeometry, outlineEdgeMaterial);
+    const outlineEdgeMaterial = new THREE.LineBasicMaterial({
+      color: 0x000000,
+      linewidth: 1.5,
+    });
+    const outlineEdgeMesh = new THREE.LineSegments(
+      outlineEdgeGeometry,
+      outlineEdgeMaterial
+    );
     scene.add(outlineEdgeMesh);
 
     disposables.push(outlineEdgeGeometry, outlineEdgeMaterial, outlineEdgeMesh);
