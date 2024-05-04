@@ -21,6 +21,7 @@ const StartButton = ({
   units,
   setFileFor3dModel,
   setFileNameFor3dModel,
+  setShowToggle,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
@@ -56,6 +57,7 @@ const StartButton = ({
         setFileNameFor3dModel,
         storeBlob
       );
+      setShowToggle(true);
     } catch (error) {
       notification.error({
         message: "Analysis Failed",
@@ -143,6 +145,7 @@ StartButton.propTypes = {
   units: PropTypes.string,
   setFileFor3dModel: PropTypes.func,
   setFileNameFor3dModel: PropTypes.func,
+  setShowToggle: PropTypes.func,
 };
 
 export default StartButton;

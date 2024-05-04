@@ -20,6 +20,7 @@ const AnalysisPage = () => {
   const [fileNameFor3dModel, setFileNameFor3dModel] = useState("");
   const [originalFileNameFor3dModel, setOriginalFileNameFor3dModel] =
     useState("");
+  const [showToggle, setShowToggle] = useState(false);
 
   return (
     <div>
@@ -49,6 +50,7 @@ const AnalysisPage = () => {
               setFileNameFor3dModel={setFileNameFor3dModel}
               originalFileFor3dModel={originalFileFor3dModel}
               originalFileNameFor3dModel={originalFileNameFor3dModel}
+              setShowToggle={setShowToggle}
             />
           </div>
           <div id="unit-selector-parent-large">
@@ -68,6 +70,10 @@ const AnalysisPage = () => {
           <ModelViewer
             fileFor3dModel={fileFor3dModel}
             fileNameFor3dModel={fileNameFor3dModel}
+            originalFileFor3dModel={originalFileFor3dModel}
+            originalFileNameFor3dModel={originalFileNameFor3dModel}
+            showToggle={showToggle}
+            setShowToggle={setShowToggle}
           />
         </Col>
         <Col

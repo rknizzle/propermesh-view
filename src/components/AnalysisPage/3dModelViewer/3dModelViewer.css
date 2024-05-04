@@ -12,6 +12,21 @@
   border-radius: 15px;
 }
 
+.model-viewer-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+}
+
+.ant-switch-checked {
+  background-image: linear-gradient(
+    to top left,
+    #840101 25%,
+    #298929 60%
+  ) !important;
+}
+
 @media (max-width: 1325px) {
   #model-viewer-container {
     width: 97%;
