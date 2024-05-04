@@ -2,13 +2,28 @@ import { useEffect, useRef, useState } from "react";
 import setupThreeScene from "./setupThreeScene";
 import PropTypes from "prop-types";
 import "./3dModelViewer.css";
+import { Switch } from "antd";
 
 //TODO: Add loading spinner if a file is taking a second to load
 
-const ModelViewer = ({ fileFor3dModel, fileNameFor3dModel }) => {
+const ModelViewer = ({
+  fileFor3dModel,
+  fileNameFor3dModel,
+  originalFileFor3dModel,
+  originalFileNameFor3dModel,
+  showToggle,
+  setShowToggle,
+}) => {
   const canvasRef = useRef(null);
   const [objectURL, setObjectURL] = useState(null);
   const [fileType, setFileType] = useState(null);
+
+  useEffect(() => {
+    if (fileFor3dModel === originalFileFor3dModel) {
+      setShowToggle(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fileFor3dModel, originalFileFor3dModel]);
 
   useEffect(() => {
     if (fileFor3dModel) {
@@ -42,9 +57,36 @@ const ModelViewer = ({ fileFor3dModel, fileNameFor3dModel }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [objectURL]);
 
+  const handleToggleChange = (checked) => {
+    if (checked) {
+      const url = URL.createObjectURL(fileFor3dModel);
+      setObjectURL(url);
+      setFileType(fileNameFor3dModel.split(".").pop().toLowerCase());
+
+      return () => {
+        URL.revokeObjectURL(url);
+      };
+    }
+
+    if (!checked) {
+      const url = URL.createObjectURL(originalFileFor3dModel);
+      setObjectURL(url);
+      setFileType(originalFileNameFor3dModel.split(".").pop().toLowerCase());
+
+      return () => {
+        URL.revokeObjectURL(url);
+      };
+    }
+  };
+
   return (
     <div id="model-viewer-container">
       <canvas ref={canvasRef} id="model-canvas" />
+      {showToggle && (
+        <div className="model-viewer-toggle">
+          <Switch defaultChecked onChange={handleToggleChange} />
+        </div>
+      )}
     </div>
   );
 };
@@ -52,6 +94,10 @@ const ModelViewer = ({ fileFor3dModel, fileNameFor3dModel }) => {
 ModelViewer.propTypes = {
   fileFor3dModel: PropTypes.object,
   fileNameFor3dModel: PropTypes.string,
+  originalFileFor3dModel: PropTypes.object,
+  originalFileNameFor3dModel: PropTypes.string,
+  showToggle: PropTypes.bool,
+  setShowToggle: PropTypes.func,
 };
 
 export default ModelViewer;
