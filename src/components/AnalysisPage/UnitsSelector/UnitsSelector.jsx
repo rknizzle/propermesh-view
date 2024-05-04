@@ -13,7 +13,7 @@ const UnitsSelector = ({
   units,
   setUnits,
   setFileFor3dModel,
-  setFileNameForUpload,
+  setFileNameFor3dViewer,
   originalFileFor3dModel,
   originalFileNameForUpload,
 }) => {
@@ -30,7 +30,7 @@ const UnitsSelector = ({
       setTimeout(() => {
         setShowSuccess(false);
       }, 2000);
-      setFileNameForUpload(originalFileNameForUpload);
+      setFileNameFor3dViewer(originalFileNameForUpload);
       setFileFor3dModel(originalFileFor3dModel);
     } catch (error) {
       console.error("Error updating units:", error);
@@ -82,7 +82,7 @@ UnitsSelector.propTypes = {
   units: PropTypes.string,
   setUnits: PropTypes.func,
   setFileFor3dModel: PropTypes.func,
-  setFileNameForUpload: PropTypes.func,
+  setFileNameFor3dViewer: PropTypes.func,
   originalFileFor3dModel: PropTypes.object,
   originalFileNameForUpload: PropTypes.string,
 };

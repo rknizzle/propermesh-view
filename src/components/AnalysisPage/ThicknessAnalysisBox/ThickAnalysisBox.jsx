@@ -15,7 +15,7 @@ const ThickAnalysisBox = ({
   setListOfThicknessData,
   units,
   setFileFor3dModel,
-  setFileNameForUpload,
+  setFileNameFor3dViewer,
   originalFileFor3dModel,
   originalFileNameForUpload,
 }) => {
@@ -73,7 +73,7 @@ const ThickAnalysisBox = ({
     try {
       const blob = await retrieveBlob(data.part_id, data.units, data.threshold);
       if (blob) {
-        setFileNameForUpload("file.ply");
+        setFileNameFor3dViewer("file.ply");
         const file = new File([blob], "file.ply", { type: blob.type });
         setFileFor3dModel(file);
       } else {
@@ -84,7 +84,7 @@ const ThickAnalysisBox = ({
             data.units,
             data.threshold,
             setFileFor3dModel,
-            setFileNameForUpload,
+            setFileNameFor3dViewer,
             storeBlob
           );
         }
@@ -99,7 +99,7 @@ const ThickAnalysisBox = ({
     setSelectedThreshold(Number(value));
 
     // reset all populated fields when the theshold value gets changed
-    setFileNameForUpload(originalFileNameForUpload);
+    setFileNameFor3dViewer(originalFileNameForUpload);
     setFileFor3dModel(originalFileFor3dModel);
     setThinSurfaceArea(null);
     setIsThin(null);
@@ -179,7 +179,7 @@ const ThickAnalysisBox = ({
             setShowCheckmark={setShowCheckmark}
             units={units}
             setFileFor3dModel={setFileFor3dModel}
-            setFileNameForUpload={setFileNameForUpload}
+            setFileNameFor3dViewer={setFileNameFor3dViewer}
           />
         </Col>
       </Row>
@@ -219,7 +219,7 @@ ThickAnalysisBox.propTypes = {
   setListOfThicknessData: PropTypes.func,
   units: PropTypes.string,
   setFileFor3dModel: PropTypes.func,
-  setFileNameForUpload: PropTypes.func,
+  setFileNameFor3dViewer: PropTypes.func,
   originalFileFor3dModel: PropTypes.object,
   originalFileNameForUpload: PropTypes.string,
 };

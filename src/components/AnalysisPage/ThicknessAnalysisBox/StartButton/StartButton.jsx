@@ -20,7 +20,7 @@ const StartButton = ({
   setShowCheckmark,
   units,
   setFileFor3dModel,
-  setFileNameForUpload,
+  setFileNameFor3dViewer,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
@@ -53,7 +53,7 @@ const StartButton = ({
         units,
         thresholdValue,
         setFileFor3dModel,
-        setFileNameForUpload,
+        setFileNameFor3dViewer,
         storeBlob
       );
     } catch (error) {
@@ -142,7 +142,7 @@ StartButton.propTypes = {
   setShowCheckmark: PropTypes.func,
   units: PropTypes.string,
   setFileFor3dModel: PropTypes.func,
-  setFileNameForUpload: PropTypes.func,
+  setFileNameFor3dViewer: PropTypes.func,
 };
 
 export default StartButton;

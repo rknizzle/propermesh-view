@@ -17,7 +17,7 @@ const AnalysisPage = () => {
   //initialize as an array to use the spread operator in startButton.jsx
   const [listOfThicknessData, setListOfThicknessData] = useState([]);
   const [units, setUnits] = useState(null);
-  const [fileNameForUpload, setFileNameForUpload] = useState("");
+  const [fileNameFor3dViewer, setFileNameFor3dViewer] = useState("");
   const [originalFileNameForUpload, setOriginalFileNameForUpload] =
     useState("");
 
@@ -41,12 +41,12 @@ const AnalysisPage = () => {
               partId={partId}
               listOfThicknessData={listOfThicknessData}
               // setListOfThicknessData/units
-              // setFileFor3dModel/setFileNameForUpload
+              // setFileFor3dModel/fileNameFor3dViewer
               // headed to start button
               setListOfThicknessData={setListOfThicknessData}
               units={units}
               setFileFor3dModel={setFileFor3dModel}
-              setFileNameForUpload={setFileNameForUpload}
+              setFileNameFor3dViewer={setFileNameFor3dViewer}
               originalFileFor3dModel={originalFileFor3dModel}
               originalFileNameForUpload={originalFileNameForUpload}
             />
@@ -57,7 +57,7 @@ const AnalysisPage = () => {
               units={units}
               setUnits={setUnits}
               setFileFor3dModel={setFileFor3dModel}
-              setFileNameForUpload={setFileNameForUpload}
+              setFileNameFor3dViewer={setFileNameFor3dViewer}
               originalFileFor3dModel={originalFileFor3dModel}
               originalFileNameForUpload={originalFileNameForUpload}
             />
@@ -67,7 +67,7 @@ const AnalysisPage = () => {
         <Col xs={{ span: 24, order: 4 }} lg={{ span: 18, order: 2 }}>
           <ModelViewer
             fileFor3dModel={fileFor3dModel}
-            fileNameForUpload={fileNameForUpload}
+            fileNameFor3dViewer={fileNameFor3dViewer}
           />
         </Col>
         <Col
@@ -81,7 +81,7 @@ const AnalysisPage = () => {
             setOriginalFileNameForUpload={setOriginalFileNameForUpload}
             setPartId={setPartId}
             setUnits={setUnits}
-            setFileNameForUpload={setFileNameForUpload}
+            setFileNameFor3dViewer={setFileNameFor3dViewer}
           />
         </Col>
         <Col
@@ -97,8 +97,8 @@ const AnalysisPage = () => {
             setGeoData={setGeoData}
             setListOfThicknessData={setListOfThicknessData}
             setUnits={setUnits}
-            fileNameForUpload={fileNameForUpload}
-            setFileNameForUpload={setFileNameForUpload}
+            fileNameFor3dViewer={fileNameFor3dViewer}
+            setFileNameFor3dViewer={setFileNameFor3dViewer}
           />
         </Col>
         <Col xs={{ span: 24, order: 3 }} lg={{ span: 24, order: 5 }}>
