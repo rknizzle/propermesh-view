@@ -14,7 +14,7 @@ const ViewPartsButton = ({
   fileNameFor3dViewer,
   setFileNameFor3dViewer,
   setOriginalFileFor3dModel,
-  setOriginalFileNameForUpload,
+  setOriginalFileNameFor3dViewer,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [partsData, setPartsData] = useState([]);
@@ -98,7 +98,7 @@ const ViewPartsButton = ({
                   downloadPartFileAndPlaceIn3dViewer(part.id);
                   checkForAnalysisData(part.id);
                   setFileNameFor3dViewer(part.name);
-                  setOriginalFileNameForUpload(part.name);
+                  setOriginalFileNameFor3dViewer(part.name);
                   setPartId(part.id);
                 }}
                 className="part-list-item-row"
@@ -122,7 +122,7 @@ ViewPartsButton.propTypes = {
   fileNameFor3dViewer: PropTypes.string,
   setFileNameFor3dViewer: PropTypes.func,
   setOriginalFileFor3dModel: PropTypes.func,
-  setOriginalFileNameForUpload: PropTypes.func,
+  setOriginalFileNameFor3dViewer: PropTypes.func,
 };
 
 export default ViewPartsButton;

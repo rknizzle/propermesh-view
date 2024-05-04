@@ -18,7 +18,7 @@ const AnalysisPage = () => {
   const [listOfThicknessData, setListOfThicknessData] = useState([]);
   const [units, setUnits] = useState(null);
   const [fileNameFor3dViewer, setFileNameFor3dViewer] = useState("");
-  const [originalFileNameForUpload, setOriginalFileNameForUpload] =
+  const [originalFileNameFor3dViewer, setOriginalFileNameFor3dViewer] =
     useState("");
 
   return (
@@ -48,7 +48,7 @@ const AnalysisPage = () => {
               setFileFor3dModel={setFileFor3dModel}
               setFileNameFor3dViewer={setFileNameFor3dViewer}
               originalFileFor3dModel={originalFileFor3dModel}
-              originalFileNameForUpload={originalFileNameForUpload}
+              originalFileNameFor3dViewer={originalFileNameFor3dViewer}
             />
           </div>
           <div id="unit-selector-parent-large">
@@ -59,7 +59,7 @@ const AnalysisPage = () => {
               setFileFor3dModel={setFileFor3dModel}
               setFileNameFor3dViewer={setFileNameFor3dViewer}
               originalFileFor3dModel={originalFileFor3dModel}
-              originalFileNameForUpload={originalFileNameForUpload}
+              originalFileNameFor3dViewer={originalFileNameFor3dViewer}
             />
           </div>
           <div id="unit-selector-large-placeholder"></div>
@@ -78,7 +78,7 @@ const AnalysisPage = () => {
           <UploadPartButton
             setFileFor3dModel={setFileFor3dModel}
             setOriginalFileFor3dModel={setOriginalFileFor3dModel}
-            setOriginalFileNameForUpload={setOriginalFileNameForUpload}
+            setOriginalFileNameFor3dViewer={setOriginalFileNameFor3dViewer}
             setPartId={setPartId}
             setUnits={setUnits}
             setFileNameFor3dViewer={setFileNameFor3dViewer}
@@ -92,7 +92,7 @@ const AnalysisPage = () => {
           <ViewPartsButton
             setFileFor3dModel={setFileFor3dModel}
             setOriginalFileFor3dModel={setOriginalFileFor3dModel}
-            setOriginalFileNameForUpload={setOriginalFileNameForUpload}
+            setOriginalFileNameFor3dViewer={setOriginalFileNameFor3dViewer}
             setPartId={setPartId}
             setGeoData={setGeoData}
             setListOfThicknessData={setListOfThicknessData}

@@ -12,7 +12,7 @@ const UploadPartButton = ({
   setUnits,
   setFileNameFor3dViewer,
   setOriginalFileFor3dModel,
-  setOriginalFileNameForUpload,
+  setOriginalFileNameFor3dViewer,
 }) => {
   const [isUploadAllowed, setIsUploadAllowed] = useState(true);
 
@@ -49,7 +49,7 @@ const UploadPartButton = ({
     beforeUpload(file) {
       setFileNameFor3dViewer(file.name);
       setFileFor3dModel(file);
-      setOriginalFileNameForUpload(file.name);
+      setOriginalFileNameFor3dViewer(file.name);
       setOriginalFileFor3dModel(file);
       return true;
     },
@@ -108,7 +108,7 @@ UploadPartButton.propTypes = {
   setUnits: PropTypes.func,
   setFileNameFor3dViewer: PropTypes.func,
   setOriginalFileFor3dModel: PropTypes.func,
-  setOriginalFileNameForUpload: PropTypes.func,
+  setOriginalFileNameFor3dViewer: PropTypes.func,
 };
 
 export default UploadPartButton;

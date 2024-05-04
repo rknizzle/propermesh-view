@@ -17,7 +17,7 @@ const ThickAnalysisBox = ({
   setFileFor3dModel,
   setFileNameFor3dViewer,
   originalFileFor3dModel,
-  originalFileNameForUpload,
+  originalFileNameFor3dViewer,
 }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
@@ -99,7 +99,7 @@ const ThickAnalysisBox = ({
     setSelectedThreshold(Number(value));
 
     // reset all populated fields when the theshold value gets changed
-    setFileNameFor3dViewer(originalFileNameForUpload);
+    setFileNameFor3dViewer(originalFileNameFor3dViewer);
     setFileFor3dModel(originalFileFor3dModel);
     setThinSurfaceArea(null);
     setIsThin(null);
@@ -221,7 +221,7 @@ ThickAnalysisBox.propTypes = {
   setFileFor3dModel: PropTypes.func,
   setFileNameFor3dViewer: PropTypes.func,
   originalFileFor3dModel: PropTypes.object,
-  originalFileNameForUpload: PropTypes.string,
+  originalFileNameFor3dViewer: PropTypes.string,
 };
 
 export default ThickAnalysisBox;
