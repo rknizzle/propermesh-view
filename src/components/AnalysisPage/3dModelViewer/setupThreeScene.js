@@ -3,7 +3,7 @@ import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
 import { PLYLoader } from "three/examples/jsm/loaders/PLYLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-const setupThreeScene = (canvas, objectURL, fileType) => {
+const setupThreeScene = (canvas) => {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xffffff);
   const camera = new THREE.PerspectiveCamera(
@@ -47,86 +47,96 @@ const setupThreeScene = (canvas, objectURL, fileType) => {
 
   const disposables = [];
 
-  let loader;
-  if (fileType === "stl") {
-    loader = new STLLoader();
-  } else if (fileType === "ply") {
-    loader = new PLYLoader();
-  } else {
-    throw new Error(`Unsupported file type`);
-  }
-
-  loader.load(objectURL, function (geometry) {
-    const materialOptions = {
-      specular: 0xffffff,
-      shininess: 100,
-      flatShading: true,
-    };
-
-    if (fileType === "ply") {
-      geometry.computeVertexNormals();
-      materialOptions.vertexColors = true;
+  const loadModel = (objectURL, fileType) => {
+    console.log("Loading model");
+    // clearModel();
+    let loader;
+    if (fileType === "stl") {
+      loader = new STLLoader();
+    } else if (fileType === "ply") {
+      loader = new PLYLoader();
+    } else {
+      throw new Error(`Unsupported file type`);
     }
 
-    const material = new THREE.MeshPhongMaterial(materialOptions);
+    loader.load(objectURL, function (geometry) {
+      const materialOptions = {
+        specular: 0xffffff,
+        shininess: 100,
+        flatShading: true,
+      };
 
-    const mesh = new THREE.Mesh(geometry, material);
+      if (fileType === "ply") {
+        geometry.computeVertexNormals();
+        materialOptions.vertexColors = true;
+      }
 
-    // TODO: refactor this edge code
-    // Create a thick edge around the border of the model for easier viewing
+      const material = new THREE.MeshPhongMaterial(materialOptions);
 
-    // only show edges with 15 degrees or more angle between faces
-    const thresholdAngle = 15;
-    const outlineEdgeGeometry = new THREE.EdgesGeometry(
-      geometry,
-      thresholdAngle
-    );
-    // NOTE: linewidth doesn't seem to change anything on firefox
-    const outlineEdgeMaterial = new THREE.LineBasicMaterial({
-      color: 0x000000,
-      linewidth: 1.5,
+      const mesh = new THREE.Mesh(geometry, material);
+
+      // TODO: refactor this edge code
+      // Create a thick edge around the border of the model for easier viewing
+
+      // only show edges with 15 degrees or more angle between faces
+      const thresholdAngle = 15;
+      const outlineEdgeGeometry = new THREE.EdgesGeometry(
+        geometry,
+        thresholdAngle
+      );
+      // NOTE: linewidth doesn't seem to change anything on firefox
+      const outlineEdgeMaterial = new THREE.LineBasicMaterial({
+        color: 0x000000,
+        linewidth: 1.5,
+      });
+      const outlineEdgeMesh = new THREE.LineSegments(
+        outlineEdgeGeometry,
+        outlineEdgeMaterial
+      );
+      scene.add(outlineEdgeMesh);
+
+      disposables.push(
+        outlineEdgeGeometry,
+        outlineEdgeMaterial,
+        outlineEdgeMesh
+      );
+
+      geometry.center();
+      outlineEdgeGeometry.center();
+
+      scene.add(mesh);
+
+      // Adjusting the scale based on the model's bounding sphere
+      geometry.computeBoundingSphere();
+      const scaleFactor = 1 / geometry.boundingSphere.radius;
+
+      mesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
+      outlineEdgeMesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
+
+      camera.position.z = 2;
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.addEventListener("change", () => renderer.render(scene, camera));
+
+      disposables.push(geometry, material, mesh, controls);
     });
-    const outlineEdgeMesh = new THREE.LineSegments(
-      outlineEdgeGeometry,
-      outlineEdgeMaterial
-    );
-    scene.add(outlineEdgeMesh);
+  };
 
-    disposables.push(outlineEdgeGeometry, outlineEdgeMaterial, outlineEdgeMesh);
+  const clearModel = () => {
+    // Remove all edges from the scene
+    console.log("Clearing model");
+    scene.children.forEach((child) => {
+      if (child instanceof THREE.LineSegments) {
+        scene.remove(child);
+        if (child.geometry) child.geometry.dispose();
+        if (child.material) child.material.dispose();
+      }
+    });
 
-    geometry.center();
-    outlineEdgeGeometry.center();
-
-    scene.add(mesh);
-
-    // Adjusting the scale based on the model's bounding sphere
-    geometry.computeBoundingSphere();
-    const scaleFactor = 1 / geometry.boundingSphere.radius;
-
-    mesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
-    outlineEdgeMesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
-
-    camera.position.z = 2;
-
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.addEventListener("change", () => renderer.render(scene, camera));
-
-    disposables.push(geometry, material, mesh, controls);
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-    };
-    animate();
-  });
-
-  return () => {
-    // Dispose of all disposables
     disposables.forEach((disposable) => {
       if (disposable.dispose) {
         disposable.dispose();
       } else if (disposable instanceof THREE.Mesh) {
-        // Remove from scene and dispose geometry and material
         scene.remove(disposable);
         if (disposable.geometry) disposable.geometry.dispose();
         if (disposable.material) {
@@ -138,11 +148,15 @@ const setupThreeScene = (canvas, objectURL, fileType) => {
         }
       }
     });
-
-    renderer.dispose();
-
-    scene.clear();
   };
+
+  const animate = () => {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  };
+  animate();
+
+  return { loadModel, clearModel };
 };
 
 export default setupThreeScene;
