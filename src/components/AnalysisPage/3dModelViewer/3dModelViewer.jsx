@@ -17,10 +17,8 @@ const ModelViewer = ({
   const canvasRef = useRef(null);
   const sceneRef = useRef(null);
   const [previousFileFor3dModel, setPreviousFileFor3dModel] = useState(null);
-  const [
-    previousOriginalFileNameFor3dModel,
-    setPreviousOriginalFileNameFor3dModel,
-  ] = useState(null);
+  const [previousOriginalFileFor3dModel, setPreviousOriginalFileFor3dModel] =
+    useState(null);
 
   useEffect(() => {
     sceneRef.current = setupThreeScene(canvasRef.current);
@@ -29,12 +27,11 @@ const ModelViewer = ({
   useEffect(() => {
     const isNewFileFor3dModel =
       fileFor3dModel && fileFor3dModel !== previousFileFor3dModel;
-    const isNewOriginalFileNameFor3dModel =
+    const isNewOriginalFileFor3dModel =
       originalFileFor3dModel &&
-      originalFileFor3dModel !== previousOriginalFileNameFor3dModel;
+      originalFileFor3dModel !== previousOriginalFileFor3dModel;
 
-    const viewingNewPart =
-      isNewFileFor3dModel && isNewOriginalFileNameFor3dModel;
+    const viewingNewPart = isNewFileFor3dModel && isNewOriginalFileFor3dModel;
 
     if (fileFor3dModel) {
       const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
@@ -43,7 +40,7 @@ const ModelViewer = ({
       URL.revokeObjectURL(objectURL);
       sceneRef.current.clearModel();
       setPreviousFileFor3dModel(fileFor3dModel);
-      setPreviousOriginalFileNameFor3dModel(originalFileFor3dModel);
+      setPreviousOriginalFileFor3dModel(originalFileFor3dModel);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileFor3dModel]);
