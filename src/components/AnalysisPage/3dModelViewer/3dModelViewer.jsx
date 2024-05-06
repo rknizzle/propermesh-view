@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import setupThreeScene from "./setupThreeScene";
 import PropTypes from "prop-types";
 import "./3dModelViewer.css";
@@ -16,18 +16,34 @@ const ModelViewer = ({
 }) => {
   const canvasRef = useRef(null);
   const sceneRef = useRef(null);
+  const [previousFileFor3dModel, setPreviousFileFor3dModel] = useState(null);
+  const [
+    previousOriginalFileNameFor3dModel,
+    setPreviousOriginalFileNameFor3dModel,
+  ] = useState(null);
 
   useEffect(() => {
     sceneRef.current = setupThreeScene(canvasRef.current);
   }, []);
 
   useEffect(() => {
+    const isNewFileFor3dModel =
+      fileFor3dModel && fileFor3dModel !== previousFileFor3dModel;
+    const isNewOriginalFileNameFor3dModel =
+      originalFileFor3dModel &&
+      originalFileFor3dModel !== previousOriginalFileNameFor3dModel;
+
+    const viewingNewPart =
+      isNewFileFor3dModel && isNewOriginalFileNameFor3dModel;
+
     if (fileFor3dModel) {
       const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
       const objectURL = URL.createObjectURL(fileFor3dModel);
-      sceneRef.current.loadModel(objectURL, fileType);
+      sceneRef.current.loadModel(objectURL, fileType, viewingNewPart);
       URL.revokeObjectURL(objectURL);
       sceneRef.current.clearModel();
+      setPreviousFileFor3dModel(fileFor3dModel);
+      setPreviousOriginalFileNameFor3dModel(originalFileFor3dModel);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileFor3dModel]);
@@ -43,7 +59,7 @@ const ModelViewer = ({
     if (checked) {
       const objectURL = URL.createObjectURL(fileFor3dModel);
       const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
-      sceneRef.current.loadModel(objectURL, fileType);
+      sceneRef.current.loadModel(objectURL, fileType, false);
       URL.revokeObjectURL(objectURL);
       sceneRef.current.clearModel();
     }
@@ -54,7 +70,7 @@ const ModelViewer = ({
         .split(".")
         .pop()
         .toLowerCase();
-      sceneRef.current.loadModel(objectURL, fileType);
+      sceneRef.current.loadModel(objectURL, fileType, false);
       URL.revokeObjectURL(objectURL);
       sceneRef.current.clearModel();
     }

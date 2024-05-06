@@ -19,6 +19,12 @@ const setupThreeScene = (canvas) => {
 
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.addEventListener("change", () => renderer.render(scene, camera));
+
+  camera.position.set(0, 0, 2);
+  controls.update();
+
   const light = new THREE.DirectionalLight(0xffffff, 0.5);
   light.position.set(-1, 1, 1);
   scene.add(light);
@@ -47,7 +53,7 @@ const setupThreeScene = (canvas) => {
 
   const disposables = [];
 
-  const loadModel = (objectURL, fileType) => {
+  const loadModel = (objectURL, fileType, viewingNewPart) => {
     console.log("Loading model");
     // clearModel();
     let loader;
@@ -110,15 +116,15 @@ const setupThreeScene = (canvas) => {
       geometry.computeBoundingSphere();
       const scaleFactor = 1 / geometry.boundingSphere.radius;
 
+      if (viewingNewPart) {
+        camera.position.set(0, 0, 2);
+        controls.update();
+      }
+
       mesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
       outlineEdgeMesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
-      camera.position.z = 2;
-
-      const controls = new OrbitControls(camera, renderer.domElement);
-      controls.addEventListener("change", () => renderer.render(scene, camera));
-
-      disposables.push(geometry, material, mesh, controls);
+      disposables.push(geometry, material, mesh);
     });
   };
 
