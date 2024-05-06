@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import setupThreeScene from "./setupThreeScene";
 import PropTypes from "prop-types";
 import "./3dModelViewer.css";
@@ -15,8 +15,22 @@ const ModelViewer = ({
   setShowToggle,
 }) => {
   const canvasRef = useRef(null);
-  const [objectURL, setObjectURL] = useState(null);
-  const [fileType, setFileType] = useState(null);
+  const sceneRef = useRef(null);
+
+  useEffect(() => {
+    sceneRef.current = setupThreeScene(canvasRef.current);
+  }, []);
+
+  useEffect(() => {
+    if (fileFor3dModel) {
+      const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
+      const objectURL = URL.createObjectURL(fileFor3dModel);
+      sceneRef.current.loadModel(objectURL, fileType);
+      URL.revokeObjectURL(objectURL);
+      sceneRef.current.clearModel();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fileFor3dModel]);
 
   useEffect(() => {
     if (fileFor3dModel === originalFileFor3dModel) {
@@ -25,57 +39,24 @@ const ModelViewer = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileFor3dModel, originalFileFor3dModel]);
 
-  useEffect(() => {
-    if (fileFor3dModel) {
-      const url = URL.createObjectURL(fileFor3dModel);
-      setObjectURL(url);
-      setFileType(fileNameFor3dModel.split(".").pop().toLowerCase());
-
-      return () => {
-        URL.revokeObjectURL(url);
-      };
-    }
-
-    // if i add fileNameFor3dModel in the dependency array, like react wants me to,
-    // everything breaks and i have to run docker compose down
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fileFor3dModel]);
-
-  useEffect(() => {
-    if (!objectURL) return;
-
-    // setupThreeScene returns a cleanup function
-    const cleanup = setupThreeScene(canvasRef.current, objectURL, fileType);
-
-    // Call cleanup function when the component unmounts/before re-running the effect
-    return () => cleanup();
-
-    // if i add fileType in the dependency array, like react wants me to,
-    // everything breaks and i have to run docker compose down
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [objectURL]);
-
   const handleToggleChange = (checked) => {
     if (checked) {
-      const url = URL.createObjectURL(fileFor3dModel);
-      setObjectURL(url);
-      setFileType(fileNameFor3dModel.split(".").pop().toLowerCase());
-
-      return () => {
-        URL.revokeObjectURL(url);
-      };
+      const objectURL = URL.createObjectURL(fileFor3dModel);
+      const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
+      sceneRef.current.loadModel(objectURL, fileType);
+      URL.revokeObjectURL(objectURL);
+      sceneRef.current.clearModel();
     }
 
     if (!checked) {
-      const url = URL.createObjectURL(originalFileFor3dModel);
-      setObjectURL(url);
-      setFileType(originalFileNameFor3dModel.split(".").pop().toLowerCase());
-
-      return () => {
-        URL.revokeObjectURL(url);
-      };
+      const objectURL = URL.createObjectURL(originalFileFor3dModel);
+      const fileType = originalFileNameFor3dModel
+        .split(".")
+        .pop()
+        .toLowerCase();
+      sceneRef.current.loadModel(objectURL, fileType);
+      URL.revokeObjectURL(objectURL);
+      sceneRef.current.clearModel();
     }
   };
 
