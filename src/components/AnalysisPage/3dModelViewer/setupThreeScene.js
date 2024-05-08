@@ -5,6 +5,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const setupThreeScene = (canvas) => {
   const scene = new THREE.Scene();
+  const meshes = { originalMesh: null, plyMesh: null };
   scene.background = new THREE.Color(0xffffff);
   const camera = new THREE.PerspectiveCamera(
     75,
@@ -81,6 +82,15 @@ const setupThreeScene = (canvas) => {
 
       const mesh = new THREE.Mesh(geometry, material);
 
+      // this if statement has to be seperate from similar statement
+      // on line 76 because the materials have to be defined before the mesh
+      // and then the mesh has to be defined before the if statement below
+      if (fileType === "ply") {
+        meshes.plyMesh = mesh;
+      } else {
+        meshes.originalMesh = mesh;
+      }
+
       // TODO: refactor this edge code
       // Create a thick edge around the border of the model for easier viewing
 
@@ -128,6 +138,16 @@ const setupThreeScene = (canvas) => {
     });
   };
 
+  const toggleMesh = (fileType) => {
+    if (fileType === "ply" && meshes.plyMesh) {
+      scene.add(meshes.plyMesh);
+      meshes.originalMesh && scene.remove(meshes.originalMesh);
+    } else if (meshes.originalMesh) {
+      scene.add(meshes.originalMesh);
+      meshes.plyMesh && scene.remove(meshes.plyMesh);
+    }
+  };
+
   const clearModel = () => {
     // Remove all edges from the scene
     console.log("Clearing model");
@@ -162,7 +182,7 @@ const setupThreeScene = (canvas) => {
   };
   animate();
 
-  return { loadModel };
+  return { loadModel, toggleMesh };
 };
 
 export default setupThreeScene;

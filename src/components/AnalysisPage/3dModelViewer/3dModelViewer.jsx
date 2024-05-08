@@ -58,24 +58,7 @@ const ModelViewer = ({
   }, [fileFor3dModel, originalFileFor3dModel]);
 
   const handleToggleChange = (checked) => {
-    if (checked) {
-      const objectURL = URL.createObjectURL(fileFor3dModel);
-      const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
-      sceneRef.current.loadModel(objectURL, fileType, false);
-      // I also think revoking the objectURL here is fine
-      // for the same reason as above
-      URL.revokeObjectURL(objectURL);
-    }
-
-    if (!checked) {
-      const objectURL = URL.createObjectURL(originalFileFor3dModel);
-      const fileType = originalFileNameFor3dModel
-        .split(".")
-        .pop()
-        .toLowerCase();
-      sceneRef.current.loadModel(objectURL, fileType, false);
-      URL.revokeObjectURL(objectURL);
-    }
+    sceneRef.current.toggleMesh(checked ? "ply" : "original");
   };
 
   return (
