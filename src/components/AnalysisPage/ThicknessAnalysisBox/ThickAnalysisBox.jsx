@@ -18,7 +18,6 @@ const ThickAnalysisBox = ({
   setFileNameFor3dModel,
   originalFileFor3dModel,
   originalFileNameFor3dModel,
-  setShowToggle,
 }) => {
   const [thresholdValue, setThresholdValue] = useState(null);
   const [thinSurfaceArea, setThinSurfaceArea] = useState(null);
@@ -77,7 +76,6 @@ const ThickAnalysisBox = ({
         setFileNameFor3dModel("file.ply");
         const file = new File([blob], "file.ply", { type: blob.type });
         setFileFor3dModel(file);
-        setShowToggle(true);
       } else {
         if (listOfThicknessData.find((data) => data.id === data.id)) {
           downloadPlyFilePlaceIn3dViewer(
@@ -89,7 +87,6 @@ const ThickAnalysisBox = ({
             setFileNameFor3dModel,
             storeBlob
           );
-          setShowToggle(true);
         }
       }
     } catch (error) {
@@ -183,7 +180,6 @@ const ThickAnalysisBox = ({
             units={units}
             setFileFor3dModel={setFileFor3dModel}
             setFileNameFor3dModel={setFileNameFor3dModel}
-            setShowToggle={setShowToggle}
           />
         </Col>
       </Row>
@@ -226,7 +222,6 @@ ThickAnalysisBox.propTypes = {
   setFileNameFor3dModel: PropTypes.func,
   originalFileFor3dModel: PropTypes.object,
   originalFileNameFor3dModel: PropTypes.string,
-  setShowToggle: PropTypes.func,
 };
 
 export default ThickAnalysisBox;

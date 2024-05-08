@@ -11,11 +11,10 @@ const ModelViewer = ({
   fileNameFor3dModel,
   originalFileFor3dModel,
   originalFileNameFor3dModel,
-  showToggle,
-  setShowToggle,
 }) => {
   const canvasRef = useRef(null);
   const sceneRef = useRef(null);
+  const [showToggle, setShowToggle] = useState(false);
   const [previousFileFor3dModel, setPreviousFileFor3dModel] = useState(null);
   const [previousOriginalFileFor3dModel, setPreviousOriginalFileFor3dModel] =
     useState(null);
@@ -48,6 +47,9 @@ const ModelViewer = ({
   useEffect(() => {
     if (fileFor3dModel === originalFileFor3dModel) {
       setShowToggle(false);
+    }
+    if (fileFor3dModel !== originalFileFor3dModel) {
+      setShowToggle(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileFor3dModel, originalFileFor3dModel]);
@@ -90,8 +92,6 @@ ModelViewer.propTypes = {
   fileNameFor3dModel: PropTypes.string,
   originalFileFor3dModel: PropTypes.object,
   originalFileNameFor3dModel: PropTypes.string,
-  showToggle: PropTypes.bool,
-  setShowToggle: PropTypes.func,
 };
 
 export default ModelViewer;
