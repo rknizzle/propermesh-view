@@ -54,8 +54,8 @@ const setupThreeScene = (canvas) => {
   const disposables = [];
 
   const loadModel = (objectURL, fileType, viewingNewPart) => {
+    clearModel();
     console.log("Loading model");
-    // clearModel();
     let loader;
     if (fileType === "stl") {
       loader = new STLLoader();
@@ -162,7 +162,7 @@ const setupThreeScene = (canvas) => {
   };
   animate();
 
-  return { loadModel, clearModel };
+  return { loadModel };
 };
 
 export default setupThreeScene;

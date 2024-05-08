@@ -37,7 +37,6 @@ const ModelViewer = ({
       const objectURL = URL.createObjectURL(fileFor3dModel);
       sceneRef.current.loadModel(objectURL, fileType, viewingNewPart);
       URL.revokeObjectURL(objectURL);
-      sceneRef.current.clearModel();
       setPreviousFileFor3dModel(fileFor3dModel);
       setPreviousOriginalFileFor3dModel(originalFileFor3dModel);
     }
@@ -60,7 +59,6 @@ const ModelViewer = ({
       const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
       sceneRef.current.loadModel(objectURL, fileType, false);
       URL.revokeObjectURL(objectURL);
-      sceneRef.current.clearModel();
     }
 
     if (!checked) {
@@ -71,7 +69,6 @@ const ModelViewer = ({
         .toLowerCase();
       sceneRef.current.loadModel(objectURL, fileType, false);
       URL.revokeObjectURL(objectURL);
-      sceneRef.current.clearModel();
     }
   };
 
