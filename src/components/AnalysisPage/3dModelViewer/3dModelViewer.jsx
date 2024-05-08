@@ -49,8 +49,7 @@ const ModelViewer = ({
   useEffect(() => {
     if (fileFor3dModel === originalFileFor3dModel) {
       setShowToggle(false);
-    }
-    if (fileFor3dModel !== originalFileFor3dModel) {
+    } else {
       setShowToggle(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
