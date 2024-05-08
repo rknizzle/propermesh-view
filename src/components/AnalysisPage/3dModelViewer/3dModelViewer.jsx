@@ -36,6 +36,10 @@ const ModelViewer = ({
       const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
       const objectURL = URL.createObjectURL(fileFor3dModel);
       sceneRef.current.loadModel(objectURL, fileType, viewingNewPart);
+      // I think revoking the objectURL here is fine
+      // because it is passed to loadModel and used before being revoked.
+      // // unlike my last commit where i removed sceneRef.current.clearModel()
+      // // from this useEffect due to timing issues
       URL.revokeObjectURL(objectURL);
       setPreviousFileFor3dModel(fileFor3dModel);
       setPreviousOriginalFileFor3dModel(originalFileFor3dModel);
@@ -58,6 +62,8 @@ const ModelViewer = ({
       const objectURL = URL.createObjectURL(fileFor3dModel);
       const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
       sceneRef.current.loadModel(objectURL, fileType, false);
+      // I also think revoking the objectURL here is fine
+      // for the same reason as above
       URL.revokeObjectURL(objectURL);
     }
 
