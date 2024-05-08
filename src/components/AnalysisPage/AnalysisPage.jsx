@@ -69,7 +69,6 @@ const AnalysisPage = () => {
             fileFor3dModel={fileFor3dModel}
             fileNameFor3dModel={fileNameFor3dModel}
             originalFileFor3dModel={originalFileFor3dModel}
-            originalFileNameFor3dModel={originalFileNameFor3dModel}
           />
         </Col>
         <Col

@@ -10,7 +10,6 @@ const ModelViewer = ({
   fileFor3dModel,
   fileNameFor3dModel,
   originalFileFor3dModel,
-  originalFileNameFor3dModel,
 }) => {
   const canvasRef = useRef(null);
   const sceneRef = useRef(null);
@@ -77,7 +76,6 @@ ModelViewer.propTypes = {
   fileFor3dModel: PropTypes.object,
   fileNameFor3dModel: PropTypes.string,
   originalFileFor3dModel: PropTypes.object,
-  originalFileNameFor3dModel: PropTypes.string,
 };
 
 export default ModelViewer;
