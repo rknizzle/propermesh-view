@@ -82,8 +82,8 @@ const setupThreeScene = (canvas) => {
 
       const mesh = new THREE.Mesh(geometry, material);
 
-      // this if statement has to be seperate from similar statement
-      // on line 76 because the materials have to be defined before the mesh
+      // this if statement has to be seperate from the `if (fileType === "ply" `
+      // statment above because the materials have to be defined before the mesh
       // and then the mesh has to be defined before the if statement below
       if (fileType === "ply") {
         meshes.plyMesh = mesh;
