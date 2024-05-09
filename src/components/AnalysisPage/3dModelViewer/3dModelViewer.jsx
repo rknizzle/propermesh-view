@@ -17,6 +17,7 @@ const ModelViewer = ({
   const [previousFileFor3dModel, setPreviousFileFor3dModel] = useState(null);
   const [previousOriginalFileFor3dModel, setPreviousOriginalFileFor3dModel] =
     useState(null);
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     sceneRef.current = setupThreeScene(canvasRef.current);
@@ -42,6 +43,7 @@ const ModelViewer = ({
       URL.revokeObjectURL(objectURL);
       setPreviousFileFor3dModel(fileFor3dModel);
       setPreviousOriginalFileFor3dModel(originalFileFor3dModel);
+      setIsChecked(fileType === "ply");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileFor3dModel]);
@@ -56,6 +58,7 @@ const ModelViewer = ({
   }, [fileFor3dModel, originalFileFor3dModel]);
 
   const handleToggleChange = (checked) => {
+    setIsChecked(checked);
     sceneRef.current.toggleMesh(checked ? "ply" : "original");
   };
 
@@ -64,7 +67,7 @@ const ModelViewer = ({
       <canvas ref={canvasRef} id="model-canvas" />
       {showToggle && (
         <div className="model-viewer-toggle">
-          <Switch defaultChecked onChange={handleToggleChange} />
+          <Switch checked={isChecked} onChange={handleToggleChange} />
         </div>
       )}
     </div>
