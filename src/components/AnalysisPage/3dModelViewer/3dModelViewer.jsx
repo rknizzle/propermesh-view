@@ -23,6 +23,8 @@ const ModelViewer = ({
     sceneRef.current = setupThreeScene(canvasRef.current);
   }, []);
 
+  // This useEffect hook is used to load the original(gray) file for the 3d model
+  // at this point fileFor3dModel === originalFileFor3dModel
   useEffect(() => {
     const isNewFileFor3dModel =
       fileFor3dModel && fileFor3dModel !== previousFileFor3dModel;
@@ -32,17 +34,26 @@ const ModelViewer = ({
 
     const viewingNewPart = isNewFileFor3dModel && isNewOriginalFileFor3dModel;
 
-    if (fileFor3dModel) {
+    if (originalFileFor3dModel) {
       const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
       const objectURL = URL.createObjectURL(fileFor3dModel);
+      sceneRef.current.clearOriginalMesh();
       sceneRef.current.loadModel(objectURL, fileType, viewingNewPart);
-      // I think revoking the objectURL here is fine
-      // because it is passed to loadModel and used before being revoked.
-      // // unlike my last commit where i removed sceneRef.current.clearModel()
-      // // from this useEffect due to timing issues
+      URL.revokeObjectURL(objectURL);
+      setPreviousOriginalFileFor3dModel(originalFileFor3dModel);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [originalFileFor3dModel]);
+
+  // This useEffect hook is used to load ply file for the 3d model
+  // when the ply file arrives here it has become fileFor3dModel
+  useEffect(() => {
+    if (fileFor3dModel !== originalFileFor3dModel) {
+      const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
+      const objectURL = URL.createObjectURL(fileFor3dModel);
+      sceneRef.current.loadModel(objectURL, fileType, false);
       URL.revokeObjectURL(objectURL);
       setPreviousFileFor3dModel(fileFor3dModel);
-      setPreviousOriginalFileFor3dModel(originalFileFor3dModel);
       setIsChecked(fileType === "ply");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,6 +61,9 @@ const ModelViewer = ({
 
   useEffect(() => {
     if (fileFor3dModel === originalFileFor3dModel) {
+      // when changing threshold values, the original gray/mesh is displayed
+      // instead of reloading the entire original gray/mesh file
+      sceneRef.current.toggleMesh("original");
       setShowToggle(false);
     } else {
       setShowToggle(true);
