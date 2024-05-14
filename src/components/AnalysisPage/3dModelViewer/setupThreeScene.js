@@ -56,7 +56,6 @@ const setupThreeScene = (canvas) => {
 
   const loadModel = (objectURL, fileType, viewingNewPart) => {
     clearModel();
-    console.log("Loading model");
     let loader;
     if (fileType === "stl") {
       loader = new STLLoader();
@@ -150,7 +149,6 @@ const setupThreeScene = (canvas) => {
 
   const clearModel = () => {
     // Remove all edges from the scene
-    console.log("Clearing model");
     scene.children.forEach((child) => {
       if (child instanceof THREE.LineSegments) {
         scene.remove(child);
