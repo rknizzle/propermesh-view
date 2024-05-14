@@ -2,49 +2,77 @@ import { useEffect, useRef, useState } from "react";
 import setupThreeScene from "./setupThreeScene";
 import PropTypes from "prop-types";
 import "./3dModelViewer.css";
+import { Switch } from "antd";
 
 //TODO: Add loading spinner if a file is taking a second to load
 
-const ModelViewer = ({ fileFor3dModel, fileNameFor3dModel }) => {
+const ModelViewer = ({
+  fileFor3dModel,
+  fileNameFor3dModel,
+  originalFileFor3dModel,
+}) => {
   const canvasRef = useRef(null);
-  const [objectURL, setObjectURL] = useState(null);
-  const [fileType, setFileType] = useState(null);
+  const sceneRef = useRef(null);
+  const [showToggle, setShowToggle] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    if (fileFor3dModel) {
-      const url = URL.createObjectURL(fileFor3dModel);
-      setObjectURL(url);
-      setFileType(fileNameFor3dModel.split(".").pop().toLowerCase());
+    sceneRef.current = setupThreeScene(canvasRef.current);
+  }, []);
 
-      return () => {
-        URL.revokeObjectURL(url);
-      };
+  // This useEffect hook is used to load the original(gray) file for the 3d model
+  // at this point fileFor3dModel === originalFileFor3dModel
+  useEffect(() => {
+    if (originalFileFor3dModel) {
+      const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
+      const objectURL = URL.createObjectURL(fileFor3dModel);
+      sceneRef.current.clearOriginalMesh();
+      sceneRef.current.loadModel(objectURL, fileType, true);
+      URL.revokeObjectURL(objectURL);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [originalFileFor3dModel]);
 
-    // if i add fileNameFor3dModel in the dependency array, like react wants me to,
-    // everything breaks and i have to run docker compose down
-
+  // This useEffect hook is used to load ply file for the 3d model
+  // when the ply file arrives here it has become fileFor3dModel
+  useEffect(() => {
+    if (fileFor3dModel !== originalFileFor3dModel) {
+      const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
+      const objectURL = URL.createObjectURL(fileFor3dModel);
+      sceneRef.current.loadModel(objectURL, fileType, false);
+      URL.revokeObjectURL(objectURL);
+      setIsChecked(fileType === "ply");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileFor3dModel]);
 
   useEffect(() => {
-    if (!objectURL) return;
-
-    // setupThreeScene returns a cleanup function
-    const cleanup = setupThreeScene(canvasRef.current, objectURL, fileType);
-
-    // Call cleanup function when the component unmounts/before re-running the effect
-    return () => cleanup();
-
-    // if i add fileType in the dependency array, like react wants me to,
-    // everything breaks and i have to run docker compose down
-
+    if (fileFor3dModel === originalFileFor3dModel) {
+      // when changing threshold values, the original gray/mesh is displayed
+      // instead of reloading the entire original gray/mesh file
+      sceneRef.current.toggleBetweenOriginalAndPlyMesh("original");
+      setShowToggle(false);
+    } else {
+      setShowToggle(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [objectURL]);
+  }, [fileFor3dModel, originalFileFor3dModel]);
+
+  const handleToggleChange = (checked) => {
+    setIsChecked(checked);
+    sceneRef.current.toggleBetweenOriginalAndPlyMesh(
+      checked ? "ply" : "original"
+    );
+  };
 
   return (
     <div id="model-viewer-container">
       <canvas ref={canvasRef} id="model-canvas" />
+      {showToggle && (
+        <div className="model-viewer-toggle">
+          <Switch checked={isChecked} onChange={handleToggleChange} />
+        </div>
+      )}
     </div>
   );
 };
@@ -52,6 +80,7 @@ const ModelViewer = ({ fileFor3dModel, fileNameFor3dModel }) => {
 ModelViewer.propTypes = {
   fileFor3dModel: PropTypes.object,
   fileNameFor3dModel: PropTypes.string,
+  originalFileFor3dModel: PropTypes.object,
 };
 
 export default ModelViewer;

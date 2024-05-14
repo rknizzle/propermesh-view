@@ -68,6 +68,7 @@ const AnalysisPage = () => {
           <ModelViewer
             fileFor3dModel={fileFor3dModel}
             fileNameFor3dModel={fileNameFor3dModel}
+            originalFileFor3dModel={originalFileFor3dModel}
           />
         </Col>
         <Col
