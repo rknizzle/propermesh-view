@@ -50,7 +50,7 @@ const ModelViewer = ({
     if (fileFor3dModel === originalFileFor3dModel) {
       // when changing threshold values, the original gray/mesh is displayed
       // instead of reloading the entire original gray/mesh file
-      sceneRef.current.toggleMesh("original");
+      sceneRef.current.toggleBetweenOriginalAndPlyMesh("original");
       setShowToggle(false);
     } else {
       setShowToggle(true);
@@ -60,7 +60,9 @@ const ModelViewer = ({
 
   const handleToggleChange = (checked) => {
     setIsChecked(checked);
-    sceneRef.current.toggleMesh(checked ? "ply" : "original");
+    sceneRef.current.toggleBetweenOriginalAndPlyMesh(
+      checked ? "ply" : "original"
+    );
   };
 
   return (

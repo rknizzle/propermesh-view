@@ -137,7 +137,7 @@ const setupThreeScene = (canvas) => {
     });
   };
 
-  const toggleMesh = (fileType) => {
+  const toggleBetweenOriginalAndPlyMesh = (fileType) => {
     if (fileType === "ply" && meshes.plyMesh) {
       scene.add(meshes.plyMesh);
       meshes.originalMesh && scene.remove(meshes.originalMesh);
@@ -191,7 +191,7 @@ const setupThreeScene = (canvas) => {
   };
   animate();
 
-  return { loadModel, toggleMesh, clearOriginalMesh };
+  return { loadModel, toggleBetweenOriginalAndPlyMesh, clearOriginalMesh };
 };
 
 export default setupThreeScene;
