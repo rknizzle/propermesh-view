@@ -14,9 +14,6 @@ const ModelViewer = ({
   const canvasRef = useRef(null);
   const sceneRef = useRef(null);
   const [showToggle, setShowToggle] = useState(false);
-  const [previousFileFor3dModel, setPreviousFileFor3dModel] = useState(null);
-  const [previousOriginalFileFor3dModel, setPreviousOriginalFileFor3dModel] =
-    useState(null);
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
@@ -26,21 +23,12 @@ const ModelViewer = ({
   // This useEffect hook is used to load the original(gray) file for the 3d model
   // at this point fileFor3dModel === originalFileFor3dModel
   useEffect(() => {
-    const isNewFileFor3dModel =
-      fileFor3dModel && fileFor3dModel !== previousFileFor3dModel;
-    const isNewOriginalFileFor3dModel =
-      originalFileFor3dModel &&
-      originalFileFor3dModel !== previousOriginalFileFor3dModel;
-
-    const viewingNewPart = isNewFileFor3dModel && isNewOriginalFileFor3dModel;
-
     if (originalFileFor3dModel) {
       const fileType = fileNameFor3dModel.split(".").pop().toLowerCase();
       const objectURL = URL.createObjectURL(fileFor3dModel);
       sceneRef.current.clearOriginalMesh();
-      sceneRef.current.loadModel(objectURL, fileType, viewingNewPart);
+      sceneRef.current.loadModel(objectURL, fileType, true);
       URL.revokeObjectURL(objectURL);
-      setPreviousOriginalFileFor3dModel(originalFileFor3dModel);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [originalFileFor3dModel]);
@@ -53,7 +41,6 @@ const ModelViewer = ({
       const objectURL = URL.createObjectURL(fileFor3dModel);
       sceneRef.current.loadModel(objectURL, fileType, false);
       URL.revokeObjectURL(objectURL);
-      setPreviousFileFor3dModel(fileFor3dModel);
       setIsChecked(fileType === "ply");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
