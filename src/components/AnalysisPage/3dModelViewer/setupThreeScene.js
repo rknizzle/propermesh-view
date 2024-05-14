@@ -174,13 +174,24 @@ const setupThreeScene = (canvas) => {
     });
   };
 
+  // function to manually clear the original mesh from the scene
+  // without this, the previous mesh and new mesh would overlap
+  const clearOriginalMesh = () => {
+    if (meshes.originalMesh) {
+      scene.remove(meshes.originalMesh);
+      meshes.originalMesh.geometry.dispose();
+      meshes.originalMesh.material.dispose();
+      meshes.originalMesh = null;
+    }
+  }
+
   const animate = () => {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
   };
   animate();
 
-  return { loadModel, toggleMesh };
+  return { loadModel, toggleMesh, clearOriginalMesh };
 };
 
 export default setupThreeScene;
