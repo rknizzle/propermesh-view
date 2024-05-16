@@ -30,6 +30,10 @@ const UnitsSelector = ({
       setTimeout(() => {
         setShowSuccess(false);
       }, 2000);
+
+      // set the file shown in the viewer to be the original file to make sure
+      // that a visualization from the previous units wont be shown after
+      // switching units
       setFileNameFor3dModel(originalFileNameFor3dModel);
       setFileFor3dModel(originalFileFor3dModel);
     } catch (error) {
