@@ -104,7 +104,15 @@ const AnalysisPage = () => {
         </Col>
         <Col xs={{ span: 24, order: 3 }} lg={{ span: 24, order: 5 }}>
           <div id="unit-selector-parent-small">
-            <UnitsSelector partId={partId} units={units} setUnits={setUnits} />
+            <UnitsSelector
+              partId={partId}
+              units={units}
+              setUnits={setUnits}
+              setFileFor3dModel={setFileFor3dModel}
+              setFileNameFor3dModel={setFileNameFor3dModel}
+              originalFileFor3dModel={originalFileFor3dModel}
+              originalFileNameFor3dModel={originalFileNameFor3dModel}
+            />
           </div>
         </Col>
       </Row>
