@@ -8,6 +8,7 @@ import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import AnalysisPage from "./components/AnalysisPage/AnalysisPage.jsx";
 import LoginPage from "./components/loginRegister/LoginPage/LoginPage.jsx";
 import RegisterPage from "./components/loginRegister/RegisterPage/RegisterPage.jsx";
+import PricingPage from "./components/PricingPage/PricingPage.jsx";
 import ProtectedRoute from "./utils/protectedRoute.jsx";
 import AlreadyLoggedInRedirect from "./utils/AlreadyLoggedInRedirect.jsx";
 
@@ -29,6 +30,10 @@ root.render(
           <Route
             path="analysis"
             element={<ProtectedRoute component={AnalysisPage} />}
+          />
+          <Route
+            path="pricing"
+            element={<PricingPage />} />}
           />
         </Route>
       </Routes>

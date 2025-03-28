@@ -45,6 +45,14 @@ export default function LandingPage() {
           >
             Analyze Parts
           </Button>
+          <Button
+            type="primary"
+            id="analysis-page-btn"
+            size="large"
+            onClick={() => navigate("/pricing")}
+          >
+            Pricing 
+          </Button>
         </Col>
       </Row>
 
