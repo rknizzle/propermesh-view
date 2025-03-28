@@ -4,6 +4,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { downloadBlobToLocalMachine } from "./downloadBlob";
 import "./viewPartsButton.css";
+import API_VERSION from '../../../API_VERSION'
 
 const ViewPartsButton = ({
   setFileFor3dModel,
@@ -20,7 +21,7 @@ const ViewPartsButton = ({
   const [partsData, setPartsData] = useState([]);
 
   const checkForAnalysisData = (part_id) => {
-    fetch(`/api/v0/parts/${part_id}`)
+    fetch(`/api/${API_VERSION}/parts/${part_id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.geometry_analysis) {
@@ -38,7 +39,7 @@ const ViewPartsButton = ({
   };
 
   const downloadPartFileAndPlaceIn3dViewer = (part_id) => {
-    fetch(`/api/v0/parts/${part_id}/file`)
+    fetch(`/api/${API_VERSION}/parts/${part_id}/file`)
       .then((res) => res.blob())
       .then((blob) => {
         const file = new File([blob], fileNameFor3dModel, { type: blob.type });
@@ -48,7 +49,7 @@ const ViewPartsButton = ({
   };
 
   const clicked = () => {
-    fetch("/api/v0/parts")
+    fetch(`/api/${API_VERSION}/parts`)
       .then((response) => response.json())
       .then((data) => {
         setPartsData(data);
@@ -57,7 +58,7 @@ const ViewPartsButton = ({
   };
 
   const downloadFileToLocalMachine = (part_id, fileName) => {
-    fetch(`/api/v0/parts/${part_id}/file`)
+    fetch(`/api/${API_VERSION}/parts/${part_id}/file`)
       .then((res) => res.blob())
       .then((blob) => {
         downloadBlobToLocalMachine(blob, fileName);

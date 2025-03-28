@@ -1,5 +1,7 @@
+import API_VERSION from '../../../../API_VERSION'
+
 export const startThicknessAnalysis = async (partId, thresholdValue) => {
-  const response = await fetch(`/api/v0/thickness/${partId}/start`, {
+  const response = await fetch(`/api/${API_VERSION}/thickness/${partId}/start`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

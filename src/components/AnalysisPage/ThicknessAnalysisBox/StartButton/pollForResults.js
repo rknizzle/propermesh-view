@@ -1,3 +1,5 @@
+import API_VERSION from '../../../../API_VERSION'
+
 export const pollForResults = async (jobId) => {
   function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -6,7 +8,7 @@ export const pollForResults = async (jobId) => {
   let status = "";
 
   while (status !== "complete") {
-    const response = await fetch(`/api/v0/thickness/${jobId}`);
+    const response = await fetch(`/api/${API_VERSION}/thickness/${jobId}`);
     if (!response.ok) {
       throw new Error("Failed to fetch analysis results");
     }

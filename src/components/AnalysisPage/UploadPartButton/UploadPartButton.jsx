@@ -3,6 +3,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import PropTypes from "prop-types";
 import "./uploadPartButton.css";
+import API_VERSION from '../../../API_VERSION'
 
 const { Dragger } = Upload;
 
@@ -27,7 +28,7 @@ const UploadPartButton = ({
     multiple: false,
     showUploadList: false,
     accept: acceptedFileTypes.join(", "),
-    action: "/api/v0/parts",
+    action: `/api/${API_VERSION}/parts`,
     onChange(info) {
       const { status } = info.file;
 

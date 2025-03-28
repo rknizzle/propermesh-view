@@ -1,4 +1,5 @@
 import { notification } from "antd";
+import API_VERSION from "../../../../API_VERSION";
 
 const downloadPlyFilePlaceIn3dViewer = async (
   jobId,
@@ -11,7 +12,7 @@ const downloadPlyFilePlaceIn3dViewer = async (
 ) => {
   let blob = null;
   try {
-    const res = await fetch(`/api/v0/thickness/${jobId}/visual/ply`);
+    const res = await fetch(`/api/${API_VERSION}/thickness/${jobId}/visual/ply`);
     if (!res.ok) {
       throw new Error();
     }

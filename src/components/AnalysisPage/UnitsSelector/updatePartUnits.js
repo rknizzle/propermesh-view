@@ -1,5 +1,7 @@
+import API_VERSION from '../../../API_VERSION'
+
 export const updatePartUnits = async (partId, units) => {
-  const response = await fetch(`/api/v0/parts/${partId}/units`, {
+  const response = await fetch(`/api/${API_VERSION}/parts/${partId}/units`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
